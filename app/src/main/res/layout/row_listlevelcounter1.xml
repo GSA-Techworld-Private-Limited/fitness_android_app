@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="listlevelcounter1RowModel" type="com.fitness.app.modules.sstonetwo.data.model.Listlevelcounter1RowModel"/>
+    </data>
+    <LinearLayout android:gravity="start"
+        android:id="@+id/linearColumnlevelcounter"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:orientation="vertical">
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtLevelCounter"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:text="@{listlevelcounter1RowModel.txtLevelCounter}"
+            style="@style/txtNunitosemibold10_1" tools:text="@string/lbl_level_1"/>
+        <View
+            android:background="@drawable/rectangle_bg_light_green_800_radius_6_38"
+            android:id="@+id/viewEllipseTwentyOne"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_12pxh"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_1pxv" android:layout_width="@dimen/_12pxh"/>
+        <TextView android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/txtDAYThirteen"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5pxh"
+            android:layout_marginStart="@dimen/_4pxh"
+            android:layout_marginTop="@dimen/_7pxv"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:text="@{listlevelcounter1RowModel.txtDAYThirteen}"
+            style="@style/txtNunitosemibold6" tools:text="@string/lbl_day_1_3"/>
+    </LinearLayout>
+</layout>

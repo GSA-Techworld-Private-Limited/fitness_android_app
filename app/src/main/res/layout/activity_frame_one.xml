@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="frameOneVM" type="com.fitness.app.modules.frameone.data.viewmodel.FrameOneVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frameStackellipse"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+        <LinearLayout android:id="@+id/linearColumnellipse"
+            android:layout_gravity="start"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylewhite_A700">
+            <LinearLayout android:id="@+id/linearRowellipse"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal" style="@style/groupStylecornerRadius_4">
+                <View
+                    android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_17_5"
+                    android:id="@+id/viewEllipse"
+                    android:layout_height="@dimen/_35pxh"
+                    android:layout_marginBottom="@dimen/_9pxv"
+                    android:layout_marginStart="@dimen/_24pxh"
+                    android:layout_marginTop="@dimen/_57pxv" android:layout_width="@dimen/_35pxh"/>
+                <FrameLayout android:id="@+id/frameStackrectangle"
+                    android:layout_height="@dimen/_32pxv"
+                    android:layout_marginBottom="@dimen/_14pxv"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:layout_marginStart="@dimen/_248pxh"
+                    android:layout_marginTop="@dimen/_55pxv" android:layout_width="@dimen/_32pxh">
+                    <View
+                        android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                        android:id="@+id/viewRectangle"
+                        android:layout_gravity="bottom|start"
+                        android:layout_height="@dimen/_20pxh"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_10pxv" android:layout_width="@dimen/_19pxh"/>
+                    <View
+                        android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_1_8"
+                        android:id="@+id/viewRectangleOne"
+                        android:layout_gravity="top|start"
+                        android:layout_height="@dimen/_3pxh"
+                        android:layout_marginBottom="@dimen/_10pxv"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginStart="@dimen/_7pxh"
+                        android:layout_marginTop="@dimen/_8pxv" android:layout_width="@dimen/_4pxh"/>
+                    <LinearLayout
+                        android:id="@+id/linearColumnrectangleTwo"
+                        android:layout_gravity="top|end"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_10pxv"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical" style="@style/groupStylecornerRadius_8">
+                        <View
+                            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_4"
+                            android:id="@+id/viewRectangleTwo"
+                            android:layout_gravity="end"
+                            android:layout_height="@dimen/_12pxh"
+                            android:layout_marginBottom="@dimen/_3pxv"
+                            android:layout_marginEnd="@dimen/_6pxh"
+                            android:layout_marginStart="@dimen/_7pxh"
+                            android:layout_marginTop="@dimen/_6pxv" android:layout_width="@dimen/_8pxh"/>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+            <View
+                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                android:id="@+id/viewRectangleThree"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_64pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_14pxv" android:layout_width="@dimen/_235pxh"/>
+            <View
+                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                android:id="@+id/viewRectangleFour"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_19pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_22pxv" android:layout_width="@dimen/_127pxh"/>
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearColumnrectangleFive"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_width="match_parent"
+                android:orientation="vertical" style="@style/groupStylecornerRadius_4">
+                <LinearLayout android:id="@+id/linearRowrectangleFive"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_17pxv"
+                    android:layout_width="match_parent" android:orientation="horizontal">
+                    <View
+                        android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                        android:id="@+id/viewRectangleFive"
+                        android:layout_height="@dimen/_23pxv"
+                        android:layout_marginBottom="@dimen/_1pxv"
+                        android:layout_marginTop="@dimen/_1pxv" android:layout_width="@dimen/_54pxh"/>
+                    <LinearLayout android:gravity="center_horizontal"
+                        android:id="@+id/linearColumnrectangleSix"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_203pxh"
+                        android:layout_weight="0.32"
+                        android:layout_width="0dp"
+                        android:orientation="vertical" style="@style/groupStylecornerRadius_9">
+                        <View
+                            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_3"
+                            android:id="@+id/viewRectangleSix"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="@dimen/_10pxh"
+                            android:layout_marginBottom="@dimen/_7pxv"
+                            android:layout_marginEnd="@dimen/_9pxh"
+                            android:layout_marginStart="@dimen/_9pxh"
+                            android:layout_marginTop="@dimen/_7pxv" android:layout_width="@dimen/_6pxh"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <ProgressBar android:gravity="center_horizontal"
+                    android:id="@+id/progressBarGroupFortyFive"
+                    android:indeterminate="false"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_32pxv"
+                    android:layout_width="match_parent"
+                    android:max="100" android:minHeight="@dimen/_12pxv"
+                    android:progress="34"
+                    android:progressDrawable="@drawable/layer_list_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6" style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+                <View
+                    android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                    android:id="@+id/viewRectangleSeven"
+                    android:layout_height="@dimen/_14pxv"
+                    android:layout_marginBottom="@dimen/_9pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_8pxv" android:layout_width="@dimen/_87pxh"/>
+            </LinearLayout>
+            <View
+                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                android:id="@+id/viewRectangleEight"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_19pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_24pxv" android:layout_width="@dimen/_85pxh"/>
+            <HorizontalScrollView android:fillViewport="true"
+                android:gravity="end"
+                android:id="@+id/horizontalScrollHorizontalscrollrectangleNine"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_width="match_parent" android:scrollbars="none">
+                <LinearLayout android:id="@+id/linearRowrectangleNine"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:orientation="horizontal">
+                    <View
+                        android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                        android:id="@+id/viewRectangleNine"
+                        android:layout_height="@dimen/_132pxv"
+                        android:layout_marginBottom="@dimen/_1pxv" android:layout_width="@dimen/_227pxh"/>
+                    <ImageView android:id="@+id/imageRectangleTen"
+                        android:layout_height="@dimen/_132pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_width="@dimen/_227pxh"
+                        android:scaleType="fitXY"
+                        cornerRadius="@{@dimen/_6pxh}"
+                        imageRes="@{@drawable/img_rectangle_3}"
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_3"/>
+                    <ImageView android:id="@+id/imageRectangleEleven"
+                        android:layout_height="@dimen/_132pxh"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_width="@dimen/_227pxh"
+                        android:scaleType="fitXY"
+                        cornerRadius="@{@dimen/_6pxh}"
+                        imageRes="@{@drawable/img_rectangle_4}"
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_4"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+            <LinearLayout android:gravity="center_vertical"
+                android:id="@+id/linearRowellipseOne"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_width="match_parent"
+                android:orientation="horizontal" style="@style/groupStylecornerRadius_4">
+                <View
+                    android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_3_395"
+                    android:id="@+id/viewEllipseOne"
+                    android:layout_height="@dimen/_6pxh"
+                    android:layout_marginBottom="@dimen/_7pxv"
+                    android:layout_marginStart="@dimen/_160pxh"
+                    android:layout_marginTop="@dimen/_89pxv" android:layout_width="@dimen/_6pxh"/>
+                <View
+                    android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_3_395"
+                    android:id="@+id/viewEllipseTwo"
+                    android:layout_height="@dimen/_6pxh"
+                    android:layout_marginBottom="@dimen/_7pxv"
+                    android:layout_marginStart="@dimen/_4pxh"
+                    android:layout_marginTop="@dimen/_89pxv" android:layout_width="@dimen/_6pxh"/>
+                <View
+                    android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_3_395"
+                    android:id="@+id/viewEllipseThree"
+                    android:layout_height="@dimen/_6pxh"
+                    android:layout_marginBottom="@dimen/_7pxv"
+                    android:layout_marginStart="@dimen/_4pxh"
+                    android:layout_marginTop="@dimen/_89pxv" android:layout_width="@dimen/_6pxh"/>
+                <View
+                    android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_3_395"
+                    android:id="@+id/viewEllipseFour"
+                    android:layout_height="@dimen/_6pxh"
+                    android:layout_marginBottom="@dimen/_7pxv"
+                    android:layout_marginEnd="@dimen/_160pxh"
+                    android:layout_marginStart="@dimen/_4pxh"
+                    android:layout_marginTop="@dimen/_89pxv" android:layout_width="@dimen/_6pxh"/>
+            </LinearLayout>
+            <View
+                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                android:id="@+id/viewRectangleTwelve"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_19pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_24pxv" android:layout_width="@dimen/_95pxh"/>
+            <HorizontalScrollView android:fillViewport="true"
+                android:gravity="start"
+                android:id="@+id/horizontalScrollHorizontalscrollrectangleThirteen"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15pxv"
+                android:layout_width="match_parent" android:scrollbars="none">
+                <LinearLayout
+                    android:id="@+id/linearRowrectangleNineteen"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:orientation="horizontal">
+                    <FrameLayout
+                        android:id="@+id/frameStackrectangleThirteen"
+                        android:layout_height="@dimen/_140pxv" android:layout_width="match_parent">
+                        <LinearLayout
+                            android:id="@+id/linearRowrectangleThirteen"
+                            android:layout_gravity="start"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_20pxh"
+                            android:layout_marginStart="@dimen/_20pxh"
+                            android:layout_width="match_parent" android:orientation="horizontal">
+                            <View
+                                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                                android:id="@+id/viewRectangleThirteen"
+                                android:layout_height="@dimen/_140pxh" android:layout_width="@dimen/_113pxh"/>
+                            <View
+                                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                                android:id="@+id/viewRectangleFourteen"
+                                android:layout_height="@dimen/_140pxh"
+                                android:layout_marginStart="@dimen/_12pxh" android:layout_width="@dimen/_113pxh"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linearRowrectangleFifteen"
+                            android:layout_gravity="top|start"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_10pxv"
+                            android:layout_marginTop="@dimen/_4pxv"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal" style="@style/groupStylecornerRadius_4">
+                            <View
+                                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                                android:id="@+id/viewRectangleFifteen"
+                                android:layout_height="@dimen/_19pxv"
+                                android:layout_marginBottom="@dimen/_20pxv"
+                                android:layout_marginStart="@dimen/_20pxh"
+                                android:layout_marginTop="@dimen/_20pxv" android:layout_width="@dimen/_43pxh"/>
+                            <View
+                                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                                android:id="@+id/viewRectangleSixteen"
+                                android:layout_height="@dimen/_19pxv"
+                                android:layout_marginBottom="@dimen/_20pxv"
+                                android:layout_marginStart="@dimen/_48pxh"
+                                android:layout_marginTop="@dimen/_20pxv" android:layout_width="@dimen/_44pxh"/>
+                            <View
+                                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                                android:id="@+id/viewRectangleSeventeen"
+                                android:layout_height="@dimen/_19pxv"
+                                android:layout_marginBottom="@dimen/_20pxv"
+                                android:layout_marginStart="@dimen/_48pxh"
+                                android:layout_marginTop="@dimen/_20pxv" android:layout_width="@dimen/_41pxh"/>
+                            <View
+                                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                                android:id="@+id/viewRectangleEighteen"
+                                android:layout_height="@dimen/_19pxv"
+                                android:layout_marginBottom="@dimen/_20pxv"
+                                android:layout_marginEnd="@dimen/_20pxh"
+                                android:layout_marginStart="@dimen/_48pxh"
+                                android:layout_marginTop="@dimen/_20pxv" android:layout_width="@dimen/_48pxh"/>
+                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/imageRectangleNineteen"
+                            android:layout_gravity="end"
+                            android:layout_height="@dimen/_140pxh"
+                            android:layout_marginStart="@dimen/_10pxh"
+                            android:layout_width="@dimen/_113pxh"
+                            android:scaleType="fitXY"
+                            cornerRadius="@{@dimen/_6pxh}"
+                            imageRes="@{@drawable/img_rectangle_140x113}"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_140x113"/>
+                    </FrameLayout>
+                    <ImageView android:id="@+id/imageRectangleTwenty"
+                        android:layout_height="@dimen/_140pxh"
+                        android:layout_marginStart="@dimen/_38pxh"
+                        android:layout_width="@dimen/_113pxh"
+                        android:scaleType="fitXY"
+                        cornerRadius="@{@dimen/_6pxh}"
+                        imageRes="@{@drawable/img_rectangle_5}"
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_5"/>
+                    <ImageView android:id="@+id/imageRectangleTwentyOne"
+                        android:layout_height="@dimen/_140pxh"
+                        android:layout_marginStart="@dimen/_12pxh"
+                        android:layout_width="@dimen/_113pxh"
+                        android:scaleType="fitXY"
+                        cornerRadius="@{@dimen/_6pxh}"
+                        imageRes="@{@drawable/img_rectangle_6}"
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_6"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

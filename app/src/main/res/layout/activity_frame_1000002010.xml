@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="frame1000002010VM" type="com.fitness.app.modules.frame1000002010.data.viewmodel.Frame1000002010VM"/>
+    </data>
+    <LinearLayout android:id="@+id/linearColumnarrowdown"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_6">
+        <ImageView android:id="@+id/imageArrowdown"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_14pxh"
+            android:layout_marginEnd="@dimen/_14pxh"
+            android:layout_marginStart="@dimen/_14pxh"
+            android:layout_marginTop="@dimen/_17pxv"
+            android:layout_width="@dimen/_16pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrowdown"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_arrowdown"/>
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtShareAppVia"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_21pxh"
+            android:layout_marginStart="@dimen/_21pxh"
+            android:layout_marginTop="@dimen/_16pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@{frame1000002010VM.frame1000002010Model.txtShareAppVia}"
+            style="@style/txtNunitosemibold16_2" tools:text="@string/msg_share_app_via"/>
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearRowellipseforty"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_63pxv"
+            android:layout_marginEnd="@dimen/_14pxh"
+            android:layout_marginStart="@dimen/_14pxh"
+            android:layout_marginTop="@dimen/_18pxv"
+            android:layout_width="match_parent" android:orientation="horizontal">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearColumnellipseforty"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_weight="0.27" android:layout_width="0dp" android:orientation="vertical">
+                <ImageView android:id="@+id/imageEllipseForty"
+                    android:layout_height="@dimen/_64pxh"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_width="@dimen/_64pxh"
+                    android:scaleType="centerCrop" circular="@{true}"
+                    imageRes="@{@drawable/img_ellipse40}"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse40"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtWhatsapp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:text="@{frame1000002010VM.frame1000002010Model.txtWhatsapp}"
+                    style="@style/txtNunitosemibold10_2" tools:text="@string/lbl_whatsapp"/>
+            </LinearLayout>
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearColumnellipsefortyone"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_2pxv"
+                android:layout_marginTop="@dimen/_2pxv"
+                android:layout_weight="0.26" android:layout_width="0dp" android:orientation="vertical">
+                <ImageView android:id="@+id/imageEllipseFortyOne"
+                    android:layout_height="@dimen/_59pxh"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_width="@dimen/_59pxh"
+                    android:scaleType="centerCrop" circular="@{true}"
+                    imageRes="@{@drawable/img_ellipse41}"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse41"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtFacebook"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:layout_marginTop="@dimen/_6pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@{frame1000002010VM.frame1000002010Model.txtFacebook}"
+                    style="@style/txtNunitosemibold10_2" tools:text="@string/lbl_facebook"/>
+            </LinearLayout>
+            <LinearLayout android:gravity="center_horizontal"
+                android:id="@+id/linearColumnellipsefortytwo"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_weight="0.29" android:layout_width="0dp" android:orientation="vertical">
+                <ImageView android:id="@+id/imageEllipseFortyTwo"
+                    android:layout_gravity="start"
+                    android:layout_height="@dimen/_69pxh"
+                    android:layout_marginEnd="@dimen/_26pxh"
+                    android:layout_width="@dimen/_69pxh"
+                    android:scaleType="centerCrop" circular="@{true}"
+                    imageRes="@{@drawable/img_ellipse42}"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse42"/>
+                <TextView android:ellipsize="end"
+                    android:gravity="start"
+                    android:id="@+id/txtMessenger"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_38pxh"
+                    android:layout_marginStart="@dimen/_6pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:text="@{frame1000002010VM.frame1000002010Model.txtMessenger}"
+                    style="@style/txtNunitosemibold10_2" tools:text="@string/lbl_messenger"/>
+            </LinearLayout>
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearColumnellipsefortythree"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_marginEnd="@dimen/_1pxh"
+                android:layout_marginTop="@dimen/_2pxv"
+                android:layout_weight="0.18" android:layout_width="0dp" android:orientation="vertical">
+                <ImageView android:id="@+id/imageEllipseFortyThree"
+                    android:layout_height="@dimen/_59pxh"
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop" circular="@{true}"
+                    imageRes="@{@drawable/img_ellipse43}"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse43"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtInstagram"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginStart="@dimen/_4pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:text="@{frame1000002010VM.frame1000002010Model.txtInstagram}"
+                    style="@style/txtNunitosemibold10_2" tools:text="@string/lbl_instagram"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

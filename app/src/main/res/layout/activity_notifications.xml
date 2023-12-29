@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="notificationsVM" type="com.fitness.app.modules.notifications.data.viewmodel.NotificationsVM"/>
+    </data>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearNotifications"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <androidx.appcompat.widget.Toolbar android:gravity="start"
+            android:id="@+id/toolbarToolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:contentInsetStart="0dp" style="@style/groupStyle">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowarrowright"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_11pxv"
+                android:layout_marginEnd="@dimen/_175pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_60pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <ImageButton
+                    android:background="@drawable/rectangle_bg_white_a700_radius_15"
+                    android:id="@+id/btnArrowright"
+                    android:layout_height="@dimen/_30pxh"
+                    android:layout_width="@dimen/_30pxh"
+                    android:paddingHorizontal="@dimen/_7pxh"
+                    android:paddingVertical="@dimen/_7pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_arrowright_gray_900" tools:ignore="ContentDescription"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtNotifications"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_4pxv"
+                    android:layout_marginStart="@dimen/_19pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_weight="0.79"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{notificationsVM.notificationsModel.txtNotifications}"
+                    style="@style/txtRobotoromansemibold20" tools:text="@string/lbl_notifications"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumn"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_30pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_15">
+            <LinearLayout android:gravity="center_horizontal"
+                android:id="@+id/linearColumndescription"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical" style="@style/groupStylegray_706cornerRadius">
+                <TextView android:gravity="center_horizontal"
+                    android:id="@+id/txtDescription"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_11pxv"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:layout_width="match_parent"
+                    android:text="@{notificationsVM.notificationsModel.txtDescription}"
+                    style="@style/txtRalewayromanregular14" tools:text="@string/msg_forem_ipsum_dol"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnOne"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_14pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_15">
+            <LinearLayout android:gravity="center_horizontal"
+                android:id="@+id/linearColumndescriptionOne"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical" style="@style/groupStylegray_706cornerRadius">
+                <TextView android:gravity="center_horizontal"
+                    android:id="@+id/txtDescriptionOne"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_11pxv"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:layout_width="match_parent"
+                    android:text="@{notificationsVM.notificationsModel.txtDescriptionOne}"
+                    style="@style/txtRalewayromanregular14" tools:text="@string/msg_forem_ipsum_dol"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnTwo"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_14pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_15">
+            <LinearLayout android:gravity="center_horizontal"
+                android:id="@+id/linearColumndescriptionTwo"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical" style="@style/groupStylegray_706cornerRadius">
+                <TextView android:gravity="center_horizontal"
+                    android:id="@+id/txtDescriptionTwo"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_11pxv"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:layout_width="match_parent"
+                    android:text="@{notificationsVM.notificationsModel.txtDescriptionTwo}"
+                    style="@style/txtRalewayromanregular14" tools:text="@string/msg_forem_ipsum_dol"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

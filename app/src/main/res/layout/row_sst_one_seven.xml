@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="sstOneSevenRowModel" type="com.fitness.app.modules.sstoneseven.data.model.SstOneSevenRowModel"/>
+    </data>
+    <FrameLayout android:id="@+id/frameStackpaypal"
+        android:layout_height="wrap_content" android:layout_width="match_parent">
+        <TextView android:ellipsize="end" android:id="@+id/txtPaypal"
+            android:layout_gravity="bottom|start"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10pxv"
+            android:layout_marginEnd="@dimen/_50pxh"
+            android:layout_marginStart="@dimen/_50pxh"
+            android:layout_marginTop="@dimen/_10pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@{sstOneSevenRowModel.txtPaypal}"
+            style="@style/txtPoppinssemibold16" tools:text="@string/lbl_paypal"/>
+        <LinearLayout android:id="@+id/linearRowpaypalone"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal" style="@style/groupStylecornerRadius_6">
+            <ImageView android:id="@+id/imagePaypalOne"
+                android:layout_height="@dimen/_22pxh"
+                android:layout_marginBottom="@dimen/_14pxv"
+                android:layout_marginStart="@dimen/_17pxh"
+                android:layout_marginTop="@dimen/_14pxv"
+                android:layout_width="@dimen/_22pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_paypal1"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_paypal1"/>
+            <View
+                android:background="@drawable/rectangle_border_gray_502_radius_9"
+                android:id="@+id/viewEllipseTwentyTwo"
+                android:layout_height="@dimen/_18pxh"
+                android:layout_marginBottom="@dimen/_15pxv"
+                android:layout_marginEnd="@dimen/_24pxh"
+                android:layout_marginStart="@dimen/_239pxh"
+                android:layout_marginTop="@dimen/_17pxv" android:layout_width="@dimen/_18pxh"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

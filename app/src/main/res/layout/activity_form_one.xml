@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="formOneVM" type="com.fitness.app.modules.formone.data.viewmodel.FormOneVM"/>
+    </data>
+
+
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:id="@+id/linearFormOne"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+            <LinearLayout
+                android:id="@+id/textnowadays"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/frameStackplus"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_134pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_40pxv"
+            android:layout_width="@dimen/_134pxh"
+            style="@style/groupStylebluegray_100cornerRadius">
+            <ImageView android:id="@+id/imagePlus"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/_34pxh"
+                android:layout_marginHorizontal="@dimen/_40pxh"
+                android:layout_marginVertical="@dimen/_40pxv"
+                android:layout_width="@dimen/_34pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_plus"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_plus"/>
+        </FrameLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/lbl_name2"
+            android:id="@+id/textInputLayName"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_35pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_15pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_28pxh"
+            android:paddingTop="@dimen/_15pxv"
+            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/etName" android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.03" android:singleLine="true"
+                android:text="@={formOneVM.formOneModel.etNameValue}"
+                android:textColor="@color/gray_500"
+                android:textFontWeight="400"
+                android:textSize="@dimen/_16pxh"
+                android:textStyle="normal" tools:text="@string/lbl_name2"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/lbl_email_id"
+            android:id="@+id/textInputLayEmailID"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_9pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_15pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_28pxh"
+            android:paddingTop="@dimen/_15pxv"
+            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/etEmailID"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.03" android:singleLine="true"
+                android:text="@={formOneVM.formOneModel.etEmailIDValue}"
+                android:textColor="@color/gray_500"
+                android:textFontWeight="400"
+                android:textSize="@dimen/_16pxh"
+                android:textStyle="normal" tools:text="@string/lbl_email_id"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/lbl_dob2"
+            android:id="@+id/textInputLayDDMMYYYY"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_9pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_15pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_28pxh"
+            android:paddingTop="@dimen/_15pxv"
+            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/etDDMMYYYY" android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.03" android:singleLine="true"
+                android:text="@={formOneVM.formOneModel.etDDMMYYYYValue}"
+                android:textColor="@color/gray_500"
+                android:textFontWeight="400"
+                android:textSize="@dimen/_16pxh"
+                android:textStyle="normal" tools:text="@string/lbl_dd_mm_yyyy"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/lbl_state"
+            android:id="@+id/textInputLayState"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_9pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_15pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_28pxh"
+            android:paddingTop="@dimen/_15pxv"
+            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/etState" android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.03" android:singleLine="true"
+                android:text="@={formOneVM.formOneModel.etStateValue}"
+                android:textColor="@color/gray_500"
+                android:textFontWeight="400"
+                android:textSize="@dimen/_16pxh"
+                android:textStyle="normal" tools:text="@string/lbl_state"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/lbl_city"
+            android:id="@+id/textInputLayCity"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_9pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_14pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_28pxh"
+            android:paddingTop="@dimen/_16pxv"
+            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/etCity" android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.03" android:singleLine="true"
+                android:text="@={formOneVM.formOneModel.etCityValue}"
+                android:textColor="@color/gray_500"
+                android:textFontWeight="400"
+                android:textSize="@dimen/_16pxh"
+                android:textStyle="normal" tools:text="@string/lbl_city"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/lbl_zip_code"
+            android:id="@+id/textInputLayZIPCode"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_9pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_15pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_28pxh"
+            android:paddingTop="@dimen/_15pxv"
+            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:ellipsize="end"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/etZIPCode" android:inputType="number"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.03" android:singleLine="true"
+                android:text="@={formOneVM.formOneModel.etZIPCodeValue}"
+                android:textColor="@color/gray_500"
+                android:textFontWeight="400"
+                android:textSize="@dimen/_16pxh"
+                android:textStyle="normal" tools:text="@string/lbl_zip_code"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnContinue"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_45pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_17pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_17pxv" android:singleLine="true"
+            android:text="@string/lbl_continue"
+            android:textAllCaps="false"
+            style="@style/btnGradientRounded" tools:text="@string/lbl_continue"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+
+</layout>

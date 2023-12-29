@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="listrectanglesixtyoneRowModel" type="com.fitness.app.modules.subscriptionsone.data.model.ListrectanglesixtyoneRowModel"/>
+    </data>
+    <FrameLayout android:id="@+id/frameStackrectanglesixtyone"
+        android:layout_height="wrap_content" android:layout_width="match_parent">
+        <ImageView android:id="@+id/imageRectangleSixtyOne"
+            android:layout_gravity="start"
+            android:layout_height="@dimen/_146pxh"
+            android:layout_width="@dimen/_320pxh"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_10pxh}"
+            imageRes="@{@drawable/img_rectangle61}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle61"/>
+        <LinearLayout android:id="@+id/linearColumnviewdetails"
+            android:layout_gravity="bottom|end"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_13pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_13pxv"
+            android:layout_width="wrap_content" android:orientation="vertical">
+            <TextView android:ellipsize="end" android:gravity="start"
+                android:id="@+id/txtViewDetails"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12pxh"
+                android:layout_marginStart="@dimen/_12pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@{listrectanglesixtyoneRowModel.txtViewDetails}"
+                style="@style/txtRobotoromanregular10_1"
+                textUnderline="true" tools:text="@string/lbl_view_details"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end" android:gravity="center"
+                android:id="@+id/btnBuyPlan"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_11pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_8pxv"
+                android:paddingEnd="@dimen/_20pxh"
+                android:paddingStart="@dimen/_20pxh"
+                android:paddingTop="@dimen/_8pxv"
+                android:singleLine="true"
+                android:text="@string/lbl_buy_plan"
+                android:textAllCaps="false"
+                style="@style/btnSolidRounded_1" tools:text="@string/lbl_buy_plan"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

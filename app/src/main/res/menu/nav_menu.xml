@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+android:id="@+id/home"
+android:icon="@drawable/img_home"
+android:title="Home"
+           />
+
+
+    <item
+        android:id="@+id/feed"
+        android:icon="@drawable/img_settings"
+        android:title="Feeds"/>
+
+
+    <item
+        android:id="@+id/plan"
+        android:icon="@drawable/img_computer"
+        android:title="Plans"
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/img_lock"
+        android:title="Profile"
+        />
+</menu>

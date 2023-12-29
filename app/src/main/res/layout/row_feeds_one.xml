@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="feedsOneRowModel" type="com.fitness.app.modules.feedsone.data.model.FeedsOneRowModel"/>
+    </data>
+    <FrameLayout android:id="@+id/frameStackrectanglefortyfive"
+        android:layout_height="wrap_content" android:layout_width="match_parent">
+        <ImageView android:id="@+id/imageRectangleFortyFive"
+            android:layout_gravity="start"
+            android:layout_height="@dimen/_152pxh"
+            android:layout_width="@dimen/_152pxh"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_5pxh}"
+            imageRes="@{@drawable/img_rectangle45}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle45"/>
+        <LinearLayout android:id="@+id/linearColumnarticlename"
+            android:layout_gravity="bottom|center"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_11pxh"
+            android:layout_marginVertical="@dimen/_11pxv"
+            android:layout_width="match_parent" android:orientation="vertical">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtArticleName"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginStart="@dimen/_1pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@{feedsOneRowModel.txtArticleName}"
+                style="@style/txtRalewayromansemibold14_1" tools:text="@string/lbl_article_name"/>
+            <TextView android:gravity="center_horizontal"
+                android:id="@+id/txtYoremipsumdol"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3pxv"
+                android:layout_width="match_parent"
+                android:text="@{feedsOneRowModel.txtYoremipsumdol}"
+                style="@style/txtRalewayromanregular8" tools:text="@string/msg_yorem_ipsum_dol"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

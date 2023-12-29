@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="subscriptionsOneVM" type="com.fitness.app.modules.subscriptionsone.data.viewmodel.SubscriptionsOneVM"/>
+    </data>
+    <androidx.core.widget.NestedScrollView android:clipToPadding="false"
+        android:fillViewport="true"
+        android:id="@+id/scrollViewScrollview"
+        android:layout_height="match_parent" android:layout_width="match_parent">
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnnote"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" android:orientation="vertical">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRownote"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_17pxh"
+                android:layout_marginStart="@dimen/_17pxh"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtNote"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.09"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{subscriptionsOneVM.subscriptionsOneModel.txtNote}"
+                    style="@style/txtRobotoromanregular10" tools:text="@string/lbl_note"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtDoremipsumdol"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_11pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_weight="0.91"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{subscriptionsOneVM.subscriptionsOneModel.txtDoremipsumdol}"
+                    style="@style/txtRobotoromanlight8" tools:text="@string/msg_dorem_ipsum_dol"/>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:gravity="start"
+                android:id="@+id/recyclerListrectanglesixtyone"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_23pxv"
+                android:layout_width="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                itemSpace="@{@dimen/_14pxh}" tools:itemCount="4" tools:listitem="@layout/row_listrectanglesixtyone"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

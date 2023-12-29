@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest package="com.fitness.app" xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <application android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name" android:largeHeap="true"
+        android:name="com.fitness.app.appcomponents.di.MyApp"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true" android:theme="@style/Theme.MyApp" android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.fitness.app.modules.sstonesix.ui.SstOneSixActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.frame.ui.FrameActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstonefive.ui.SstOneFiveActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.frame1000001997.ui.Frame1000001997Activity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.warmup.ui.WarmUpActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstoneseven.ui.SstOneSevenActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.otp.ui.OtpActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.plansone.ui.PlansOneActivity" android:screenOrientation="portrait"/>
+        <activity android:exported="true"
+            android:name="com.fitness.app.modules.welcomelogin.ui.WelcomeLoginActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fitness.app.modules.plans.ui.PlansActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstoneten.ui.SstOneTenActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstonethree.ui.SstOneThreeActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.notifications.ui.NotificationsActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.formone.ui.FormOneActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.aboutus.ui.AboutUsActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.plyometrics.ui.PlyometricsActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.frame1000002010.ui.Frame1000002010Activity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstoneone.ui.SstOneOneActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstone.ui.SstOneActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.plyometricsone.ui.PlyometricsOneActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.frame1000002011.ui.Frame1000002011Activity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.planstwo.ui.PlansTwoActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.frameone.ui.FrameOneActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.profile.ui.ProfileActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstonefour.ui.SstOneFourActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.homecontainer.ui.HomeContainerActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstoneeight.ui.SstOneEightActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstonenine.ui.SstOneNineActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.sstonetwo.ui.SstOneTwoActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.fitness.app.modules.appsettings.ui.AppSettingsActivity" android:screenOrientation="portrait"/>
+    </application>
+</manifest>

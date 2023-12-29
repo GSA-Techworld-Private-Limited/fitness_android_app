@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="frameVM" type="com.fitness.app.modules.frame.data.viewmodel.FrameVM"/>
+    </data>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearColumnotpview"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <com.mukesh.OtpView android:focusableInTouchMode="true"
+            android:id="@+id/otpViewOtpview" android:inputType="number"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_68pxv"
+            android:layout_width="wrap_content" app:OtpItemCount="4"
+            app:OtpItemSpacing="@dimen/_5pxh"
+            app:OtpItemWidth="@dimen/_41pxh"
+            app:OtpLineColor="@android:color/transparent" app:OtpViewType="line"/>
+        <View
+            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+            android:id="@+id/viewRectangle"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_19pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_66pxv" android:layout_width="@dimen/_193pxh"/>
+        <View
+            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+            android:id="@+id/viewRectangleOne"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_60pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_28pxv" android:layout_width="@dimen/_248pxh"/>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnrectangleTwo"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_29pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_4">
+            <View
+                android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+                android:id="@+id/viewRectangleTwo"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_25pxv"
+                android:layout_marginBottom="@dimen/_12pxv"
+                android:layout_marginEnd="@dimen/_28pxh"
+                android:layout_marginStart="@dimen/_28pxh"
+                android:layout_marginTop="@dimen/_12pxv" android:layout_width="@dimen/_48pxh"/>
+        </LinearLayout>
+        <View
+            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+            android:id="@+id/viewRectangleThree"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_19pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_338pxv" android:layout_width="@dimen/_69pxh"/>
+        <View
+            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_100_e_gray_301_radius_6"
+            android:id="@+id/viewRectangleFour"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_19pxv"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_45pxv" android:layout_width="@dimen/_32pxh"/>
+    </LinearLayout>
+</layout>

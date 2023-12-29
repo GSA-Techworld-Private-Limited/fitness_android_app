@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="sstOneSevenVM" type="com.fitness.app.modules.sstoneseven.data.viewmodel.SstOneSevenVM"/>
+    </data>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearSSTOneSeven"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <androidx.appcompat.widget.Toolbar android:gravity="start"
+            android:id="@+id/toolbarToolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:contentInsetStart="0dp" style="@style/groupStyle">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowarrowright"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_11pxv"
+                android:layout_marginEnd="@dimen/_161pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_60pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <ImageButton
+                    android:background="@drawable/rectangle_bg_white_a700_radius_15"
+                    android:id="@+id/btnArrowright"
+                    android:layout_height="@dimen/_30pxh"
+                    android:layout_width="@dimen/_30pxh"
+                    android:paddingHorizontal="@dimen/_7pxh"
+                    android:paddingVertical="@dimen/_7pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_arrowright_gray_900" tools:ignore="ContentDescription"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPaymentPage"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_19pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_weight="0.81"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{sstOneSevenVM.sstOneSevenModel.txtPaymentPage}"
+                    style="@style/txtRobotoromansemibold20" tools:text="@string/lbl_payment_page"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnplanfees"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_37pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_5">
+            <LinearLayout android:id="@+id/linearRowplanfees"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_19pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPlanFees"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_weight="0.6"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{sstOneSevenVM.sstOneSevenModel.txtPlanFees}"
+                    style="@style/txtRalewayromanregular16" tools:text="@string/lbl_plan_fees"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPrice"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_159pxh"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{sstOneSevenVM.sstOneSevenModel.txtPrice}"
+                    style="@style/txtNunitomedium16" tools:text="@string/lbl_9000"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/linearRowplatformfee"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_14pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPlatformFee"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_weight="0.77"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{sstOneSevenVM.sstOneSevenModel.txtPlatformFee}"
+                    style="@style/txtRalewayromanregular16" tools:text="@string/lbl_platform_fee"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPriceOne"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_155pxh"
+                    android:layout_weight="0.23"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{sstOneSevenVM.sstOneSevenModel.txtPriceOne}"
+                    style="@style/txtNunitomedium16" tools:text="@string/lbl_00"/>
+            </LinearLayout>
+            <View android:background="@color/gray_501"
+                android:id="@+id/lineLineNineteen"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/_1pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_18pxv" android:layout_width="@dimen/_277pxh"/>
+            <LinearLayout android:id="@+id/linearRowpayableamount"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_13pxv"
+                android:layout_marginEnd="@dimen/_19pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_9pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPayableAmount"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3pxv"
+                    android:layout_weight="0.72"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{sstOneSevenVM.sstOneSevenModel.txtPayableAmount}"
+                    style="@style/txtRalewayromanregular16" tools:text="@string/lbl_payable_amount"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPriceTwo"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_109pxh"
+                    android:layout_weight="0.28"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{sstOneSevenVM.sstOneSevenModel.txtPriceTwo}"
+                    style="@style/txtNunitomedium16" tools:text="@string/lbl_9000"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtChoosePayment"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_30pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@{sstOneSevenVM.sstOneSevenModel.txtChoosePayment}"
+            style="@style/txtRalewayromansemibold14" tools:text="@string/msg_choose_payment"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:gravity="center_horizontal"
+            android:id="@+id/recyclerSstoneSeven"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_22pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            itemSpace="@{@dimen/_16pxh}" tools:itemCount="4" tools:listitem="@layout/row_sst_one_seven"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnPay9000"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_134pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_21pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_21pxv" android:singleLine="true"
+            android:text="@string/lbl_pay_9000"
+            android:textAllCaps="false" style="@style/btnGradient" tools:text="@string/lbl_pay_9000"/>
+    </LinearLayout>
+</layout>

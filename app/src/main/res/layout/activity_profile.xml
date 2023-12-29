@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="profileVM" type="com.fitness.app.modules.profile.data.viewmodel.ProfileVM"/>
+    </data>
+    <LinearLayout android:gravity="start"
+        android:id="@+id/linearProfile"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarToolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:contentInsetStart="0dp" style="@style/groupStyle">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowarrowright"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_11pxv"
+                android:layout_marginEnd="@dimen/_152pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_60pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <ImageButton
+                    android:background="@drawable/rectangle_bg_white_a700_radius_15"
+                    android:id="@+id/btnArrowright"
+                    android:layout_height="@dimen/_30pxh"
+                    android:layout_width="@dimen/_30pxh"
+                    android:paddingHorizontal="@dimen/_7pxh"
+                    android:paddingVertical="@dimen/_7pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_arrowright_gray_900" tools:ignore="ContentDescription"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtProfileSetting"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_2pxv"
+                    android:layout_marginStart="@dimen/_19pxh"
+                    android:layout_marginTop="@dimen/_3pxv"
+                    android:layout_weight="0.82"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@{profileVM.profileModel.txtProfileSetting}"
+                    style="@style/txtRobotoromansemibold20" tools:text="@string/msg_profile_setting"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <FrameLayout android:id="@+id/frameStackellipsefifteen"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_101pxv"
+            android:layout_marginEnd="@dimen/_127pxh"
+            android:layout_marginStart="@dimen/_127pxh"
+            android:layout_marginTop="@dimen/_19pxv" android:layout_width="@dimen/_101pxh">
+            <ImageView android:id="@+id/imageEllipseFifteen"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_101pxh"
+                android:layout_width="@dimen/_101pxh"
+                android:scaleType="centerCrop" circular="@{true}"
+                imageRes="@{@drawable/img_ellipse15}"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse15"/>
+            <ImageView android:id="@+id/imageEdit"
+                android:layout_gravity="bottom|center"
+                android:layout_height="@dimen/_13pxh"
+                android:layout_marginBottom="@dimen/_6pxv"
+                android:layout_marginEnd="@dimen/_44pxh"
+                android:layout_marginStart="@dimen/_44pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_width="@dimen/_13pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_edit"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_edit"/>
+        </FrameLayout>
+        <FrameLayout android:id="@+id/frameStackashishb"
+            android:layout_height="@dimen/_549pxv"
+            android:layout_marginTop="@dimen/_28pxv" android:layout_width="match_parent">
+            <LinearLayout android:id="@+id/linearColumnashishb"
+                android:layout_gravity="top|center"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/lbl_name2"
+                    android:id="@+id/textInputLayAshishB"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_15pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_25pxh"
+                    android:paddingTop="@dimen/_15pxv"
+                    android:textColorHint="@color/bluegray_904" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/etAshishB"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:text="@={profileVM.profileModel.etAshishBValue}"
+                        android:textColor="@color/black_900"
+                        android:textFontWeight="500"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="bold" tools:text="@string/lbl_ashish_b"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/lbl_mobile2"
+                    android:id="@+id/textInputLayMobileNo"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_13pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_25pxh"
+                    android:paddingTop="@dimen/_17pxv"
+                    android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/etMobileNo"
+                        android:inputType="phone"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:text="@={profileVM.profileModel.etMobileNoValue}"
+                        android:textColor="@color/black_900_75"
+                        android:textFontWeight="500"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="bold" tools:text="@string/lbl_9999973543"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <FrameLayout android:id="@+id/frameStackemail"
+                    android:layout_height="@dimen/_62pxv"
+                    android:layout_marginTop="@dimen/_8pxv" android:layout_width="@dimen/_320pxh">
+                    <LinearLayout android:id="@+id/linearColumnemail"
+                        android:layout_gravity="bottom|start"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10pxv"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical" style="@style/groupStylecornerRadius_14">
+                        <TextView android:ellipsize="end"
+                            android:gravity="start"
+                            android:id="@+id/txtEmail"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/_5pxv"
+                            android:layout_marginEnd="@dimen/_25pxh"
+                            android:layout_marginStart="@dimen/_25pxh"
+                            android:layout_marginTop="@dimen/_24pxv"
+                            android:layout_width="match_parent"
+                            android:singleLine="true"
+                            android:text="@{profileVM.profileModel.txtEmail}"
+                            style="@style/txtRalewayromanmedium16" tools:text="@string/msg_askkjk_gmail_co"/>
+                    </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:ellipsize="end" android:gravity="center"
+                        android:id="@+id/btnEmailId"
+                        android:layout_gravity="top|start"
+                        android:layout_height="@dimen/_25pxv"
+                        android:layout_marginBottom="@dimen/_10pxv"
+                        android:layout_marginEnd="@dimen/_15pxh"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_width="@dimen/_65pxh"
+                        android:paddingBottom="@dimen/_5pxv"
+                        android:paddingEnd="@dimen/_10pxh"
+                        android:paddingStart="@dimen/_10pxh"
+                        android:paddingTop="@dimen/_5pxv"
+                        android:singleLine="true"
+                        android:text="@string/lbl_email_id"
+                        android:textAllCaps="false"
+                        style="@style/btnSolid" tools:text="@string/lbl_email_id"/>
+                </FrameLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/lbl_dob2"
+                    android:id="@+id/textInputLayDDMMYYYY"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_15pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_28pxh"
+                    android:paddingTop="@dimen/_15pxv"
+                    android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/etDDMMYYYY"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:letterSpacing="0.03"
+                        android:singleLine="true"
+                        android:text="@={profileVM.profileModel.etDDMMYYYYValue}"
+                        android:textColor="@color/gray_500"
+                        android:textFontWeight="400"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="normal" tools:text="@string/lbl_dd_mm_yyyy"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/lbl_state"
+                    android:id="@+id/textInputLayState"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_15pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_28pxh"
+                    android:paddingTop="@dimen/_15pxv"
+                    android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/etState"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:letterSpacing="0.03"
+                        android:singleLine="true"
+                        android:text="@={profileVM.profileModel.etStateValue}"
+                        android:textColor="@color/gray_500"
+                        android:textFontWeight="400"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="normal" tools:text="@string/lbl_state"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/lbl_city"
+                    android:id="@+id/textInputLayCity"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_14pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_28pxh"
+                    android:paddingTop="@dimen/_16pxv"
+                    android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/etCity"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:letterSpacing="0.03"
+                        android:singleLine="true"
+                        android:text="@={profileVM.profileModel.etCityValue}"
+                        android:textColor="@color/gray_500"
+                        android:textFontWeight="400"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="normal" tools:text="@string/lbl_city"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/lbl_zip_code"
+                    android:id="@+id/textInputLayZIPCode"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_15pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_28pxh"
+                    android:paddingTop="@dimen/_15pxv"
+                    android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/etZIPCode"
+                        android:inputType="number"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:letterSpacing="0.03"
+                        android:singleLine="true"
+                        android:text="@={profileVM.profileModel.etZIPCodeValue}"
+                        android:textColor="@color/gray_500"
+                        android:textFontWeight="400"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="normal" tools:text="@string/lbl_zip_code"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end" android:gravity="center"
+                android:id="@+id/btnUpdate"
+                android:layout_gravity="bottom|start"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_23pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_30pxh"
+                android:paddingTop="@dimen/_23pxv"
+                android:singleLine="true"
+                android:text="@string/lbl_update"
+                android:textAllCaps="false" style="@style/btnGradient_1" tools:text="@string/lbl_update"/>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

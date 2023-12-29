@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="feedsVM" type="com.fitness.app.modules.feeds.data.viewmodel.FeedsVM"/>
+    </data>
+    <LinearLayout android:id="@+id/linearColumngroup31107"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnellipsetwo"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylewhite_A700cornerRadius">
+            <androidx.appcompat.widget.Toolbar
+                android:gravity="center_horizontal"
+                android:id="@+id/toolbarToolbar"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_55pxv"
+                android:layout_width="match_parent" app:contentInsetStart="0dp">
+                <LinearLayout android:id="@+id/linearHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" android:orientation="horizontal">
+                    <ImageView android:id="@+id/imageEllipseTwo"
+                        android:layout_height="@dimen/_35pxh"
+                        android:layout_marginTop="@dimen/_2pxv"
+                        android:layout_width="@dimen/_35pxh"
+                        android:scaleType="centerCrop"
+                        circular="@{true}"
+                        imageRes="@{@drawable/img_ellipse2}"
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse2"/>
+                    <FrameLayout android:id="@+id/frameStackvector"
+                        android:layout_height="@dimen/_32pxv"
+                        android:layout_marginBottom="@dimen/_5pxv"
+                        android:layout_marginStart="@dimen/_248pxh" android:layout_width="@dimen/_32pxh">
+                        <ImageView android:id="@+id/imageVector"
+                            android:layout_gravity="top|start"
+                            android:layout_height="@dimen/_3pxh"
+                            android:layout_marginBottom="@dimen/_10pxv"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:layout_marginStart="@dimen/_7pxh"
+                            android:layout_marginTop="@dimen/_8pxv"
+                            android:layout_width="@dimen/_4pxh"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_vector"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_vector"/>
+                        <FrameLayout
+                            android:id="@+id/frameStackgroup100000210"
+                            android:layout_gravity="center"
+                            android:layout_height="@dimen/_32pxv" android:layout_width="@dimen/_32pxh">
+                            <ImageView
+                                android:id="@+id/imageGroup100000210"
+                                android:layout_gravity="start"
+                                android:layout_height="@dimen/_32pxh"
+                                android:layout_width="@dimen/_32pxh"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/img_group100000210"
+                                tools:ignore="ContentDescription" tools:src="@drawable/img_group100000210"/>
+                            <TextView android:ellipsize="end"
+                                android:id="@+id/txtThree"
+                                android:layout_gravity="top|end"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_10pxv"
+                                android:layout_marginEnd="@dimen/_6pxh"
+                                android:layout_marginStart="@dimen/_10pxh"
+                                android:layout_marginTop="@dimen/_4pxv"
+                                android:layout_width="wrap_content"
+                                android:singleLine="true"
+                                android:text="@{feedsVM.feedsModel.txtThree}"
+                                style="@style/txtEpiloguemedium12" tools:text="@string/lbl_3"/>
+                        </FrameLayout>
+                    </FrameLayout>
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+            <com.google.android.material.tabs.TabLayout
+                android:gravity="center_horizontal"
+                android:id="@+id/tabLayoutGroup25"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_9pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_27pxv"
+                android:layout_width="match_parent" app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/gray_800_90"
+                app:tabTextColor="@color/gray_600_90" style="@style/groupStylecornerRadius_1"/>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearFeeds"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_17pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            style="@style/groupStylewhite_A700">
+            <androidx.viewpager2.widget.ViewPager2
+                android:gravity="start"
+                android:id="@+id/viewPagerViewpager"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_width="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
