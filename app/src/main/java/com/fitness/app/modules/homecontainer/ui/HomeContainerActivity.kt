@@ -16,6 +16,7 @@ import com.fitness.app.extensions.loadFragment
 import com.fitness.app.modules.feeds.ui.FeedsFragment
 import com.fitness.app.modules.home.ui.HomeFragment
 import com.fitness.app.modules.homecontainer.`data`.viewmodel.HomeContainerVM
+import com.fitness.app.modules.plansfragment.PlansFragment
 import com.fitness.app.modules.profileone.ui.ProfileOneFragment
 import kotlin.String
 import kotlin.Unit
@@ -28,7 +29,7 @@ class HomeContainerActivity :
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.homeContainerVM = viewModel
 
-    replaceFragemnt1(HomeFragment())
+    replaceFragment(HomeFragment())
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
@@ -44,8 +45,7 @@ class HomeContainerActivity :
 
         R.id.feed -> replaceFragment(FeedsFragment())
 
-
-       // R.id.linearColumnLive -> replaceFragment(LiveFragment())
+        R.id.plan -> replaceFragment(PlansFragment())
 
         R.id.profile -> replaceFragment(ProfileOneFragment())
 
@@ -56,16 +56,7 @@ class HomeContainerActivity :
   }
 
 
-  private fun replaceFragment(fragment: Fragment){
-    val fragmentManager=supportFragmentManager
-    val fragmentTransaction=fragmentManager.beginTransaction()
-    fragmentTransaction.replace(R.id.fragmentContainer,fragment)
-    fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
-    fragmentTransaction.commit()
-
-  }
-
-  private fun replaceFragemnt1(fragment: Fragment) {
+  private fun replaceFragment(fragment: Fragment) {
     val fragmentManager = supportFragmentManager
     val fragmentTransaction = fragmentManager.beginTransaction()
 
@@ -83,20 +74,12 @@ class HomeContainerActivity :
   }
 
 
-  @Deprecated("Deprecated in Java")
   override fun onBackPressed() {
     val fragmentManager = supportFragmentManager
-    val fragments = supportFragmentManager.backStackEntryCount
-    if (fragments == 1) {
-      AlertDialog.Builder(this)
-        .setMessage("Are you sure you want to exit?")
-        .setCancelable(false)
-        .setPositiveButton("Yes",
-          DialogInterface.OnClickListener { dialog, id -> finish() })
-        .setNegativeButton("No", null)
-        .show()
-    } else {
 
+    if (fragmentManager.backStackEntryCount == 1) {
+      showExitDialog()
+    } else {
       if (fragmentManager.backStackEntryCount > 1) {
         fragmentManager.popBackStackImmediate(
           fragmentManager.getBackStackEntryAt(1).id,
@@ -112,27 +95,29 @@ class HomeContainerActivity :
           }
         }
 
-
-
-        if (selectedFragment is HomeFragment) {
-          binding.frameBottombar.selectedItemId = R.id.home
-        }
-        if (selectedFragment is FeedsFragment) {
-          binding.frameBottombar.selectedItemId = R.id.feed
-        }
-//        if (selectedFragment is PlansF) {
-//          binding.frameBottombar.selectedItemId=R.id.linearColumnLive
-//        }
-        if (selectedFragment is ProfileOneFragment) {
-          binding.frameBottombar.selectedItemId = R.id.profile
-        } else {
-          super.onBackPressed()
-        }
+        selectedFragment?.let {
+          when (it) {
+            is HomeFragment -> binding.frameBottombar.selectedItemId = R.id.home
+            is FeedsFragment -> binding.frameBottombar.selectedItemId = R.id.feed
+            is PlansFragment -> binding.frameBottombar.selectedItemId = R.id.plan
+            is ProfileOneFragment -> binding.frameBottombar.selectedItemId = R.id.profile
+          }
+        } ?: super.onBackPressed()
       } else {
         super.onBackPressed()
       }
     }
-    // }
+  }
+
+
+
+  private fun showExitDialog() {
+    AlertDialog.Builder(this)
+      .setMessage("Are you sure you want to exit?")
+      .setCancelable(false)
+      .setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ -> finish() })
+      .setNegativeButton("No", null)
+      .show()
   }
 
   companion object {

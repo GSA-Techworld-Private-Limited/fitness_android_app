@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityAppSettingsBinding
@@ -35,6 +36,8 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
       appSettingsAdapter.updateData(it)
     }
     binding.appSettingsVM = viewModel
+
+    window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 
   override fun setUpClicks(): Unit {

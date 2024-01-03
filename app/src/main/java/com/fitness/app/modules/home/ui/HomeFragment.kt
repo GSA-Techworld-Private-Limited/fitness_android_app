@@ -16,7 +16,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
 
   private val imageUri: Uri =
-    Uri.parse("https://firebasestorage.googleapis.com/v0/b/fir-storage-e59df.appspot.com/o/img_rectangle448_178x320.png?alt=media&token=9eeb31a1-2fad-4966-a079-2ae8e44c8335")
+    Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle448_178x320")
 
   private val imageSliderSliderrectangletwoItems: ArrayList<ImageSliderSliderrectangletwoModel> =
     arrayListOf(

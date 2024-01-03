@@ -19,7 +19,7 @@ import kotlin.collections.ArrayList
 class WelcomeLoginActivity :
     BaseActivity<ActivityWelcomeLoginBinding>(R.layout.activity_welcome_login) {
   private val imageUri: Uri =
-      Uri.parse("android.resource://com.ameersapplication.app/drawable/img_rectangle451")
+      Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle451")
 
 
   private val imageSliderSliderrectangle451Items: ArrayList<ImageSliderSliderrectangle451Model> =

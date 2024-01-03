@@ -18,7 +18,7 @@
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_11pxv"
-                android:layout_marginEnd="@dimen/_175pxh"
+                android:layout_marginEnd="@dimen/_15pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_60pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
@@ -43,20 +43,27 @@
                     style="@style/txtRobotoromansemibold20" tools:text="@string/lbl_notifications"/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
-        <LinearLayout android:gravity="center_horizontal"
+        <LinearLayout
+            android:gravity="center_horizontal"
             android:id="@+id/linearColumn"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_20pxh"
             android:layout_marginStart="@dimen/_20pxh"
             android:layout_marginTop="@dimen/_30pxv"
             android:layout_width="match_parent"
-            android:orientation="vertical" style="@style/groupStylecornerRadius_15">
-            <LinearLayout android:gravity="center_horizontal"
+            android:orientation="vertical"
+            style="@style/groupStylecornerRadius_15">
+
+            <LinearLayout
+                android:gravity="center_horizontal"
                 android:id="@+id/linearColumndescription"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:orientation="vertical" style="@style/groupStylegray_706cornerRadius">
-                <TextView android:gravity="center_horizontal"
+                android:orientation="vertical"
+                style="@style/groupStylegray_706cornerRadius">
+
+                <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/txtDescription"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_11pxv"
@@ -65,23 +72,33 @@
                     android:layout_marginTop="@dimen/_14pxv"
                     android:layout_width="match_parent"
                     android:text="@{notificationsVM.notificationsModel.txtDescription}"
-                    style="@style/txtRalewayromanregular14" tools:text="@string/msg_forem_ipsum_dol"/>
+                    style="@style/txtRalewayromanregular14"
+                    tools:text="@string/msg_forem_ipsum_dol"/>
             </LinearLayout>
+
         </LinearLayout>
-        <LinearLayout android:gravity="center_horizontal"
+
+        <LinearLayout
+            android:gravity="center_horizontal"
             android:id="@+id/linearColumnOne"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_20pxh"
             android:layout_marginStart="@dimen/_20pxh"
             android:layout_marginTop="@dimen/_14pxv"
             android:layout_width="match_parent"
-            android:orientation="vertical" style="@style/groupStylecornerRadius_15">
-            <LinearLayout android:gravity="center_horizontal"
+            android:orientation="vertical"
+            style="@style/groupStylecornerRadius_15">
+
+            <LinearLayout
+                android:gravity="center_horizontal"
                 android:id="@+id/linearColumndescriptionOne"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:orientation="vertical" style="@style/groupStylegray_706cornerRadius">
-                <TextView android:gravity="center_horizontal"
+                android:orientation="vertical"
+                style="@style/groupStylegray_706cornerRadius">
+
+                <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/txtDescriptionOne"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_11pxv"
@@ -90,10 +107,13 @@
                     android:layout_marginTop="@dimen/_14pxv"
                     android:layout_width="match_parent"
                     android:text="@{notificationsVM.notificationsModel.txtDescriptionOne}"
-                    style="@style/txtRalewayromanregular14" tools:text="@string/msg_forem_ipsum_dol"/>
+                    style="@style/txtRalewayromanregular14"
+                    tools:text="@string/msg_forem_ipsum_dol"/>
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout android:gravity="center_horizontal"
+
+        <LinearLayout
+            android:gravity="center_horizontal"
             android:id="@+id/linearColumnTwo"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20pxv"
@@ -101,13 +121,19 @@
             android:layout_marginStart="@dimen/_20pxh"
             android:layout_marginTop="@dimen/_14pxv"
             android:layout_width="match_parent"
-            android:orientation="vertical" style="@style/groupStylecornerRadius_15">
-            <LinearLayout android:gravity="center_horizontal"
+            android:orientation="vertical"
+            style="@style/groupStylecornerRadius_15">
+
+            <LinearLayout
+                android:gravity="center_horizontal"
                 android:id="@+id/linearColumndescriptionTwo"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:orientation="vertical" style="@style/groupStylegray_706cornerRadius">
-                <TextView android:gravity="center_horizontal"
+                android:orientation="vertical"
+                style="@style/groupStylegray_706cornerRadius">
+
+                <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/txtDescriptionTwo"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_11pxv"
@@ -116,8 +142,12 @@
                     android:layout_marginTop="@dimen/_14pxv"
                     android:layout_width="match_parent"
                     android:text="@{notificationsVM.notificationsModel.txtDescriptionTwo}"
-                    style="@style/txtRalewayromanregular14" tools:text="@string/msg_forem_ipsum_dol"/>
+                    style="@style/txtRalewayromanregular14"
+                    tools:text="@string/msg_forem_ipsum_dol"/>
+
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 </layout>
