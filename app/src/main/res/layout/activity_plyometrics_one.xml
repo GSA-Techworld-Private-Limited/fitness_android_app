@@ -18,7 +18,7 @@
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_11pxv"
-                android:layout_marginEnd="@dimen/_213pxh"
+                android:layout_marginEnd="@dimen/_21pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_60pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
@@ -40,7 +40,8 @@
                     android:layout_weight="0.72"
                     android:layout_width="0dp" android:singleLine="true"
                     android:text="@{plyometricsOneVM.plyometricsOneModel.txtStrength}"
-                    style="@style/txtRobotoromansemibold20" tools:text="@string/lbl_strength"/>
+                    style="@style/txtRobotoromansemibold20"
+                    tools:text="@string/lbl_strength"/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
         <LinearLayout android:gravity="end"
@@ -67,19 +68,24 @@
                 android:text="@{plyometricsOneVM.plyometricsOneModel.txtCompleted}"
                 style="@style/txtRobotoromanregular16_4" tools:text="@string/lbl_completed"/>
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:gravity="center_horizontal"
             android:id="@+id/recyclerListrectangle448"
+            itemSpace="@{@dimen/_18pxh}"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20pxh"
             android:layout_marginStart="@dimen/_20pxh"
             android:layout_marginTop="@dimen/_16pxv"
-            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            itemSpace="@{@dimen/_18pxh}" tools:itemCount="3" tools:listitem="@layout/row_listrectangle448"/>
+            tools:itemCount="3"
+            tools:listitem="@layout/row_listrectangle448" />
+
         <androidx.appcompat.widget.AppCompatButton
-            android:ellipsize="end" android:gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
             android:id="@+id/btnCompleteThree"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4pxv"
@@ -87,8 +93,11 @@
             android:paddingBottom="@dimen/_23pxv"
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_30pxh"
-            android:paddingTop="@dimen/_23pxv" android:singleLine="true"
+            android:paddingTop="@dimen/_23pxv"
+            android:singleLine="true"
             android:text="@string/lbl_complete"
-            android:textAllCaps="false" style="@style/btnGradient_1" tools:text="@string/lbl_complete"/>
+            android:textAllCaps="false"
+            style="@style/btnGradient_1"
+            tools:text="@string/lbl_complete"/>
     </LinearLayout>
 </layout>

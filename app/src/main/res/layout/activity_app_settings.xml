@@ -8,17 +8,23 @@
         android:id="@+id/linearAppsettings"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_A700">
-        <androidx.appcompat.widget.Toolbar android:gravity="start"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <androidx.appcompat.widget.Toolbar
+            android:gravity="start"
             android:id="@+id/toolbarToolbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            app:contentInsetStart="0dp" style="@style/groupStyle">
-            <LinearLayout android:gravity="start"
+            app:contentInsetStart="0dp"
+            style="@style/groupStyle">
+
+            <LinearLayout
+                android:gravity="start"
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_11pxv"
-                android:layout_marginEnd="@dimen/_175pxh"
+                android:layout_marginEnd="@dimen/_15pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_60pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
@@ -43,6 +49,7 @@
                     style="@style/txtRobotoromansemibold20" tools:text="@string/lbl_app_settings"/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
+
         <androidx.recyclerview.widget.RecyclerView
             android:gravity="center_horizontal"
             android:id="@+id/recyclerAppSettings"
@@ -53,7 +60,10 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            itemSpace="@{@dimen/_14pxh}" tools:itemCount="3" tools:listitem="@layout/row_app_settings"/>
+            itemSpace="@{@dimen/_14pxh}"
+            tools:itemCount="3"
+            tools:listitem="@layout/row_app_settings"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
             android:id="@+id/btnLogout"

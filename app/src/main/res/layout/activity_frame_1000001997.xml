@@ -22,8 +22,11 @@
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:text="@{frame1000001997VM.frame1000001997Model.txtPaymentDoneSu}"
-                style="@style/txtRalewayromansemibold16_4" tools:text="@string/msg_payment_done_su"/>
-            <ImageView android:id="@+id/imageRectangle"
+                style="@style/txtRalewayromansemibold16_4"
+                tools:text="@string/msg_payment_done_su"/>
+
+            <ImageView
+                android:id="@+id/imageRectangle"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="@dimen/_154pxh"
                 android:layout_marginEnd="@dimen/_18pxh"
@@ -32,7 +35,8 @@
                 android:layout_width="@dimen/_169pxh"
                 android:scaleType="fitXY"
                 imageRes="@{@drawable/img_rectangle_154x169}"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_154x169"/>
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_rectangle_154x169"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:ellipsize="end" android:gravity="center"
                 android:id="@+id/btnViewDetails"

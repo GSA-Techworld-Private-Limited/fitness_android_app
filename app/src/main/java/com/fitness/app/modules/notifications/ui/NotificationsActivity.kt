@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityNotificationsBinding
@@ -18,6 +19,8 @@ class NotificationsActivity :
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.notificationsVM = viewModel
+
+    window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 
   override fun setUpClicks(): Unit {

@@ -18,7 +18,7 @@
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_11pxv"
-                android:layout_marginEnd="@dimen/_208pxh"
+                android:layout_marginEnd="@dimen/_28pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_60pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
@@ -43,7 +43,8 @@
                     style="@style/txtRobotoromansemibold20" tools:text="@string/lbl_about_us"/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
-        <TextView android:gravity="center_horizontal"
+        <TextView
+            android:gravity="center_horizontal"
             android:id="@+id/txtDescription"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_19pxh"
@@ -51,8 +52,11 @@
             android:layout_marginTop="@dimen/_40pxv"
             android:layout_width="match_parent"
             android:text="@{aboutUsVM.aboutUsModel.txtDescription}"
-            style="@style/txtRalewayromanregular16_1" tools:text="@string/msg_lorem_ipsum_dol2"/>
-        <TextView android:gravity="center_horizontal"
+            style="@style/txtRalewayromanregular16_1"
+            tools:text="@string/msg_lorem_ipsum_dol2"/>
+
+        <TextView
+            android:gravity="center_horizontal"
             android:id="@+id/txtDescriptionOne"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20pxv"
@@ -61,6 +65,7 @@
             android:layout_marginTop="@dimen/_25pxv"
             android:layout_width="match_parent"
             android:text="@{aboutUsVM.aboutUsModel.txtDescriptionOne}"
-            style="@style/txtRalewayromanregular16_1" tools:text="@string/msg_lorem_ipsum_dol3"/>
+            style="@style/txtRalewayromanregular16_1"
+            tools:text="@string/msg_lorem_ipsum_dol3"/>
     </LinearLayout>
 </layout>

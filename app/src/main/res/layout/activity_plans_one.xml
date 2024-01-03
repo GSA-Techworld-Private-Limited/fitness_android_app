@@ -18,7 +18,7 @@
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_11pxv"
-                android:layout_marginEnd="@dimen/_142pxh"
+                android:layout_marginEnd="@dimen/_12pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_60pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
@@ -166,7 +166,7 @@
                         android:id="@+id/txt05Completed"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_marginStart="@dimen/_181pxh"
+                        android:layout_marginStart="@dimen/_131pxh"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
                         android:singleLine="true"

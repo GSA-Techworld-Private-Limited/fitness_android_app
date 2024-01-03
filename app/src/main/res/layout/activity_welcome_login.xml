@@ -106,6 +106,7 @@
                             android:ellipsize="end"
                             android:hint="@string/msg_enter_your_numb"
                             android:id="@+id/txtEnterYourNumb"
+                            android:textColorHint="@color/gray_800"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_1pxv"
                             android:layout_marginStart="@dimen/_28pxh"
