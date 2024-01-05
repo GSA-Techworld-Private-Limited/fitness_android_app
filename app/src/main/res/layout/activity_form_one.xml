@@ -59,19 +59,22 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_28pxh"
             android:paddingTop="@dimen/_15pxv"
-            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:textColorHint="@color/black_900"
+            style="@style/MyOutlinedBoxStyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
-                android:id="@+id/etName" android:inputType="text"
+                android:id="@+id/etName"
+                android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:letterSpacing="0.03" android:singleLine="true"
-                android:text="@={formOneVM.formOneModel.etNameValue}"
+                android:letterSpacing="0.03"
+                android:singleLine="true"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
-                android:textStyle="normal" tools:text="@string/lbl_name2"/>
+                android:textStyle="normal"
+                tools:text="@string/lbl_name2"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:hint="@string/lbl_email_id"
@@ -85,7 +88,8 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_28pxh"
             android:paddingTop="@dimen/_15pxv"
-            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:textColorHint="@color/black_900"
+            style="@style/MyOutlinedBoxStyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
@@ -94,7 +98,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:letterSpacing="0.03" android:singleLine="true"
-                android:text="@={formOneVM.formOneModel.etEmailIDValue}"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
@@ -112,7 +115,8 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_28pxh"
             android:paddingTop="@dimen/_15pxv"
-            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:textColorHint="@color/black_900"
+            style="@style/MyOutlinedBoxStyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
@@ -120,7 +124,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:letterSpacing="0.03" android:singleLine="true"
-                android:text="@={formOneVM.formOneModel.etDDMMYYYYValue}"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
@@ -138,7 +141,8 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_28pxh"
             android:paddingTop="@dimen/_15pxv"
-            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:textColorHint="@color/black_900"
+            style="@style/MyOutlinedBoxStyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
@@ -146,7 +150,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:letterSpacing="0.03" android:singleLine="true"
-                android:text="@={formOneVM.formOneModel.etStateValue}"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
@@ -164,7 +167,8 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_28pxh"
             android:paddingTop="@dimen/_16pxv"
-            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:textColorHint="@color/black_900"
+            style="@style/MyOutlinedBoxStyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
@@ -172,7 +176,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:letterSpacing="0.03" android:singleLine="true"
-                android:text="@={formOneVM.formOneModel.etCityValue}"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
@@ -190,7 +193,8 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_28pxh"
             android:paddingTop="@dimen/_15pxv"
-            android:textColorHint="@color/black_900" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:textColorHint="@color/black_900"
+            style="@style/MyOutlinedBoxStyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
@@ -198,7 +202,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:letterSpacing="0.03" android:singleLine="true"
-                android:text="@={formOneVM.formOneModel.etZIPCodeValue}"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
@@ -220,7 +223,6 @@
             android:text="@string/lbl_continue"
             android:textAllCaps="false"
             style="@style/btnGradientRounded" tools:text="@string/lbl_continue"/>
-
             </LinearLayout>
 
         </ScrollView>

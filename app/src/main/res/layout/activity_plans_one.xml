@@ -20,7 +20,7 @@
                 android:layout_marginBottom="@dimen/_11pxv"
                 android:layout_marginEnd="@dimen/_12pxh"
                 android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_60pxv"
+                android:layout_marginTop="@dimen/_30pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <ImageButton
                     android:background="@drawable/rectangle_bg_white_a700_radius_15"
@@ -51,102 +51,21 @@
                 android:id="@+id/linearPlansOne"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" android:orientation="vertical">
-                <LinearLayout android:gravity="start"
-                    android:id="@+id/linearRowdayone"
-                    android:layout_height="wrap_content"
+
+
+                <devs.mulham.horizontalcalendar.HorizontalCalendarView
+                    android:id="@+id/calendarView1"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal" style="@style/groupStylewhite_4">
-                    <LinearLayout android:gravity="center_horizontal"
-                        android:id="@+id/linearColumndayone"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_7pxv"
-                        android:layout_marginStart="@dimen/_20pxh"
-                        android:layout_marginTop="@dimen/_13pxv"
-                        android:layout_weight="0.39"
-                        android:layout_width="0dp"
-                        android:orientation="vertical" style="@style/groupStylecornerRadius_10">
-                        <TextView android:ellipsize="end"
-                            android:gravity="center_horizontal"
-                            android:id="@+id/txtDayOne"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_9pxh"
-                            android:layout_marginStart="@dimen/_9pxh"
-                            android:layout_marginTop="@dimen/_11pxv"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{plansOneVM.plansOneModel.txtDayOne}"
-                            style="@style/txtNunitoregular12" tools:text="@string/lbl_day12"/>
-                        <TextView android:ellipsize="end"
-                            android:gravity="center_horizontal"
-                            android:id="@+id/txtOctCounter"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/_13pxv"
-                            android:layout_marginEnd="@dimen/_5pxh"
-                            android:layout_marginStart="@dimen/_5pxh"
-                            android:layout_marginTop="@dimen/_6pxv"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{plansOneVM.plansOneModel.txtOctCounter}"
-                            style="@style/txtNunitosemibold12" tools:text="@string/lbl_21_oct"/>
-                    </LinearLayout>
-                    <LinearLayout android:gravity="start"
-                        android:id="@+id/linearColumndaycounter"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_24pxv"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_24pxv"
-                        android:layout_weight="0.3"
-                        android:layout_width="0dp"
-                        android:orientation="vertical" style="@style/groupStylecornerRadius_11">
-                        <TextView android:ellipsize="end"
-                            android:gravity="center_horizontal"
-                            android:id="@+id/txtDayCounter"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_2pxh"
-                            android:layout_marginStart="@dimen/_2pxh"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{plansOneVM.plansOneModel.txtDayCounter}"
-                            style="@style/txtNunitoregular12_1" tools:text="@string/lbl_day_2"/>
-                        <TextView android:ellipsize="end"
-                            android:id="@+id/txtOctCounterOne"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_3pxv"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{plansOneVM.plansOneModel.txtOctCounterOne}"
-                            style="@style/txtNunitosemibold12_1" tools:text="@string/lbl_22_oct"/>
-                    </LinearLayout>
-                    <LinearLayout android:gravity="start"
-                        android:id="@+id/linearColumndaycounterOne"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_24pxv"
-                        android:layout_marginEnd="@dimen/_163pxh"
-                        android:layout_marginStart="@dimen/_30pxh"
-                        android:layout_marginTop="@dimen/_24pxv"
-                        android:layout_weight="0.3"
-                        android:layout_width="0dp"
-                        android:orientation="vertical" style="@style/groupStylecornerRadius_11">
-                        <TextView android:ellipsize="end"
-                            android:gravity="center_horizontal"
-                            android:id="@+id/txtDayCounterOne"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_2pxh"
-                            android:layout_marginStart="@dimen/_2pxh"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{plansOneVM.plansOneModel.txtDayCounterOne}"
-                            style="@style/txtNunitoregular12_1" tools:text="@string/lbl_day_3"/>
-                        <TextView android:ellipsize="end"
-                            android:id="@+id/txtOctCounterTwo"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_3pxv"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{plansOneVM.plansOneModel.txtOctCounterTwo}"
-                            style="@style/txtNunitosemibold12_1" tools:text="@string/lbl_23_oct"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    app:selectedDateBackground="@drawable/rounded_background"
+                    app:selectorColor="@color/white"
+                    app:textColorNormal="@color/gray_600"
+                    app:textColorSelected="@color/white"
+                    android:layout_marginTop="2dp"
+                    />
+
+
+
                 <LinearLayout android:id="@+id/linearRowtodaytasks"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_20pxh"

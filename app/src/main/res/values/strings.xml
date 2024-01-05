@@ -21,6 +21,7 @@
     <string name="lbl_home">Home</string>
     <string name="msg_trial_practical">Trial Practical Exams</string>
     <string name="msg_already_have_an">Already have an account? </string>
+    <string name="msg_already_have_an1">Don\'t have an account? </string>
     <string name="lbl_dob2">DOB</string>
     <string name="lbl_state">State</string>
     <string name="msg_enter_the_otp_s">Enter the OTP sent to your registered mobile number.</string>
@@ -165,6 +166,7 @@
     <string name="lbl_7383939397">7383939397</string>
     <string name="lbl_instagram">Instagram</string>
     <string name="lbl_login">Login</string>
+    <string name="lbl_login1">Signup</string>
     <string name="msg_worem_ipsum_dol">Worem ipsum dolor sit amet, cons ectetur adipiscing elit. Worem ipsum dolor sit amet, consectetur adipiscing elit. ...</string>
     <string name="lbl_paypal">Paypal</string>
     <string name="lbl_warm_up2">Warm Up</string>

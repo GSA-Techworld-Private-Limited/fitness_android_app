@@ -56,6 +56,11 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
     }
   }
 
+
+      override fun onBackPressed() {
+        super.onBackPressed()
+        this.finish()
+      }
   companion object {
     const val TAG: String = "APP_SETTINGS_ACTIVITY"
 

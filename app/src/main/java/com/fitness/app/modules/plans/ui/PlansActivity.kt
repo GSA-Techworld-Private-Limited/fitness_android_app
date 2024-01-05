@@ -35,6 +35,11 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
     }
   }
 
+
+  override fun onBackPressed() {
+    super.onBackPressed()
+    this.finish()
+  }
   companion object {
     const val TAG: String = "PLANS_ACTIVITY"
 

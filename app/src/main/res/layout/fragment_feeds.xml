@@ -32,10 +32,12 @@
                         circular="@{true}"
                         imageRes="@{@drawable/img_ellipse2}"
                         tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse2"/>
-                    <FrameLayout android:id="@+id/frameStackvector"
-                        android:layout_height="@dimen/_32pxv"
-                        android:layout_marginBottom="@dimen/_5pxv"
-                        android:layout_marginStart="@dimen/_248pxh" android:layout_width="@dimen/_32pxh">
+                    <FrameLayout
+                        android:layout_gravity="end"
+                        android:id="@+id/frameStackvector"
+                        android:layout_height="@dimen/_32pxh"
+                        android:layout_marginStart="@dimen/_208pxh"
+                        android:layout_width="@dimen/_32pxh">
                         <ImageView android:id="@+id/imageVector"
                             android:layout_gravity="top|start"
                             android:layout_height="@dimen/_3pxh"
@@ -50,7 +52,8 @@
                         <FrameLayout
                             android:id="@+id/frameStackgroup100000210"
                             android:layout_gravity="center"
-                            android:layout_height="@dimen/_32pxv" android:layout_width="@dimen/_32pxh">
+                            android:layout_height="@dimen/_32pxv"
+                            android:layout_width="@dimen/_32pxh">
                             <ImageView
                                 android:id="@+id/imageGroup100000210"
                                 android:layout_gravity="start"
@@ -86,6 +89,7 @@
                 android:layout_width="match_parent"
                 app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/gray_800_90"
+                app:tabIconTint="@color/gray_800"
                 app:tabTextColor="@color/gray_600_90"
                 style="@style/groupStylecornerRadius_1"/>
         </LinearLayout>

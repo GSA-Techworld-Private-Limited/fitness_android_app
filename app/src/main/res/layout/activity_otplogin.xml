@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="otpVM" type="com.fitness.app.modules.otp.data.viewmodel.OtpVM"/>
+    </data>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:id="@+id/linearOTP"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <ImageView android:gravity="start"
+            android:id="@+id/imageArrowup"
+            android:layout_height="@dimen/_299pxv"
+            android:layout_marginTop="@dimen/_105pxv"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            imageRes="@{@drawable/img_arrowup}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_arrowup"/>
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearColumnentertheotps"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_58pxv"
+            android:layout_width="match_parent" android:orientation="vertical">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtEntertheOTPs"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@{otpVM.otpModel.txtEntertheOTPs}"
+                style="@style/txtRalewayromansemibold12" tools:text="@string/msg_enter_the_otp_s"/>
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowrectangleone"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_19pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <EditText  android:layout_gravity="center_horizontal"
+
+                    android:background="@drawable/rectangle_border_black_900_radius_10"
+                    android:id="@+id/edit1"
+                    android:layout_height="@dimen/_45pxh"
+                    android:layout_width="@dimen/_48pxh"/>
+                <EditText
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/rectangle_border_black_900_radius_10"
+                    android:id="@+id/edit2"
+                    android:layout_height="@dimen/_45pxh"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_width="@dimen/_48pxh"/>
+                <EditText
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/rectangle_border_black_900_radius_10"
+                    android:id="@+id/edit3"
+                    android:layout_height="@dimen/_45pxh"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_width="@dimen/_48pxh"/>
+                <EditText
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/rectangle_border_black_900_radius_10"
+                    android:id="@+id/edit4"
+                    android:layout_height="@dimen/_45pxh"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_width="@dimen/_48pxh"/>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end" android:gravity="center"
+                android:id="@+id/btnSubmit"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_13pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_30pxh"
+                android:paddingTop="@dimen/_13pxv"
+                android:singleLine="true"
+                android:text="@string/lbl_submit"
+                android:textAllCaps="false"
+                style="@style/btnGradientRounded" tools:text="@string/lbl_submit"/>
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/linearRowdidntreceive"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginStart="@dimen/_1pxh"
+                android:layout_marginTop="@dimen/_37pxv"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtDidntReceive"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@{otpVM.otpModel.txtDidntReceive}"
+                    style="@style/txtRalewayromanregular12_1"
+                    tools:text="@string/msg_didn_t_receive"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtResendOTP"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@{otpVM.otpModel.txtResendOTP}"
+                    style="@style/txtRalewayromansemibold12_1"
+                    textUnderline="true"
+                    tools:text="@string/lbl_resend_otp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -26,6 +26,11 @@ class NotificationsActivity :
   override fun setUpClicks(): Unit {
   }
 
+
+  override fun onBackPressed() {
+    super.onBackPressed()
+    this.finish()
+  }
   companion object {
     const val TAG: String = "NOTIFICATIONS_ACTIVITY"
 

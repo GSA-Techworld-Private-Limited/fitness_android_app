@@ -25,6 +25,11 @@ class AboutUsActivity : BaseActivity<ActivityAboutUsBinding>(R.layout.activity_a
   override fun setUpClicks(): Unit {
   }
 
+
+  override fun onBackPressed() {
+    super.onBackPressed()
+    this.finish()
+  }
   companion object {
     const val TAG: String = "ABOUT_US_ACTIVITY"
 
