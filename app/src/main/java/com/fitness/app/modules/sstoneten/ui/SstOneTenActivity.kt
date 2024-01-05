@@ -13,6 +13,11 @@ import com.fitness.app.modules.plyometricsone.ui.PlyometricsOneActivity
 import com.fitness.app.modules.sstoneeight.ui.SstOneEightActivity
 import com.fitness.app.modules.sstoneten.`data`.viewmodel.SstOneTenVM
 import com.fitness.app.modules.warmup.ui.WarmUpActivity
+import devs.mulham.horizontalcalendar.HorizontalCalendar
+import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import kotlin.String
 import kotlin.Unit
 
@@ -21,14 +26,51 @@ class SstOneTenActivity : BaseActivity<ActivitySstOneTenBinding>(R.layout.activi
 
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
+
+
+
+    val startDate = Calendar.getInstance()
+    startDate.add(Calendar.MONTH, -1)
+    val endDate = Calendar.getInstance()
+    endDate.add(Calendar.MONTH, 1)
+    val horizontalCalendar: HorizontalCalendar =
+      HorizontalCalendar.Builder(this, binding.calendarView1.id)
+        .range(startDate, endDate)
+        .datesNumberOnScreen(7)
+        .build()
+
+    // Format today's date in "dd/mm/yyyy" format
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val today = Calendar.getInstance()
+    val formattedToday = dateFormat.format(today.time)
+
+    // Parse the formatted string back to a Calendar object
+    val selectedDate = Calendar.getInstance()
+    selectedDate.time = dateFormat.parse(formattedToday)!!
+
+
+    horizontalCalendar.selectDate(selectedDate, true)
+
+
+    horizontalCalendar.calendarListener = object : HorizontalCalendarListener() {
+      override fun onDateSelected(date: Calendar, position: Int) {
+        // Format selected date in "yyyy-MM-dd" format
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formattedSelectedDate = dateFormat.format(date.time)
+
+        // Make an API call and handle the response
+        //submitAttendanceHistory(formattedSelectedDate)
+      }
+    }
+
     binding.sstOneTenVM = viewModel
   }
 
   override fun setUpClicks(): Unit {
-    binding.linearColumndaycounter.setOnClickListener {
-      val destIntent = SstOneEightActivity.getIntent(this, null)
-      startActivity(destIntent)
-    }
+//    binding.linearColumndaycounter.setOnClickListener {
+//      val destIntent = SstOneEightActivity.getIntent(this, null)
+//      startActivity(destIntent)
+//    }
     binding.etGroup100000211.setOnClickListener {
       val destIntent = WarmUpActivity.getIntent(this, null)
       startActivity(destIntent)

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/black" />
+    <corners android:radius="6dp"
+        android:bottomLeftRadius="@dimen/_200pxh"
+        android:bottomRightRadius="@dimen/_200pxh"
+        android:topLeftRadius="@dimen/_200pxh"
+        android:topRightRadius="@dimen/_200pxh"/>
+    <size android:width="@dimen/_80pxh"
+        android:height="@dimen/_100pxh"
+        />
+    <!-- Adjust the radius to control the roundness -->
+</shape>

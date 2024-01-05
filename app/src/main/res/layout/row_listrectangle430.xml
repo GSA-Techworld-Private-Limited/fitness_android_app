@@ -17,7 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_1pxv"
             android:layout_marginStart="@dimen/_18pxh"
-            android:layout_weight="0.54" android:layout_width="0dp" android:orientation="vertical">
+            android:layout_weight="0.54"
+            android:layout_width="0dp"
+            android:orientation="vertical">
             <TextView android:ellipsize="end"
                 android:id="@+id/txtTaskName"
                 android:layout_height="wrap_content"
@@ -34,9 +36,10 @@
                 android:text="@{listrectangle430RowModel.txtDescription}"
                 style="@style/txtRalewayromanregular10_1" tools:text="@string/msg_worem_ipsum_dol"/>
             <FrameLayout android:id="@+id/frameStackcompleted"
-                android:layout_height="@dimen/_30pxv"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_13pxv" android:layout_width="@dimen/_98pxh">
+                android:layout_marginTop="@dimen/_13pxv"
+                android:layout_width="@dimen/_98pxh">
                 <TextView android:ellipsize="end"
                     android:gravity="top|start"
                     android:id="@+id/txtCompleted"

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityProfileBinding
@@ -17,9 +18,16 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.profileVM = viewModel
+    window.statusBarColor= ContextCompat.getColor(this,R.color.white)
+
   }
 
   override fun setUpClicks(): Unit {
+  }
+
+  override fun onBackPressed() {
+    super.onBackPressed()
+    this.finish()
   }
 
   companion object {

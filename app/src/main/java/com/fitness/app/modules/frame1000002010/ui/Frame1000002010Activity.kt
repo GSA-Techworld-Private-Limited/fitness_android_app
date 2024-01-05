@@ -23,6 +23,11 @@ class Frame1000002010Activity :
   override fun setUpClicks(): Unit {
   }
 
+
+  override fun onBackPressed() {
+    super.onBackPressed()
+    this.finish()
+  }
   companion object {
     const val TAG: String = "FRAME1000002010ACTIVITY"
 
