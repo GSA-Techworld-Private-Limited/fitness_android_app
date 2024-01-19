@@ -3,15 +3,19 @@
     <data>
         <variable name="subscriptionsRowModel" type="com.fitness.app.modules.subscriptions.data.model.SubscriptionsRowModel"/>
     </data>
-    <FrameLayout android:id="@+id/frameStackrectanglesixtyone"
-        android:layout_height="wrap_content" android:layout_width="match_parent">
+    <FrameLayout
+        android:id="@+id/frameStackrectanglesixtyone"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
         <ImageView android:id="@+id/imageRectangleSixtyOne"
             android:layout_gravity="start"
             android:layout_height="@dimen/_146pxh"
             android:layout_width="@dimen/_320pxh"
-            android:scaleType="fitXY" cornerRadius="@{@dimen/_10pxh}"
+            android:scaleType="fitXY"
+            cornerRadius="@{@dimen/_10pxh}"
             imageRes="@{@drawable/img_rectangle61_3}"
-            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle61_3"/>
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_rectangle61_3"/>
         <LinearLayout android:id="@+id/linearColumnviewdetails"
             android:layout_gravity="bottom|end"
             android:layout_height="wrap_content"

@@ -4,11 +4,14 @@
     <data>
         <variable name="profileVM" type="com.fitness.app.modules.profile.data.viewmodel.ProfileVM"/>
     </data>
-    <LinearLayout android:gravity="start"
+    <LinearLayout
+        android:gravity="start"
         android:id="@+id/linearProfile"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarToolbar"
             android:layout_height="wrap_content"
