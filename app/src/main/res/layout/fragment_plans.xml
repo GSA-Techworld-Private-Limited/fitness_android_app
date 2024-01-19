@@ -93,6 +93,7 @@
             android:id="@+id/linearFeeds"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginEnd="@dimen/_10pxh"
             android:layout_marginTop="@dimen/_17pxv"
             android:layout_width="match_parent"
             android:orientation="vertical"

@@ -4,14 +4,20 @@
     <data>
         <variable name="subscriptionsVM" type="com.fitness.app.modules.subscriptions.data.viewmodel.SubscriptionsVM"/>
     </data>
-    <androidx.core.widget.NestedScrollView android:clipToPadding="false"
+    <ScrollView
+        android:clipToPadding="false"
         android:fillViewport="true"
         android:id="@+id/scrollViewScrollview"
-        android:layout_height="match_parent" android:layout_width="match_parent">
-        <LinearLayout android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
             android:id="@+id/linearColumnnote"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent" android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearRownote"
                 android:layout_height="wrap_content"
@@ -36,6 +42,7 @@
                     android:text="@{subscriptionsVM.subscriptionsModel.txtDoremipsumdol}"
                     style="@style/txtRobotoromanlight8" tools:text="@string/msg_dorem_ipsum_dol"/>
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="start"
                 android:id="@+id/recyclerSubscriptions"
@@ -45,7 +52,10 @@
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_14pxh}" tools:itemCount="4" tools:listitem="@layout/row_subscriptions"/>
+                itemSpace="@{@dimen/_14pxh}"
+                tools:itemCount="4"
+                tools:listitem="@layout/row_subscriptions"/>
+
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </layout>

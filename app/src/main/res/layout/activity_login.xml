@@ -4,13 +4,16 @@
     <data>
         <variable name="welcomeLoginVM" type="com.fitness.app.modules.welcomelogin.data.viewmodel.WelcomeLoginVM"/>
     </data>
-    <FrameLayout android:id="@+id/frameWelcomeLogin"
+    <LinearLayout android:id="@+id/frameWelcomeLogin"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+        android:layout_width="match_parent"
+        style="@style/groupStylewhite_A700">
+
+
 
         <LinearLayout
             android:id="@+id/linearColumnlogo"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:orientation="vertical">
 
@@ -208,6 +211,5 @@
                     tools:text="@string/lbl_login1"/>
             </LinearLayout>
         </LinearLayout>
-
-    </FrameLayout>
+    </LinearLayout>
 </layout>

@@ -41,28 +41,40 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_19pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
-                <EditText  android:layout_gravity="center_horizontal"
-
+                <EditText
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit1"
                     android:layout_height="@dimen/_45pxh"
                     android:layout_width="@dimen/_48pxh"/>
                 <EditText
-                    android:layout_gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit2"
                     android:layout_height="@dimen/_45pxh"
                     android:layout_marginStart="@dimen/_20pxh"
                     android:layout_width="@dimen/_48pxh"/>
                 <EditText
-                    android:layout_gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit3"
                     android:layout_height="@dimen/_45pxh"
                     android:layout_marginStart="@dimen/_20pxh"
                     android:layout_width="@dimen/_48pxh"/>
                 <EditText
-                    android:layout_gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit4"
                     android:layout_height="@dimen/_45pxh"
