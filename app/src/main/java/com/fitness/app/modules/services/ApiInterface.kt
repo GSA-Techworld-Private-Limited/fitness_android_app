@@ -1,11 +1,14 @@
 package com.fitness.app.modules.services
 import com.fitness.app.modules.login.Login
+import com.fitness.app.modules.responses.ArticleResponse
 import com.fitness.app.modules.responses.LoginResponse
 import com.fitness.app.modules.responses.LogoutResponse
 import com.fitness.app.modules.responses.SignUpResponse
+import com.fitness.app.modules.responses.TrainingVideoResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
@@ -45,6 +48,17 @@ interface ApiInterface {
 
     ):Call<SignUpResponse>
 
+
+    @GET("api/article/")
+    fun getArticles(
+        @Header("Authorization")token: String
+    ):Call<ArticleResponse>
+
+
+    @GET("api/feed_traning_create/")
+    fun getTrainingVideos(
+        @Header("Authorization")token: String
+    ):Call<TrainingVideoResponse>
 
     @POST("api/logout/")
     fun logout(@Header("Authorization")fetchAuthToken: String?):Call<LogoutResponse>
