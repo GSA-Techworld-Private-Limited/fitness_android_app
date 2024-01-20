@@ -28,4 +28,14 @@ object ApiManager {
     fun getImageUrl(imagePath: String): String {
         return BASE_URL + imagePath
     }
+
+    fun getVideoUrl(videoPath: String): String {
+        // Check if the video path is already an absolute URL
+        if (videoPath.startsWith("http://") || videoPath.startsWith("https://")) {
+            return videoPath
+        } else {
+            // If not, append it to the base URL
+            return BASE_URL + videoPath
+        }
+    }
 }
