@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="feedsTwoVM" type="com.fitness.app.modules.feedstwo.data.viewmodel.FeedsTwoVM"/>
     </data>
@@ -121,115 +123,14 @@
                 </LinearLayout>
 
                 </HorizontalScrollView>
-                <FrameLayout
-                    android:id="@+id/frameStackrectanglefiftyone"
-                    android:layout_height="@dimen/_150pxv"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginStart="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_37pxv"
-                    android:layout_width="match_parent">
-                    <ImageView android:id="@+id/imageRectangleFiftyOne"
-                        android:layout_gravity="start"
-                        android:layout_height="@dimen/_150pxh"
-                        android:layout_width="match_parent"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_10pxh}"
-                        imageRes="@{@drawable/img_rectangle51_150x318}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle51_150x318"/>
-                    <ImageView android:id="@+id/imagePlaycircle"
-                        android:layout_gravity="center"
-                        android:layout_height="@dimen/_30pxh"
-                        android:layout_marginHorizontal="@dimen/_40pxh"
-                        android:layout_marginVertical="@dimen/_40pxv"
-                        android:layout_width="@dimen/_30pxh"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_playcircle_white_a700"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_playcircle_white_a700"/>
-                </FrameLayout>
-                <FrameLayout
-                    android:id="@+id/frameStackrectanglefiftytwo"
-                    android:layout_height="@dimen/_150pxv"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginStart="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_width="match_parent">
-                    <ImageView android:id="@+id/imageRectangleFiftyTwo"
-                        android:layout_gravity="start"
-                        android:layout_height="@dimen/_150pxh"
-                        android:layout_width="match_parent"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_10pxh}"
-                        imageRes="@{@drawable/img_rectangle52_150x318}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle52_150x318"/>
-                    <ImageView android:id="@+id/imagePlaycircleOne"
-                        android:layout_gravity="center"
-                        android:layout_height="@dimen/_30pxh"
-                        android:layout_marginHorizontal="@dimen/_40pxh"
-                        android:layout_marginVertical="@dimen/_40pxv"
-                        android:layout_width="@dimen/_30pxh"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_playcircle_white_a700"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_playcircle_white_a700"/>
-                </FrameLayout>
-<!--                <FrameLayout-->
-<!--                    android:id="@+id/frameStackrectanglefiftythree"-->
-<!--                    android:layout_height="@dimen/_150pxv"-->
-<!--                    android:layout_marginEnd="@dimen/_10pxh"-->
-<!--                    android:layout_marginStart="@dimen/_1pxh"-->
-<!--                    android:layout_marginTop="@dimen/_12pxv" android:layout_width="@dimen/_318pxh">-->
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imageRectangleFiftyThree"-->
-<!--                        android:layout_gravity="start"-->
-<!--                        android:layout_height="@dimen/_150pxh"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:scaleType="fitXY"-->
-<!--                        cornerRadius="@{@dimen/_10pxh}"-->
-<!--                        imageRes="@{@drawable/img_rectangle53_150x318}"-->
-<!--                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle53_150x318"/>-->
-<!--                    <ImageView android:id="@+id/imagePlaycircleTwo"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:layout_height="@dimen/_30pxh"-->
-<!--                        android:layout_marginHorizontal="@dimen/_40pxh"-->
-<!--                        android:layout_marginVertical="@dimen/_40pxv"-->
-<!--                        android:layout_width="@dimen/_30pxh"-->
-<!--                        android:scaleType="fitXY"-->
-<!--                        android:src="@drawable/img_playcircle_white_a700"-->
-<!--                        tools:ignore="ContentDescription" tools:src="@drawable/img_playcircle_white_a700"/>-->
-<!--                </FrameLayout>-->
-<!--                <FrameLayout android:id="@+id/frameStackplaycircleThree"-->
-<!--                    android:layout_height="@dimen/_150pxv"-->
-<!--                    android:layout_marginEnd="@dimen/_10pxh"-->
-<!--                    android:layout_marginStart="@dimen/_1pxh"-->
-<!--                    android:layout_marginTop="@dimen/_12pxv"-->
-<!--                    android:layout_width="@dimen/_318pxh" style="@style/groupStylegray_704cornerRadius">-->
-<!--                    <ImageView android:id="@+id/imagePlaycircleThree"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:layout_height="@dimen/_30pxh"-->
-<!--                        android:layout_marginHorizontal="@dimen/_40pxh"-->
-<!--                        android:layout_marginVertical="@dimen/_40pxv"-->
-<!--                        android:layout_width="@dimen/_30pxh"-->
-<!--                        android:scaleType="fitXY"-->
-<!--                        android:src="@drawable/img_playcircle_gray_913"-->
-<!--                        tools:ignore="ContentDescription" tools:src="@drawable/img_playcircle_gray_913"/>-->
-<!--                </FrameLayout>-->
-<!--                <FrameLayout android:id="@+id/frameStackplaycircleFour"-->
-<!--                    android:layout_height="@dimen/_150pxv"-->
-<!--                    android:layout_marginEnd="@dimen/_10pxh"-->
-<!--                    android:layout_marginStart="@dimen/_1pxh"-->
-<!--                    android:layout_marginTop="@dimen/_12pxv"-->
-<!--                    android:layout_width="@dimen/_318pxh" style="@style/groupStylegray_704cornerRadius">-->
-<!--                    <ImageView android:id="@+id/imagePlaycircleFour"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:layout_height="@dimen/_30pxh"-->
-<!--                        android:layout_marginBottom="@dimen/_20pxv"-->
-<!--                        android:layout_marginEnd="@dimen/_40pxh"-->
-<!--                        android:layout_marginStart="@dimen/_40pxh"-->
-<!--                        android:layout_marginTop="@dimen/_40pxv"-->
-<!--                        android:layout_width="@dimen/_30pxh"-->
-<!--                        android:scaleType="fitXY"-->
-<!--                        android:src="@drawable/img_playcircle_gray_913"-->
-<!--                        tools:ignore="ContentDescription" tools:src="@drawable/img_playcircle_gray_913"/>-->
-<!--                </FrameLayout>-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewtestimonalvideos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    itemSpace="@{@dimen/_15pxh}"/>
             </LinearLayout>
     </ScrollView>
 </layout>
