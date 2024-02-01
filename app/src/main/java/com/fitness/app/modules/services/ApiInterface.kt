@@ -1,11 +1,15 @@
 package com.fitness.app.modules.services
 import com.fitness.app.modules.login.Login
 import com.fitness.app.modules.responses.ArticleResponse
+import com.fitness.app.modules.responses.AthletePlans
 import com.fitness.app.modules.responses.LoginResponse
 import com.fitness.app.modules.responses.LogoutResponse
 import com.fitness.app.modules.responses.SignUpResponse
 import com.fitness.app.modules.responses.TestimonalVideoResponses
 import com.fitness.app.modules.responses.TrainingVideoResponse
+import com.fitness.app.modules.responses.UpcomingWorkshop
+import com.fitness.app.modules.responses.UpcomingWorkshopResponse
+import com.fitness.app.modules.responses.UserDetailsResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -27,7 +31,7 @@ interface ApiInterface {
     @POST("api/otp-login-verify/")
     fun verifyLoginOtp(
         @Field("otp")otp:String
-    ):Call<LoginResponse>
+    ):Call<UserDetailsResponse>
 
     @FormUrlEncoded
     @POST("api/user-genrate-otp/")
@@ -67,6 +71,36 @@ interface ApiInterface {
         @Header("Authorization")token: String
     ):Call<TestimonalVideoResponses>
 
+
+    @GET("api/workshops/upcoming/")
+    fun getUpcomingWorkShops(
+        @Header("Authorization")token: String
+    ):Call<UpcomingWorkshopResponse>
+
+
+    @GET("api/updateprofile/")
+    fun getProfile(
+        @Header("Authorization")token: String
+    ): Call<LoginResponse>
+
+
+
+    @GET("api/athlete-plans/")
+    fun getAthletePlans(
+        @Header("Authorization")token: String
+    ): Call<List<AthletePlans>>
+
+
+    @GET("api/userdetail_update/")
+    fun getUsersProfile(
+        @Header("Authorization")token: String
+    ):Call<LoginResponse>
+
     @POST("api/logout/")
     fun logout(@Header("Authorization")fetchAuthToken: String?):Call<LogoutResponse>
+
+
+
+
+
 }

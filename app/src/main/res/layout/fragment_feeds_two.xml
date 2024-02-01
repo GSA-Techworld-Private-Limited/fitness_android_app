@@ -124,6 +124,13 @@
 
                 </HorizontalScrollView>
 
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progressBar"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewtestimonalvideos"
                     android:layout_width="match_parent"

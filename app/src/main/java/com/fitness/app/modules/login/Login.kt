@@ -6,6 +6,9 @@ import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -32,9 +35,11 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    private lateinit var accessToken: String
+    //private lateinit var accessToken: String
     private lateinit var apiService: ApiInterface
     private lateinit var sessionManager: SessionManager
+
+    private lateinit var mobile: String
 
     private val imageUri: Uri =
         Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle451")
@@ -54,7 +59,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
 
 
         sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
-        accessToken = sharedPreferences.getString("token", "") ?: ""
+        val accessToken  = sharedPreferences.getString("token", null)
 
         apiService=ApiManager.apiInterface
 
@@ -75,19 +80,32 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
 
 
 
-        // If the user is already logged in, navigate to the next activity immediately
-        if (!accessToken.isEmpty()) {
+        if(accessToken!=null){
             navigateToHomeContainer()
-            return // Exit the onCreate method to prevent splash screen animations
         }
+
+//        // If the user is already logged in, navigate to the next activity immediately
+//        if (!accessToken.isEmpty()) {
+//            navigateToHomeContainer()
+//            return // Exit the onCreate method to prevent splash screen animations
+//        }
+
         binding.btnArrowright.setOnClickListener{
-            val  mobile=binding.txtEnterYourNumb.text.toString()
+              mobile=binding.txtEnterYourNumb.text.toString()
 
             if (mobile.isNotEmpty()) {
+                binding.btnArrowright.alpha=0.5f
                 getOtp(mobile)
+                binding.progressBar.visibility= View.VISIBLE
             } else {
                 Toast.makeText(this, "Please enter a mobile number", Toast.LENGTH_SHORT).show()
             }
+
+
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
+                binding.btnArrowright.alpha = 1.0f // Reset alpha back to normal
+            }, 1000)
         }
 
 
@@ -100,6 +118,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
         val call=apiService.getOtp(mobile)
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                binding.progressBar.visibility=View.GONE
                 if (response.isSuccessful) {
 
                     val loginResponse = response.body()
@@ -108,7 +127,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
                         navigateToNextPage()
                         finishAffinity()
                     } else {
-                        Toast.makeText(this@Login, "Login failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Login, "Server Not Responding!!", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(this@Login, "Login failed", Toast.LENGTH_SHORT).show()
@@ -116,6 +135,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
             }
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(this@Login, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility=View.GONE
             }
         })
     }
@@ -129,6 +149,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
     }
     private fun navigateToNextPage() {
         val i=Intent(this,OTPLogin::class.java)
+        i.putExtra("mobileNumber",mobile)
         startActivity(i)
     }
     override fun setUpClicks() {
@@ -141,6 +162,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
             val i=WelcomeLoginActivity.getIntent(this,null)
             startActivity(i)
         }
+
     }
 
 }

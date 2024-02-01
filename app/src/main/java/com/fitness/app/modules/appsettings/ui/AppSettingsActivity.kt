@@ -33,6 +33,7 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
       private lateinit var apiService: ApiInterface
       private lateinit var sessionManager: SessionManager
   override fun onInitialized(): Unit {
+
     viewModel.navArguments = intent.extras?.getBundle("bundle")
 
     apiService=ApiManager.apiInterface
@@ -54,11 +55,13 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
     binding.appSettingsVM = viewModel
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
+
   }
 
   override fun setUpClicks(): Unit {
     binding.btnLogout.setOnClickListener {
       logout()
+      binding.prgressBar.visibility=View.VISIBLE
     }
   }
 
@@ -83,6 +86,7 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
             call: Call<LogoutResponse>,
             response: Response<LogoutResponse>
           ) {
+            binding.prgressBar.visibility=View.GONE
             val logoutResponse=response.body()
 
             if(logoutResponse!=null){
@@ -91,11 +95,13 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
               sessionManager.clearSession()
               redirectToLoginActivity()
             }
+
           }
 
           override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
             t.printStackTrace()
             Log.e("error", t.message.toString())
+            binding.prgressBar.visibility=View.GONE
           }
         })
       }
@@ -107,6 +113,8 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
         ActivityCompat.finishAffinity(this)
         startActivity(intent)
       }
+
+
       override fun onBackPressed() {
         super.onBackPressed()
         this.finish()

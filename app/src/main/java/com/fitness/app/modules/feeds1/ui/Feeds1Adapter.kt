@@ -77,7 +77,6 @@ class Feeds1Adapter(
 
                 exoPlayer.setMediaSource(mediaSource)
                 exoPlayer.prepare()
-                exoPlayer.playWhenReady = true
             }
         }
 

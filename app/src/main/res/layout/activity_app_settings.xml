@@ -54,8 +54,8 @@
             android:gravity="center_horizontal"
             android:id="@+id/recyclerAppSettings"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_19pxh"
-            android:layout_marginStart="@dimen/_19pxh"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginStart="@dimen/_10pxh"
             android:layout_marginTop="@dimen/_30pxv"
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -63,6 +63,14 @@
             itemSpace="@{@dimen/_14pxh}"
             tools:itemCount="3"
             tools:listitem="@layout/row_app_settings"/>
+
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/prgressBar"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"

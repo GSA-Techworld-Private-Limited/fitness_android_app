@@ -12,8 +12,11 @@ class SessionManager (context: Context) {
         Context.MODE_PRIVATE)
 
     companion object {
-        const val USER_TOKEN = "access_token"
+        const val USER_TOKEN = "token"
         const val REFRESH_TOKEN = "refresh_token"
+        const val USER="name"
+        const val DOB="dob"
+        const val MOBILE_NUMBER="mobile_number"
     }
 
     private val sharedPreferences =
@@ -32,12 +35,46 @@ class SessionManager (context: Context) {
         editor.apply()
     }
 
+    fun saveUserName(name: String){
+        val editor =prefs.edit()
+        editor.putString(USER,name)
+        editor.apply()
+    }
+
+    fun fetchUSerName(): String? {
+        return prefs.getString(USER,null)
+    }
+
+
+    fun saveDOB(dob:String){
+        val editor=prefs.edit()
+        editor.putString(DOB,dob)
+        editor.apply()
+    }
+
+
+    fun fetchDOB(): String?{
+        return prefs.getString(DOB,null)
+    }
     /**
      * Function to fetch auth token
      */
     fun fetchAuthToken(): String? {
         return prefs.getString(USER_TOKEN,null)
     }
+
+
+    fun saveNumber(mobile:String){
+        val editor=prefs.edit()
+        editor.putString(MOBILE_NUMBER,mobile)
+        editor.apply()
+    }
+
+
+    fun fetchNumber() : String?{
+        return prefs.getString(MOBILE_NUMBER,null)
+    }
+
     fun fetchRefreshToken(): String? {
         return prefs.getString(REFRESH_TOKEN,null)
     }
@@ -46,7 +83,7 @@ class SessionManager (context: Context) {
     fun logout() {
         prefs.edit().apply {
             remove(USER_TOKEN)
-            remove(REFRESH_TOKEN)
+           // remove(REFRESH_TOKEN)
             apply()
         }
     }

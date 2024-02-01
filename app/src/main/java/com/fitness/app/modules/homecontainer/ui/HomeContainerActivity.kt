@@ -29,6 +29,12 @@ class HomeContainerActivity :
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.homeContainerVM = viewModel
 
+    val name=intent.getStringExtra("name")
+
+    val dob=intent.getStringExtra("DOB")
+
+
+
     replaceFragment(HomeFragment())
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)

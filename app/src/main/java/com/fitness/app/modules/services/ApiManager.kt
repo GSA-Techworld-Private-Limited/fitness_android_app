@@ -6,16 +6,20 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiManager {
-    private val BASE_URL = "https://zvkmtpt1-8016.inc1.devtunnels.ms"
+    private val BASE_URL = "https://dhfj8kqt-8000.inc1.devtunnels.ms/"
+
 
     // API response interceptor
     val loggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)
 
+
     // Client
     val client = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
+
+
 
     val  apiInterface : ApiInterface by lazy {
         Retrofit.Builder()
@@ -25,9 +29,11 @@ object ApiManager {
             .create(ApiInterface::class.java)
     }
 
+
     fun getImageUrl(imagePath: String): String {
         return BASE_URL + imagePath
     }
+
 
     fun getVideoUrl(videoPath: String): String {
         // Check if the video path is already an absolute URL
@@ -38,4 +44,6 @@ object ApiManager {
             return BASE_URL + videoPath
         }
     }
+
+
 }

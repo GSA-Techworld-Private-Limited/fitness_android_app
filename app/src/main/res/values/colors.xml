@@ -78,4 +78,5 @@
   <color name="bluegray_903">#343434</color>
   <color name="bluegray_902">#333333</color>
   <color name="bluegray_901">#2f2e2e</color>
+  <color name="shadow">#cc222222</color>
 </resources>

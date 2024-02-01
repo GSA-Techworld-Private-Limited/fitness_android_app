@@ -36,4 +36,6 @@ class SliderrectangletwoAdapter(
     )
     return itemBinding
   }
+
+
 }

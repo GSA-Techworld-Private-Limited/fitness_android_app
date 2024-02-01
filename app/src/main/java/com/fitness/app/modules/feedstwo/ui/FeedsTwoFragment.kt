@@ -1,6 +1,7 @@
 package com.fitness.app.modules.feedstwo.ui
 
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
@@ -25,6 +26,7 @@ class FeedsTwoFragment : BaseFragment<FragmentFeedsTwoBinding>(R.layout.fragment
     sessionManager=SessionManager(requireActivity())
 
     getTestimonalVideos()
+    binding.progressBar.visibility=View.VISIBLE
 
 
 
@@ -46,6 +48,7 @@ class FeedsTwoFragment : BaseFragment<FragmentFeedsTwoBinding>(R.layout.fragment
         call: Call<TestimonalVideoResponses>,
         response: Response<TestimonalVideoResponses>
       ) {
+        binding.progressBar.visibility=View.GONE
         val customerResponse=response.body()
 
         if(customerResponse!=null){
@@ -60,6 +63,7 @@ class FeedsTwoFragment : BaseFragment<FragmentFeedsTwoBinding>(R.layout.fragment
       override fun onFailure(call: Call<TestimonalVideoResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
       }
     })
   }

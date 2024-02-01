@@ -10,10 +10,12 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         style="@style/groupStylewhite_A700">
-        <LinearLayout android:gravity="center_horizontal"
+        <LinearLayout
+            android:gravity="center_horizontal"
             android:id="@+id/linearColumnellipsetwo"
             android:layout_height="@dimen/_121pxh"
             android:layout_width="match_parent"
+            style="@style/groupStylewhite_A7001"
             android:orientation="vertical">
             <androidx.appcompat.widget.Toolbar
                 android:gravity="center_horizontal"
@@ -21,14 +23,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_9pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginStart="@dimen/_24pxh"
+                android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_55pxv"
                 android:layout_width="match_parent" app:contentInsetStart="0dp">
                 <LinearLayout android:id="@+id/linearHeader"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:orientation="horizontal">
-                    <ImageView android:id="@+id/imageEllipseTwo"
+                    <ImageView
+                        android:id="@+id/imageEllipseTwo"
+                        android:layout_gravity="center"
                         android:layout_height="@dimen/_35pxh"
                         android:layout_marginTop="@dimen/_2pxv"
                         android:layout_width="@dimen/_35pxh"
@@ -41,9 +45,9 @@
                     <FrameLayout
                         android:id="@+id/frameStackgroup"
                         android:layout_gravity="center_vertical"
-                        android:layout_height="@dimen/_32pxv"
+                        android:layout_height="@dimen/_42pxv"
                         android:layout_marginTop="@dimen/_2pxv"
-                        android:layout_marginStart="260dp"
+                        android:layout_marginStart="250dp"
                         android:layout_width="@dimen/_32pxh">
 
                         <ImageView
@@ -89,10 +93,16 @@
         <LinearLayout android:gravity="start"
             android:id="@+id/linearHome"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_1pxh"
             android:layout_marginTop="@dimen/_14pxv"
             android:layout_width="match_parent"
-            android:orientation="vertical" style="@style/groupStylewhite_A700">
+            android:orientation="vertical"
+            style="@style/groupStylewhite_A700">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/horizontal_only"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <TextView android:id="@+id/txtWelcomebackS"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_19pxh"
@@ -100,7 +110,18 @@
                 android:layout_width="match_parent"
                 android:lineSpacingExtra="@dimen/_6pxh"
                 android:text="@string/msg_good_afternoon"
-                style="@style/txt" tools:text="@string/msg_good_afternoon"/>
+                style="@style/txt"
+                tools:text="@string/msg_good_afternoon"/>
+                <TextView android:id="@+id/txtWelcomebackS1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_19pxh"
+                    android:layout_marginStart="@dimen/_19pxh"
+                    android:layout_width="match_parent"
+                    android:lineSpacingExtra="@dimen/_6pxh"
+                    android:text="Ashish!"
+                    style="@style/txt"
+                    tools:text="Ashish!"/>
+            </LinearLayout>
             <TextView android:ellipsize="end"
                 android:id="@+id/txtProgressTracke"
                 android:layout_height="wrap_content"
@@ -191,7 +212,9 @@
                     android:text="@{homeVM.homeModel.txt210Completed}"
                     style="@style/txtRobotoromansemibold12" tools:text="@string/lbl_2_10_completed"/>
             </LinearLayout>
-            <HorizontalScrollView
+
+
+            <ScrollView
                 android:fillViewport="true"
                 android:id="@+id/horizontalScrollHorizontalscrolluser"
                 android:layout_height="wrap_content"
@@ -232,7 +255,7 @@
                             app:indicator_spacing="@dimen/_5pxh"/>
                     </FrameLayout>
                 </LinearLayout>
-            </HorizontalScrollView>
+            </ScrollView>
             <TextView android:ellipsize="end"
                 android:id="@+id/txtWorkshops"
                 android:layout_height="wrap_content"
@@ -242,45 +265,60 @@
                 android:layout_width="wrap_content"
                 android:singleLine="true"
                 android:text="@{homeVM.homeModel.txtWorkshops}"
-                style="@style/txtRalewayromansemibold16" tools:text="@string/lbl_workshops"/>
-            <HorizontalScrollView android:fillViewport="true"
-                android:gravity="end"
-                android:id="@+id/horizontalScrollHorizontalscrollrectangle"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_14pxv"
-                android:layout_width="match_parent" android:scrollbars="none">
-                <LinearLayout android:id="@+id/linearRowrectangle"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" android:orientation="horizontal">
-                    <ImageView android:id="@+id/imageRectangle"
-                        android:layout_height="@dimen/_132pxh"
-                        android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_width="@dimen/_227pxh"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_20pxh}"
-                        imageRes="@{@drawable/img_rectangle_132x227}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_132x227"/>
-                    <ImageView android:id="@+id/imageRectangleOne"
-                        android:layout_height="@dimen/_132pxh"
-                        android:layout_marginStart="@dimen/_16pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_width="@dimen/_227pxh"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_20pxh}"
-                        imageRes="@{@drawable/img_rectangle_7}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_7"/>
-                    <ImageView android:id="@+id/imageRectangleTwo"
-                        android:layout_height="@dimen/_132pxh"
-                        android:layout_marginStart="@dimen/_15pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_width="@dimen/_227pxh"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_20pxh}"
-                        imageRes="@{@drawable/img_rectangle_8}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_8"/>
-                </LinearLayout>
-            </HorizontalScrollView>
+                style="@style/txtRalewayromansemibold16"
+                tools:text="@string/lbl_workshops"/>
+
+
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/recyclerforworkshop"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/_19pxh"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_height="wrap_content"/>
+
+<!--                <LinearLayout android:id="@+id/linearRowrectangle"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="wrap_content" android:orientation="horizontal">-->
+<!--                    <ImageView android:id="@+id/imageRectangle"-->
+<!--                        android:layout_height="@dimen/_132pxh"-->
+<!--                        android:layout_marginBottom="@dimen/_1pxv"-->
+<!--                        android:layout_width="@dimen/_227pxh"-->
+<!--                        android:scaleType="fitXY"-->
+<!--                        cornerRadius="@{@dimen/_20pxh}"-->
+<!--                        imageRes="@{@drawable/img_rectangle_132x227}"-->
+<!--                        tools:ignore="ContentDescription"-->
+<!--                        tools:src="@drawable/img_rectangle_132x227"/>-->
+<!--                    <ImageView android:id="@+id/imageRectangleOne"-->
+<!--                        android:layout_height="@dimen/_132pxh"-->
+<!--                        android:layout_marginStart="@dimen/_16pxh"-->
+<!--                        android:layout_marginTop="@dimen/_1pxv"-->
+<!--                        android:layout_width="@dimen/_227pxh"-->
+<!--                        android:scaleType="fitXY"-->
+<!--                        cornerRadius="@{@dimen/_20pxh}"-->
+<!--                        imageRes="@{@drawable/img_rectangle_7}"-->
+<!--                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_7"/>-->
+<!--                    <ImageView android:id="@+id/imageRectangleTwo"-->
+<!--                        android:layout_height="@dimen/_132pxh"-->
+<!--                        android:layout_marginStart="@dimen/_15pxh"-->
+<!--                        android:layout_marginTop="@dimen/_1pxv"-->
+<!--                        android:layout_width="@dimen/_227pxh"-->
+<!--                        android:scaleType="fitXY"-->
+<!--                        cornerRadius="@{@dimen/_20pxh}"-->
+<!--                        imageRes="@{@drawable/img_rectangle_8}"-->
+<!--                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_8"/>-->
+<!--                </LinearLayout>-->
+
+
+
+
+
+
+
             <TextView android:ellipsize="end"
                 android:id="@+id/txtTestimonials"
                 android:layout_height="wrap_content"

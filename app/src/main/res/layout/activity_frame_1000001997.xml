@@ -3,10 +3,12 @@
     <data>
         <variable name="frame1000001997VM" type="com.fitness.app.modules.frame1000001997.data.viewmodel.Frame1000001997VM"/>
     </data>
-    <LinearLayout android:gravity="center_horizontal"
+    <LinearLayout
+        android:gravity="center"
         android:id="@+id/linearColumn"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:orientation="vertical">
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearColumnpaymentdonesu"
             android:layout_height="match_parent"
@@ -26,7 +28,7 @@
                 tools:text="@string/msg_payment_done_su"/>
 
             <ImageView
-                android:id="@+id/imageRectangle"
+                android:id="@+id/imageComponentlott"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="@dimen/_154pxh"
                 android:layout_marginEnd="@dimen/_18pxh"

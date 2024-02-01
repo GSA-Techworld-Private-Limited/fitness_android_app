@@ -66,9 +66,7 @@
                             android:layout_marginStart="@dimen/_10pxh"
                             android:layout_marginBottom="@dimen/_1pxv"
                             android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@{profileOneVM.profileOneModel.txtAshishB}"
-                            tools:text="@string/lbl_ashish_b" />
+                            android:singleLine="true"/>
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguageOne"
@@ -79,8 +77,7 @@
                         <TextView android:ellipsize="end"
                             android:id="@+id/txtLanguageOne"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.32"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:singleLine="true"
                             android:text="@{profileOneVM.profileOneModel.txtLanguageOne}"
                             style="@style/txtRobotoromanmedium14" tools:text="@string/lbl_dob"/>
@@ -88,11 +85,9 @@
                             android:id="@+id/txtDate"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10pxh"
-                            android:layout_weight="0.68"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:singleLine="true"
-                            android:text="@{profileOneVM.profileOneModel.txtDate}"
-                            style="@style/txtRobotoromanmedium14" tools:text="@string/lbl_26_05_1998"/>
+                            style="@style/txtRobotoromanmedium14" />
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguageTwo"
@@ -115,8 +110,7 @@
                             android:layout_weight="0.62"
                             android:layout_width="0dp"
                             android:singleLine="true"
-                            android:text="@{profileOneVM.profileOneModel.txtMobileNo}"
-                            style="@style/txtRobotoromanmedium14" tools:text="@string/lbl_7383939397"/>
+                            style="@style/txtRobotoromanmedium14"/>
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguageThree"

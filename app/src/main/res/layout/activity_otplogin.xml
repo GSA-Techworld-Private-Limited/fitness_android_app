@@ -35,17 +35,20 @@
                 android:singleLine="true"
                 android:text="@{otpVM.otpModel.txtEntertheOTPs}"
                 style="@style/txtRalewayromansemibold12" tools:text="@string/msg_enter_the_otp_s"/>
-            <LinearLayout android:gravity="start"
+            <LinearLayout
+                android:gravity="start"
                 android:id="@+id/linearRowrectangleone"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_19pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
                 <EditText
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:textColor="@color/black"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit1"
                     android:layout_height="@dimen/_45pxh"
@@ -54,6 +57,7 @@
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit2"
@@ -64,6 +68,7 @@
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit3"
@@ -74,6 +79,7 @@
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:background="@drawable/rectangle_border_black_900_radius_10"
                     android:id="@+id/edit4"
@@ -81,6 +87,13 @@
                     android:layout_marginStart="@dimen/_20pxh"
                     android:layout_width="@dimen/_48pxh"/>
             </LinearLayout>
+
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/progressBar"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:ellipsize="end" android:gravity="center"
                 android:id="@+id/btnSubmit"
