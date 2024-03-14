@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_55pxv"
+                android:layout_marginTop="@dimen/_30pxv"
                 android:layout_width="match_parent" app:contentInsetStart="0dp">
                 <LinearLayout android:id="@+id/linearHeader"
                     android:layout_height="wrap_content"
@@ -29,53 +29,9 @@
                         android:layout_marginTop="@dimen/_2pxv"
                         android:layout_width="@dimen/_35pxh"
                         android:scaleType="centerCrop"
-                        circular="@{true}"
-                        imageRes="@{@drawable/img_ellipse2}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse2"/>
-                    <FrameLayout
-                        android:layout_gravity="end"
-                        android:id="@+id/frameStackvector"
-                        android:layout_height="@dimen/_32pxh"
-                        android:layout_marginStart="@dimen/_208pxh"
-                        android:layout_width="@dimen/_32pxh">
-                        <ImageView android:id="@+id/imageVector"
-                            android:layout_gravity="top|start"
-                            android:layout_height="@dimen/_3pxh"
-                            android:layout_marginBottom="@dimen/_10pxv"
-                            android:layout_marginEnd="@dimen/_10pxh"
-                            android:layout_marginStart="@dimen/_7pxh"
-                            android:layout_marginTop="@dimen/_8pxv"
-                            android:layout_width="@dimen/_4pxh"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_vector"
-                            tools:ignore="ContentDescription" tools:src="@drawable/img_vector"/>
-                        <FrameLayout
-                            android:id="@+id/frameStackgroup100000210"
-                            android:layout_gravity="center"
-                            android:layout_height="@dimen/_32pxv"
-                            android:layout_width="@dimen/_32pxh">
-                            <ImageView
-                                android:id="@+id/imageGroup100000210"
-                                android:layout_gravity="start"
-                                android:layout_height="@dimen/_32pxh"
-                                android:layout_width="@dimen/_32pxh"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/img_group100000210"
-                                tools:ignore="ContentDescription" tools:src="@drawable/img_group100000210"/>
-                            <TextView android:ellipsize="end"
-                                android:id="@+id/txtThree"
-                                android:layout_gravity="top|end"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_10pxv"
-                                android:layout_marginEnd="@dimen/_6pxh"
-                                android:layout_marginStart="@dimen/_10pxh"
-                                android:layout_marginTop="@dimen/_4pxv"
-                                android:layout_width="wrap_content"
-                                android:singleLine="true"
-                                android:text="@{feedsVM.feedsModel.txtThree}"
-                                style="@style/txtEpiloguemedium12" tools:text="@string/lbl_3"/>
-                        </FrameLayout>
-                    </FrameLayout>
+                        tools:ignore="ContentDescription" />
+
+
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
             <com.google.android.material.tabs.TabLayout

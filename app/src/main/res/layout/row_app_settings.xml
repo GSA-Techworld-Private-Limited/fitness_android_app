@@ -43,7 +43,7 @@
             android:layout_height="@dimen/_31pxv"
             android:layout_marginBottom="@dimen/_14pxv"
             android:layout_marginEnd="@dimen/_22pxh"
-            android:layout_marginStart="@dimen/_118pxh"
+            android:layout_marginStart="@dimen/_98pxh"
             android:layout_marginTop="@dimen/_14pxv" android:layout_width="@dimen/_55pxh">
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchMaterialUser"

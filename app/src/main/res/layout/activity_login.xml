@@ -10,32 +10,25 @@
         style="@style/groupStylewhite_A700">
 
 
-
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/linearColumnlogo"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:id="@+id/btnLogo"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_width="@dimen/_276pxh"
-                android:paddingBottom="@dimen/_24pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingStart="@dimen/_30pxh"
-                android:paddingTop="@dimen/_24pxv"
-                android:singleLine="true"
-                android:text="@string/lbl_logo"
-                android:textAllCaps="false"
-                style="@style/btnSolidRounded"
-                tools:text="@string/lbl_logo"/>
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"/>
 
             <com.asksira.loopingviewpager.LoopingViewPager
                 android:gravity="end"
@@ -43,7 +36,7 @@
                 android:layout_height="@dimen/_302pxv"
                 android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginEnd="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_32pxv"
+                android:layout_marginTop="@dimen/_22pxv"
                 android:layout_width="match_parent"
                 app:autoScroll="true" app:isInfinite="true"
                 app:scrollInterval="5000" style="@style/groupStylecornerRadius_2"/>
@@ -84,7 +77,6 @@
                     android:id="@+id/linearRoweye"
                     android:gravity="center"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/_10pxh"
                     android:layout_marginStart="@dimen/_5pxh"
                     android:layout_width="wrap_content"
                     android:orientation="horizontal">
@@ -118,10 +110,10 @@
                         android:id="@+id/txtEnterYourNumb"
                         android:textColorHint="@color/gray_800"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_1pxv"
                         android:layout_marginStart="@dimen/_28pxh"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:singleLine="true"
+                        android:backgroundTint="@color/gray_400"
                         style="@style/txtRalewayromanregular12" />
                 </LinearLayout>
 
@@ -142,6 +134,13 @@
 
             </FrameLayout>
 
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView android:ellipsize="end"
                 android:gravity="center_horizontal"
                 android:id="@+id/txtOTPwillbesen"
@@ -211,5 +210,6 @@
                     tools:text="@string/lbl_login1"/>
             </LinearLayout>
         </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

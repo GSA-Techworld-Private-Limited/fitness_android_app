@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="formOneVM" type="com.fitness.app.modules.formone.data.viewmodel.FormOneVM"/>
     </data>
@@ -28,25 +30,30 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-        <FrameLayout
-            android:id="@+id/frameStackplus"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="@dimen/_134pxv"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_40pxv"
-            android:layout_width="@dimen/_134pxh"
-            style="@style/groupStylebluegray_100cornerRadius">
-            <ImageView android:id="@+id/imagePlus"
-                android:layout_gravity="center"
-                android:layout_height="@dimen/_34pxh"
-                android:layout_marginHorizontal="@dimen/_40pxh"
-                android:layout_marginVertical="@dimen/_40pxv"
-                android:layout_width="@dimen/_34pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_plus"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_plus"/>
-        </FrameLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
+                    android:id="@+id/cardView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="30dp"
+                    app:cardCornerRadius="100dp">
+
+                    <ImageView
+                        android:id="@+id/profilePic"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:background="@drawable/rounded_profile_image" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_edit"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom|center"
+                        app:srcCompat="@drawable/profile_pic_edit_icon"
+                        />
+                </androidx.cardview.widget.CardView>>
         <com.google.android.material.textfield.TextInputLayout
             android:hint="@string/lbl_name2"
             android:id="@+id/textInputLayName"
@@ -76,6 +83,39 @@
                 android:textStyle="normal"
                 tools:text="@string/lbl_name2"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="Mobile Number"
+                    android:id="@+id/etMobileNo"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_35pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_15pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_28pxh"
+                    android:paddingTop="@dimen/_15pxv"
+                    android:textColorHint="@color/black_900"
+                    style="@style/MyOutlinedBoxStyle">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/etMobileNo1"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:letterSpacing="0.03"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_500"
+                        android:textFontWeight="400"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="normal"
+                        tools:text="Mobile Number"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:hint="@string/lbl_email_id"
             android:id="@+id/textInputLayEmailID"
@@ -181,6 +221,8 @@
                 android:textSize="@dimen/_16pxh"
                 android:textStyle="normal" tools:text="@string/lbl_city"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:hint="@string/lbl_zip_code"
             android:id="@+id/textInputLayZIPCode"
@@ -207,6 +249,46 @@
                 android:textSize="@dimen/_16pxh"
                 android:textStyle="normal" tools:text="@string/lbl_zip_code"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="User Type"
+                    android:id="@+id/usertype"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_15pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_28pxh"
+                    android:paddingTop="@dimen/_15pxv"
+                    android:textColorHint="@color/black_900"
+                    style="@style/MyOutlinedBoxStyle">
+                    <Spinner
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        android:id="@+id/userType1"
+                        android:entries="@array/user_types"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:letterSpacing="0.03"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_500"
+                        android:textFontWeight="400"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="normal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
             android:id="@+id/btnContinue"

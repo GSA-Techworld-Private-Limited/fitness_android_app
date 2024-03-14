@@ -81,6 +81,13 @@
                     android:layout_marginStart="@dimen/_20pxh"
                     android:layout_width="@dimen/_48pxh"/>
             </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:ellipsize="end" android:gravity="center"
                 android:id="@+id/btnSubmit"

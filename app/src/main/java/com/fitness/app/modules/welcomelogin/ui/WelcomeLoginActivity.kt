@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -66,6 +67,7 @@ class WelcomeLoginActivity :
 
       if (mobile.isNotEmpty()) {
         getSignUpOtp(mobile)
+        binding.progressBar.visibility=View.VISIBLE
       } else {
         Toast.makeText(this, "Please enter a mobile number", Toast.LENGTH_SHORT).show()
       }
@@ -90,21 +92,28 @@ class WelcomeLoginActivity :
     call.enqueue(object : Callback<SignUpResponse> {
       override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
         if (response.isSuccessful) {
-
+          binding.progressBar.visibility=View.GONE
           val loginResponse = response.body()
           if (loginResponse != null) {
             Toast.makeText(this@WelcomeLoginActivity, "Otp Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
             navigateToNextPage()
             finishAffinity()
           } else {
+            if(response.code()==429){
+              Toast.makeText(this@WelcomeLoginActivity,"Too Many Requests For OTP Wait For 2 Minutes and Try",Toast.LENGTH_SHORT).show()
+              binding.progressBar.visibility=View.GONE
+            }
             Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility=View.GONE
           }
         } else {
           Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+          binding.progressBar.visibility=View.GONE
         }
       }
       override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
         Toast.makeText(this@WelcomeLoginActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+        binding.progressBar.visibility=View.GONE
       }
     })
   }

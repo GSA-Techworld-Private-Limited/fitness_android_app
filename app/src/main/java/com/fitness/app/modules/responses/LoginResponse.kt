@@ -2,13 +2,27 @@ package com.fitness.app.modules.responses
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginResponse( @SerializedName("token")
-                          val access_token: String,
-                          val message: String,
-                          @SerializedName("refresh")
-                          val refresh: String,
-                          val user_id: Int,
-                          val otp:String)
+data class LoginResponse(
+                          @SerializedName("message"            ) var message          : String?      = null,
+                          @SerializedName("token"              ) var token            : String?      = null,
+                          @SerializedName("user_details"       ) var userDetails      : UserDetails? = UserDetails(),
+                          @SerializedName("total_active_plans" ) var totalActivePlans : Int?         = null,
+    var otp:String
+)
+
+data class UserDetails (
+    @SerializedName("userdetails_id" ) var userdetailsId : String? = null,
+    @SerializedName("name"           ) var name          : String? = null,
+    @SerializedName("date_of_birth"  ) var dateOfBirth   : String? = null,
+    @SerializedName("state"          ) var state         : String? = null,
+    @SerializedName("city"           ) var city          : String? = null,
+    @SerializedName("pin_code"       ) var pinCode       : String? = null,
+    @SerializedName("user_type"      ) var userType      : String? = null,
+    @SerializedName("profile"        ) var profile       : String? = null,
+    @SerializedName("created_at"     ) var createdAt     : String? = null,
+    @SerializedName("updated_at"     ) var updatedAt     : String? = null,
+    @SerializedName("user"           ) var user          : Int?    = null
+)
 data class SignUpResponse(
     val name:String,
     val mobile_number:String,

@@ -112,12 +112,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.sstonenine.ui.SstOneNineActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.sstonetwo.ui.SstOneTwoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.appsettings.ui.AppSettingsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait" />
     </application>
 

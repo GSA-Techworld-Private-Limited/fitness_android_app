@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -85,8 +86,10 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
 
             if (mobile.isNotEmpty()) {
                 getOtp(mobile)
+                binding.progressbar.visibility=View.VISIBLE
             } else {
                 Toast.makeText(this, "Please enter a mobile number", Toast.LENGTH_SHORT).show()
+                binding.progressbar.visibility=View.GONE
             }
         }
 
@@ -103,19 +106,25 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
                 if (response.isSuccessful) {
 
                     val loginResponse = response.body()
+
+
                     if (loginResponse != null) {
                         Toast.makeText(this@Login, "Otp Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
                         navigateToNextPage()
                         finishAffinity()
-                    } else {
-                        Toast.makeText(this@Login, "Login failed", Toast.LENGTH_SHORT).show()
+                    } else if(response.code()==429){
+
+                        Toast.makeText(this@Login, "Otp Attempt Limit Exceeded Wait For 2 Min!!", Toast.LENGTH_SHORT).show()
+                        binding.progressbar.visibility=View.GONE
                     }
                 } else {
                     Toast.makeText(this@Login, "Login failed", Toast.LENGTH_SHORT).show()
+                    binding.progressbar.visibility=View.GONE
                 }
             }
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(this@Login, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                binding.progressbar.visibility=View.GONE
             }
         })
     }
