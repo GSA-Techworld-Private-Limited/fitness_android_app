@@ -98,6 +98,7 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
                         sessionManager.saveAuthToken(accessToken)
                         sessionManager.saveName(loginResponse.userDetails!!.name!!)
                         sessionManager.saveProfile(loginResponse.userDetails!!.profile!!)
+                        sessionManager.saveDOB(loginResponse.userDetails!!.dateOfBirth!!)
                         Toast.makeText(this@OTPLogin, "OTP Verified Successfully", Toast.LENGTH_SHORT).show()
                         navigateToNextPage()
                     } else {

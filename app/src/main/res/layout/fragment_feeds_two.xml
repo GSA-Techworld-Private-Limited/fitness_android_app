@@ -5,11 +5,7 @@
     <data>
         <variable name="feedsTwoVM" type="com.fitness.app.modules.feedstwo.data.viewmodel.FeedsTwoVM"/>
     </data>
-    <ScrollView android:clipToPadding="false"
-        android:fillViewport="true"
-        android:id="@+id/scrollViewScrollview"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+
 
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearColumntags"
@@ -124,13 +120,25 @@
 
                 </HorizontalScrollView>
 
+                <ScrollView
+                    android:id="@+id/scrollView"
+                    android:fillViewport="true"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewtestimonalvideos"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     itemSpace="@{@dimen/_15pxh}"/>
+                    </LinearLayout>
+                </ScrollView>
             </LinearLayout>
-    </ScrollView>
 </layout>

@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/playerview"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
-        android:layout_height="170dp"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="16dp">
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/playerview"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@android:color/transparent"/>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/videoName"
         android:text="Hansal Mehta"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:layout_below="@+id/playerview"
+        android:layout_below="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

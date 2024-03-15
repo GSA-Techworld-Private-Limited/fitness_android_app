@@ -12,11 +12,19 @@
         style="@style/groupStylewhite_A700">
 
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="0dp"
+
+            android:background="@color/white_A700"
+        app:cardUseCompatPadding="true">
+
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearColumnellipsetwo"
             android:layout_height="@dimen/_121pxh"
             android:layout_width="match_parent"
-            style="@style/groupStylewhite_A700cornerRadius"
+            style="@style/groupStylewhite_A700"
             android:orientation="vertical">
             <androidx.appcompat.widget.Toolbar
                 android:gravity="center_horizontal"
@@ -31,12 +39,21 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="@dimen/_40pxh"
+                        android:layout_height="@dimen/_40pxh"
+                        app:cardCornerRadius="50dp"
+                    app:cardBackgroundColor="#34A3F6">
                     <ImageView android:id="@+id/imageEllipseTwo"
                         android:layout_height="@dimen/_35pxh"
-                        android:layout_marginTop="@dimen/_2pxv"
                         android:layout_width="@dimen/_35pxh"
                         android:scaleType="centerCrop"
+                        android:layout_gravity="center"
                         tools:ignore="ContentDescription" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <FrameLayout
                         android:id="@+id/frameStackgroup"
@@ -79,12 +96,15 @@
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
 
+        </androidx.cardview.widget.CardView>
+
 
         <ScrollView
             android:id="@+id/scrollView"
             android:fillViewport="true"
             android:layout_weight="1"
             android:layout_width="match_parent"
+
             android:layout_height="0dp">
         <LinearLayout android:gravity="start"
             android:id="@+id/linearHome"
@@ -312,22 +332,26 @@
                 tools:text="@string/lbl_testimonials"/>
 
 
-            <HorizontalScrollView
+
+            <androidx.core.widget.NestedScrollView
                 android:fillViewport="true"
                 android:gravity="end"
-                android:id="@+id/horizontalScrollHorizontalscrollrectanglefiftysix"
+                android:layout_marginBottom="40dp"
+                android:id="@+id/horizontalScrollHorizontalscrollrectangle1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_marginTop="@dimen/_14pxv"
                 android:layout_width="match_parent"
                 android:scrollbars="none">
 
-              <androidx.recyclerview.widget.RecyclerView
+
+            <androidx.recyclerview.widget.RecyclerView
+                  android:layout_marginBottom="10dp"
                   android:id="@+id/recyclerviewfortestimonals"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"/>
 
-            </HorizontalScrollView>
+            </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
 

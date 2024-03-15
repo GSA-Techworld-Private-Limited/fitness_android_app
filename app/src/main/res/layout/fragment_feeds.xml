@@ -23,15 +23,64 @@
                 android:layout_width="match_parent" app:contentInsetStart="0dp">
                 <LinearLayout android:id="@+id/linearHeader"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent" android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="@dimen/_40pxh"
+                        android:layout_height="@dimen/_40pxh"
+                        app:cardCornerRadius="50dp"
+                        app:cardBackgroundColor="#34A3F6">
+
                     <ImageView android:id="@+id/imageEllipseTwo"
                         android:layout_height="@dimen/_35pxh"
-                        android:layout_marginTop="@dimen/_2pxv"
                         android:layout_width="@dimen/_35pxh"
                         android:scaleType="centerCrop"
+                        android:layout_gravity="center"
                         tools:ignore="ContentDescription" />
 
+                    </androidx.cardview.widget.CardView>
 
+
+                    <FrameLayout
+                        android:id="@+id/frameStackgroup"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="@dimen/_32pxv"
+                        android:layout_marginTop="@dimen/_2pxv"
+                        android:layout_marginStart="260dp"
+                        android:layout_width="@dimen/_22pxh">
+
+                        <ImageView
+                            android:id="@+id/imageGroup"
+                            android:layout_width="@dimen/_19pxh"
+                            android:layout_height="@dimen/_24pxh"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginTop="@dimen/_10pxv"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_group"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/img_group" />
+
+                        <!--                        <TextView android:ellipsize="end"-->
+                        <!--                            android:gravity="center_vertical"-->
+                        <!--                            android:id="@+id/txtGroupNinetySevent"-->
+                        <!--                            android:layout_gravity="top|end"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_marginBottom="@dimen/_10pxv"-->
+                        <!--                            android:layout_marginStart="@dimen/_10pxh"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:paddingBottom="@dimen/_3pxv"-->
+                        <!--                            android:paddingEnd="@dimen/_6pxh"-->
+                        <!--                            android:paddingStart="@dimen/_7pxh"-->
+                        <!--                            android:paddingTop="@dimen/_4pxv"-->
+                        <!--                            android:singleLine="true"-->
+                        <!--                            android:text="@{homeVM.homeModel.txtGroupNinetySeven}"-->
+                        <!--                            style="@style/txtSolidRounded"-->
+                        <!--                            tools:text="@string/lbl_3"/>-->
+                    </FrameLayout>
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
             <com.google.android.material.tabs.TabLayout
@@ -51,8 +100,9 @@
         </LinearLayout>
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearFeeds"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginEnd="@dimen/_10pxh"
             android:layout_marginTop="@dimen/_17pxv"
             android:layout_width="match_parent"
             android:orientation="vertical"

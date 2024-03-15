@@ -17,6 +17,7 @@ class SessionManager (context: Context) {
         const val NAME ="name"
         const val PROFILE="profile"
         const val MOBILENUMBER="phone_number"
+        const val DOB="dob"
     }
 
     private val sharedPreferences =
@@ -47,6 +48,12 @@ class SessionManager (context: Context) {
         editor.apply()
     }
 
+
+    fun saveDOB(dob:String){
+        val editor=prefs.edit()
+        editor.putString(DOB,dob)
+        editor.apply()
+    }
     fun saveMobileNumber(phone: String) {
         val editor = prefs.edit()
         editor.putString(PROFILE, phone)
@@ -72,6 +79,9 @@ class SessionManager (context: Context) {
     }
 
 
+    fun featchDOB():String?{
+        return prefs.getString(DOB,null)
+    }
     fun fetchMobile():String?{
         return prefs.getString(MOBILENUMBER,null)
     }

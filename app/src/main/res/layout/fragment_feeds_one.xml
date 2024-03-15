@@ -128,16 +128,15 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="center_horizontal"
                 android:id="@+id/recyclerFeedsOne"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15pxh"
-                android:layout_marginEnd="@dimen/_15pxh"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:layout_marginTop="@dimen/_25pxv"
                 android:layout_width="match_parent"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 itemSpace="@{@dimen/_15pxh}"
-                tools:itemCount="6"
+                tools:itemCount="1"
                 tools:listitem="@layout/row_feeds_one"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -7,6 +7,8 @@ import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
 import com.fitness.app.databinding.FragmentHomeBinding
@@ -68,7 +70,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     val file=ApiManager.getImageUrl(profile)
 
 
-    Glide.with(requireActivity()).load(file).into(binding.imageEllipseTwo)
+    Glide.with(requireActivity())
+      .load(file)
+      .apply(RequestOptions.bitmapTransform(CircleCrop()))
+      .into(binding.imageEllipseTwo)
 
 
   getWorkshops()
@@ -166,5 +171,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
       fragment.arguments = bundle
       return fragment
     }
+
   }
 }

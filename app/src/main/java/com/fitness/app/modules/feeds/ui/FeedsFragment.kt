@@ -3,6 +3,8 @@ package com.fitness.app.modules.feeds.ui
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
 import com.fitness.app.databinding.FragmentFeedsBinding
@@ -32,7 +34,10 @@ class FeedsFragment : BaseFragment<FragmentFeedsBinding>(R.layout.fragment_feeds
 
     val image=sessionManager.fetchProfile()
     val file=ApiManager.getImageUrl(image!!)
-    Glide.with(requireActivity()).load(file).into(binding.imageEllipseTwo)
+    Glide.with(requireActivity())
+      .load(file)
+      .apply(RequestOptions.bitmapTransform(CircleCrop()))
+      .into(binding.imageEllipseTwo)
     }
 
     override fun setUpClicks(): Unit {

@@ -3,6 +3,7 @@ import com.fitness.app.modules.login.Login
 import com.fitness.app.modules.responses.ArticleResponse
 import com.fitness.app.modules.responses.LoginResponse
 import com.fitness.app.modules.responses.LogoutResponse
+import com.fitness.app.modules.responses.ProfileResponse
 import com.fitness.app.modules.responses.SignUpResponse
 import com.fitness.app.modules.responses.TestimonalVideoResponses
 import com.fitness.app.modules.responses.TrainingVideoResponse
@@ -89,16 +90,23 @@ interface ApiInterface {
     ):Call<ArticleResponse>
 
 
-    @GET("api/feed_traning_create/")
+    @GET("/api/feed-training-home/")
     fun getTrainingVideos(
         @Header("Authorization")token: String
     ):Call<TrainingVideoResponse>
 
 
-    @GET("api/feed_testimonal_create/")
+    @GET("/api/testimonials-home/")
     fun getTestimonalVideos(
         @Header("Authorization")token: String
     ):Call<TestimonalVideoResponses>
+
+    @GET("/api/update-user-details/")
+    fun updateProfile(
+        @Header("Authorization")token: String,
+        @PartMap() partMap: MutableMap<String, RequestBody>,
+        @Part file: MultipartBody.Part
+    ):Call<ProfileResponse>
 
     @POST("api/logout/")
     fun logout(@Header("Authorization")fetchAuthToken: String?):Call<LogoutResponse>
