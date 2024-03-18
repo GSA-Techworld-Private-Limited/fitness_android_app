@@ -1,19 +1,24 @@
 package com.fitness.app.modules.subscriptions.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.fitness.app.R
-import com.fitness.app.databinding.RowSubscriptionsBinding
+import com.fitness.app.modules.athlete.AthletePlanByID
+import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.subscriptions.`data`.model.SubscriptionsRowModel
+import com.fitness.app.responses.AthletePlanResponses
 import kotlin.Int
 import kotlin.collections.List
 
 class SubscriptionsAdapter(
-  var list: List<SubscriptionsRowModel>
+  var list: List<AthletePlanResponses>
 ) : RecyclerView.Adapter<SubscriptionsAdapter.RowSubscriptionsVH>() {
-  private var clickListener: OnItemClickListener? = null
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowSubscriptionsVH {
     val view=LayoutInflater.from(parent.context).inflate(R.layout.row_subscriptions,parent,false)
@@ -21,47 +26,37 @@ class SubscriptionsAdapter(
   }
 
   override fun onBindViewHolder(holder: RowSubscriptionsVH, position: Int) {
-    val subscriptionsRowModel = SubscriptionsRowModel()
-    // TODO uncomment following line after integration with data source
-    // val subscriptionsRowModel = list[position]
-    holder.binding.subscriptionsRowModel = subscriptionsRowModel
+    holder.bindView(list[position])
   }
 
-  override fun getItemCount(): Int = 4
-  // TODO uncomment following line after integration with data source
-  // return list.size
+  override fun getItemCount(): Int {
+    return list.size
+  }
 
-  public fun updateData(newData: List<SubscriptionsRowModel>) {
+  public fun updateData(newData: List<AthletePlanResponses>) {
     list = newData
     notifyDataSetChanged()
   }
 
-  fun setOnItemClickListener(clickListener: OnItemClickListener) {
-    this.clickListener = clickListener
-  }
 
-  interface OnItemClickListener {
-    fun onItemClick(
-      view: View,
-      position: Int,
-      item: SubscriptionsRowModel
-    ) {
-    }
-  }
 
   inner class RowSubscriptionsVH(
     view: View
   ) : RecyclerView.ViewHolder(view) {
-    val binding: RowSubscriptionsBinding = RowSubscriptionsBinding.bind(itemView)
-    init {
-      binding.imageRectangleSixtyOne.setOnClickListener {
-        // TODO replace with value from datasource
-        clickListener?.onItemClick(it, adapterPosition, SubscriptionsRowModel())
-      }
-      binding.btnBuyPlan.setOnClickListener {
-        // TODO replace with value from datasource
-        clickListener?.onItemClick(it, adapterPosition, SubscriptionsRowModel())
+    val imageview:ImageView=itemView.findViewById(R.id.imageRectangleSixtyOne)
+    val buyButton:AppCompatButton=itemView.findViewById(R.id.btnBuyPlan)
+
+    fun bindView(athleteResponse:AthletePlanResponses){
+      val image=athleteResponse.planImage
+      val file=ApiManager.getImageUrl(image!!)
+      Glide.with(itemView.context).load(file).into(imageview)
+
+      buyButton.setOnClickListener {
+        val i=Intent(itemView.context,AthletePlanByID::class.java)
+        i.putExtra("id",athleteResponse.planId)
+        itemView.context.startActivity(i)
       }
     }
+
   }
 }

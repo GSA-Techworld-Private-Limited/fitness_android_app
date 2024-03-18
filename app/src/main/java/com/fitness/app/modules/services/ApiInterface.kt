@@ -7,21 +7,32 @@ import com.fitness.app.modules.responses.ProfileResponse
 import com.fitness.app.modules.responses.SignUpResponse
 import com.fitness.app.modules.responses.TestimonalVideoResponses
 import com.fitness.app.modules.responses.TrainingVideoResponse
+import com.fitness.app.responses.ActivePlanResponses
+import com.fitness.app.responses.AthletePlanResponses
+import com.fitness.app.responses.BooleanRequest
+import com.fitness.app.responses.PlanByIdResponses
 import com.fitness.app.responses.TestimonalsResponses
+import com.fitness.app.responses.TrainerPlanResponses
+import com.fitness.app.responses.UpdateResponse
+import com.fitness.app.responses.UserActivePlanDetailResponses
+import com.fitness.app.responses.UserActivePlanVideoResponses
 import com.fitness.app.responses.WorkShopByIDResponses
 import com.fitness.app.responses.WorkShopResponses
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.PartMap
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiInterface {
 
@@ -101,12 +112,62 @@ interface ApiInterface {
         @Header("Authorization")token: String
     ):Call<TestimonalVideoResponses>
 
-    @GET("/api/update-user-details/")
+
+    @Multipart
+    @PATCH("/api/update-user-details/")
     fun updateProfile(
         @Header("Authorization")token: String,
         @PartMap() partMap: MutableMap<String, RequestBody>,
         @Part file: MultipartBody.Part
     ):Call<ProfileResponse>
+
+
+    @GET("/api/athlete-plans-user/")
+    fun athletePlans(
+        @Header("Authorization")token: String,
+    ):Call<List<AthletePlanResponses>>
+
+
+    @GET("/api/trainer-plans-user/")
+    fun trainerPlans(
+        @Header("Authorization")token: String
+    ):Call<List<TrainerPlanResponses>>
+
+
+    @GET("/api/plan/{id}/")
+    fun planByid(
+        @Header("Authorization")token: String,
+        @Path("id")id:String
+    ):Call<PlanByIdResponses>
+
+
+
+    @GET("/api/user-active-plans/")
+    fun useractiveplans(
+        @Header("Authorization")token: String,
+    ):Call<ActivePlanResponses>
+
+
+    @GET("/api/user-active-plan-details/{id}/")
+    fun useractiveplandetails(
+        @Header("Authorization")token: String,
+        @Path("id")id:String
+    ):Call<UserActivePlanDetailResponses>
+
+
+    @PATCH("/api/update-user-plan-day/{id}/")
+    fun updateuserplanday(
+        @Header("Authorization")token: String,
+        @Path("id")id:Int,
+        @Body request: BooleanRequest
+    ):Call<UpdateResponse>
+
+
+    @GET("/api/user-active-plan-videos/{id}/")
+    fun useractiveplanvideos(
+        @Header("Authorization")token: String,
+        @Path("id")id:String
+    ):Call<UserActivePlanVideoResponses>
 
     @POST("api/logout/")
     fun logout(@Header("Authorization")fetchAuthToken: String?):Call<LogoutResponse>

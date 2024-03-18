@@ -21,8 +21,9 @@
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearRownote"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_17pxh"
-                android:layout_marginStart="@dimen/_17pxh"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="@dimen/_8pxh"
+                android:layout_marginStart="@dimen/_8pxh"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtNote"
@@ -35,7 +36,7 @@
                     android:id="@+id/txtDoremipsumdol"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
-                    android:layout_marginStart="@dimen/_11pxh"
+                    android:layout_marginStart="@dimen/_5pxh"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_weight="0.91"
                     android:layout_width="0dp" android:singleLine="true"
@@ -53,7 +54,6 @@
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_14pxh}"
-                tools:itemCount="4"
                 tools:listitem="@layout/row_subscriptions"/>
 
         </LinearLayout>
