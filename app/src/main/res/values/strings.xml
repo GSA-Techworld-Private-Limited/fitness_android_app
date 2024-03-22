@@ -65,7 +65,7 @@
     <string name="lbl_2_10_completed">2/10 Completed</string>
     <string name="msg_choose_payment">Choose Payment Method</string>
     <string name="msg_strength_3_ta">Strength ( 3 tasks )</string>
-    <string name="msg_good_afternoon">Good Afternoon,\n Ashish!</string>
+    <string name="msg_good_afternoon">Good Afternoon,</string>
     <string name="msg_share_app_via">Share App Via...</string>
     <string name="msg_plyometric_4">Plyometric ( 4 tasks )</string>
     <string name="lbl_pay_500">Pay \u20b9500</string>
@@ -195,4 +195,7 @@
     <string name="msg_please_enter_valid_email">Please enter valid email</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="currency_symbol">₹</string>
+
 </resources>

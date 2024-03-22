@@ -3,15 +3,24 @@ package com.fitness.app.modules.plyometrics.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityPlyometricsBinding
 import com.fitness.app.modules.plyometrics.`data`.model.PlyometricsRowModel
 import com.fitness.app.modules.plyometrics.`data`.viewmodel.PlyometricsVM
+import com.fitness.app.modules.services.ApiManager
+import com.fitness.app.modules.services.SessionManager
+import com.fitness.app.modules.sstoneeight.ui.UserActiveDetailsAdapter
 import com.fitness.app.modules.sstoneten.ui.SstOneTenActivity
+import com.fitness.app.responses.UserActivePlanDetailResponses
+import com.fitness.app.responses.UserActivePlanVideoResponses
+import retrofit2.Call
+import retrofit2.Response
 import kotlin.Int
 import kotlin.String
 import kotlin.Unit
@@ -20,21 +29,16 @@ class PlyometricsActivity : BaseActivity<ActivityPlyometricsBinding>(R.layout.ac
     {
   private val viewModel: PlyometricsVM by viewModels<PlyometricsVM>()
 
+
+      private lateinit var sessionManager:SessionManager
   override fun onInitialized(): Unit {
+    sessionManager= SessionManager(this)
+
     viewModel.navArguments = intent.extras?.getBundle("bundle")
-    val plyometricsAdapter =
-    PlyometricsAdapter(viewModel.plyometricsList.value?:mutableListOf())
-    binding.recyclerPlyometrics.adapter = plyometricsAdapter
-    plyometricsAdapter.setOnItemClickListener(
-    object : PlyometricsAdapter.OnItemClickListener {
-      override fun onItemClick(view:View, position:Int, item : PlyometricsRowModel) {
-        onClickRecyclerPlyometrics(view, position, item)
-      }
-    }
-    )
-    viewModel.plyometricsList.observe(this) {
-      plyometricsAdapter.updateData(it)
-    }
+
+    val id=sessionManager.fetchMobile()
+
+    getUserActiveVideos(id.toString())
     binding.plyometricsVM = viewModel
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
@@ -42,23 +46,42 @@ class PlyometricsActivity : BaseActivity<ActivityPlyometricsBinding>(R.layout.ac
 
   override fun setUpClicks(): Unit {
     binding.btnArrowright.setOnClickListener {
-      val destIntent = SstOneTenActivity.getIntent(this, null)
-      startActivity(destIntent)
+      this.finish()
     }
     binding.btnCompleteFour.setOnClickListener {
-      val destIntent = SstOneTenActivity.getIntent(this, null)
-      startActivity(destIntent)
+//      val destIntent = SstOneTenActivity.getIntent(this, null)
+//      startActivity(destIntent)
     }
   }
 
-  fun onClickRecyclerPlyometrics(
-    view: View,
-    position: Int,
-    item: PlyometricsRowModel
-  ): Unit {
-    when(view.id) {
-    }
-  }
+
+      fun getUserActiveVideos(id:String){
+        val serviceGenerator= ApiManager.apiInterface
+        val accessToken=sessionManager.fetchAuthToken()
+        val authorization="Token $accessToken"
+        val call=serviceGenerator.useractiveplanvideos(authorization,id)
+
+        call.enqueue(object : retrofit2.Callback<UserActivePlanVideoResponses>{
+          override fun onResponse(
+            call: Call<UserActivePlanVideoResponses>,
+            response: Response<UserActivePlanVideoResponses>
+          ) {
+            val videoResponses=response.body()
+
+            if(videoResponses!=null){
+              binding.recyclerPlyometrics.apply {
+                val studioadapter= PlyometricsAdapter(videoResponses.planVideos,sessionManager)
+                binding.recyclerPlyometrics.adapter=studioadapter
+              }
+            }
+          }
+
+          override fun onFailure(call: Call<UserActivePlanVideoResponses>, t: Throwable) {
+            t.printStackTrace()
+            Log.e("error", t.message.toString())
+          }
+        })
+      }
 
   companion object {
     const val TAG: String = "PLYOMETRICS_ACTIVITY"

@@ -1,19 +1,25 @@
 package com.fitness.app.modules.subscriptionsone.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.fitness.app.R
 import com.fitness.app.databinding.RowListrectanglesixtyoneBinding
+import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.subscriptionsone.`data`.model.ListrectanglesixtyoneRowModel
+import com.fitness.app.modules.trainerplanByid.TrainerPlanById
+import com.fitness.app.responses.TrainerPlanResponses
 import kotlin.Int
 import kotlin.collections.List
 
 class ListrectanglesixtyoneAdapter(
-  var list: List<ListrectanglesixtyoneRowModel>
+  var list: List<TrainerPlanResponses>
 ) : RecyclerView.Adapter<ListrectanglesixtyoneAdapter.RowListrectanglesixtyoneVH>() {
-  private var clickListener: OnItemClickListener? = null
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowListrectanglesixtyoneVH {
     val
@@ -22,42 +28,40 @@ class ListrectanglesixtyoneAdapter(
   }
 
   override fun onBindViewHolder(holder: RowListrectanglesixtyoneVH, position: Int) {
-    val listrectanglesixtyoneRowModel = ListrectanglesixtyoneRowModel()
-    // TODO uncomment following line after integration with data source
-    // val listrectanglesixtyoneRowModel = list[position]
-    holder.binding.listrectanglesixtyoneRowModel = listrectanglesixtyoneRowModel
+    holder.bindView(list[position])
   }
 
-  override fun getItemCount(): Int = 4
-  // TODO uncomment following line after integration with data source
-  // return list.size
+  override fun getItemCount(): Int {
 
-  public fun updateData(newData: List<ListrectanglesixtyoneRowModel>) {
+    return list.size
+  }
+
+
+  public fun updateData(newData: List<TrainerPlanResponses>) {
     list = newData
     notifyDataSetChanged()
   }
 
-  fun setOnItemClickListener(clickListener: OnItemClickListener) {
-    this.clickListener = clickListener
-  }
-
-  interface OnItemClickListener {
-    fun onItemClick(
-      view: View,
-      position: Int,
-      item: ListrectanglesixtyoneRowModel
-    ) {
-    }
-  }
 
   inner class RowListrectanglesixtyoneVH(
     view: View
   ) : RecyclerView.ViewHolder(view) {
-    val binding: RowListrectanglesixtyoneBinding = RowListrectanglesixtyoneBinding.bind(itemView)
-    init {
-      binding.btnBuyPlan.setOnClickListener {
-        // TODO replace with value from datasource
-        clickListener?.onItemClick(it, adapterPosition, ListrectanglesixtyoneRowModel())
+
+    val imageview:ImageView=itemView.findViewById(R.id.imageRectangleSixtyOne)
+
+    val button:AppCompatButton=itemView.findViewById(R.id.btnBuyPlan)
+
+
+
+    fun bindView(posmodel:TrainerPlanResponses){
+      val image=posmodel.planImage
+      val file=ApiManager.getImageUrl(image!!)
+      Glide.with(itemView.context).load(file).into(imageview)
+
+      button.setOnClickListener{
+        val i=Intent(itemView.context,TrainerPlanById::class.java)
+        i.putExtra("id",posmodel.planId)
+        itemView.context.startActivity(i)
       }
     }
   }

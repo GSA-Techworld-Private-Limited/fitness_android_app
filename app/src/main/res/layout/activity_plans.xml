@@ -4,16 +4,20 @@
     <data>
         <variable name="plansVM" type="com.fitness.app.modules.plans.data.viewmodel.PlansVM"/>
     </data>
-    <LinearLayout android:gravity="center_horizontal"
+    <LinearLayout
         android:id="@+id/linearPlans"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_A700">
-        <androidx.appcompat.widget.Toolbar android:gravity="start"
+        style="@style/groupStylewhite_A700">
+
+        <androidx.appcompat.widget.Toolbar
+            android:gravity="start"
             android:id="@+id/toolbarToolbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            app:contentInsetStart="0dp" style="@style/groupStyle">
+            app:contentInsetStart="0dp"
+            style="@style/groupStyle">
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"
@@ -21,7 +25,8 @@
                 android:layout_marginEnd="@dimen/_19pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_30pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
                 <ImageButton
                     android:background="@drawable/rectangle_bg_white_a700_radius_15"
                     android:id="@+id/btnArrowright"
@@ -44,66 +49,20 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <LinearLayout
-            android:id="@+id/linearColumnsstone"
-            style="@style/groupStylecornerRadius"
+        <ScrollView
+            android:id="@+id/scrollview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_40pxv"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:layout_marginBottom="@dimen/_20pxv"
-            android:gravity="start"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txtSSTOne"
-                style="@style/txtRobotoromansemibold20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_17pxh"
-                android:layout_marginTop="@dimen/_17pxv"
-                android:layout_marginEnd="@dimen/_17pxh"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@{plansVM.plansModel.txtSSTOne}"
-                tools:text="@string/lbl_sst_1" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerforplans"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <ProgressBar
-                android:id="@+id/progressBarGroup100000199"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_17pxh"
-                android:layout_marginTop="@dimen/_35pxv"
-                android:layout_marginEnd="@dimen/_17pxh"
-                android:gravity="center_horizontal"
-                android:indeterminate="false"
-                android:max="100"
-                android:minHeight="@dimen/_12pxv"
-                android:progress="34"
-                android:progressDrawable="@drawable/layer_list_bg_gray_603_radius_6_16" />
+        </ScrollView>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnViewPlan"
-                style="@style/btnSolidRounded_2"
-                android:layout_width="@dimen/_121pxh"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginStart="@dimen/_22pxh"
-                android:layout_marginTop="@dimen/_20pxv"
-                android:layout_marginEnd="@dimen/_22pxh"
-                android:layout_marginBottom="@dimen/_9pxv"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:paddingStart="@dimen/_24pxh"
-                android:paddingTop="@dimen/_6pxv"
-                android:paddingEnd="@dimen/_24pxh"
-                android:paddingBottom="@dimen/_6pxv"
-                android:singleLine="true"
-                android:text="@string/lbl_view_plan"
-                android:textAllCaps="false"
-                tools:text="@string/lbl_view_plan" />
-        </LinearLayout>
     </LinearLayout>
 </layout>

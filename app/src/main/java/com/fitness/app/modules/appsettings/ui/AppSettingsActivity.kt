@@ -87,9 +87,8 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
 
             if(logoutResponse!=null){
               Toast.makeText(this@AppSettingsActivity,"Logout Successful", Toast.LENGTH_SHORT).show()
-              sessionManager.logout()
-              sessionManager.clearSession()
               redirectToLoginActivity()
+              sessionManager.logout()
             }
           }
 

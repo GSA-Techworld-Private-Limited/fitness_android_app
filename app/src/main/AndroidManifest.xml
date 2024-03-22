@@ -15,12 +15,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".modules.workshopvideos.WorkShopVideosActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity
+            android:name=".modules.workshopsegments.WorkshopsSegment"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".modules.workshops.Workshops"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".modules.trainerplanByid.TrainerPlanById"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".modules.athlete.AthletePlanByID"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.otplogin.OTPLogin"
             android:exported="false" />
         <activity
             android:name=".modules.login.Login"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,15 +72,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.plansone.ui.PlansOneActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.welcomelogin.ui.WelcomeLoginActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".modules.plans.ui.PlansActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.sstoneten.ui.SstOneTenActivity"
             android:screenOrientation="portrait" />
@@ -67,19 +89,22 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.notifications.ui.NotificationsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.formone.ui.FormOneActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.aboutus.ui.AboutUsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.plyometrics.ui.PlyometricsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.frame1000002010.ui.Frame1000002010Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.sstoneone.ui.SstOneOneActivity"
             android:screenOrientation="portrait" />
@@ -112,13 +137,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.sstonenine.ui.SstOneNineActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.sstonetwo.ui.SstOneTwoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".modules.appsettings.ui.AppSettingsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

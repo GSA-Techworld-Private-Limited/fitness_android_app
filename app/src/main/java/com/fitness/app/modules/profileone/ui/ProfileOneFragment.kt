@@ -1,7 +1,11 @@
 package com.fitness.app.modules.profileone.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
 import com.fitness.app.databinding.FragmentProfileOneBinding
@@ -13,52 +17,69 @@ import com.fitness.app.modules.plans.ui.PlansActivity
 import com.fitness.app.modules.plansone.ui.PlansOneActivity
 import com.fitness.app.modules.profile.ui.ProfileActivity
 import com.fitness.app.modules.profileone.`data`.viewmodel.ProfileOneVM
+import com.fitness.app.modules.services.ApiManager
+import com.fitness.app.modules.services.SessionManager
+import com.fitness.app.modules.workshops.Workshops
 import kotlin.String
 import kotlin.Unit
 
 class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.fragment_profile_one) {
   private val viewModel: ProfileOneVM by viewModels<ProfileOneVM>()
 
+
+  private lateinit var sessionManager: SessionManager
   override fun onInitialized(): Unit {
+    sessionManager=SessionManager(requireActivity())
     viewModel.navArguments = arguments
+
+
+    binding.txtAshishB.text=sessionManager.fetchName()
+    binding.txtDate.text=sessionManager.featchDOB()
+
+
+    val image=sessionManager.fetchProfile()
+    val file= ApiManager.getImageUrl(image!!)
+    Glide.with(requireActivity())
+      .load(file)
+      .apply(RequestOptions.bitmapTransform(CircleCrop()))
+      .into(binding.imageEllipseFifteen)
+
     binding.profileOneVM = viewModel
+
+
   }
 
   override fun setUpClicks(): Unit {
     binding.linearRowsend.setOnClickListener {
-      val destIntent = Frame1000002010Activity.getIntent(requireActivity(), null)
+      val destIntent = Intent(requireActivity(),Frame1000002010Activity::class.java)
       startActivity(destIntent)
-      requireActivity().onBackPressed()
     }
     binding.linearRowsearch.setOnClickListener {
-      val destIntent = AppSettingsActivity.getIntent(requireActivity(), null)
+      val destIntent = Intent(requireActivity(),AppSettingsActivity::class.java)
       startActivity(destIntent)
-      requireActivity().onBackPressed()
     }
     binding.linearRowinbox.setOnClickListener {
-      val destIntent = AboutUsActivity.getIntent(requireActivity(), null)
+      val destIntent = Intent(requireActivity(),AboutUsActivity::class.java)
       startActivity(destIntent)
-      requireActivity().onBackPressed()
     }
     binding.linearRownotifications.setOnClickListener {
-      val destIntent = NotificationsActivity.getIntent(requireActivity(), null)
+      val destIntent = Intent(requireActivity(),NotificationsActivity::class.java)
       startActivity(destIntent)
-      requireActivity().onBackPressed()
     }
     binding.linearRowbag.setOnClickListener {
-      val destIntent = PlansOneActivity.getIntent(requireActivity(), null)
-      startActivity(destIntent)
-      requireActivity().onBackPressed()
+//      val destIntent = Intent(requireActivity(),PlansOneActivity::class.java)
+//      startActivity(destIntent)
+
+      val i=Intent(requireActivity(),Workshops::class.java)
+      startActivity(i)
     }
     binding.linearRowcheckmark.setOnClickListener {
-      val destIntent = PlansActivity.getIntent(requireActivity(), null)
+      val destIntent = Intent(requireActivity(),PlansActivity::class.java)
       startActivity(destIntent)
-      requireActivity().onBackPressed()
     }
     binding.linearRowlock.setOnClickListener {
-      val destIntent = ProfileActivity.getIntent(requireActivity(), null)
+      val destIntent = Intent(requireActivity(),ProfileActivity::class.java)
       startActivity(destIntent)
-      requireActivity().onBackPressed()
     }
   }
 

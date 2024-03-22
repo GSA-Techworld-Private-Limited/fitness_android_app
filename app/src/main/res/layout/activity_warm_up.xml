@@ -7,7 +7,8 @@
     <LinearLayout android:gravity="start" android:id="@+id/linearWarmup"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarToolbar"
             android:layout_height="wrap_content"
@@ -37,11 +38,26 @@
                     android:layout_marginStart="@dimen/_19pxh"
                     android:layout_marginTop="@dimen/_5pxv"
                     android:layout_weight="0.73"
-                    android:layout_width="0dp" android:singleLine="true"
-                    android:text="@{warmUpVM.warmUpModel.txtWarmup}"
-                    style="@style/txtRobotoromansemibold20" tools:text="@string/lbl_warm_up"/>
+                    android:layout_width="0dp"
+                    android:singleLine="true"
+                    android:text="@string/lbl_warm_up"
+                    style="@style/txtRobotoromansemibold20"
+                    tools:text="@string/lbl_warm_up"/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        <LinearLayout
+            android:id="@+id/details"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <TextView android:gravity="center_horizontal"
             android:id="@+id/txtDescription"
             android:layout_height="wrap_content"
@@ -49,28 +65,36 @@
             android:layout_marginStart="@dimen/_19pxh"
             android:layout_marginTop="@dimen/_40pxv"
             android:layout_width="match_parent"
-            android:text="@{warmUpVM.warmUpModel.txtDescription}"
-            style="@style/txtRalewayromanregular16_1" tools:text="@string/msg_lorem_ipsum_dol2"/>
-        <TextView android:gravity="center_horizontal"
-            android:id="@+id/txtDescriptionOne"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_19pxh"
-            android:layout_marginStart="@dimen/_19pxh"
-            android:layout_marginTop="@dimen/_25pxv"
-            android:layout_width="match_parent"
-            android:text="@{warmUpVM.warmUpModel.txtDescriptionOne}"
-            style="@style/txtRalewayromanregular16_1" tools:text="@string/msg_lorem_ipsum_dol3"/>
+            android:text="@string/msg_lorem_ipsum_dol2"
+            style="@style/txtRalewayromanregular16_1"
+            tools:text="@string/msg_lorem_ipsum_dol2"/>
+
+        </LinearLayout>
+
+
+
+        </ScrollView>
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
             android:id="@+id/btnComplete"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_159pxv"
+
             android:layout_width="match_parent"
             android:paddingBottom="@dimen/_23pxv"
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_30pxh"
             android:paddingTop="@dimen/_23pxv" android:singleLine="true"
             android:text="@string/lbl_complete"
-            android:textAllCaps="false" style="@style/btnGradient_1" tools:text="@string/lbl_complete"/>
+            android:textAllCaps="false"
+            style="@style/btnGradient_1"
+            tools:text="@string/lbl_complete"/>
     </LinearLayout>
 </layout>

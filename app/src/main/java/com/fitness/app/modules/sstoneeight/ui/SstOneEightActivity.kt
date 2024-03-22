@@ -3,18 +3,30 @@ package com.fitness.app.modules.sstoneeight.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivitySstOneEightBinding
 import com.fitness.app.modules.homecontainer.ui.HomeContainerActivity
+import com.fitness.app.modules.plans.ui.PlanAdapter
 import com.fitness.app.modules.plyometrics.ui.PlyometricsActivity
+import com.fitness.app.modules.services.ApiManager
+import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.sstoneeight.`data`.viewmodel.SstOneEightVM
 import com.fitness.app.modules.sstoneten.ui.SstOneTenActivity
 import com.fitness.app.modules.warmup.ui.WarmUpActivity
+import com.fitness.app.responses.ActivePlanResponses
+import com.fitness.app.responses.PlanDays
+import com.fitness.app.responses.UserActivePlanDetailResponses
 import devs.mulham.horizontalcalendar.HorizontalCalendar
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener
+import retrofit2.Call
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -25,8 +37,27 @@ class SstOneEightActivity :
     BaseActivity<ActivitySstOneEightBinding>(R.layout.activity_sst_one_eight) {
   private val viewModel: SstOneEightVM by viewModels<SstOneEightVM>()
 
+  private lateinit var sessionManager:SessionManager
+
+  private var customerResponse: UserActivePlanDetailResponses? = null
   override fun onInitialized(): Unit {
+
+    sessionManager= SessionManager(this)
     viewModel.navArguments = intent.extras?.getBundle("bundle")
+
+
+    val planid=intent.getStringExtra("planid")
+    Log.d("tagforid",planid.toString())
+    val totalcount=intent.getIntExtra("totalcount",-1)
+    Log.d("totalcount",totalcount.toInt().toString())
+    val completedcount=intent.getIntExtra("plancount",-1)
+
+    getUserActivePlans(planid!!)
+
+    binding.txtThree2.text=totalcount.toInt().toString()
+    binding.txtThree.text=completedcount.toInt().toString()
+
+
     val startDate = Calendar.getInstance()
     startDate.add(Calendar.MONTH, -1)
     val endDate = Calendar.getInstance()
@@ -56,36 +87,82 @@ class SstOneEightActivity :
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val formattedSelectedDate = dateFormat.format(date.time)
 
-        // Make an API call and handle the response
-        //submitAttendanceHistory(formattedSelectedDate)
       }
     }
 
+
+
+
+    binding.btnArrowright.setOnClickListener {
+      this.finish()
+    }
+
+    binding.etGroup100000212.setOnClickListener {
+      val i=Intent(this,PlyometricsActivity::class.java)
+      startActivity(i)
+    }
 
     binding.sstOneEightVM = viewModel
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 
+
+
   override fun setUpClicks(): Unit {
-    binding.etGroup100000212.setOnClickListener {
-      val destIntent = PlyometricsActivity.getIntent(this, null)
-      startActivity(destIntent)
-    }
+//    binding.etGroup100000212.setOnClickListener {
+//      val destIntent = PlyometricsActivity.getIntent(this, null)
+//      startActivity(destIntent)
+//    }
 //    binding.linearColumndayone.setOnClickListener {
 //      val destIntent = SstOneTenActivity.getIntent(this, null)
 //      startActivity(destIntent)
 //    }
-    binding.etGroup100000211.setOnClickListener {
-      val destIntent = WarmUpActivity.getIntent(this, null)
-      startActivity(destIntent)
-    }
+//    binding.etGroup100000211.setOnClickListener {
+//      val destIntent = WarmUpActivity.getIntent(this, null)
+//      startActivity(destIntent)
+//    }
     binding.btnArrowright.setOnClickListener {
       val destIntent = HomeContainerActivity.getIntent(this, null)
       startActivity(destIntent)
     }
   }
 
+
+  fun getUserActivePlans(id:String){
+    val serviceGenerator= ApiManager.apiInterface
+    val accessToken=sessionManager.fetchAuthToken()
+    val authorization="Token $accessToken"
+    val call=serviceGenerator.useractiveplandetails(authorization,id)
+
+    call.enqueue(object : retrofit2.Callback<UserActivePlanDetailResponses>{
+      override fun onResponse(
+        call: Call<UserActivePlanDetailResponses>,
+        response: Response<UserActivePlanDetailResponses>
+      ) {
+         customerResponse=response.body()
+
+        if(customerResponse!=null){
+
+
+
+          binding.recyclerfordetails.apply {
+            val studioadapter= UserActiveDetailsAdapter(customerResponse!!.planDays,sessionManager)
+            layoutManager= LinearLayoutManager(this@SstOneEightActivity, LinearLayoutManager.VERTICAL,true)
+            binding.recyclerfordetails.adapter=studioadapter
+          }
+
+
+
+        }
+      }
+
+      override fun onFailure(call: Call<UserActivePlanDetailResponses>, t: Throwable) {
+        t.printStackTrace()
+        Log.e("error", t.message.toString())
+      }
+    })
+  }
   companion object {
     const val TAG: String = "SST_ONE_EIGHT_ACTIVITY"
 
@@ -96,4 +173,16 @@ class SstOneEightActivity :
       return destIntent
     }
   }
+
+
+
+
+
+
 }
+
+
+
+
+
+

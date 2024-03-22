@@ -3,7 +3,9 @@ package com.fitness.app.modules.plansone.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.fitness.app.R
@@ -11,8 +13,14 @@ import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityPlansOneBinding
 import com.fitness.app.modules.plansone.`data`.model.PlansOneRowModel
 import com.fitness.app.modules.plansone.`data`.viewmodel.PlansOneVM
+import com.fitness.app.modules.services.ApiManager
+import com.fitness.app.modules.services.SessionManager
+import com.fitness.app.responses.BooleanRequest
+import com.fitness.app.responses.UpdateResponse
 import devs.mulham.horizontalcalendar.HorizontalCalendar
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener
+import retrofit2.Call
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -23,59 +31,53 @@ import kotlin.Unit
 class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity_plans_one) {
   private val viewModel: PlansOneVM by viewModels<PlansOneVM>()
 
+
+  private lateinit var sessionManager:SessionManager
   override fun onInitialized(): Unit {
+
+    sessionManager=SessionManager(this)
+
     viewModel.navArguments = intent.extras?.getBundle("bundle")
-    val plansOneAdapter = PlansOneAdapter(viewModel.plansOneList.value?:mutableListOf())
-    binding.recyclerPlansOne.adapter = plansOneAdapter
-    plansOneAdapter.setOnItemClickListener(
-    object : PlansOneAdapter.OnItemClickListener {
-      override fun onItemClick(view:View, position:Int, item : PlansOneRowModel) {
-        onClickRecyclerPlansOne(view, position, item)
-      }
-    }
-    )
-    viewModel.plansOneList.observe(this) {
-      plansOneAdapter.updateData(it)
-    }
+
+    val taskname=intent.getStringExtra("taskname")
+    val taskdetails=intent.getStringExtra("taskDetails")
+    val iscompleted=intent.getBooleanExtra("iscompleted",false)
+    val workshoptype=intent.getStringExtra("workshoptype")
+
+
+    binding.txtWorkshopName.text=workshoptype
+
+    binding.txtTaskName.text=taskname
+
+    binding.txtDescription.text=taskdetails
 
 
 
+    val istrue:Boolean=iscompleted
 
 
-    val startDate = Calendar.getInstance()
-    startDate.add(Calendar.MONTH, -1)
-    val endDate = Calendar.getInstance()
-    endDate.add(Calendar.MONTH, 1)
-    val horizontalCalendar: HorizontalCalendar =
-      HorizontalCalendar.Builder(this, binding.calendarView1.id)
-        .range(startDate, endDate)
-        .datesNumberOnScreen(7)
-        .build()
-
-    // Format today's date in "dd/mm/yyyy" format
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val today = Calendar.getInstance()
-    val formattedToday = dateFormat.format(today.time)
-
-    // Parse the formatted string back to a Calendar object
-    val selectedDate = Calendar.getInstance()
-    selectedDate.time = dateFormat.parse(formattedToday)!!
-
-
-    horizontalCalendar.selectDate(selectedDate, true)
-
-
-    horizontalCalendar.calendarListener = object : HorizontalCalendarListener() {
-      override fun onDateSelected(date: Calendar, position: Int) {
-        // Format selected date in "yyyy-MM-dd" format
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val formattedSelectedDate = dateFormat.format(date.time)
-
-        // Make an API call and handle the response
-        //submitAttendanceHistory(formattedSelectedDate)
-      }
+    if(istrue)
+    {
+      binding.btnCompletedOne.text="Completed"
+    }else{
+      binding.btnCompletedOne.text="Complete"
     }
 
+    binding.btnArrowright.setOnClickListener {
+      this.finish()
+    }
+
+
+    binding.btnCompletedOne.setOnClickListener {
+
+      val id = intent.getIntExtra("id",-1) // Assuming "id" is a String
+      val isCompleted = !intent.getBooleanExtra("iscompleted", false) // Toggle the completion status
+
+      patchUserActivePlan(id, isCompleted)
+
+      binding.progressBar.visibility=View.VISIBLE
+
+    }
     binding.plansOneVM = viewModel
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
@@ -84,20 +86,36 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
   override fun setUpClicks(): Unit {
   }
 
-  fun onClickRecyclerPlansOne(
-    view: View,
-    position: Int,
-    item: PlansOneRowModel
-  ): Unit {
-    when(view.id) {
-    }
-  }
 
 
-  override fun onBackPressed() {
-    super.onBackPressed()
-    this.finish()
+
+  fun patchUserActivePlan(id:Int,isCompleted:Boolean){
+    val serviceGenerator= ApiManager.apiInterface
+    val accessToken=sessionManager.fetchAuthToken()
+    val authorization="Token $accessToken"
+    val request = BooleanRequest(isCompleted)
+    val call=serviceGenerator.updateuserworkshop(authorization,id,request)
+
+    call.enqueue(object : retrofit2.Callback<UpdateResponse>{
+      override fun onResponse(
+        call: Call<UpdateResponse>,
+        response: Response<UpdateResponse>
+      ) {
+        binding.progressBar.visibility=View.GONE
+        if(response.isSuccessful){
+          binding.btnCompletedOne.text = if (isCompleted) "Completed" else "Complete"
+          Toast.makeText(this@PlansOneActivity,"Completed", Toast.LENGTH_SHORT).show()
+        }
+      }
+
+      override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+        t.printStackTrace()
+        Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
+      }
+    })
   }
+
   companion object {
     const val TAG: String = "PLANS_ONE_ACTIVITY"
 

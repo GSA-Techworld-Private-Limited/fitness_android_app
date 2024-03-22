@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:editable="false"
+        android:background="@drawable/rectangle_gradient_s_bluegray_900_c_gray_701_e_black_901_radius_10"
+        android:drawablePadding="@dimen/_30pxh"
+        android:ellipsize="end"
+        android:id="@+id/etGroup100000211"
+        android:inputType="text"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_20pxh"
+        android:layout_marginStart="@dimen/_20pxh"
+        android:layout_marginTop="@dimen/_14pxv"
+        android:layout_width="match_parent"
+        android:paddingBottom="@dimen/_16pxv"
+        android:paddingEnd="@dimen/_15pxh"
+        android:paddingStart="@dimen/_30pxh"
+        android:paddingTop="@dimen/_18pxv"
+        android:singleLine="true"
+        android:text="@string/lbl_warm_up2"
+        android:textColorHint="@color/white_A700"
+        style="@style/etGradientRounded"
+        tools:ignore="Autofill,Deprecated"
+        app:drawableEndCompat="@drawable/drawable_img_arrowright_gray_900" />
+</LinearLayout>

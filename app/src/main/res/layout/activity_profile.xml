@@ -46,27 +46,31 @@
                     style="@style/txtRobotoromansemibold20" tools:text="@string/msg_profile_setting"/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
-        <FrameLayout android:id="@+id/frameStackellipsefifteen"
+
+
+        <FrameLayout
+            android:id="@+id/frameStackellipsefifteen"
             android:layout_gravity="center_horizontal"
-            android:layout_height="@dimen/_101pxv"
+            android:layout_height="@dimen/_141pxv"
             android:layout_marginEnd="@dimen/_127pxh"
             android:layout_marginStart="@dimen/_127pxh"
-            android:layout_marginTop="@dimen/_19pxv" android:layout_width="@dimen/_101pxh">
+            android:layout_marginTop="@dimen/_19pxv"
+            android:layout_width="@dimen/_101pxh">
             <ImageView android:id="@+id/imageEllipseFifteen"
                 android:layout_gravity="start"
                 android:layout_height="@dimen/_101pxh"
                 android:layout_width="@dimen/_101pxh"
-                android:scaleType="centerCrop" circular="@{true}"
-                imageRes="@{@drawable/img_ellipse15}"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse15"/>
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_ellipse15"/>
             <ImageView android:id="@+id/imageEdit"
                 android:layout_gravity="bottom|center"
-                android:layout_height="@dimen/_13pxh"
+                android:layout_height="@dimen/_23pxh"
                 android:layout_marginBottom="@dimen/_6pxv"
                 android:layout_marginEnd="@dimen/_44pxh"
                 android:layout_marginStart="@dimen/_44pxh"
                 android:layout_marginTop="@dimen/_10pxv"
-                android:layout_width="@dimen/_13pxh"
+                android:layout_width="@dimen/_23pxh"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_edit"
                 tools:ignore="ContentDescription" tools:src="@drawable/img_edit"/>
@@ -80,19 +84,23 @@
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="0dp">
+
         <FrameLayout
             android:layout_marginBottom="30dp"
             android:id="@+id/frameStackashishb"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_28pxv"
             android:layout_width="match_parent">
-            <LinearLayout android:id="@+id/linearColumnashishb"
+
+            <LinearLayout
+                android:id="@+id/linearColumnashishb"
                 android:layout_gravity="top|center"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10pxv"
+                android:layout_marginBottom="@dimen/_30pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_20pxh"
-                android:layout_width="match_parent" android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:hint="@string/lbl_name2"
                     android:id="@+id/textInputLayAshishB"
@@ -113,13 +121,12 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:singleLine="true"
-                        android:text="@={profileVM.profileModel.etAshishBValue}"
                         android:textColor="@color/black_900"
                         android:textFontWeight="500"
                         android:textSize="@dimen/_16pxh"
-                        android:textStyle="bold"
-                        tools:text="@string/lbl_ashish_b"/>
+                        android:textStyle="bold" />
                 </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:hint="@string/lbl_mobile2"
@@ -142,12 +149,12 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:singleLine="true"
-                        android:text="@={profileVM.profileModel.etMobileNoValue}"
                         android:textColor="@color/black_900_75"
                         android:textFontWeight="500"
                         android:textSize="@dimen/_16pxh"
-                        android:textStyle="bold" tools:text="@string/lbl_9999973543"/>
+                        android:textStyle="bold" />
                 </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
@@ -172,13 +179,12 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:singleLine="true"
-                        android:text="ashish@gmail.com"
                         android:textColor="@color/black_900_75"
                         android:textFontWeight="500"
                         android:textSize="@dimen/_16pxh"
-                        android:textStyle="bold"
-                        tools:text="ashish@gmail.com"/>
+                        android:textStyle="bold" />
                 </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:hint="@string/lbl_dob2"
@@ -202,12 +208,13 @@
                         android:layout_width="match_parent"
                         android:letterSpacing="0.03"
                         android:singleLine="true"
-                        android:text="@={profileVM.profileModel.etDDMMYYYYValue}"
                         android:textColor="@color/gray_500"
                         android:textFontWeight="400"
                         android:textSize="@dimen/_16pxh"
-                        android:textStyle="normal" tools:text="@string/lbl_dd_mm_yyyy"/>
+                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:hint="@string/lbl_state"
                     android:id="@+id/textInputLayState"
@@ -230,12 +237,13 @@
                         android:layout_width="match_parent"
                         android:letterSpacing="0.03"
                         android:singleLine="true"
-                        android:text="@={profileVM.profileModel.etStateValue}"
                         android:textColor="@color/gray_500"
                         android:textFontWeight="400"
                         android:textSize="@dimen/_16pxh"
-                        android:textStyle="normal" tools:text="@string/lbl_state"/>
+                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:hint="@string/lbl_city"
                     android:id="@+id/textInputLayCity"
@@ -258,12 +266,13 @@
                         android:layout_width="match_parent"
                         android:letterSpacing="0.03"
                         android:singleLine="true"
-                        android:text="@={profileVM.profileModel.etCityValue}"
                         android:textColor="@color/gray_500"
                         android:textFontWeight="400"
                         android:textSize="@dimen/_16pxh"
-                        android:textStyle="normal" tools:text="@string/lbl_city"/>
+                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:hint="@string/lbl_zip_code"
                     android:id="@+id/textInputLayZIPCode"
@@ -286,16 +295,23 @@
                         android:layout_width="match_parent"
                         android:letterSpacing="0.03"
                         android:singleLine="true"
-                        android:text="@={profileVM.profileModel.etZIPCodeValue}"
                         android:textColor="@color/gray_500"
                         android:textFontWeight="400"
                         android:textSize="@dimen/_16pxh"
-                        android:textStyle="normal" tools:text="@string/lbl_zip_code"/>
+                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
         </FrameLayout>
+
         </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"

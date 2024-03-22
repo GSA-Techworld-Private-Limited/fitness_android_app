@@ -29,19 +29,17 @@
                     android:layout_height="@dimen/_96pxh"
                     android:layout_marginBottom="@dimen/_16pxv"
                     android:layout_marginStart="@dimen/_20pxh"
-                    android:layout_marginTop="@dimen/_65pxv"
+                    android:layout_marginTop="@dimen/_45pxv"
                     android:layout_width="@dimen/_96pxh"
-                    android:scaleType="centerCrop" circular="@{true}"
-                    imageRes="@{@drawable/img_ellipse15}"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_ellipse15"/>
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
                 <LinearLayout android:gravity="start"
                     android:id="@+id/linearColumnlanguage"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_24pxv"
                     android:layout_marginEnd="@dimen/_1pxh"
                     android:layout_marginStart="@dimen/_21pxh"
-                    android:layout_marginTop="@dimen/_73pxv"
+                    android:layout_marginTop="@dimen/_45pxv"
                     android:layout_width="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout android:gravity="start"
@@ -67,8 +65,7 @@
                             android:layout_marginBottom="@dimen/_1pxv"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="@{profileOneVM.profileOneModel.txtAshishB}"
-                            tools:text="@string/lbl_ashish_b" />
+                            android:text="..." />
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguageOne"
@@ -91,8 +88,7 @@
                             android:layout_weight="0.68"
                             android:layout_width="0dp"
                             android:singleLine="true"
-                            android:text="@{profileOneVM.profileOneModel.txtDate}"
-                            style="@style/txtRobotoromanmedium14" tools:text="@string/lbl_26_05_1998"/>
+                            style="@style/txtRobotoromanmedium14" />
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguageTwo"

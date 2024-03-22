@@ -12,8 +12,8 @@ data class Articles (
 
     @SerializedName("article_id"          ) var articleId          : String? = null,
     @SerializedName("article_name"        ) var articleName        : String? = null,
+    @SerializedName("choose_category"     ) var chooseCategory     : String? = null,
     @SerializedName("article_description" ) var articleDescription : String? = null,
-    @SerializedName("article_profile"     ) var articleProfile     : String? = null,
-    @SerializedName("choose_category"     ) var chooseCategory     : Int?    = null
+    @SerializedName("article_profile"     ) var articleProfile     : String? = null
 
 )

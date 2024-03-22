@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="sstOneNineVM" type="com.fitness.app.modules.sstonenine.data.viewmodel.SstOneNineVM"/>
     </data>
@@ -7,7 +9,16 @@
         android:id="@+id/linearColumnrectangle"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:fillViewport="true"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearSSTOneNine"
             android:layout_height="match_parent"
@@ -29,7 +40,7 @@
                     android:layout_height="@dimen/_38pxh"
                     android:layout_marginBottom="@dimen/_28pxv"
                     android:layout_marginEnd="@dimen/_22pxh"
-                    android:layout_marginStart="@dimen/_22pxh"
+                    android:layout_marginStart="@dimen/_12pxh"
                     android:layout_marginTop="@dimen/_28pxv"
                     android:layout_width="@dimen/_42pxh"
                     android:scaleType="fitXY"
@@ -38,30 +49,23 @@
             </FrameLayout>
             <LinearLayout android:id="@+id/linearRowworkshopname"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_12pxh"
-                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_17pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtWorkshopname"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.59"
-                    android:layout_width="0dp" android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
                     android:text="@{sstOneNineVM.sstOneNineModel.txtWorkshopname}"
                     style="@style/txtRalewayromansemibold20" tools:text="@string/lbl_workshop_name"/>
-                <TextView android:ellipsize="end"
-                    android:id="@+id/txt29Oct30Oct"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_3pxv"
-                    android:layout_marginStart="@dimen/_66pxh"
-                    android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.41"
-                    android:layout_width="0dp" android:singleLine="true"
-                    android:text="@{sstOneNineVM.sstOneNineModel.txt29Oct30Oct}"
-                    style="@style/txtRobotoromanregular16_3" tools:text="@string/lbl_29_oct_30_oct"/>
+
             </LinearLayout>
-            <EditText android:ellipsize="end"
-                android:hint="@string/lbl_500" android:id="@+id/etPrice"
+            <TextView
+                android:ellipsize="end"
+                android:hint="@string/lbl_500"
+                android:id="@+id/etPrice"
                 android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_19pxh"
@@ -74,7 +78,20 @@
                 android:singleLine="true"
                 android:text="@={sstOneNineVM.sstOneNineModel.etPriceValue}"
                 android:textColorHint="@color/gray_701"
-                style="@style/etNunitomedium20" tools:ignore="Autofill"/>
+                style="@style/etNunitomedium20"
+                tools:ignore="Autofill"/>
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_gravity="start"
+                android:id="@+id/txt29Oct30Oct"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/lbl_29_oct_30_oct"
+                style="@style/txtRobotoromanregular16_3"
+                tools:text="@string/lbl_29_oct_30_oct"/>
             <TextView android:ellipsize="end"
                 android:id="@+id/txtWorkshopDescri"
                 android:layout_gravity="start"
@@ -86,19 +103,20 @@
                 android:singleLine="true"
                 android:text="@{sstOneNineVM.sstOneNineModel.txtWorkshopDescri}"
                 style="@style/txtNunitosemibold16" tools:text="@string/msg_workshop_descri"/>
-            <TextView android:gravity="center_horizontal"
+            <TextView android:gravity="center"
                 android:id="@+id/txtDescription"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_19pxh"
                 android:layout_marginStart="@dimen/_19pxh"
                 android:layout_marginTop="@dimen/_8pxv"
                 android:layout_width="match_parent"
-                android:text="@{sstOneNineVM.sstOneNineModel.txtDescription}"
-                style="@style/txtRalewayromanregular16_1" tools:text="@string/msg_lorem_ipsum_dol"/>
+                android:text=""
+                style="@style/txtRalewayromanregular16_1"/>
             <FrameLayout android:gravity="start"
                 android:id="@+id/frameStackactivities"
-                android:layout_height="@dimen/_237pxv"
-                android:layout_marginTop="@dimen/_29pxv" android:layout_width="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_29pxv"
+                android:layout_width="match_parent">
                 <LinearLayout android:id="@+id/linearColumnactivities"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
@@ -112,79 +130,65 @@
                         android:layout_width="wrap_content"
                         android:singleLine="true"
                         android:text="@{sstOneNineVM.sstOneNineModel.txtActivities}"
-                        style="@style/txtNunitosemibold16_1" tools:text="@string/lbl_activities"/>
+                        style="@style/txtNunitosemibold16_1"
+                        tools:text="@string/lbl_activities"/>
                     <TextView android:gravity="center_horizontal"
                         android:id="@+id/txtDescriptionOne"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_3pxh"
                         android:layout_marginTop="@dimen/_9pxv"
+                        android:layout_marginBottom="9dp"
                         android:layout_width="match_parent"
-                        android:text="@{sstOneNineVM.sstOneNineModel.txtDescriptionOne}"
-                        style="@style/txtRalewayromanregular16_1" tools:text="@string/msg_lorem_ipsum_dol"/>
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtSimilarWorksho"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_31pxv"
-                        android:layout_width="wrap_content"
-                        android:singleLine="true"
-                        android:text="@{sstOneNineVM.sstOneNineModel.txtSimilarWorksho}"
-                        style="@style/txtRalewayromansemibold16_2" tools:text="@string/msg_similar_worksho"/>
+                        style="@style/txtRalewayromanregular16_1" />
+
                 </LinearLayout>
-                <TextView android:ellipsize="end"
-                    android:gravity="center"
-                    android:id="@+id/txtPriceOne"
-                    android:layout_gravity="bottom|start"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_2pxv"
-                    android:layout_marginTop="@dimen/_10pxv"
-                    android:layout_width="match_parent"
-                    android:paddingBottom="@dimen/_22pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_30pxh"
-                    android:paddingTop="@dimen/_24pxv"
-                    android:singleLine="true"
-                    android:text="@{sstOneNineVM.sstOneNineModel.txtPriceOne}"
-                    style="@style/txtGradient" tools:text="@string/lbl_pay_500"/>
+
             </FrameLayout>
+
+            <TextView
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:ellipsize="end"
+                android:id="@+id/txtSimilarWorksho"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_31pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{sstOneNineVM.sstOneNineModel.txtSimilarWorksho}"
+                style="@style/txtRalewayromansemibold16_2"
+                tools:text="@string/msg_similar_worksho"/>
             <HorizontalScrollView android:fillViewport="true"
                 android:gravity="end"
                 android:id="@+id/horizontalScrollHorizontalscrollrectangleOne"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_marginTop="@dimen/_28pxv"
                 android:layout_width="match_parent" android:scrollbars="none">
-                <LinearLayout android:id="@+id/linearRowrectangleOne"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" android:orientation="horizontal">
-                    <ImageView android:id="@+id/imageRectangleOne"
-                        android:layout_height="@dimen/_132pxh"
-                        android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_width="@dimen/_227pxh"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_20pxh}"
-                        imageRes="@{@drawable/img_rectangle_132x227}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_132x227"/>
-                    <ImageView android:id="@+id/imageRectangleTwo"
-                        android:layout_height="@dimen/_132pxh"
-                        android:layout_marginStart="@dimen/_15pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_width="@dimen/_227pxh"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_20pxh}"
-                        imageRes="@{@drawable/img_rectangle_1}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_1"/>
-                    <ImageView android:id="@+id/imageRectangleThree"
-                        android:layout_height="@dimen/_132pxh"
-                        android:layout_marginStart="@dimen/_16pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_width="@dimen/_227pxh"
-                        android:scaleType="fitXY"
-                        cornerRadius="@{@dimen/_20pxh}"
-                        imageRes="@{@drawable/img_rectangle_2}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_2"/>
-                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewforworkshop"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </HorizontalScrollView>
         </LinearLayout>
+        </ScrollView>
+
+        <TextView android:ellipsize="end"
+            android:gravity="center"
+            android:id="@+id/txtPriceOne"
+            android:layout_gravity="bottom|start"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_22pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_24pxv"
+            android:singleLine="true"
+            android:text="@string/lbl_pay_500"
+            style="@style/txtGradient"
+            tools:text="@string/lbl_pay_500"/>
+
     </LinearLayout>
 </layout>

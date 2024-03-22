@@ -18,7 +18,7 @@ import kotlin.Int
 import kotlin.collections.List
 
 class FeedsOneAdapter(
-  var list: List<Articles>
+  var list: ArrayList<Articles>
 ) : RecyclerView.Adapter<FeedsOneAdapter.RowFeedsOneVH>() {
   private var clickListener: OnItemClickListener? = null
 
@@ -34,7 +34,7 @@ class FeedsOneAdapter(
   override fun getItemCount(): Int {
     return  list.size
   }
-  public fun updateData(newData: List<Articles>) {
+  public fun updateData(newData: ArrayList<Articles>) {
     list = newData
     notifyDataSetChanged()
   }
@@ -73,7 +73,7 @@ class FeedsOneAdapter(
 
       val imgUrl = file?.let { ApiManager.getImageUrl(it) }
       Picasso.get()
-        .load(imgUrl)
+        .load(file)
         .into(articleImage)
     }
   }
