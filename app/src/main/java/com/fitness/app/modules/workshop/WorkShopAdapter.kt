@@ -1,6 +1,7 @@
 package com.fitness.app.modules.workshop
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,7 @@ class WorkShopAdapter(
             val image=postModel.addPoster
 
             val file=ApiManager.getImageUrl(image!!)
+            Log.d("imageforworshop",file)
             Glide.with(itemView.context).load(file).into(worksshopImage)
 
             worksshopImage.setOnClickListener {

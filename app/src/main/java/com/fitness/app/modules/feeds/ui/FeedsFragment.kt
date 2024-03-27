@@ -1,6 +1,7 @@
 package com.fitness.app.modules.feeds.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -9,9 +10,12 @@ import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
 import com.fitness.app.databinding.FragmentFeedsBinding
 import com.fitness.app.modules.feeds.`data`.viewmodel.FeedsVM
+import com.fitness.app.modules.responses.UserDetailResponses
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.google.android.material.tabs.TabLayoutMediator
+import retrofit2.Call
+import retrofit2.Response
 import kotlin.String
 import kotlin.Unit
 
@@ -31,14 +35,41 @@ class FeedsFragment : BaseFragment<FragmentFeedsBinding>(R.layout.fragment_feeds
       }.attach()
 
 
+getUserDetails()
 
-    val image=sessionManager.fetchProfile()
-    val file=ApiManager.getImageUrl(image!!)
-    Glide.with(requireActivity())
-      .load(file)
-      .apply(RequestOptions.bitmapTransform(CircleCrop()))
-      .into(binding.imageEllipseTwo)
     }
+
+  fun getUserDetails(){
+    val serviceGenerator= ApiManager.apiInterface
+    val accessToken=sessionManager.fetchAuthToken()
+    val authorization="Token $accessToken"
+    val call=serviceGenerator.userDetails(authorization)
+
+    call.enqueue(object : retrofit2.Callback<UserDetailResponses>{
+      override fun onResponse(
+        call: Call<UserDetailResponses>,
+        response: Response<UserDetailResponses>
+      ) {
+        val userDetails=response.body()
+
+
+        val file=ApiManager.getImageUrl(userDetails!!.data!!.profile!!)
+
+        Glide.with(requireActivity())
+          .load(file)
+          .apply(RequestOptions.bitmapTransform(CircleCrop()))
+          .into(binding.imageEllipseTwo)
+      }
+
+      override fun onFailure(call: Call<UserDetailResponses>, t: Throwable) {
+        t.printStackTrace()
+        Log.e("error", t.message.toString())
+      }
+    })
+  }
+
+
+
 
     override fun setUpClicks(): Unit {
     }

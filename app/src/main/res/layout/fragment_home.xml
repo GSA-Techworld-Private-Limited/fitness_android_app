@@ -60,12 +60,12 @@
                         android:layout_gravity="center_vertical"
                         android:layout_height="@dimen/_32pxv"
                         android:layout_marginTop="@dimen/_2pxv"
-                        android:layout_marginStart="260dp"
+                        android:layout_marginStart="245dp"
                         android:layout_width="@dimen/_22pxh">
 
                         <ImageView
                             android:id="@+id/imageGroup"
-                            android:layout_width="@dimen/_19pxh"
+                            android:layout_width="@dimen/_20pxh"
                             android:layout_height="@dimen/_24pxh"
                             android:layout_gravity="bottom|start"
                             android:layout_marginTop="@dimen/_10pxv"
@@ -246,6 +246,8 @@
                     android:text="@{homeVM.homeModel.txt210Completed}"
                     style="@style/txtRobotoromansemibold12" tools:text="@string/lbl_2_10_completed"/>
             </LinearLayout>
+
+
             <HorizontalScrollView
                 android:fillViewport="true"
                 android:id="@+id/horizontalScrollHorizontalscrolluser"
@@ -263,7 +265,7 @@
                         android:id="@+id/frameStackrectangletwo"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="@dimen/_124pxv"
-                        android:layout_width="@dimen/_329pxh">
+                        android:layout_width="match_parent">
 
                         <com.asksira.loopingviewpager.LoopingViewPager
                             android:id="@+id/imageSliderSliderrectangletwo"
@@ -280,6 +282,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_135pxh"
                             android:layout_marginStart="@dimen/_135pxh"
+                            android:layout_marginBottom="5dp"
                             android:layout_width="wrap_content"
                             app:drawable_normal="@drawable/indicator_unselected_bg_white_a700_radius_8"
                             app:drawable_selected="@drawable/indicator_selected_bg_gray_700_radius_8"

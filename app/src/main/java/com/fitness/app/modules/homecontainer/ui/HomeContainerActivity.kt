@@ -31,7 +31,7 @@ class HomeContainerActivity :
 
     replaceFragment(HomeFragment())
 
-    window.statusBarColor= ContextCompat.getColor(this,R.color.white)
+   // window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 
   override fun setUpClicks(): Unit {

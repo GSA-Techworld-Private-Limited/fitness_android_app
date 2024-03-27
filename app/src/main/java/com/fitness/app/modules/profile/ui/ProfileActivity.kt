@@ -21,6 +21,7 @@ import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityProfileBinding
 import com.fitness.app.modules.profile.`data`.viewmodel.ProfileVM
 import com.fitness.app.modules.responses.ProfileResponse
+import com.fitness.app.modules.responses.UserDetailResponses
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import okhttp3.MediaType.Companion.toMediaType
@@ -59,19 +60,21 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
     sessionManager= SessionManager(this)
     viewModel.navArguments = intent.extras?.getBundle("bundle")
 
-    binding.etAshishB.setText(sessionManager.fetchName())
-
-    binding.etDDMMYYYY.setText(sessionManager.featchDOB())
+//    binding.etAshishB.setText(sessionManager.fetchName())
+//
+//    binding.etDDMMYYYY.setText(sessionManager.featchDOB())
 
     nimage=binding.imageEllipseFifteen
+//
+//    val image=sessionManager.fetchProfile()
+//    val file= ApiManager.getImageUrl(image!!)
+//    Glide.with(this)
+//      .load(file)
+//      .apply(RequestOptions.bitmapTransform(CircleCrop()))
+//      .into(binding.imageEllipseFifteen)
 
-    val image=sessionManager.fetchProfile()
-    val file= ApiManager.getImageUrl(image!!)
-    Glide.with(this)
-      .load(file)
-      .apply(RequestOptions.bitmapTransform(CircleCrop()))
-      .into(binding.imageEllipseFifteen)
 
+    getUserDetails()
 
     binding.imageEdit.setOnClickListener {
       val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
@@ -94,6 +97,42 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
 
   }
 
+
+  fun getUserDetails(){
+    val serviceGenerator= ApiManager.apiInterface
+    val accessToken=sessionManager.fetchAuthToken()
+    val authorization="Token $accessToken"
+    val call=serviceGenerator.userDetails(authorization)
+
+    call.enqueue(object : retrofit2.Callback<UserDetailResponses>{
+      override fun onResponse(
+        call: Call<UserDetailResponses>,
+        response: Response<UserDetailResponses>
+      ) {
+        val userDetails=response.body()!!
+
+        binding.etAshishB.setText(userDetails.data!!.name)
+        binding.etDDMMYYYY.setText(userDetails.data!!.dateOfBirth)
+        binding.etMobileNo.setText(userDetails.data!!.mobileNumber)
+        binding.etMobileNo1.setText(userDetails.data!!.email)
+        binding.etState.setText(userDetails.data!!.state)
+        binding.etCity.setText(userDetails.data!!.city)
+        binding.etZIPCode.setText(userDetails.data!!.pinCode)
+
+        val file=ApiManager.getImageUrl(userDetails.data!!.profile!!)
+
+        Glide.with(this@ProfileActivity)
+          .load(file)
+          .apply(RequestOptions.bitmapTransform(CircleCrop()))
+          .into(binding.imageEllipseFifteen)
+      }
+
+      override fun onFailure(call: Call<UserDetailResponses>, t: Throwable) {
+        t.printStackTrace()
+        Log.e("error", t.message.toString())
+      }
+    })
+  }
 
   private fun updateData(){
     val map: MutableMap<String, RequestBody> = mutableMapOf()

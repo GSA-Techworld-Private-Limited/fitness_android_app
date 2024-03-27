@@ -71,9 +71,9 @@
                     android:layout_marginStart="@dimen/_15pxh"
                     android:layout_marginTop="@dimen/_14pxv"
                     android:layout_width="match_parent"
-                    android:text="@{notificationsVM.notificationsModel.txtDescription}"
+                    android:text="No Notifications"
                     style="@style/txtRalewayromanregular14"
-                    tools:text="@string/msg_forem_ipsum_dol"/>
+                    tools:text="No Notifications"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -90,6 +90,7 @@
             style="@style/groupStylecornerRadius_15">
 
             <LinearLayout
+                android:visibility="gone"
                 android:gravity="center_horizontal"
                 android:id="@+id/linearColumndescriptionOne"
                 android:layout_height="match_parent"
@@ -125,6 +126,7 @@
             style="@style/groupStylecornerRadius_15">
 
             <LinearLayout
+                android:visibility="gone"
                 android:gravity="center_horizontal"
                 android:id="@+id/linearColumndescriptionTwo"
                 android:layout_height="match_parent"

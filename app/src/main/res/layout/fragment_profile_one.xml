@@ -45,7 +45,6 @@
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguage"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_width="match_parent" android:orientation="horizontal">
                         <TextView android:ellipsize="end"
                             android:id="@+id/txtLanguage"
@@ -61,7 +60,7 @@
                             style="@style/txtRobotoromanmedium14"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/_10pxh"
+                            android:layout_marginStart="@dimen/_5pxh"
                             android:layout_marginBottom="@dimen/_1pxv"
                             android:ellipsize="end"
                             android:singleLine="true"
@@ -70,23 +69,22 @@
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguageOne"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
+
                         android:layout_marginTop="@dimen/_10pxv"
                         android:layout_width="match_parent" android:orientation="horizontal">
                         <TextView android:ellipsize="end"
                             android:id="@+id/txtLanguageOne"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.32"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:singleLine="true"
                             android:text="@{profileOneVM.profileOneModel.txtLanguageOne}"
                             style="@style/txtRobotoromanmedium14" tools:text="@string/lbl_dob"/>
-                        <TextView android:ellipsize="end"
+                        <TextView
+                            android:ellipsize="end"
                             android:id="@+id/txtDate"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10pxh"
-                            android:layout_weight="0.68"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:singleLine="true"
                             style="@style/txtRobotoromanmedium14" />
                     </LinearLayout>
@@ -106,13 +104,11 @@
                         <TextView android:ellipsize="end"
                             android:id="@+id/txtMobileNo"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_12pxh"
                             android:layout_marginTop="@dimen/_1pxv"
-                            android:layout_weight="0.62"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:singleLine="true"
-                            android:text="@{profileOneVM.profileOneModel.txtMobileNo}"
-                            style="@style/txtRobotoromanmedium14" tools:text="@string/lbl_7383939397"/>
+                            style="@style/txtRobotoromanmedium14"
+                            tools:text="@string/lbl_7383939397"/>
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearRowlanguageThree"
@@ -135,7 +131,6 @@
                             android:layout_marginTop="@dimen/_1pxv"
                             android:layout_width="wrap_content"
                             android:singleLine="true"
-                            android:text="@{profileOneVM.profileOneModel.txtOne}"
                             style="@style/txtRobotoromanmedium14" tools:text="@string/lbl_01"/>
                     </LinearLayout>
                 </LinearLayout>

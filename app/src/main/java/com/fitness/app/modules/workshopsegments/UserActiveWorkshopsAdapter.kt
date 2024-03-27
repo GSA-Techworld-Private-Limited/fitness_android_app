@@ -13,10 +13,12 @@ import com.fitness.app.modules.sstoneeight.ui.UserActiveDetailsAdapter
 import com.fitness.app.modules.warmup.ui.WarmUpActivity
 import com.fitness.app.responses.PlanDays
 import com.fitness.app.responses.WorkShopSegmentResponses
+import java.util.Calendar
 
 class UserActiveWorkshopsAdapter(
     var list: List<WorkShopSegmentResponses>,
     private  var sessionManager: SessionManager
+
 ) : RecyclerView.Adapter<UserActiveWorkshopsAdapter.RowFeedsOneVH>() {
 
 
@@ -34,6 +36,10 @@ class UserActiveWorkshopsAdapter(
         return  list.size
     }
 
+    fun updateData(filteredWorkshops: List<WorkShopSegmentResponses>) {
+        list = filteredWorkshops
+        notifyDataSetChanged()
+    }
 
 
 
@@ -56,7 +62,6 @@ class UserActiveWorkshopsAdapter(
             useractiveplan.text=postModel.taskName
 
 
-
             useractiveplan.setOnClickListener {
                 val i=Intent(itemView.context,PlansOneActivity::class.java)
                 i.putExtra("id",postModel.id)
@@ -69,6 +74,7 @@ class UserActiveWorkshopsAdapter(
                 itemView.context.startActivity(i)
 
             }
+
 
         }
     }

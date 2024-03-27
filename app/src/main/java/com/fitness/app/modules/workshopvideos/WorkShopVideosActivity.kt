@@ -55,4 +55,5 @@ class WorkShopVideosActivity : AppCompatActivity() {
             }
         })
     }
+
 }

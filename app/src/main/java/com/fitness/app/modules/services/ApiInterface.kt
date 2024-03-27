@@ -7,6 +7,8 @@ import com.fitness.app.modules.responses.ProfileResponse
 import com.fitness.app.modules.responses.SignUpResponse
 import com.fitness.app.modules.responses.TestimonalVideoResponses
 import com.fitness.app.modules.responses.TrainingVideoResponse
+import com.fitness.app.modules.responses.UserDetailResponses
+import com.fitness.app.modules.responses.UserDetails
 import com.fitness.app.responses.ActivePlanResponses
 import com.fitness.app.responses.ActivePlanWorkshopResponses
 import com.fitness.app.responses.AthletePlanResponses
@@ -208,6 +210,14 @@ interface ApiInterface {
         @Header("Authorization")token: String,
         @Path("id")id:Int
     ):Call<List<WorkshopVideoResponses>>
+
+
+
+    @GET("api/update-user-details/")
+    fun userDetails(
+        @Header("Authorization")token: String
+    ):Call<UserDetailResponses>
+
 
     @POST("api/logout/")
     fun logout(@Header("Authorization")fetchAuthToken: String?):Call<LogoutResponse>

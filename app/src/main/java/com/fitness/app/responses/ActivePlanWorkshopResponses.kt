@@ -12,5 +12,7 @@ data class ActivePlanWorkshopResponses(
     @SerializedName("no_of_workshop_days" ) var noOfWorkshopDays : Int?    = null,
     @SerializedName("workshop_status"     ) var workshopStatus   : String? = null,
     @SerializedName("created_at"          ) var createdAt        : String? = null,
-    @SerializedName("updated_at"          ) var updatedAt        : String? = null
+    @SerializedName("updated_at"          ) var updatedAt        : String? = null,
+    @SerializedName("total_workshop_days") var totalworkshops    : Int? = null,
+    @SerializedName("total_completed_workshops")var completedWorkshops : Int? = null
 )
