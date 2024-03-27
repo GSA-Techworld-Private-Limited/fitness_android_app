@@ -55,6 +55,8 @@ class workshopadapter(
             button.setOnClickListener {
                 val i = Intent(itemView.context, WorkshopsSegment::class.java)
                 i.putExtra("id",postModel.workshopId)
+                i.putExtra("totalTasks",postModel.totalworkshops)
+                i.putExtra("completedTasks",postModel.completedWorkshops)
                 itemView.context.startActivity(i)
             }
 

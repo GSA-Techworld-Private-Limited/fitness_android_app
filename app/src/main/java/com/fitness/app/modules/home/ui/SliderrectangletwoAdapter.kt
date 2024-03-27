@@ -14,6 +14,7 @@ class SliderrectangletwoAdapter(
   val dataList: ArrayList<ImageSliderSliderrectangletwoModel>,
   val mIsInfinite: Boolean
 ) : LoopingPagerAdapter<ImageSliderSliderrectangletwoModel>(dataList, mIsInfinite) {
+
   override fun bindView(
     binding: ViewBinding,
     listPosition: Int,
@@ -36,4 +37,5 @@ class SliderrectangletwoAdapter(
     )
     return itemBinding
   }
+
 }

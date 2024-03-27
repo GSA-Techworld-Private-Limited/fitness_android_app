@@ -53,6 +53,11 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
     }
     binding.appSettingsVM = viewModel
 
+
+    binding.btnArrowright.setOnClickListener {
+      this.finish()
+    }
+
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 

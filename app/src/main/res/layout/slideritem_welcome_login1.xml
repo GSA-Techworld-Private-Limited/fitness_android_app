@@ -6,20 +6,25 @@
     <LinearLayout android:gravity="start"
         android:id="@+id/linearColumnrectangle451"
         android:layout_height="match_parent"
-        android:layout_marginEnd="996dp"
+        android:layout_marginEnd="96dp"
         android:layout_marginStart="@dimen/_11pxh"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylecornerRadius_2">
+        android:orientation="vertical"
+        style="@style/groupStylecornerRadius_2">
+
         <ImageView android:id="@+id/imageRectangle451"
             android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/_186pxh"
             android:layout_marginEnd="@dimen/_1pxh"
             android:layout_marginStart="@dimen/_1pxh"
             android:layout_width="@dimen/_186pxh"
-            android:scaleType="fitXY" cornerRadius="@{@dimen/_30pxh}"
+            android:scaleType="fitXY"
+            cornerRadius="@{@dimen/_30pxh}"
             imageUrl="@{imageSliderSliderrectangle451Model.imageRectangle451}"
             placeHolder="@{@drawable/image_not_found}"
-            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle451"/>
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_rectangle451"/>
+
         <TextView android:ellipsize="end"
             android:id="@+id/txtTitleCounter"
             android:layout_gravity="center_horizontal"
@@ -30,12 +35,16 @@
             android:layout_width="wrap_content"
             android:singleLine="true"
             android:text="@{imageSliderSliderrectangle451Model.txtTitleCounter}"
-            style="@style/txtRobotoromanregular16_2" tools:text="@string/lbl_title_1"/>
-        <TextView android:id="@+id/txtDescription"
+            style="@style/txtRobotoromanregular16_2"
+            tools:text="@string/lbl_title_1"/>
+
+        <TextView
+            android:id="@+id/txtDescription"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_11pxv"
             android:layout_width="match_parent"
             android:text="@{imageSliderSliderrectangle451Model.txtDescription}"
-            style="@style/txtRobotoromanregular12" tools:text="@string/msg_sorem_ipsum_dol"/>
+            style="@style/txtRobotoromanregular12"
+            tools:text="@string/msg_sorem_ipsum_dol"/>
     </LinearLayout>
 </layout>

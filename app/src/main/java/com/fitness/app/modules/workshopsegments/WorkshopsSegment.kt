@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +28,14 @@ import java.util.Locale
 class WorkshopsSegment : AppCompatActivity() {
 
     private lateinit var sessionManager:SessionManager
+
+
+    private lateinit var selectedDate:Calendar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         sessionManager= SessionManager(this)
+
+        val id=intent.getStringExtra("id")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workshops_segment)
@@ -51,7 +58,7 @@ class WorkshopsSegment : AppCompatActivity() {
         val formattedToday = dateFormat.format(today.time)
 
         // Parse the formatted string back to a Calendar object
-        val selectedDate = Calendar.getInstance()
+         selectedDate = Calendar.getInstance()
         selectedDate.time = dateFormat.parse(formattedToday)!!
 
 
@@ -62,8 +69,14 @@ class WorkshopsSegment : AppCompatActivity() {
             override fun onDateSelected(date: Calendar, position: Int) {
                 // Format selected date in "yyyy-MM-dd" format
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val formattedSelectedDate = dateFormat.format(date.time)
+                val formattedSelectedDate = dateFormat.format(selectedDate)
+                // Update selectedDate
+                selectedDate.time = dateFormat.parse(formattedSelectedDate)!!
 
+
+
+
+                getUserActivePlans(id!!)
             }
         }
 
@@ -73,10 +86,25 @@ class WorkshopsSegment : AppCompatActivity() {
             startActivity(i)
         }
 
+        val backImage:ImageView=findViewById(R.id.btnArrowright)
+        backImage.setOnClickListener {
+            this.finish()
+        }
 
-        val id=intent.getStringExtra("id")
 
-        getUserActivePlans(id!!)
+
+        val totalTasks=intent.getIntExtra("totalTasks",-1)
+        val completedTasks=intent.getIntExtra("completedTasks",-1)
+
+
+        val total:TextView=findViewById(R.id.txtThree2)
+        total.text=totalTasks.toString()
+
+        val complete:TextView=findViewById(R.id.txtThree)
+        complete.text=completedTasks.toString()
+
+
+
 
     }
 
@@ -94,20 +122,26 @@ class WorkshopsSegment : AppCompatActivity() {
             ) {
                 val customerResponse=response.body()
 
-                if(customerResponse!=null){
+                // Filter workshops based on selected date
+                val filteredWorkshops = customerResponse!!.filter { workshop ->
+                    // Convert workshop.taskDate (String) to Calendar object
+                    val taskDateCalendar = Calendar.getInstance()
+                    taskDateCalendar.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(workshop.taskDate!!)!!
 
-                    val recyclerfordetails:RecyclerView=findViewById(R.id.recyclerfordetails)
-
-
-                   recyclerfordetails.apply {
-                        val studioadapter= UserActiveWorkshopsAdapter(customerResponse,sessionManager)
-                        layoutManager= LinearLayoutManager(this@WorkshopsSegment, LinearLayoutManager.VERTICAL,true)
-                       recyclerfordetails.adapter=studioadapter
-                    }
-
-
-
+                    // Compare the converted date with selectedDate
+                    taskDateCalendar == selectedDate
                 }
+
+
+                val recyclerfordetails:RecyclerView=findViewById(R.id.recyclerfordetails)
+
+                recyclerfordetails.apply {
+                    val studioadapter= UserActiveWorkshopsAdapter(filteredWorkshops,sessionManager)
+                    layoutManager= LinearLayoutManager(this@WorkshopsSegment, LinearLayoutManager.VERTICAL,true)
+                   recyclerfordetails.adapter=studioadapter
+                }
+
+
             }
 
             override fun onFailure(call: Call<List<WorkShopSegmentResponses>>, t: Throwable) {
@@ -116,4 +150,8 @@ class WorkshopsSegment : AppCompatActivity() {
             }
         })
     }
+
+
+
+
 }
