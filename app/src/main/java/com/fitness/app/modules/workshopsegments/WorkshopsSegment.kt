@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
@@ -58,27 +59,24 @@ class WorkshopsSegment : AppCompatActivity() {
         val formattedToday = dateFormat.format(today.time)
 
         // Parse the formatted string back to a Calendar object
-         selectedDate = Calendar.getInstance()
+        selectedDate = Calendar.getInstance()
         selectedDate.time = dateFormat.parse(formattedToday)!!
-
-
-        horizontalCalendar.selectDate(selectedDate, true)
 
 
         horizontalCalendar.calendarListener = object : HorizontalCalendarListener() {
             override fun onDateSelected(date: Calendar, position: Int) {
                 // Format selected date in "yyyy-MM-dd" format
+                selectedDate=date
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val formattedSelectedDate = dateFormat.format(selectedDate)
-                // Update selectedDate
-                selectedDate.time = dateFormat.parse(formattedSelectedDate)!!
+                val formattedSelectedDate = dateFormat.format(date.time)
 
-
-
+                Log.d("selctedDate",formattedSelectedDate)
 
                 getUserActivePlans(id!!)
             }
         }
+
+
 
         val workshopvideosButton:TextView=findViewById(R.id.etGroup100000212)
         workshopvideosButton.setOnClickListener {
@@ -122,24 +120,38 @@ class WorkshopsSegment : AppCompatActivity() {
             ) {
                 val customerResponse=response.body()
 
-                // Filter workshops based on selected date
-                val filteredWorkshops = customerResponse!!.filter { workshop ->
-                    // Convert workshop.taskDate (String) to Calendar object
-                    val taskDateCalendar = Calendar.getInstance()
-                    taskDateCalendar.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(workshop.taskDate!!)!!
+                if (customerResponse != null) {
+                    val filteredWorkshops = customerResponse.filter { workshop ->
+                        // Convert workshop.taskDate (String) to Calendar object
+                        val taskDateCalendar = Calendar.getInstance()
+                        taskDateCalendar.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(workshop.taskDate!!)!!
 
-                    // Compare the converted date with selectedDate
-                    taskDateCalendar == selectedDate
+                        // Compare the converted date with selectedDate
+                        taskDateCalendar == selectedDate
+                    }
+
+                    if (filteredWorkshops.isNotEmpty()) {
+                        // Workshops are available, proceed with displaying them
+                        val recyclerfordetails: RecyclerView = findViewById(R.id.recyclerfordetails)
+                        recyclerfordetails.apply {
+                            val studioadapter = UserActiveWorkshopsAdapter(filteredWorkshops, sessionManager)
+                            layoutManager = LinearLayoutManager(this@WorkshopsSegment, LinearLayoutManager.VERTICAL, true)
+                            adapter = studioadapter
+                        }
+                    } else {
+                        // No workshops available for the selected date
+                        // You can show a message to the user indicating no workshops are available
+                        Log.d("WorkshopsSegment", "No workshops available for the selected date")
+                        // You can also display a message to the user, for example:
+                        Toast.makeText(this@WorkshopsSegment, "No workshops available for the selected date", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // customerResponse is null, show message indicating no workshops available
+                    Log.e("WorkshopsSegment", "No workshops available (customerResponse is null)")
+                    // You can also display a message to the user, for example:
+                     Toast.makeText(this@WorkshopsSegment, "No workshops available", Toast.LENGTH_SHORT).show()
                 }
 
-
-                val recyclerfordetails:RecyclerView=findViewById(R.id.recyclerfordetails)
-
-                recyclerfordetails.apply {
-                    val studioadapter= UserActiveWorkshopsAdapter(filteredWorkshops,sessionManager)
-                    layoutManager= LinearLayoutManager(this@WorkshopsSegment, LinearLayoutManager.VERTICAL,true)
-                   recyclerfordetails.adapter=studioadapter
-                }
 
 
             }
