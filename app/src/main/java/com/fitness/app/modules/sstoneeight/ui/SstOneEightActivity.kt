@@ -40,6 +40,8 @@ class SstOneEightActivity :
   private lateinit var sessionManager:SessionManager
 
   private var customerResponse: UserActivePlanDetailResponses? = null
+
+  private lateinit var selectedDate:Calendar
   override fun onInitialized(): Unit {
 
     sessionManager= SessionManager(this)
@@ -52,7 +54,7 @@ class SstOneEightActivity :
     Log.d("totalcount",totalcount.toInt().toString())
     val completedcount=intent.getIntExtra("plancount",-1)
 
-    getUserActivePlans(planid!!)
+    //getUserActivePlans(planid!!)
 
     binding.txtThree2.text=totalcount.toInt().toString()
     binding.txtThree.text=completedcount.toInt().toString()
@@ -74,18 +76,24 @@ class SstOneEightActivity :
     val formattedToday = dateFormat.format(today.time)
 
     // Parse the formatted string back to a Calendar object
-    val selectedDate = Calendar.getInstance()
+     selectedDate = Calendar.getInstance()
     selectedDate.time = dateFormat.parse(formattedToday)!!
 
 
-    horizontalCalendar.selectDate(selectedDate, true)
+
+
 
 
     horizontalCalendar.calendarListener = object : HorizontalCalendarListener() {
       override fun onDateSelected(date: Calendar, position: Int) {
         // Format selected date in "yyyy-MM-dd" format
+        selectedDate=date
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val formattedSelectedDate = dateFormat.format(date.time)
+
+        Log.d("selctedDate",formattedSelectedDate)
+
+       getUserActivePlans(planid!!)
 
       }
     }
@@ -144,10 +152,17 @@ class SstOneEightActivity :
 
         if(customerResponse!=null){
 
+          val filteredWorkshops = customerResponse!!.planDays.filter { workshop ->
+            // Convert workshop.taskDate (String) to Calendar object
+            val taskDateCalendar = Calendar.getInstance()
+            taskDateCalendar.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(workshop.taskDate!!)!!
 
+            // Compare the converted date with selectedDate
+            taskDateCalendar == selectedDate
+          }
 
           binding.recyclerfordetails.apply {
-            val studioadapter= UserActiveDetailsAdapter(customerResponse!!.planDays,sessionManager)
+            val studioadapter= UserActiveDetailsAdapter(filteredWorkshops,sessionManager)
             layoutManager= LinearLayoutManager(this@SstOneEightActivity, LinearLayoutManager.VERTICAL,true)
             binding.recyclerfordetails.adapter=studioadapter
           }

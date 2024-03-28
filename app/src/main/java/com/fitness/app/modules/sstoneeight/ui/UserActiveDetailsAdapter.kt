@@ -19,7 +19,7 @@ import com.fitness.app.responses.PlanDays
 
 
 class UserActiveDetailsAdapter(
-    var list: ArrayList<PlanDays>,
+    var list: List<PlanDays>,
     private  var sessionManager: SessionManager
 ) : RecyclerView.Adapter<UserActiveDetailsAdapter.RowFeedsOneVH>() {
 
