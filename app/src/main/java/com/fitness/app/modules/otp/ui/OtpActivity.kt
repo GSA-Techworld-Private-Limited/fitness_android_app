@@ -31,6 +31,8 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
 
   private lateinit var apiService: ApiInterface
   private lateinit var sessionManager: SessionManager
+
+  private var mobile:String=""
   override fun onInitialized(): Unit {
 
 
@@ -38,6 +40,10 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
     apiService=ApiManager.apiInterface
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.otpVM = viewModel
+
+
+
+    mobile=intent.getStringExtra("mobile")!!
 
     setupOtpEditTextListeners()
 
@@ -115,6 +121,7 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
 
   private fun navigateToNextPage() {
     val i= FormOneActivity.getIntent(this,null)
+    i.putExtra("mobile",mobile)
     startActivity(i)
   }
   override fun setUpClicks(): Unit {

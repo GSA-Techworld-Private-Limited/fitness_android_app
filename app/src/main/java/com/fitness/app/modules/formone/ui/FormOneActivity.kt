@@ -2,6 +2,7 @@ package com.fitness.app.modules.formone.ui
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,6 +10,7 @@ import android.provider.OpenableColumns
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
@@ -67,6 +69,9 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
   private lateinit var spinnerUserType: Spinner
   private val userTypes = arrayOf("Athlete", "Trainer", "User")
 
+
+  private var mobile:String=""
+
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.formOneVM = viewModel
@@ -74,11 +79,28 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
     sessionManager= SessionManager(this)
     apiService=ApiManager.apiInterface
 
+
+    mobile=intent.getStringExtra("mobile")!!
+
+    binding.etMobileNo1.setText(mobile)
+
     spinnerUserType = binding.userType1
 
     spinnerUserType.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, userTypes)
 
-    usertye=spinnerUserType.selectedItem.toString()
+
+    spinnerUserType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+      override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        // Update usertye when an item is selected
+        usertye = userTypes[position]
+      }
+
+      override fun onNothingSelected(parent: AdapterView<*>?) {
+        // Handle case when nothing is selected (optional)
+      }
+    }
+
+   // usertye=spinnerUserType.selectedItem.toString()
 
     profileImageView=binding.profilePic
 
@@ -87,29 +109,74 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
 
   override fun setUpClicks(): Unit {
     binding.btnContinue.setOnClickListener {
-      name=binding.etName.text.toString().trim()
-      mobileNumber=binding.etMobileNo1.text.toString().trim()
-      email=binding.etEmailID.text.toString().trim()
-      dob=binding.etDDMMYYYY.text.toString().trim()
-      state=binding.etState.text.toString().trim()
-      city=binding.etCity.text.toString().trim()
-      zipcode=binding.etZIPCode.text.toString().trim()
+      name = binding.etName.text.toString().trim()
+      mobileNumber = binding.etMobileNo1.text.toString().trim()
+      email = binding.etEmailID.text.toString().trim()
+      dob = binding.etDDMMYYYY.text.toString().trim()
+      state = binding.etState.text.toString().trim()
+      city = binding.etCity.text.toString().trim()
+      zipcode = binding.etZIPCode.text.toString().trim()
+
+      var allFieldsValid = true // Flag to track if all fields are valid
 
       if (TextUtils.isEmpty(name) || TextUtils.isEmpty(mobileNumber) || TextUtils.isEmpty(city) || TextUtils.isEmpty(state) || TextUtils.isEmpty(email) || TextUtils.isEmpty(usertye) || TextUtils.isEmpty(dob)) {
-        // Display an error message
+        // Display an error message and set flag to false
         Toast.makeText(this, "Please fill in all the required fields!!", Toast.LENGTH_SHORT).show()
-      } else {
-        signUp() // Call signUp function if all fields are filled
-        binding.progressbar.visibility= View.VISIBLE
+        allFieldsValid = false
       }
 
+      if (!email.endsWith("@gmail.com")) {
+        // Display an error message and set flag to false
+        binding.etEmailID.error = "Invalid email format. Please enter a valid Gmail address."
+        allFieldsValid = false
+      }
+
+      if (state.isEmpty()) {
+        // Display an error message and set flag to false
+        binding.etState.error = "Please enter your state"
+        allFieldsValid = false
+      }
+
+      if (city.isEmpty()) {
+        // Display an error message and set flag to false
+        binding.etCity.error = "Please enter your city"
+        allFieldsValid = false
+      }
+
+      if (name.length > 10) {
+        // Name exceeds 10 characters, set error message and background color to red, and set flag to false
+        binding.etName.error = "Name should not exceed 10 characters"
+        binding.textInputLayName.isErrorEnabled = true
+        //binding.textInputLayName.boxBackgroundColor = Color.RED
+        allFieldsValid = false
+      }
+
+      if(zipcode.length < 6){
+        binding.etZIPCode.error="Please Enter Valid ZIP Code"
+       // binding.textInputLayZIPCode.isErrorEnabled=true
+        allFieldsValid=false
+      }
+
+
+      if (allFieldsValid) {
+        // Reset error messages and background colors if all validations pass
+        binding.etName.error = null
+        binding.etEmailID.error = null
+        binding.etState.error = null
+        binding.etCity.error = null
+        binding.etZIPCode.error=null
+        binding.textInputLayName.isErrorEnabled = false
+        signUp() // Call signUp function if all fields are filled
+        binding.progressbar.visibility = View.VISIBLE
+      }
     }
 
-    binding.ivEdit.setOnClickListener{
+    binding.ivEdit.setOnClickListener {
       val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
       startActivityForResult(gallery, pickImage)
     }
   }
+
 
 
   private  fun signUp(
@@ -134,6 +201,12 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
     map.put("user_type",usertype)
 
 
+    if (!::file.isInitialized) {
+      // File is not initialized, handle the error
+      Toast.makeText(this@FormOneActivity, "Please select a profile picture", Toast.LENGTH_SHORT).show()
+      binding.progressbar.visibility=View.GONE
+      return
+    }
 
     // Parsing any Media type file
     //file= imageUri.path?.let { File(it) }!!
@@ -259,24 +332,6 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
   fun createPartFromString(stringData: String): RequestBody {
     return stringData.toRequestBody("text/plain".toMediaTypeOrNull())
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   companion object {
     const val TAG: String = "FORM_ONE_ACTIVITY"
     fun getIntent(context: Context, bundle: Bundle?): Intent {

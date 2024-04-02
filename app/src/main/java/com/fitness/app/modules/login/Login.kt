@@ -25,6 +25,8 @@ import com.fitness.app.modules.welcomelogin.data.model.ImageSliderSliderrectangl
 import com.fitness.app.modules.welcomelogin.data.viewmodel.WelcomeLoginVM
 import com.fitness.app.modules.welcomelogin.ui.Sliderrectangle451Adapter
 import com.fitness.app.modules.welcomelogin.ui.WelcomeLoginActivity
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -84,12 +86,11 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
         binding.btnArrowright.setOnClickListener{
             val  mobile=binding.txtEnterYourNumb.text.toString()
 
-            if (mobile.isNotEmpty()) {
+            if (isValidMobileNumber(mobile)) {
                 getOtp(mobile)
-                binding.progressbar.visibility=View.VISIBLE
+                binding.progressbar.visibility = View.VISIBLE
             } else {
-                Toast.makeText(this, "Please enter a mobile number", Toast.LENGTH_SHORT).show()
-                binding.progressbar.visibility=View.GONE
+                Toast.makeText(this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -98,6 +99,11 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
     }
 
 
+
+    private fun isValidMobileNumber(mobile: String): Boolean {
+        // Check if the mobile number is exactly 10 digits and contains only digits
+        return mobile.length == 10 && mobile.all { it.isDigit() }
+    }
 
     private fun getOtp(mobile: String){
         val call=apiService.getOtp(mobile)
@@ -118,8 +124,23 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
                         binding.progressbar.visibility=View.GONE
                     }
                 } else {
-                    Toast.makeText(this@Login, "Login failed", Toast.LENGTH_SHORT).show()
-                    binding.progressbar.visibility=View.GONE
+                    if (response.code() == 404 || response.code() == 429) {
+                        binding.progressbar.visibility= View.GONE
+                        val errorBody = response.errorBody()?.string()
+                        if (!errorBody.isNullOrEmpty()) {
+                            try {
+                                val jsonObject = JSONObject(errorBody)
+                                val errorMessage = jsonObject.getString("error")
+                                Toast.makeText(this@Login, errorMessage, Toast.LENGTH_SHORT).show()
+                            } catch (e: JSONException) {
+                                Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this@Login, "Login failed", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
