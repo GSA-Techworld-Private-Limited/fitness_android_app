@@ -33,8 +33,9 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_width="match_parent"
                 android:singleLine="true"
-                android:text="@{otpVM.otpModel.txtEntertheOTPs}"
-                style="@style/txtRalewayromansemibold12" tools:text="@string/msg_enter_the_otp_s"/>
+                android:text="@string/msg_enter_the_otp_s"
+                style="@style/txtRalewayromansemibold121"
+                tools:text="@string/msg_enter_the_otp_s"/>
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearRowrectangleone"
                 android:layout_height="wrap_content"

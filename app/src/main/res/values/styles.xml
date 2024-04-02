@@ -36,6 +36,12 @@
         <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
+    <style name="txtRalewayromansemibold121">
+        <item name="android:textSize">@dimen/_10pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
     <style name="txtRalewayromansemibold16">
         <item name="android:textSize">@dimen/_16pxh</item>
         <item name="android:textColor">@color/gray_602</item>

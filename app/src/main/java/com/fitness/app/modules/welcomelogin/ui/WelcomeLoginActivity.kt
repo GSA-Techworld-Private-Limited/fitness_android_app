@@ -21,6 +21,8 @@ import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.welcomelogin.`data`.model.ImageSliderSliderrectangle451Model
 import com.fitness.app.modules.welcomelogin.`data`.viewmodel.WelcomeLoginVM
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,6 +48,7 @@ class WelcomeLoginActivity :
 
   private val viewModel: WelcomeLoginVM by viewModels<WelcomeLoginVM>()
 
+  private var mobile:String=""
   override fun onInitialized(): Unit {
     apiService=ApiManager.apiInterface
 
@@ -63,19 +66,24 @@ class WelcomeLoginActivity :
     binding.welcomeLoginVM = viewModel
 
     binding.btnArrowright.setOnClickListener{
-      val  mobile=binding.txtEnterYourNumb.text.toString()
+        mobile=binding.txtEnterYourNumb.text.toString()
 
-      if (mobile.isNotEmpty()) {
+      if (isValidMobileNumber(mobile)) {
         getSignUpOtp(mobile)
         binding.progressBar.visibility=View.VISIBLE
       } else {
-        Toast.makeText(this, "Please enter a mobile number", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show()
       }
     }
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 
+
+  private fun isValidMobileNumber(mobile: String): Boolean {
+    // Check if the mobile number is exactly 10 digits and contains only digits
+    return mobile.length == 10 && mobile.all { it.isDigit() }
+  }
   override fun onPause(): Unit {
     binding.imageSliderSliderrectangle451.pauseAutoScroll()
     super.onPause()
@@ -92,25 +100,42 @@ class WelcomeLoginActivity :
     call.enqueue(object : Callback<SignUpResponse> {
       override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
         if (response.isSuccessful) {
-          binding.progressBar.visibility=View.GONE
+          binding.progressBar.visibility = View.GONE
           val loginResponse = response.body()
-          if (loginResponse != null) {
-            Toast.makeText(this@WelcomeLoginActivity, "Otp Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+          if (loginResponse!=null &&response.code()==208) {
+            Toast.makeText(this@WelcomeLoginActivity, "User Already Registered", Toast.LENGTH_LONG).show()
+          } else {
+            // OTP received, proceed with navigation
+            if (loginResponse != null) {
+              Toast.makeText(this@WelcomeLoginActivity, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+            }
             navigateToNextPage()
             finishAffinity()
-          } else {
-            if(response.code()==429){
-              Toast.makeText(this@WelcomeLoginActivity,"Too Many Requests For OTP Wait For 2 Minutes and Try",Toast.LENGTH_SHORT).show()
-              binding.progressBar.visibility=View.GONE
-            }
-            Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
-            binding.progressBar.visibility=View.GONE
           }
         } else {
-          Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
-          binding.progressBar.visibility=View.GONE
+          // Handle different error codes
+          if (response.code() == 429) {
+            binding.progressBar.visibility = View.GONE
+            val errorBody = response.errorBody()?.string()
+            if (!errorBody.isNullOrEmpty()) {
+              try {
+                val jsonObject = JSONObject(errorBody)
+                val errorMessage = jsonObject.getString("error")
+                Toast.makeText(this@WelcomeLoginActivity, errorMessage, Toast.LENGTH_SHORT).show()
+              } catch (e: JSONException) {
+                Toast.makeText(this@WelcomeLoginActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
+              }
+            } else {
+              Toast.makeText(this@WelcomeLoginActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
+            }
+          } else {
+            Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+          }
         }
       }
+
+
+
       override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
         Toast.makeText(this@WelcomeLoginActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
         binding.progressBar.visibility=View.GONE
@@ -121,6 +146,7 @@ class WelcomeLoginActivity :
 
   private fun navigateToNextPage() {
     val i=Intent(this, OtpActivity::class.java)
+    i.putExtra("mobile",mobile)
     startActivity(i)
   }
   override fun setUpClicks(): Unit {

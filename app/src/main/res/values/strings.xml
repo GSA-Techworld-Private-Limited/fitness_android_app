@@ -24,7 +24,7 @@
     <string name="msg_already_have_an1">Don\'t have an account? </string>
     <string name="lbl_dob2">DOB</string>
     <string name="lbl_state">State</string>
-    <string name="msg_enter_the_otp_s">Enter the OTP sent to your registered mobile number.</string>
+    <string name="msg_enter_the_otp_s">Enter the OTP sent to your registered mobile \n number.</string>
     <string name="lbl_dd_mm_yyyy">DD/MM/YYYY</string>
     <string name="msg_lorem_ipsum_dol3">Lorem ipsum dolor sit amet, consectetur adipis cing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class apt ent taciti soc iosqu ad litora torquent per conubia nostra, per inceptos him enae os. Curabitur tempus urna at turpis condim entu m lobortis. Ut commodo efficit ur neque.ac aliquet odio mattis. Class apt ent taciti soc iosqu ad litora torquent per conubia nostra, per inceptos him enae os. Curabitur tempus urna at turpis condim entu m lobortis. Ut commodo efficit ur neque.</string>
     <string name="msg_lorem_ipsum_dol2">Lorem ipsum dolor sit amet, consectetur adipis cing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class apt ent taciti soc iosqu ad litora torquent per conubia nostra, per inceptos him enae os. Curabitur tempus urna at turpis condim entu m lobortis. Ut commodo efficit ur neque.</string>
