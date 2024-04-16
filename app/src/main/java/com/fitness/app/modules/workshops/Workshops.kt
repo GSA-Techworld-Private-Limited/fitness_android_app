@@ -4,7 +4,9 @@ import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
@@ -20,12 +22,18 @@ import retrofit2.Response
 class Workshops : AppCompatActivity() {
 
     private lateinit var sessionManager: SessionManager
+    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         sessionManager=SessionManager(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workshops)
 
         getUserActivePlansWorkshops()
+
+        progressBar=findViewById(R.id.progressBar)
+
+        progressBar.visibility= View.VISIBLE
+
 
 
         val backImage:ImageView=findViewById(R.id.btnArrowright)
@@ -45,6 +53,7 @@ class Workshops : AppCompatActivity() {
                 call: Call<List<ActivePlanWorkshopResponses>>,
                 response: Response<List<ActivePlanWorkshopResponses>>
             ) {
+                progressBar.visibility= View.GONE
                 val customerResponse=response.body()
 
                 val recyclerview:RecyclerView=findViewById(R.id.recyclerforplans)
@@ -62,6 +71,7 @@ class Workshops : AppCompatActivity() {
             override fun onFailure(call: Call<List<ActivePlanWorkshopResponses>>, t: Throwable) {
                 t.printStackTrace()
                 Log.e("error", t.message.toString())
+                progressBar.visibility= View.GONE
             }
         })
     }

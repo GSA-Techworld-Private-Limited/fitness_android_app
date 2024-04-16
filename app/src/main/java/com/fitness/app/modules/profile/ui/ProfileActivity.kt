@@ -48,7 +48,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
   var email:String=""
 
   private val pickImage = 100
-  private lateinit var imageUri: Uri
+  private var imageUri: Uri? = null
   private lateinit var nimage: ImageView
   private lateinit var updatedimagefile: File
 
@@ -83,14 +83,18 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
 
 
     binding.btnUpdate.setOnClickListener {
+      name = binding.etAshishB.text.toString()
+      mobileNumner = binding.etMobileNo.text.toString()
+      email = binding.etMobileNo1.text.toString()
 
-      name=binding.etAshishB.text.toString()
-      mobileNumner=binding.etMobileNo.text.toString()
-      email=binding.etMobileNo1.text.toString()
-
-      updateData()
-      binding.progressBar.visibility=View.VISIBLE
+      if (imageUri == null) {
+        Toast.makeText(this@ProfileActivity, "Please select a profile picture", Toast.LENGTH_SHORT).show()
+      } else {
+        updateData()
+        binding.progressBar.visibility = View.VISIBLE
+      }
     }
+
 
     binding.profileVM = viewModel
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
@@ -141,7 +145,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
     val email=createPartFromString(email)
 
 
-    updatedimagefile=getFile(this,imageUri)
+    updatedimagefile=getFile(this,imageUri!!)
 
     map.put("name",name)
     map.put("phone_number",mobileNumner)
@@ -226,7 +230,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
     if (resultCode == RESULT_OK && requestCode == pickImage) {
       imageUri = data?.data!!
       nimage.setImageURI(imageUri)
-      val selectedFileURI: Uri =imageUri
+      val selectedFileURI: Uri =imageUri!!
       updatedimagefile = getFile(this, selectedFileURI)
       //file = File(selectedFileURI.path.toString())
       Log.d("", "File : " + updatedimagefile.name)

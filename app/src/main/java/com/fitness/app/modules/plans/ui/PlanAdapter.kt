@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
@@ -50,13 +51,26 @@ class PlanAdapter(
 
         val activeplanName:TextView=itemView.findViewById(R.id.txtSSTOne)
 
+        val progressBar: ProgressBar =itemView.findViewById(R.id.progressBarGroup100000199)
+
 
 
         fun bindView(postModel: ActivaPlan){
             activeplanName.text=postModel.planName
-            val totalcount=postModel.planDaysCount
-            val completedaycount=postModel.completedPlanDaysCount
+            val totalcount=postModel.planDaysCount?:0
+            val completedaycount=postModel.completedPlanDaysCount?:0
 
+
+
+            // Calculate percentage of completed tasks
+            val progressPercentage = if (totalcount != 0) {
+                (completedaycount.toDouble() / totalcount.toDouble()) * 100
+            } else {
+                0.0 // If totalTasks is 0, progress percentage is 0
+            }
+
+            // Set the progress of the progress bar
+            progressBar.progress = progressPercentage.toInt()
 
             button.setOnClickListener {
                 val i = Intent(itemView.context, SstOneEightActivity::class.java)

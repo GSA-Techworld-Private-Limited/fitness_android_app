@@ -124,7 +124,17 @@
                 android:layout_width="wrap_content"
                 android:singleLine="true"
                 android:text="@{feedsOneVM.feedsOneModel.txtLatestArticlesOne}"
-                style="@style/txtRalewayromansemibold16_2" tools:text="@string/lbl_latest_articles"/>
+                style="@style/txtRalewayromansemibold16_2"
+                tools:text="@string/lbl_latest_articles"/>
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="center_horizontal"
                 android:id="@+id/recyclerFeedsOne"

@@ -136,6 +136,13 @@
                 </LinearLayout>
             </LinearLayout>
 
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <LinearLayout
                 android:gravity="start"
                 android:layout_marginStart="@dimen/_22pxh"

@@ -44,6 +44,14 @@
                     style="@style/txtRobotoromanlight8" tools:text="@string/msg_dorem_ipsum_dol"/>
             </LinearLayout>
 
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="start"
                 android:id="@+id/recyclerSubscriptions"

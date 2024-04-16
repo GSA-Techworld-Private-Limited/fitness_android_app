@@ -30,6 +30,8 @@ class FeedsOneFragment : BaseFragment<FragmentFeedsOneBinding>(R.layout.fragment
     sessionManager=SessionManager(requireActivity())
 
     getArticles()
+
+    binding.progressBar.visibility=View.VISIBLE
 //    val feedsOneAdapter = FeedsOneAdapter(viewModel.feedsOneList.value?:mutableListOf())
 //    binding.recyclerFeedsOne.adapter = feedsOneAdapter
 //    feedsOneAdapter.setOnItemClickListener(
@@ -60,6 +62,7 @@ class FeedsOneFragment : BaseFragment<FragmentFeedsOneBinding>(R.layout.fragment
         call: Call<ArticleResponse>,
         response: Response<ArticleResponse>
       ) {
+        binding.progressBar.visibility=View.GONE
         val customerResponse=response.body()
 
         if(customerResponse!=null){
@@ -74,6 +77,7 @@ class FeedsOneFragment : BaseFragment<FragmentFeedsOneBinding>(R.layout.fragment
       override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
       }
     })
   }

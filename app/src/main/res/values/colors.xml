@@ -78,4 +78,13 @@
   <color name="bluegray_903">#343434</color>
   <color name="bluegray_902">#333333</color>
   <color name="bluegray_901">#2f2e2e</color>
+
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorAccent">#FF4081</color>
+
+
+  <color name="colorPrimaryDarkMode">#3F51B5</color>
+  <color name="colorPrimaryDarkMode1">#303F9F</color>
+  <color name="colorAccentDarkMode">#FF4081</color>
 </resources>

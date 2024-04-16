@@ -2,6 +2,7 @@ package com.fitness.app.modules.feeds1.ui
 
 import Feeds1Adapter
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
@@ -29,6 +30,8 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
 
     getTrainingVideos()
 
+    binding.progressBar.visibility=View.VISIBLE
+
     binding.feeds1VM = viewModel
   }
 
@@ -46,6 +49,7 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
         call: Call<TrainingVideoResponse>,
         response: Response<TrainingVideoResponse>
       ) {
+        binding.progressBar.visibility=View.GONE
         val customerResponse=response.body()
 
         if(customerResponse!=null){
@@ -60,6 +64,7 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
       override fun onFailure(call: Call<TrainingVideoResponse>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
       }
     })
   }

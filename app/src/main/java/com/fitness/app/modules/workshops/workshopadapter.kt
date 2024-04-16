@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,8 @@ class workshopadapter(
 
 
 
+
+
     inner class RowFeedsOneVH(
         view: View
     ) : RecyclerView.ViewHolder(view) {
@@ -45,21 +48,34 @@ class workshopadapter(
 
         val activeplanName: TextView =itemView.findViewById(R.id.txtSSTOne)
 
+        val progressBar:ProgressBar=itemView.findViewById(R.id.progressBarGroup100000199)
 
 
-        fun bindView(postModel: ActivePlanWorkshopResponses){
-            activeplanName.text=postModel.workshopName
 
+        fun bindView(postModel: ActivePlanWorkshopResponses) {
+            activeplanName.text = postModel.workshopName
 
+            val totalTasks = postModel.totalworkshops ?: 0 // If totalTasks is null, default to 0
+            val completedTasks = postModel.completedWorkshops ?: 0 // If completedTasks is null, default to 0
+
+            // Calculate percentage of completed tasks
+            val progressPercentage = if (totalTasks != 0) {
+                (completedTasks.toDouble() / totalTasks.toDouble()) * 100
+            } else {
+                0.0 // If totalTasks is 0, progress percentage is 0
+            }
+
+            // Set the progress of the progress bar
+            progressBar.progress = progressPercentage.toInt()
 
             button.setOnClickListener {
                 val i = Intent(itemView.context, WorkshopsSegment::class.java)
-                i.putExtra("id",postModel.workshopId)
-                i.putExtra("totalTasks",postModel.totalworkshops)
-                i.putExtra("completedTasks",postModel.completedWorkshops)
+                i.putExtra("id", postModel.workshopId)
+                i.putExtra("totalTasks", totalTasks)
+                i.putExtra("completedTasks", completedTasks)
                 itemView.context.startActivity(i)
             }
-
         }
+
     }
 }
