@@ -3,6 +3,7 @@ package com.fitness.app.modules.profileone.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -43,6 +44,8 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
 
     getUserDetails()
 
+    binding.progressBar.visibility=View.VISIBLE
+
 //    val image=sessionManager.fetchProfile()
 //    val file= ApiManager.getImageUrl(image!!)
 //    Glide.with(requireActivity())
@@ -67,6 +70,7 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
         call: Call<UserDetailResponses>,
         response: Response<UserDetailResponses>
       ) {
+        binding.progressBar.visibility=View.GONE
         val userDetails=response.body()!!
 
         binding.txtAshishB.text=userDetails.data!!.name
@@ -86,6 +90,7 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
       override fun onFailure(call: Call<UserDetailResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
       }
     })
   }

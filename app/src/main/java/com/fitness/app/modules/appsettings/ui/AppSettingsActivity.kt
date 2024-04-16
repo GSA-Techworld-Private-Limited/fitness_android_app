@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.fitness.app.R
@@ -38,19 +39,32 @@ class AppSettingsActivity : BaseActivity<ActivityAppSettingsBinding>(R.layout.ac
     apiService=ApiManager.apiInterface
     sessionManager=SessionManager(this)
 
-    val appSettingsAdapter =
-    AppSettingsAdapter(viewModel.appSettingsList.value?:mutableListOf())
-    binding.recyclerAppSettings.adapter = appSettingsAdapter
-    appSettingsAdapter.setOnItemClickListener(
-    object : AppSettingsAdapter.OnItemClickListener {
-      override fun onItemClick(view:View, position:Int, item : AppSettingsRowModel) {
-        onClickRecyclerAppSettings(view, position, item)
+//    val appSettingsAdapter =
+//    AppSettingsAdapter(viewModel.appSettingsList.value?:mutableListOf())
+//    binding.recyclerAppSettings.adapter = appSettingsAdapter
+//    appSettingsAdapter.setOnItemClickListener(
+//    object : AppSettingsAdapter.OnItemClickListener {
+//      override fun onItemClick(view:View, position:Int, item : AppSettingsRowModel) {
+//        onClickRecyclerAppSettings(view, position, item)
+//      }
+//    }
+//    )
+
+
+    binding.switchMaterialUser.setOnCheckedChangeListener { _, isChecked ->
+      if (isChecked) {
+        // Enable dark mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+      } else {
+        // Disable dark mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
       }
     }
-    )
-    viewModel.appSettingsList.observe(this) {
-      appSettingsAdapter.updateData(it)
-    }
+
+//
+//    viewModel.appSettingsList.observe(this) {
+//      appSettingsAdapter.updateData(it)
+//    }
     binding.appSettingsVM = viewModel
 
 

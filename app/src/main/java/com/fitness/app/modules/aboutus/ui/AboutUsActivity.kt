@@ -3,6 +3,7 @@ package com.fitness.app.modules.aboutus.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.fitness.app.R
@@ -18,6 +19,11 @@ class AboutUsActivity : BaseActivity<ActivityAboutUsBinding>(R.layout.activity_a
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.aboutUsVM = viewModel
+
+    val backImage: ImageView =findViewById(R.id.btnArrowright)
+    backImage.setOnClickListener {
+      this.finish()
+    }
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }

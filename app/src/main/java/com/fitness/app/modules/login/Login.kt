@@ -110,39 +110,43 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
-
                     val loginResponse = response.body()
-
-
                     if (loginResponse != null) {
-                        Toast.makeText(this@Login, "Otp Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@Login, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
                         navigateToNextPage()
                         finishAffinity()
-                    } else if(response.code()==429){
-
-                        Toast.makeText(this@Login, "Otp Attempt Limit Exceeded Wait For 2 Min!!", Toast.LENGTH_SHORT).show()
-                        binding.progressbar.visibility=View.GONE
                     }
                 } else {
-                    if (response.code() == 404 || response.code() == 429) {
-                        binding.progressbar.visibility= View.GONE
-                        val errorBody = response.errorBody()?.string()
-                        if (!errorBody.isNullOrEmpty()) {
-                            try {
-                                val jsonObject = JSONObject(errorBody)
-                                val errorMessage = jsonObject.getString("error")
-                                Toast.makeText(this@Login, errorMessage, Toast.LENGTH_SHORT).show()
-                            } catch (e: JSONException) {
-                                Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
-                            }
-                        } else {
-                            Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                    when (response.code()) {
+                        429 -> {
+                            Toast.makeText(this@Login, "OTP Attempt Limit Exceeded. Please Wait For 2 Minutes.", Toast.LENGTH_SHORT).show()
+                            binding.progressbar.visibility = View.GONE
                         }
-                    } else {
-                        Toast.makeText(this@Login, "Login failed", Toast.LENGTH_SHORT).show()
+                        404 -> {
+                            Toast.makeText(this@Login, "Server Not Found", Toast.LENGTH_SHORT).show()
+                            binding.progressbar.visibility = View.GONE
+                        }
+                        else -> {
+                            binding.progressbar.visibility = View.GONE
+                            val errorBody = response.errorBody()?.string()
+                            if (!errorBody.isNullOrEmpty()) {
+                                try {
+                                    val jsonObject = JSONObject(errorBody)
+                                    val errorMessage = jsonObject.getString("error")
+                                    Toast.makeText(this@Login, errorMessage, Toast.LENGTH_SHORT).show()
+                                } catch (e: JSONException) {
+                                    Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                                    binding.progressbar.visibility = View.GONE
+                                }
+                            } else {
+                                Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                                binding.progressbar.visibility = View.GONE
+                            }
+                        }
                     }
                 }
             }
+
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(this@Login, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
                 binding.progressbar.visibility=View.GONE

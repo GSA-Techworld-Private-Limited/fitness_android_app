@@ -72,9 +72,11 @@ class FeedsOneAdapter(
         postModel.articleProfile
 
       val imgUrl = file?.let { ApiManager.getImageUrl(it) }
+
       Picasso.get()
         .load(file)
         .into(articleImage)
+
     }
   }
 }

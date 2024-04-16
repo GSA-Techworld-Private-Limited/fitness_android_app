@@ -662,4 +662,21 @@
         <!-- Add any other customizations you need -->
     </style>
 
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Light mode settings -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Other light mode attributes -->
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <!-- Dark mode settings -->
+        <item name="colorPrimary">@color/colorPrimaryDarkMode</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkMode</item>
+        <item name="colorAccent">@color/colorAccentDarkMode</item>
+        <!-- Other dark mode attributes -->
+    </style>
+
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,12 +24,15 @@ import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.testimonals.Testimonals
 import com.fitness.app.modules.workshop.WorkShopAdapter
+import com.fitness.app.modules.workshops.workshopadapter
 import com.fitness.app.modules.workshopvideos.WorkshopVideoAdapter
+import com.fitness.app.responses.ActivePlanWorkshopResponses
 import com.fitness.app.responses.TestimonalsResponses
 import com.fitness.app.responses.WorkShopResponses
 import com.fitness.app.responses.WorkshopVideoResponses
 import retrofit2.Call
 import retrofit2.Response
+import java.util.Calendar
 import kotlin.String
 import kotlin.Unit
 
@@ -84,12 +88,32 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
 
 
+    val calendar = Calendar.getInstance()
+    val timeOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+
+    val greeting = when (timeOfDay) {
+      in 0..5 -> "Good Night,"
+      in 6..11 -> "Good Morning,"
+      in 12..18 -> "Good Afternoon,"
+      in 19..23 -> "Good Evening,"
+      else -> "Hello"
+    }
+
+
+
+    binding.txtWelcomebackS.text = greeting
+
+
 
     getUserDetails()
 
-  getWorkshops()
+    getWorkshops()
 
     getTestimonals()
+
+    getUserActivePlansWorkshops()
+
+    binding.progressBar.visibility= View.VISIBLE
 
     val sliderrectangletwoAdapter =
       SliderrectangletwoAdapter(imageSliderSliderrectangletwoItems, true)
@@ -116,6 +140,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         call: Call<UserDetailResponses>,
         response: Response<UserDetailResponses>
       ) {
+        binding.progressBar.visibility= View.GONE
         val userDetails=response.body()
 
         binding.txtWelcomebackS1.text=userDetails!!.data!!.name
@@ -133,9 +158,47 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
       override fun onFailure(call: Call<UserDetailResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility= View.GONE
       }
     })
   }
+
+  fun getUserActivePlansWorkshops() {
+    val serviceGenerator = ApiManager.apiInterface
+    val accessToken = sessionManager.fetchAuthToken()
+    val authorization = "Token $accessToken"
+    val call = serviceGenerator.getuseractiveworkshops(authorization)
+
+    call.enqueue(object : retrofit2.Callback<List<ActivePlanWorkshopResponses>> {
+      override fun onResponse(
+        call: Call<List<ActivePlanWorkshopResponses>>,
+        response: Response<List<ActivePlanWorkshopResponses>>
+      ) {
+        binding.progressBar.visibility = View.GONE
+        val customerResponse = response.body()
+
+        val recyclerview: RecyclerView = binding.recyclerforplans
+
+        if (customerResponse != null && customerResponse.isNotEmpty()) {
+          val firstResponse = customerResponse.first()
+          val studioadapter = workshopadapter(listOf( firstResponse))
+          recyclerview.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, true)
+          recyclerview.adapter = studioadapter
+        } else {
+          // Handle null or empty response case
+          // For example, display a message or hide the RecyclerView
+        }
+      }
+
+      override fun onFailure(call: Call<List<ActivePlanWorkshopResponses>>, t: Throwable) {
+        t.printStackTrace()
+        Log.e("error", t.message.toString())
+        binding.progressBar.visibility = View.GONE
+      }
+    })
+  }
+
+
 
   fun getWorkshops() {
     // Check if fragment is attached to activity
@@ -151,6 +214,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         call: Call<WorkShopResponses>,
         response: Response<WorkShopResponses>
       ) {
+        binding.progressBar.visibility= View.GONE
         val customerResponse = response.body()
 
         if (customerResponse != null) {
@@ -166,6 +230,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
       override fun onFailure(call: Call<WorkShopResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility= View.GONE
       }
     })
   }
@@ -182,6 +247,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         call: Call<TestimonalsResponses>,
         response: Response<TestimonalsResponses>
       ) {
+        binding.progressBar.visibility= View.GONE
         val customerResponse=response.body()
 
         if(customerResponse!=null){
@@ -199,6 +265,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
       override fun onFailure(call: Call<TestimonalsResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility= View.GONE
       }
     })
   }

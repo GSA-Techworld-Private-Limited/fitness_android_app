@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,13 +34,21 @@ class WorkshopsSegment : AppCompatActivity() {
 
     private lateinit var selectedDate:Calendar
 
+
+    private lateinit var progressBar: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         sessionManager= SessionManager(this)
+
+
+
 
         val id=intent.getStringExtra("id")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workshops_segment)
+
+        progressBar=findViewById(R.id.progressBar)
 
         val calendview: View? =findViewById<HorizontalCalendarView>(R.id.calendarView1)
 
@@ -73,6 +82,8 @@ class WorkshopsSegment : AppCompatActivity() {
                 Log.d("selctedDate",formattedSelectedDate)
 
                 getUserActivePlans(id!!)
+
+                progressBar.visibility=View.VISIBLE
             }
         }
 
@@ -118,6 +129,7 @@ class WorkshopsSegment : AppCompatActivity() {
                 call: Call<List<WorkShopSegmentResponses>>,
                 response: Response<List<WorkShopSegmentResponses>>
             ) {
+                progressBar.visibility=View.GONE
                 val customerResponse=response.body()
 
                 if (customerResponse != null) {
@@ -144,12 +156,14 @@ class WorkshopsSegment : AppCompatActivity() {
                         Log.d("WorkshopsSegment", "No workshops available for the selected date")
                         // You can also display a message to the user, for example:
                         Toast.makeText(this@WorkshopsSegment, "No workshops available for the selected date", Toast.LENGTH_SHORT).show()
+                        progressBar.visibility=View.GONE
                     }
                 } else {
                     // customerResponse is null, show message indicating no workshops available
                     Log.e("WorkshopsSegment", "No workshops available (customerResponse is null)")
                     // You can also display a message to the user, for example:
                      Toast.makeText(this@WorkshopsSegment, "No workshops available", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility=View.GONE
                 }
 
 
@@ -159,6 +173,7 @@ class WorkshopsSegment : AppCompatActivity() {
             override fun onFailure(call: Call<List<WorkShopSegmentResponses>>, t: Throwable) {
                 t.printStackTrace()
                 Log.e("error", t.message.toString())
+                progressBar.visibility=View.GONE
             }
         })
     }

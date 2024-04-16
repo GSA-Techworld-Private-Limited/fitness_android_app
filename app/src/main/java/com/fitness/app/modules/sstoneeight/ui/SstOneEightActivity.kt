@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -95,6 +96,8 @@ class SstOneEightActivity :
 
        getUserActivePlans(planid!!)
 
+        binding.progressBar.visibility=View.VISIBLE
+
       }
     }
 
@@ -148,6 +151,7 @@ class SstOneEightActivity :
         call: Call<UserActivePlanDetailResponses>,
         response: Response<UserActivePlanDetailResponses>
       ) {
+        binding.progressBar.visibility=View.GONE
          customerResponse=response.body()
 
         if(customerResponse!=null){
@@ -175,6 +179,7 @@ class SstOneEightActivity :
       override fun onFailure(call: Call<UserActivePlanDetailResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
       }
     })
   }

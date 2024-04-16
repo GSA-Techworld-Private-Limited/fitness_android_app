@@ -142,9 +142,9 @@
                     android:layout_marginStart="@dimen/_19pxh"
                     android:layout_width="wrap_content"
                     android:lineSpacingExtra="@dimen/_6pxh"
-                    android:text="Ashish"
+                    android:text=""
                     style="@style/txt"
-                    tools:text="Ashish"/>
+                    tools:text=""/>
                     <TextView android:id="@+id/txtWelcomebackS11"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_1pxh"
@@ -156,6 +156,15 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
             <TextView android:ellipsize="end"
                 android:id="@+id/txtProgressTracke"
                 android:layout_height="wrap_content"
@@ -165,87 +174,94 @@
                 android:layout_width="wrap_content"
                 android:singleLine="true"
                 android:text="@{homeVM.homeModel.txtProgressTracke}"
-                style="@style/txtRalewayromansemibold16" tools:text="@string/msg_progress_tracke"/>
-            <LinearLayout android:gravity="start"
-                android:id="@+id/linearColumnsstone"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_19pxh"
-                android:layout_marginStart="@dimen/_19pxh"
-                android:layout_marginTop="@dimen/_14pxv"
+                style="@style/txtRalewayromansemibold16"
+                tools:text="@string/msg_progress_tracke"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerforplans"
                 android:layout_width="match_parent"
-                android:orientation="vertical" style="@style/groupStylecornerRadius">
-                <LinearLayout android:id="@+id/linearRowsstone"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_17pxh"
-                    android:layout_marginStart="@dimen/_17pxh"
-                    android:layout_marginTop="@dimen/_17pxv"
-                    android:layout_width="match_parent" android:orientation="horizontal">
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtSSTOne"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_width="wrap_content"
-                        android:singleLine="true"
-                        android:text="@{homeVM.homeModel.txtSSTOne}"
-                        style="@style/txtRobotoromansemibold20"
-                        tools:text="@string/lbl_sst_1"/>
-                    <LinearLayout
-                        android:layout_gravity="end"
-                        android:gravity="end"
-                        android:id="@+id/linearRowdaycounter"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_19pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_weight="0.59"
-                        android:layout_width="0dp"
-                        android:orientation="horizontal">
-                        <TextView android:ellipsize="end"
-                            android:id="@+id/txtDayCounter"
-                            android:layout_gravity="end"
-                            android:gravity="end"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/_1pxv"
-                            android:layout_marginTop="@dimen/_4pxv"
-                            android:layout_width="wrap_content"
-                            android:singleLine="true"
-                            android:text="@{homeVM.homeModel.txtDayCounter}"
-                            style="@style/txtRobotoromansemibold16" tools:text="@string/lbl_day_1"/>
-                        <ImageButton
-                            android:background="@drawable/rectangle_bg_white_a700_radius_12_445"
-                            android:id="@+id/btnArrowright"
-                            android:layout_height="@dimen/_24pxh"
-                            android:layout_marginStart="@dimen/_9pxh"
-                            android:layout_width="@dimen/_24pxh"
-                            android:paddingHorizontal="@dimen/_7pxh"
-                            android:paddingVertical="@dimen/_7pxv"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/image_arrow_left"
-                            tools:ignore="ContentDescription"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <ProgressBar android:gravity="center_horizontal"
-                    android:id="@+id/progressBarGroup100000199"
-                    android:indeterminate="false"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_17pxh"
-                    android:layout_marginStart="@dimen/_17pxh"
-                    android:layout_marginTop="@dimen/_32pxv"
-                    android:layout_width="match_parent"
-                    android:max="100" android:minHeight="@dimen/_12pxv"
-                    android:progress="34"
-                    android:progressDrawable="@drawable/layer_list_bg_gray_603_radius_6_16" style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
-                <TextView android:ellipsize="end"
-                    android:id="@+id/txt210Completed"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_marginEnd="@dimen/_17pxh"
-                    android:layout_marginStart="@dimen/_17pxh"
-                    android:layout_marginTop="@dimen/_8pxv"
-                    android:layout_width="wrap_content"
-                    android:singleLine="true"
-                    android:text="@{homeVM.homeModel.txt210Completed}"
-                    style="@style/txtRobotoromansemibold12" tools:text="@string/lbl_2_10_completed"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"/>
+
+<!--            <LinearLayout android:gravity="start"-->
+<!--                android:id="@+id/linearColumnsstone"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="@dimen/_19pxh"-->
+<!--                android:layout_marginStart="@dimen/_19pxh"-->
+<!--                android:layout_marginTop="@dimen/_14pxv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:orientation="vertical" style="@style/groupStylecornerRadius">-->
+<!--                <LinearLayout android:id="@+id/linearRowsstone"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="@dimen/_17pxh"-->
+<!--                    android:layout_marginStart="@dimen/_17pxh"-->
+<!--                    android:layout_marginTop="@dimen/_17pxv"-->
+<!--                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                    <TextView android:ellipsize="end"-->
+<!--                        android:id="@+id/txtSSTOne"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="@dimen/_1pxv"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:text="@{homeVM.homeModel.txtSSTOne}"-->
+<!--                        style="@style/txtRobotoromansemibold20"-->
+<!--                        tools:text="@string/lbl_sst_1"/>-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_gravity="end"-->
+<!--                        android:gravity="end"-->
+<!--                        android:id="@+id/linearRowdaycounter"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_19pxh"-->
+<!--                        android:layout_marginTop="@dimen/_1pxv"-->
+<!--                        android:layout_weight="0.59"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:orientation="horizontal">-->
+<!--                        <TextView android:ellipsize="end"-->
+<!--                            android:id="@+id/txtDayCounter"-->
+<!--                            android:layout_gravity="end"-->
+<!--                            android:gravity="end"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="@dimen/_1pxv"-->
+<!--                            android:layout_marginTop="@dimen/_4pxv"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:text="@{homeVM.homeModel.txtDayCounter}"-->
+<!--                            style="@style/txtRobotoromansemibold16" tools:text="@string/lbl_day_1"/>-->
+<!--                        <ImageButton-->
+<!--                            android:background="@drawable/rectangle_bg_white_a700_radius_12_445"-->
+<!--                            android:id="@+id/btnArrowright"-->
+<!--                            android:layout_height="@dimen/_24pxh"-->
+<!--                            android:layout_marginStart="@dimen/_9pxh"-->
+<!--                            android:layout_width="@dimen/_24pxh"-->
+<!--                            android:paddingHorizontal="@dimen/_7pxh"-->
+<!--                            android:paddingVertical="@dimen/_7pxv"-->
+<!--                            android:scaleType="fitCenter"-->
+<!--                            android:src="@drawable/image_arrow_left"-->
+<!--                            tools:ignore="ContentDescription"/>-->
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
+<!--                <ProgressBar android:gravity="center_horizontal"-->
+<!--                    android:id="@+id/progressBarGroup100000199"-->
+<!--                    android:indeterminate="false"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="@dimen/_17pxh"-->
+<!--                    android:layout_marginStart="@dimen/_17pxh"-->
+<!--                    android:layout_marginTop="@dimen/_32pxv"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:max="100" android:minHeight="@dimen/_12pxv"-->
+<!--                    android:progress="34"-->
+<!--                    android:progressDrawable="@drawable/layer_list_bg_gray_603_radius_6_16" style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>-->
+<!--                <TextView android:ellipsize="end"-->
+<!--                    android:id="@+id/txt210Completed"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="@dimen/_8pxv"-->
+<!--                    android:layout_marginEnd="@dimen/_17pxh"-->
+<!--                    android:layout_marginStart="@dimen/_17pxh"-->
+<!--                    android:layout_marginTop="@dimen/_8pxv"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:text="@{homeVM.homeModel.txt210Completed}"-->
+<!--                    style="@style/txtRobotoromansemibold12" tools:text="@string/lbl_2_10_completed"/>-->
+<!--            </LinearLayout>-->
 
 
             <HorizontalScrollView

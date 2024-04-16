@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +41,8 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
 
     getUserActivePlans()
 
+    binding.progressBar.visibility=View.VISIBLE
+
 
     binding.plansVM = viewModel
 
@@ -64,6 +67,7 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
         call: Call<ActivePlanResponses>,
         response: Response<ActivePlanResponses>
       ) {
+        binding.progressBar.visibility=View.GONE
         val customerResponse=response.body()
 
         if(customerResponse!=null && customerResponse.status=="success"){
@@ -80,6 +84,7 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
       override fun onFailure(call: Call<ActivePlanResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
       }
     })
   }

@@ -102,7 +102,7 @@ class WelcomeLoginActivity :
         if (response.isSuccessful) {
           binding.progressBar.visibility = View.GONE
           val loginResponse = response.body()
-          if (loginResponse!=null &&response.code()==208) {
+          if (loginResponse != null && response.code() == 208) {
             Toast.makeText(this@WelcomeLoginActivity, "User Already Registered", Toast.LENGTH_LONG).show()
           } else {
             // OTP received, proceed with navigation
@@ -114,25 +114,36 @@ class WelcomeLoginActivity :
           }
         } else {
           // Handle different error codes
-          if (response.code() == 429) {
-            binding.progressBar.visibility = View.GONE
-            val errorBody = response.errorBody()?.string()
-            if (!errorBody.isNullOrEmpty()) {
-              try {
-                val jsonObject = JSONObject(errorBody)
-                val errorMessage = jsonObject.getString("error")
-                Toast.makeText(this@WelcomeLoginActivity, errorMessage, Toast.LENGTH_SHORT).show()
-              } catch (e: JSONException) {
+          when (response.code()) {
+            429 -> {
+              binding.progressBar.visibility = View.GONE
+              val errorBody = response.errorBody()?.string()
+              if (!errorBody.isNullOrEmpty()) {
+                try {
+                  val jsonObject = JSONObject(errorBody)
+                  val errorMessage = jsonObject.getString("error")
+                  Toast.makeText(this@WelcomeLoginActivity, errorMessage, Toast.LENGTH_SHORT).show()
+                } catch (e: JSONException) {
+                  Toast.makeText(this@WelcomeLoginActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
+                  binding.progressBar.visibility = View.GONE
+                }
+              } else {
                 Toast.makeText(this@WelcomeLoginActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.GONE
               }
-            } else {
-              Toast.makeText(this@WelcomeLoginActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
             }
-          } else {
-            Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+            404 -> {
+              Toast.makeText(this@WelcomeLoginActivity, "Server Not Found", Toast.LENGTH_SHORT).show()
+              binding.progressBar.visibility = View.GONE
+            }
+            else -> {
+              Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+              binding.progressBar.visibility = View.GONE
+            }
           }
         }
       }
+
 
 
 

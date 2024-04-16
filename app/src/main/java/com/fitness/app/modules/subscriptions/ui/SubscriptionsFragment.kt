@@ -30,6 +30,8 @@ class SubscriptionsFragment :
       viewModel.navArguments = arguments
 
     getAthletePlans()
+
+    binding.progressBar.visibility=View.VISIBLE
     binding.subscriptionsVM = viewModel
   }
 
@@ -45,6 +47,7 @@ class SubscriptionsFragment :
         call: Call<List<AthletePlanResponses>>,
         response: Response<List<AthletePlanResponses>>
       ) {
+        binding.progressBar.visibility=View.GONE
         val customerResponse=response.body()
 
         if(customerResponse!=null){
@@ -59,6 +62,7 @@ class SubscriptionsFragment :
       override fun onFailure(call: Call<List<AthletePlanResponses>>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
+        binding.progressBar.visibility=View.GONE
       }
     })
   }
