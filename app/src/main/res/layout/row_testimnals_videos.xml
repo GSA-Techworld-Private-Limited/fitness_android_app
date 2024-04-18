@@ -17,6 +17,22 @@
             android:layout_height="170dp"
             android:background="@android:color/transparent"/>
 
+
+        <ImageView
+            android:id="@+id/orientationIcon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/_4pxv"
+            android:layout_marginEnd="@dimen/_4pxh"
+            android:src="@drawable/video_expand"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/gray_800"
+            android:padding="@dimen/_8pxh"
+            android:contentDescription="Orientation Icon"
+            />
+
     </androidx.cardview.widget.CardView>
 
     <TextView
