@@ -1,17 +1,20 @@
 package com.fitness.app.modules.feedstwo.ui
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
 import com.fitness.app.modules.responses.TestimonalVideos
 import com.fitness.app.modules.responses.TrainingVideos
 import com.fitness.app.modules.services.ApiManager
+import com.fitness.app.modules.videoplayeractivity.VideoPlayerActivity
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
@@ -57,6 +60,7 @@ class FeedTwoAdapter(
         //val exoplayerView: PlayerView = view.findViewById(R.id.playerview)!!
         val videoName: TextView = view.findViewById(R.id.videoName)
         private val exoPlayerView: SimpleExoPlayerView = view.findViewById(R.id.playerview)
+        private val orientationIcon: ImageView =view.findViewById(R.id.orientationIcon)
 
         init {
             // Initialize ExoPlayer in the constructor
@@ -126,6 +130,12 @@ class FeedTwoAdapter(
                     // we are setting our exoplayer
                     // when it is ready.
                     exoPlayer.playWhenReady = false
+                }
+
+                orientationIcon.setOnClickListener {
+                    val i= Intent(itemView.context, VideoPlayerActivity::class.java)
+                    i.putExtra("videoUrl",postModel.testimonalVideo)
+                    itemView.context.startActivity(i)
                 }
             }
         }

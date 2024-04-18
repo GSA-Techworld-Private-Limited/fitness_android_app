@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/linearColumnlogo"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:orientation="vertical">
 
@@ -64,6 +64,7 @@
                 android:text="@{welcomeLoginVM.welcomeLoginModel.txtStartYourFitn}"
                 style="@style/txtRalewayromanmedium12"
                 tools:text="@string/msg_start_your_fitn"/>
+
             <FrameLayout
                 android:id="@+id/frameStackeye"
                 android:layout_height="@dimen/_46pxv"

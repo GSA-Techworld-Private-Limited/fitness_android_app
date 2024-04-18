@@ -1,15 +1,19 @@
 import android.content.Context
+import android.content.Intent
+import android.media.Image
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.model.stream.HttpUriLoader
 import com.fitness.app.R
 import com.fitness.app.modules.responses.TrainingVideos
+import com.fitness.app.modules.videoplayeractivity.VideoPlayerActivity
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -56,6 +60,7 @@ class Feeds1Adapter(
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val exoPlayerView: SimpleExoPlayerView = view.findViewById(R.id.playerview)
         private val videoName: TextView = view.findViewById(R.id.videoName)
+        private val orientationIcon:ImageView=view.findViewById(R.id.orientationIcon)
 
         init {
             // Initialize ExoPlayer in the constructor
@@ -127,6 +132,12 @@ class Feeds1Adapter(
                     // when it is ready.
                     exoPlayer.playWhenReady = false
                 }
+
+                orientationIcon.setOnClickListener {
+                    val i=Intent(itemView.context,VideoPlayerActivity::class.java)
+                    i.putExtra("videoUrl",postModel.uploadVideo)
+                    itemView.context.startActivity(i)
+                }
             }
         }
 
@@ -135,6 +146,8 @@ class Feeds1Adapter(
                 // Start playing the video when the ExoPlayer view is clicked
                 exoPlayer.playWhenReady = true
             }
+
+
         }
 
         private fun isNetworkAvailable(context: Context): Boolean {
