@@ -16,6 +16,7 @@ import com.fitness.app.databinding.ActivityOtpBinding
 import com.fitness.app.databinding.ActivityOtploginBinding
 import com.fitness.app.modules.formone.ui.FormOneActivity
 import com.fitness.app.modules.homecontainer.ui.HomeContainerActivity
+import com.fitness.app.modules.login.Login
 import com.fitness.app.modules.otp.data.viewmodel.OtpVM
 import com.fitness.app.modules.responses.LoginResponse
 import com.fitness.app.modules.responses.SignUpResponse
@@ -129,5 +130,11 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
 //            val destIntent = HomeContainerActivity.getIntent(this, null)
 //            startActivity(destIntent)
 //        }
+
+
+        binding.backImage.setOnClickListener {
+            val i=Intent(this,Login::class.java)
+            startActivity(i)
+        }
     }
 }
