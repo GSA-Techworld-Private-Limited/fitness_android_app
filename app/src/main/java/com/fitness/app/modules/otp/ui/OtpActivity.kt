@@ -19,6 +19,7 @@ import com.fitness.app.modules.responses.SignUpResponse
 import com.fitness.app.modules.services.ApiInterface
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
+import com.fitness.app.modules.welcomelogin.ui.WelcomeLoginActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,6 +65,11 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
       }
     }
 
+
+    binding.backImage.setOnClickListener {
+      val i=Intent(this,WelcomeLoginActivity::class.java)
+      startActivity(i)
+    }
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 

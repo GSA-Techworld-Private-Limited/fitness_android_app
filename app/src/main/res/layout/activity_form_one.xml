@@ -145,33 +145,36 @@
                 android:textSize="@dimen/_16pxh"
                 android:textStyle="normal" tools:text="@string/lbl_email_id"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:hint="@string/lbl_dob2"
-            android:id="@+id/textInputLayDDMMYYYY"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_9pxv"
-            android:layout_width="match_parent"
-            android:paddingBottom="@dimen/_15pxv"
-            android:paddingEnd="@dimen/_30pxh"
-            android:paddingStart="@dimen/_28pxh"
-            android:paddingTop="@dimen/_15pxv"
-            android:textColorHint="@color/black_900"
-            style="@style/MyOutlinedBoxStyle">
-            <com.google.android.material.textfield.TextInputEditText
-                android:ellipsize="end"
-                android:fontFamily="@font/raleway"
-                android:id="@+id/etDDMMYYYY" android:inputType="text"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:letterSpacing="0.03" android:singleLine="true"
-                android:textColor="@color/gray_500"
-                android:textFontWeight="400"
-                android:textSize="@dimen/_16pxh"
-                android:textStyle="normal" tools:text="@string/lbl_dd_mm_yyyy"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayDDMMYYYY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:paddingStart="@dimen/_28pxh"
+                    android:paddingTop="@dimen/_15pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingBottom="@dimen/_15pxv"
+                    style="@style/MyOutlinedBoxStyle"
+                    android:hint="@string/lbl_dob2">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDDMMYYYY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/gray_500"
+                        android:textSize="@dimen/_16pxh"
+                        android:textStyle="normal"
+                        android:letterSpacing="0.03"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/raleway"
+                        tools:text="@string/lbl_dd_mm_yyyy"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
             android:hint="@string/lbl_state"
             android:id="@+id/textInputLayState"
             android:layout_height="wrap_content"
