@@ -103,6 +103,7 @@
                 tools:text="@string/lbl_91"/>
 
             <EditText
+                android:inputType="number"
                 android:ellipsize="end"
                 android:hint="@string/msg_enter_your_numb"
                 android:id="@+id/txtEnterYourNumb"
