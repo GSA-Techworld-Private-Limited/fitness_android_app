@@ -11,6 +11,18 @@
         android:orientation="vertical"
         style="@style/groupStylewhite_A700">
 
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/linear"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/backImage"
             android:layout_width="34dp"
@@ -144,5 +156,9 @@
                     tools:text="@string/lbl_resend_otp"/>
             </LinearLayout>
         </LinearLayout>
+
+        </LinearLayout>
+
+        </ScrollView>
     </LinearLayout>
 </layout>
