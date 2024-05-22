@@ -36,7 +36,7 @@
                 android:layout_height="@dimen/_18pxh"
                 android:layout_marginBottom="@dimen/_15pxv"
                 android:layout_marginEnd="@dimen/_24pxh"
-                android:layout_marginStart="@dimen/_239pxh"
+                android:layout_marginStart="@dimen/_219pxh"
                 android:layout_marginTop="@dimen/_17pxv" android:layout_width="@dimen/_18pxh"/>
         </LinearLayout>
     </FrameLayout>

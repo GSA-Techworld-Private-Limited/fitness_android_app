@@ -46,17 +46,26 @@ class SubscriptionsAdapter(
     val imageview:ImageView=itemView.findViewById(R.id.imageRectangleSixtyOne)
     val buyButton:AppCompatButton=itemView.findViewById(R.id.btnBuyPlan)
 
-    fun bindView(athleteResponse:AthletePlanResponses){
-      val image=athleteResponse.planImage
-      val file=ApiManager.getImageUrl(image!!)
-      Glide.with(itemView.context).load(file).into(imageview)
+    fun bindView(athleteResponse: AthletePlanResponses) {
+      // Check if the image URL is not null
+      val image = athleteResponse.planImage
+      if (!image.isNullOrEmpty()) {
+        // If the image URL is not null, load the image using Glide
+        val file = ApiManager.getImageUrl(image)
+        Glide.with(itemView.context).load(file).into(imageview)
+      } else {
+        // If the image URL is null or empty, you can set a placeholder image or handle it accordingly
+        imageview.setImageResource(R.drawable.empty) // Replace with your placeholder image resource
+      }
 
+      // Set the click listener for the buy button
       buyButton.setOnClickListener {
-        val i=Intent(itemView.context,AthletePlanByID::class.java)
-        i.putExtra("id",athleteResponse.planId)
-        itemView.context.startActivity(i)
+        val intent = Intent(itemView.context, AthletePlanByID::class.java)
+        intent.putExtra("id", athleteResponse.planId)
+        itemView.context.startActivity(intent)
       }
     }
+
 
   }
 }

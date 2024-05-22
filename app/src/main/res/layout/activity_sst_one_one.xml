@@ -18,9 +18,9 @@
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_11pxv"
-                android:layout_marginEnd="@dimen/_161pxh"
+                android:layout_marginEnd="@dimen/_11pxh"
                 android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_60pxv"
+                android:layout_marginTop="@dimen/_30pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <ImageButton
                     android:background="@drawable/rectangle_bg_white_a700_radius_15"
@@ -62,14 +62,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.65"
-                    android:layout_width="0dp" android:singleLine="true"
+                    android:layout_width="wrap_content" android:singleLine="true"
                     android:text="@{sstOneOneVM.sstOneOneModel.txtPlanFees}"
                     style="@style/txtRalewayromanregular16" tools:text="@string/lbl_plan_fees"/>
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtPrice"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_168pxh"
+                    android:layout_marginStart="@dimen/_78pxh"
                     android:layout_weight="0.35"
                     android:layout_width="0dp" android:singleLine="true"
                     android:text="@{sstOneOneVM.sstOneOneModel.txtPrice}"
@@ -86,18 +85,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.77"
-                    android:layout_width="0dp" android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
                     android:text="@{sstOneOneVM.sstOneOneModel.txtPlatformFee}"
                     style="@style/txtRalewayromanregular16" tools:text="@string/lbl_platform_fee"/>
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtPriceOne"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_155pxh"
-                    android:layout_weight="0.23"
-                    android:layout_width="0dp" android:singleLine="true"
+                    android:layout_marginStart="@dimen/_55pxh"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
                     android:text="@{sstOneOneVM.sstOneOneModel.txtPriceOne}"
-                    style="@style/txtNunitomedium16" tools:text="@string/lbl_00"/>
+                    style="@style/txtNunitomedium16"
+                    tools:text="@string/lbl_00"/>
             </LinearLayout>
             <View android:background="@color/gray_501"
                 android:id="@+id/lineLineNineteen"
@@ -117,19 +117,20 @@
                     android:id="@+id/txtPayableAmount"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_3pxv"
-                    android:layout_weight="0.76"
-                    android:layout_width="0dp" android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
                     android:text="@{sstOneOneVM.sstOneOneModel.txtPayableAmount}"
                     style="@style/txtRalewayromanregular16" tools:text="@string/lbl_payable_amount"/>
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtPriceTwo"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
-                    android:layout_marginStart="@dimen/_118pxh"
-                    android:layout_weight="0.24"
-                    android:layout_width="0dp" android:singleLine="true"
-                    android:text="@{sstOneOneVM.sstOneOneModel.txtPriceTwo}"
-                    style="@style/txtNunitomedium16" tools:text="@string/lbl_500"/>
+                    android:layout_marginStart="@dimen/_28pxh"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/lbl_500"
+                    style="@style/txtNunitomedium16"
+                    tools:text="@string/lbl_500"/>
             </LinearLayout>
         </LinearLayout>
         <TextView android:ellipsize="end"
@@ -153,18 +154,24 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            itemSpace="@{@dimen/_16pxh}" tools:itemCount="4" tools:listitem="@layout/row_sst_one_one"/>
+            itemSpace="@{@dimen/_16pxh}"
+            tools:itemCount="1"
+            tools:listitem="@layout/row_sst_one_one"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:ellipsize="end" android:gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
             android:id="@+id/btnPay9000"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_134pxv"
             android:layout_width="match_parent"
+            android:layout_marginTop="90dp"
             android:paddingBottom="@dimen/_21pxv"
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_30pxh"
-            android:paddingTop="@dimen/_21pxv" android:singleLine="true"
-            android:text="@string/lbl_pay_9000"
-            android:textAllCaps="false" style="@style/btnGradient" tools:text="@string/lbl_pay_9000"/>
+            android:paddingTop="@dimen/_21pxv"
+            android:singleLine="true"
+            android:text="500"
+            android:textAllCaps="false"
+            style="@style/btnGradient"
+            tools:text="500"/>
     </LinearLayout>
 </layout>

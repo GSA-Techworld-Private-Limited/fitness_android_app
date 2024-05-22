@@ -27,7 +27,7 @@ class SstoneOneAdapter(
     holder.binding.sstOneOneRowModel = sstOneOneRowModel
   }
 
-  override fun getItemCount(): Int = 4
+  override fun getItemCount(): Int = 1
   // TODO uncomment following line after integration with data source
   // return list.size
 

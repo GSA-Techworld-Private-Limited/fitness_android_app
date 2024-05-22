@@ -53,16 +53,25 @@ class ListrectanglesixtyoneAdapter(
 
 
 
-    fun bindView(posmodel:TrainerPlanResponses){
-      val image=posmodel.planImage
-      val file=ApiManager.getImageUrl(image!!)
-      Glide.with(itemView.context).load(file).into(imageview)
+    fun bindView(posmodel: TrainerPlanResponses) {
+      // Check if the image URL is not null or empty
+      val image = posmodel.planImage
+      if (!image.isNullOrEmpty()) {
+        // If the image URL is not null or empty, load the image using Glide
+        val file = ApiManager.getImageUrl(image)
+        Glide.with(itemView.context).load(file).into(imageview)
+      } else {
+        // If the image URL is null or empty, set a placeholder image
+        imageview.setImageResource(R.drawable.empty) // Replace with your placeholder image resource
+      }
 
-      button.setOnClickListener{
-        val i=Intent(itemView.context,TrainerPlanById::class.java)
-        i.putExtra("id",posmodel.planId)
-        itemView.context.startActivity(i)
+      // Set the click listener for the button
+      button.setOnClickListener {
+        val intent = Intent(itemView.context, TrainerPlanById::class.java)
+        intent.putExtra("id", posmodel.planId)
+        itemView.context.startActivity(intent)
       }
     }
+
   }
 }
