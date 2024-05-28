@@ -59,6 +59,7 @@
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_width="match_parent" android:orientation="vertical">
                 <LinearLayout
+                    android:visibility="gone"
                     android:gravity="end"
                     android:layout_gravity="end"
                     android:id="@+id/linearRowfour"
@@ -91,7 +92,7 @@
                         tools:text="@string/lbl_completed"/>
                 </LinearLayout>
 
-                <androidx.core.widget.NestedScrollView
+                <ScrollView
                     android:layout_gravity="start"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -110,12 +111,13 @@
                         tools:itemCount="4"
                         tools:listitem="@layout/row_workshop_videos"/>
 
-                </androidx.core.widget.NestedScrollView>
+                </ScrollView>
             </LinearLayout>
 
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>
     <androidx.appcompat.widget.AppCompatButton
+        android:visibility="gone"
         android:ellipsize="end" android:gravity="center"
         android:id="@+id/btnCompleteFour"
         android:layout_gravity="bottom|start"

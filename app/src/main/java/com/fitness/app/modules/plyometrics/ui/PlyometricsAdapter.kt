@@ -1,5 +1,6 @@
 package com.fitness.app.modules.plyometrics.ui
 
+import PlyometricsVMNew
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
 import com.fitness.app.databinding.RowPlyometricsBinding
 import com.fitness.app.modules.plyometrics.`data`.model.PlyometricsRowModel
+import com.fitness.app.modules.plyometrics.data.viewmodel.PlyometricsVM
 import com.fitness.app.modules.responses.TrainingVideos
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
@@ -42,6 +44,8 @@ import retrofit2.Call
 import retrofit2.Response
 import kotlin.Int
 import kotlin.collections.List
+
+
 
 class PlyometricsAdapter(
   var list: ArrayList<PlanVideos>,
@@ -161,13 +165,34 @@ class PlyometricsAdapter(
       }
 
 
-      val isComplete=postModel.isCompleted
-      btnComplete.setOnClickListener {
-        val id=postModel.id
 
-        patchUserActiveVideos(id!!,isComplete!!)
-        progressBar.visibility=View.VISIBLE
+
+     // listener.onVideoComplete(postModel.id!!)
+
+
+      val isComplete = postModel.isCompleted
+
+      if (isComplete == true) {
+        btnComplete.text = if (isComplete) "Completed" else "Complete"
+        Toast.makeText(itemView.context, "Completed", Toast.LENGTH_SHORT).show()
+      } else {
+        btnComplete.setOnClickListener {
+          val id = postModel.id
+
+          // Toggle the value of isComplete
+          val updatedIsComplete = !isComplete!!
+
+          // Call patchUserActiveVideos with updated value of isComplete
+          patchUserActiveVideos(id!!, updatedIsComplete)
+
+          progressBar.visibility = View.VISIBLE
+        }
       }
+
+
+
+
+
     }
 
 

@@ -17,7 +17,8 @@ import java.util.Calendar
 
 class UserActiveWorkshopsAdapter(
     var list: List<WorkShopSegmentResponses>,
-    private  var sessionManager: SessionManager
+    private  var sessionManager: SessionManager,
+    private val viewModel: WorkShopVM
 
 ) : RecyclerView.Adapter<UserActiveWorkshopsAdapter.RowFeedsOneVH>() {
 
@@ -63,9 +64,10 @@ class UserActiveWorkshopsAdapter(
 
 
             useractiveplan.setOnClickListener {
+                viewModel.videoCompleteId.value=postModel.id
                 val i=Intent(itemView.context,PlansOneActivity::class.java)
                 i.putExtra("id",postModel.id)
-                sessionManager.saveWorkShopId(postModel.id!!)
+                //sessionManager.saveWorkShopId(postModel.id!!)
                 i.putExtra("taskname",postModel.taskName)
                 i.putExtra("taskDate",postModel.taskDate)
                 i.putExtra("taskDetails",postModel.taskDetails)

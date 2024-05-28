@@ -1,5 +1,6 @@
 package com.fitness.app.modules.sstoneeight.ui
 
+import PlyometricsVMNew
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,8 @@ import com.fitness.app.responses.PlanDays
 
 class UserActiveDetailsAdapter(
     var list: List<PlanDays>,
-    private  var sessionManager: SessionManager
+    private  var sessionManager: SessionManager,
+    private val viewModel: PlyometricsVMNew
 ) : RecyclerView.Adapter<UserActiveDetailsAdapter.RowFeedsOneVH>() {
 
 
@@ -61,7 +63,10 @@ class UserActiveDetailsAdapter(
 
 
 
+
+
             useractiveplan.setOnClickListener {
+                viewModel.videoCompleteId.value=postModel.id
                 val i = Intent(itemView.context, WarmUpActivity::class.java)
                 i.putExtra("description",postModel.taskDetails)
                 i.putExtra("iscompleted",postModel.isCompleted)

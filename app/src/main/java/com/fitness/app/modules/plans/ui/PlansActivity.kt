@@ -80,7 +80,6 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
 
         }
       }
-
       override fun onFailure(call: Call<ActivePlanResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
@@ -88,6 +87,8 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
       }
     })
   }
+
+
   override fun onBackPressed() {
     super.onBackPressed()
     this.finish()

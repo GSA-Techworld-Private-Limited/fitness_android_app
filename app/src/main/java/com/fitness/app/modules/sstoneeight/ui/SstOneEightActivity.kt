@@ -1,5 +1,6 @@
 package com.fitness.app.modules.sstoneeight.ui
 
+import PlyometricsVMNew
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -43,6 +44,10 @@ class SstOneEightActivity :
   private var customerResponse: UserActivePlanDetailResponses? = null
 
   private lateinit var selectedDate:Calendar
+
+  private var idforVideos:Int=0
+
+  private val viewModel1:PlyometricsVMNew by viewModels<PlyometricsVMNew> ()
   override fun onInitialized(): Unit {
 
     sessionManager= SessionManager(this)
@@ -55,6 +60,12 @@ class SstOneEightActivity :
     Log.d("totalcount",totalcount.toInt().toString())
     val completedcount=intent.getIntExtra("plancount",-1)
 
+
+    viewModel1.videoCompleteId.observe(this) { id ->
+      if (id != null) {
+        idforVideos=id
+      }
+    }
     //getUserActivePlans(planid!!)
 
     binding.txtThree2.text=totalcount.toInt().toString()
@@ -76,6 +87,8 @@ class SstOneEightActivity :
     val today = Calendar.getInstance()
     val formattedToday = dateFormat.format(today.time)
 
+
+    getUserActivePlans(planid!!)
     // Parse the formatted string back to a Calendar object
      selectedDate = Calendar.getInstance()
     selectedDate.time = dateFormat.parse(formattedToday)!!
@@ -94,7 +107,7 @@ class SstOneEightActivity :
 
         Log.d("selctedDate",formattedSelectedDate)
 
-       getUserActivePlans(planid!!)
+       getUserActivePlans(planid)
 
         binding.progressBar.visibility=View.VISIBLE
 
@@ -110,6 +123,7 @@ class SstOneEightActivity :
 
     binding.etGroup100000212.setOnClickListener {
       val i=Intent(this,PlyometricsActivity::class.java)
+      i.putExtra("idforvideos",idforVideos)
       startActivity(i)
     }
 
@@ -166,11 +180,17 @@ class SstOneEightActivity :
           }
 
           binding.recyclerfordetails.apply {
-            val studioadapter= UserActiveDetailsAdapter(filteredWorkshops,sessionManager)
+            val studioadapter= UserActiveDetailsAdapter(filteredWorkshops,sessionManager,viewModel1)
             layoutManager= LinearLayoutManager(this@SstOneEightActivity, LinearLayoutManager.VERTICAL,true)
             binding.recyclerfordetails.adapter=studioadapter
           }
 
+
+          if (filteredWorkshops.isNotEmpty()) {
+            binding.etGroup100000212.visibility = View.VISIBLE
+          } else {
+            binding.etGroup100000212.visibility = View.GONE
+          }
 
 
         }
