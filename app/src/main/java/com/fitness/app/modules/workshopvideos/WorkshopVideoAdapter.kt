@@ -143,13 +143,24 @@ private val sessionManager: SessionManager
                 }
             }
 
-            val isComplete=postModel.isCompleted
-            btnComplete.setOnClickListener {
-                val id=postModel.id
+            val isComplete = postModel.isCompleted
 
-                patchUserActiveVideos(id!!,isComplete!!)
-                progressBar.visibility= View.VISIBLE
+            if (isComplete == true) {
+                btnComplete.text = if (isComplete) "Completed" else "Complete"
+            } else {
+                btnComplete.setOnClickListener {
+                    val id = postModel.id
+
+                    // Toggle the value of isComplete
+                    val updatedIsComplete = !isComplete!!
+
+                    // Call patchUserActiveVideos with updated value of isComplete
+                    patchUserActiveVideos(id!!, updatedIsComplete)
+
+                    progressBar.visibility = View.VISIBLE
+                }
             }
+
         }
 
 

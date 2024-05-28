@@ -1,5 +1,6 @@
 package com.fitness.app.modules.plyometrics.ui
 
+import PlyometricsVMNew
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -26,8 +27,11 @@ import kotlin.String
 import kotlin.Unit
 
 class PlyometricsActivity : BaseActivity<ActivityPlyometricsBinding>(R.layout.activity_plyometrics)
+
     {
   private val viewModel: PlyometricsVM by viewModels<PlyometricsVM>()
+
+
 
 
       private lateinit var sessionManager:SessionManager
@@ -36,13 +40,18 @@ class PlyometricsActivity : BaseActivity<ActivityPlyometricsBinding>(R.layout.ac
 
     viewModel.navArguments = intent.extras?.getBundle("bundle")
 
-    val id=sessionManager.fetchMobile()
+    val id=intent.getIntExtra("idforvideos",-1)
+
+    // Observe the videoCompleteId LiveData
+
 
     getUserActiveVideos(id.toString())
     binding.plyometricsVM = viewModel
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
+
+
 
   override fun setUpClicks(): Unit {
     binding.btnArrowright.setOnClickListener {
@@ -55,23 +64,30 @@ class PlyometricsActivity : BaseActivity<ActivityPlyometricsBinding>(R.layout.ac
   }
 
 
-      fun getUserActiveVideos(id:String){
-        val serviceGenerator= ApiManager.apiInterface
-        val accessToken=sessionManager.fetchAuthToken()
-        val authorization="Token $accessToken"
-        val call=serviceGenerator.useractiveplanvideos(authorization,id)
 
-        call.enqueue(object : retrofit2.Callback<UserActivePlanVideoResponses>{
+      fun getUserActiveVideos(id: String) {
+        val serviceGenerator = ApiManager.apiInterface
+        val accessToken = sessionManager.fetchAuthToken()
+        val authorization = "Token $accessToken"
+        val call = serviceGenerator.useractiveplanvideos(authorization, id)
+
+        call.enqueue(object : retrofit2.Callback<UserActivePlanVideoResponses> {
           override fun onResponse(
             call: Call<UserActivePlanVideoResponses>,
             response: Response<UserActivePlanVideoResponses>
           ) {
-            val videoResponses=response.body()
+            val videoResponses = response.body()
 
-            if(videoResponses!=null){
+            if (videoResponses != null) {
               binding.recyclerPlyometrics.apply {
-                val studioadapter= PlyometricsAdapter(videoResponses.planVideos,sessionManager)
-                binding.recyclerPlyometrics.adapter=studioadapter
+                // Set the layout manager to a horizontal LinearLayoutManager
+                layoutManager = LinearLayoutManager(
+                  this@PlyometricsActivity, // Replace YourActivity with your actual activity name
+                  LinearLayoutManager.VERTICAL,
+                  false
+                )
+                val studioadapter = PlyometricsAdapter(videoResponses.planVideos, sessionManager)
+                adapter = studioadapter
               }
             }
           }
@@ -83,7 +99,8 @@ class PlyometricsActivity : BaseActivity<ActivityPlyometricsBinding>(R.layout.ac
         })
       }
 
-  companion object {
+
+      companion object {
     const val TAG: String = "PLYOMETRICS_ACTIVITY"
 
 

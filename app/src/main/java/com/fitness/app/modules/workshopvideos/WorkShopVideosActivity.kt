@@ -3,6 +3,8 @@ package com.fitness.app.modules.workshopvideos
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
 import com.fitness.app.modules.plyometrics.ui.PlyometricsAdapter
@@ -22,8 +24,13 @@ class WorkShopVideosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_work_shop_videos)
 
-        val id=sessionManager.fetch()
+        val id=intent.getIntExtra("idforvideos",-1)
         getUserActiveWorkshopVideos(id)
+
+        val backImage:ImageView=findViewById(R.id.btnArrowright)
+        backImage.setOnClickListener {
+            this.finish()
+        }
     }
 
     fun getUserActiveWorkshopVideos(id:Int){
@@ -43,6 +50,11 @@ class WorkShopVideosActivity : AppCompatActivity() {
 
                 if(videoResponses!=null){
                    recyclerPlyometrics.apply {
+                       layoutManager = LinearLayoutManager(
+                           this@WorkShopVideosActivity, // Replace YourActivity with your actual activity name
+                           LinearLayoutManager.VERTICAL,
+                           false
+                       )
                         val studioadapter= WorkshopVideoAdapter(videoResponses,sessionManager)
                        recyclerPlyometrics.adapter=studioadapter
                     }

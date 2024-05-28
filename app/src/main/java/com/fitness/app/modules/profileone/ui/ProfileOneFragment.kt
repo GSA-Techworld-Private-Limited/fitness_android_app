@@ -105,14 +105,17 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
       val destIntent = Intent(requireActivity(),AppSettingsActivity::class.java)
       startActivity(destIntent)
     }
+
     binding.linearRowinbox.setOnClickListener {
       val destIntent = Intent(requireActivity(),AboutUsActivity::class.java)
       startActivity(destIntent)
     }
+
     binding.linearRownotifications.setOnClickListener {
       val destIntent = Intent(requireActivity(),NotificationsActivity::class.java)
       startActivity(destIntent)
     }
+
     binding.linearRowbag.setOnClickListener {
 //      val destIntent = Intent(requireActivity(),PlansOneActivity::class.java)
 //      startActivity(destIntent)
@@ -120,6 +123,7 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
       val i=Intent(requireActivity(),Workshops::class.java)
       startActivity(i)
     }
+
     binding.linearRowcheckmark.setOnClickListener {
       val destIntent = Intent(requireActivity(),PlansActivity::class.java)
       startActivity(destIntent)

@@ -17,6 +17,7 @@ import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.responses.BooleanRequest
 import com.fitness.app.responses.UpdateResponse
+import com.google.gson.Gson
 import devs.mulham.horizontalcalendar.HorizontalCalendar
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener
 import retrofit2.Call
@@ -89,32 +90,42 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
 
 
 
-  fun patchUserActivePlan(id:Int,isCompleted:Boolean){
-    val serviceGenerator= ApiManager.apiInterface
-    val accessToken=sessionManager.fetchAuthToken()
-    val authorization="Token $accessToken"
+  fun patchUserActivePlan(id: Int, isCompleted: Boolean) {
+    val serviceGenerator = ApiManager.apiInterface
+    val accessToken = sessionManager.fetchAuthToken()
+    val authorization = "Token $accessToken"
     val request = BooleanRequest(isCompleted)
-    val call=serviceGenerator.updateuserworkshop(authorization,id,request)
+    val call = serviceGenerator.updateuserworkshop(authorization, id, request)
 
-    call.enqueue(object : retrofit2.Callback<UpdateResponse>{
+    call.enqueue(object : retrofit2.Callback<UpdateResponse> {
       override fun onResponse(
         call: Call<UpdateResponse>,
         response: Response<UpdateResponse>
       ) {
-        binding.progressBar.visibility=View.GONE
-        if(response.isSuccessful){
+        binding.progressBar.visibility = View.GONE
+        if (response.isSuccessful) {
           binding.btnCompletedOne.text = if (isCompleted) "Completed" else "Complete"
-          Toast.makeText(this@PlansOneActivity,"Completed", Toast.LENGTH_SHORT).show()
+          Toast.makeText(this@PlansOneActivity, "Completed", Toast.LENGTH_LONG).show()
+        } else {
+          if (response.code() == 400) {
+            val errorBody = response.errorBody()?.string() ?: "Error response body is null"
+            Toast.makeText(this@PlansOneActivity, errorBody, Toast.LENGTH_LONG).show()
+            Log.e("Response Error", errorBody)
+          } else {
+            Log.e("Response Error", "Unexpected error: ${response.code()}")
+          }
         }
       }
 
       override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
-        binding.progressBar.visibility=View.GONE
+        binding.progressBar.visibility = View.GONE
       }
     })
   }
+
+
 
   companion object {
     const val TAG: String = "PLANS_ONE_ACTIVITY"

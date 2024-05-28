@@ -6,6 +6,7 @@
         <variable name="plyometricsRowModel" type="com.fitness.app.modules.plyometrics.data.model.PlyometricsRowModel"/>
     </data>
     <FrameLayout
+        android:layout_marginTop="4dp"
         android:id="@+id/frameStackrectangle448"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
@@ -22,7 +23,7 @@
         <com.google.android.exoplayer2.ui.SimpleExoPlayerView
             android:id="@+id/playerview"
             android:layout_gravity="center_horizontal"
-            android:layout_height="@dimen/_170pxh"
+            android:layout_height="@dimen/_160pxh"
             android:layout_width="match_parent"
             android:scaleType="fitXY"
             tools:ignore="ContentDescription"
@@ -53,16 +54,14 @@
                 android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/linearColumnplaycircle"
-            android:layout_gravity="bottom|start"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20pxv"
+            android:layout_marginTop="@dimen/_225pxv"
             android:layout_width="match_parent"
             android:orientation="vertical">
             <androidx.appcompat.widget.AppCompatButton
                 android:ellipsize="end" android:gravity="center"
                 android:id="@+id/btnComplete"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_29pxv"
                 android:layout_width="match_parent"
                 android:paddingBottom="@dimen/_13pxv"
                 android:paddingEnd="@dimen/_30pxh"
@@ -70,7 +69,8 @@
                 android:singleLine="true"
                 android:text="@string/lbl_complete"
                 android:textAllCaps="false"
-                style="@style/btnGradientRoundedBottomCorner" tools:text="@string/lbl_complete"/>
+                style="@style/btnGradient"
+                tools:text="@string/lbl_complete"/>
         </LinearLayout>
 
 

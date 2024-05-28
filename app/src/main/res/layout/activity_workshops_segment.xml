@@ -149,6 +149,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:visibility="gone"
         android:background="@drawable/rectangle_gradient_s_bluegray_900_c_gray_701_e_black_901_radius_10"
         android:drawableEnd="@drawable/drawable_img_arrowright_gray_901"
         android:drawablePadding="@dimen/_30pxh"

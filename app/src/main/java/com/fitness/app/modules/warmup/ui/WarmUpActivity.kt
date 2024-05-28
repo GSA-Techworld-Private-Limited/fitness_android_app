@@ -20,6 +20,7 @@ import com.fitness.app.modules.warmup.`data`.viewmodel.WarmUpVM
 import com.fitness.app.responses.BooleanRequest
 import com.fitness.app.responses.UpdateResponse
 import com.fitness.app.responses.UserActivePlanDetailResponses
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Response
 import kotlin.String
@@ -70,32 +71,46 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
   }
 
 
-  fun patchUserActivePlan(id:Int,isCompleted:Boolean){
-    val serviceGenerator= ApiManager.apiInterface
-    val accessToken=sessionManager.fetchAuthToken()
-    val authorization="Token $accessToken"
+  fun patchUserActivePlan(id: Int, isCompleted: Boolean) {
+    val serviceGenerator = ApiManager.apiInterface
+    val accessToken = sessionManager.fetchAuthToken()
+    val authorization = "Token $accessToken"
     val request = BooleanRequest(isCompleted)
-    val call=serviceGenerator.updateuserplanday(authorization,id,request)
+    val call = serviceGenerator.updateuserplanday(authorization, id, request)
 
-    call.enqueue(object : retrofit2.Callback<UpdateResponse>{
+    call.enqueue(object : retrofit2.Callback<UpdateResponse> {
       override fun onResponse(
         call: Call<UpdateResponse>,
         response: Response<UpdateResponse>
       ) {
-        binding.progressBar.visibility=View.GONE
-        if(response.isSuccessful){
+        binding.progressBar.visibility = View.GONE
+        if (response.isSuccessful) {
           binding.btnComplete.text = if (isCompleted) "Completed" else "Complete"
-          Toast.makeText(this@WarmUpActivity,"Completed",Toast.LENGTH_SHORT).show()
+          Toast.makeText(this@WarmUpActivity, "Completed", Toast.LENGTH_SHORT).show()
+          // Extracting and showing JSON response
+          val jsonResponse = response.body()?.let {
+            Gson().toJson(it)
+          } ?: "No response body"
+          Log.d("Response JSON", jsonResponse)
+        } else {
+          if (response.code() == 400) {
+            val errorBody = response.errorBody()?.string() ?: "Error response body is null"
+            Toast.makeText(this@WarmUpActivity, errorBody, Toast.LENGTH_LONG).show()
+            Log.e("Response Error", errorBody)
+          } else {
+            Log.e("Response Error", "Unexpected error: ${response.code()}")
+          }
         }
       }
 
       override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
-        binding.progressBar.visibility=View.GONE
+        binding.progressBar.visibility = View.GONE
       }
     })
   }
+
 
   override fun setUpClicks(): Unit {
     binding.btnArrowright.setOnClickListener {

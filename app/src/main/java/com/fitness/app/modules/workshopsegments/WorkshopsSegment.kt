@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
@@ -37,18 +39,29 @@ class   WorkshopsSegment : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
 
+
+    private var idforVideos:Int=0
+    private lateinit var workshopvideosButton:TextView
+    private val viewModel1:WorkShopVM by viewModels<WorkShopVM> ()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         sessionManager= SessionManager(this)
-
-
-
 
         val id=intent.getStringExtra("id")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workshops_segment)
 
+
+       // getUserActivePlans(id!!)
+
         progressBar=findViewById(R.id.progressBar)
+
+        viewModel1.videoCompleteId.observe(this) { id ->
+            if (id != null) {
+                idforVideos=id
+            }
+        }
 
         val calendview: View? =findViewById<HorizontalCalendarView>(R.id.calendarView1)
 
@@ -72,6 +85,7 @@ class   WorkshopsSegment : AppCompatActivity() {
         selectedDate.time = dateFormat.parse(formattedToday)!!
 
 
+
         horizontalCalendar.calendarListener = object : HorizontalCalendarListener() {
             override fun onDateSelected(date: Calendar, position: Int) {
                 // Format selected date in "yyyy-MM-dd" format
@@ -85,15 +99,19 @@ class   WorkshopsSegment : AppCompatActivity() {
 
                 progressBar.visibility=View.VISIBLE
             }
+
+
         }
 
 
 
-        val workshopvideosButton:TextView=findViewById(R.id.etGroup100000212)
+         workshopvideosButton=findViewById(R.id.etGroup100000212)
         workshopvideosButton.setOnClickListener {
             val i=Intent(this,WorkShopVideosActivity::class.java)
+            i.putExtra("idforvideos",idforVideos)
             startActivity(i)
         }
+
 
         val backImage:ImageView=findViewById(R.id.btnArrowright)
         backImage.setOnClickListener {
@@ -149,7 +167,7 @@ class   WorkshopsSegment : AppCompatActivity() {
                     val recyclerfordetails: RecyclerView = findViewById(R.id.recyclerfordetails)
                     recyclerfordetails.apply {
                         val studioadapter =
-                            UserActiveWorkshopsAdapter(filteredWorkshops, sessionManager)
+                            UserActiveWorkshopsAdapter(filteredWorkshops, sessionManager,viewModel1)
                         layoutManager = LinearLayoutManager(
                             this@WorkshopsSegment,
                             LinearLayoutManager.VERTICAL,
@@ -157,6 +175,14 @@ class   WorkshopsSegment : AppCompatActivity() {
                         )
                         recyclerfordetails.adapter = studioadapter
                     }
+                    if (filteredWorkshops.isNotEmpty()) {
+                        workshopvideosButton.visibility = View.VISIBLE
+                    } else {
+                        workshopvideosButton.visibility = View.GONE
+                    }
+
+
+
                 }
 
 
