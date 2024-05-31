@@ -175,6 +175,15 @@ interface ApiInterface {
     ):Call<UserActivePlanVideoResponses>
 
 
+
+    @PATCH("/api/update-user-plan-day-video/{id}/")
+    fun updateactiveplansvideos(
+        @Header("Authorization")token: String,
+        @Path("id")id:Int,
+        @Body request: BooleanRequest
+    ):Call<UpdateResponse>
+
+
     @PATCH("/api/update-workshop-video/{id}/")
     fun updateactiveplanvideos(
         @Header("Authorization")token: String,

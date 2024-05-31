@@ -201,7 +201,7 @@ class PlyometricsAdapter(
       val accessToken=sessionManager.fetchAuthToken()
       val authorization="Token $accessToken"
       val request = BooleanRequest(isCompleted)
-      val call=serviceGenerator.updateactiveplanvideos(authorization,id,request)
+      val call=serviceGenerator.updateactiveplansvideos(authorization,id,request)
 
       call.enqueue(object : retrofit2.Callback<UpdateResponse>{
         override fun onResponse(
