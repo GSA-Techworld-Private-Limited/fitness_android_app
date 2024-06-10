@@ -4,7 +4,7 @@
     <data>
         <variable name="subscriptionsVM" type="com.fitness.app.modules.subscriptions.data.viewmodel.SubscriptionsVM"/>
     </data>
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:clipToPadding="false"
         android:fillViewport="true"
         android:id="@+id/scrollViewScrollview"
@@ -65,5 +65,5 @@
                 tools:listitem="@layout/row_subscriptions"/>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

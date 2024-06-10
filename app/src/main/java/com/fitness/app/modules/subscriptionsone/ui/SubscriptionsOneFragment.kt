@@ -55,8 +55,10 @@ class SubscriptionsOneFragment :
 
         if(customerResponse!=null){
 
+
+          val reversed=customerResponse.reversed()
           binding.recyclerListrectanglesixtyone.apply {
-            val studioadapter= ListrectanglesixtyoneAdapter(customerResponse)
+            val studioadapter= ListrectanglesixtyoneAdapter(reversed)
             binding.recyclerListrectanglesixtyone.adapter=studioadapter
           }
         }

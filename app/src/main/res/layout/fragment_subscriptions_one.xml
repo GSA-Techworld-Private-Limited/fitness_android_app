@@ -4,10 +4,12 @@
     <data>
         <variable name="subscriptionsOneVM" type="com.fitness.app.modules.subscriptionsone.data.viewmodel.SubscriptionsOneVM"/>
     </data>
-    <androidx.core.widget.NestedScrollView android:clipToPadding="false"
+    <androidx.core.widget.NestedScrollView
+        android:clipToPadding="false"
         android:fillViewport="true"
         android:id="@+id/scrollViewScrollview"
-        android:layout_height="match_parent" android:layout_width="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearColumnnote"
             android:layout_height="wrap_content"
