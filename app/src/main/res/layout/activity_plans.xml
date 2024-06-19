@@ -4,6 +4,13 @@
     <data>
         <variable name="plansVM" type="com.fitness.app.modules.plans.data.viewmodel.PlansVM"/>
     </data>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/linearPlans"
         android:layout_height="match_parent"
@@ -57,10 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <ScrollView
-            android:id="@+id/scrollview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerforplans"
@@ -70,7 +74,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        </ScrollView>
 
     </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

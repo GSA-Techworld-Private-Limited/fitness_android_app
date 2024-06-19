@@ -11,6 +11,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivitySstOneEightBinding
@@ -47,6 +48,10 @@ class SstOneEightActivity :
 
   private var idforVideos:Int=0
 
+  private var swipeRefreshLayout: SwipeRefreshLayout? = null
+
+  private lateinit var planid:String
+
   private val viewModel1:PlyometricsVMNew by viewModels<PlyometricsVMNew> ()
   override fun onInitialized(): Unit {
 
@@ -54,12 +59,24 @@ class SstOneEightActivity :
     viewModel.navArguments = intent.extras?.getBundle("bundle")
 
 
-    val planid=intent.getStringExtra("planid")
+
+    swipeRefreshLayout = binding.swipeRefreshLayout
+    swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here
+
+      // For example, you can reload data or update UI
+      // Call your method to refresh the progress bar and other UI elements
+      refreshData()
+    }
+     planid=intent.getStringExtra("planid")!!
     Log.d("tagforid",planid.toString())
     val totalcount=intent.getIntExtra("totalcount",-1)
     Log.d("totalcount",totalcount.toInt().toString())
     val completedcount=intent.getIntExtra("plancount",-1)
 
+
+    val planName=intent.getStringExtra("planName")
+
+    binding.txtSegmentSpecifi.text=planName
 
     viewModel1.videoCompleteId.observe(this) { id ->
       if (id != null) {
@@ -88,7 +105,7 @@ class SstOneEightActivity :
     val formattedToday = dateFormat.format(today.time)
 
 
-    getUserActivePlans(planid!!)
+   // getUserActivePlans(planid!!)
     // Parse the formatted string back to a Calendar object
      selectedDate = Calendar.getInstance()
     selectedDate.time = dateFormat.parse(formattedToday)!!
@@ -107,7 +124,7 @@ class SstOneEightActivity :
 
         Log.d("selctedDate",formattedSelectedDate)
 
-       getUserActivePlans(planid)
+       getUserActivePlans(planid!!)
 
         binding.progressBar.visibility=View.VISIBLE
 
@@ -133,6 +150,18 @@ class SstOneEightActivity :
   }
 
 
+
+  private fun refreshData() {
+    // Place your logic here to refresh the activity, e.g., reload data, update progress bar
+    // For example:
+    // progressBar.setVisibility(View.VISIBLE);
+    // Call your method to reload data or update UI elements
+    // Then, when finished, call setRefreshing(false) on the SwipeRefreshLayout
+    // to indicate that the refresh is complete
+    // progressBar.setVisibility(View.GONE);
+    getUserActivePlans(planid)
+    swipeRefreshLayout!!.isRefreshing = false
+  }
 
   override fun setUpClicks(): Unit {
 //    binding.etGroup100000212.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.fitness.app.modules.warmup.ui
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -97,6 +98,10 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
             val errorBody = response.errorBody()?.string() ?: "Error response body is null"
             Toast.makeText(this@WarmUpActivity, errorBody, Toast.LENGTH_LONG).show()
             Log.e("Response Error", errorBody)
+
+            showDialog()
+
+
           } else {
             Log.e("Response Error", "Unexpected error: ${response.code()}")
           }
@@ -109,6 +114,24 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
         binding.progressBar.visibility = View.GONE
       }
     })
+  }
+
+
+  // Method to show the dialog
+  private fun showDialog() {
+    val dialogBuilder = AlertDialog.Builder(this@WarmUpActivity)
+    val inflater = this.layoutInflater
+    val dialogView = inflater.inflate(R.layout.row_layout_for_video_section, null)
+    dialogBuilder.setView(dialogView)
+
+
+    dialogBuilder.setTitle("Error")
+    dialogBuilder.setPositiveButton("OK") { dialog, _ ->
+      dialog.dismiss()
+    }
+
+    val alertDialog = dialogBuilder.create()
+    alertDialog.show()
   }
 
 

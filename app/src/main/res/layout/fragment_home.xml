@@ -320,7 +320,7 @@
                 style="@style/txtRalewayromansemibold16"
                 tools:text="@string/lbl_workshops"/>
 
-            <HorizontalScrollView
+            <androidx.core.widget.NestedScrollView
                 android:fillViewport="true"
                 android:gravity="end"
                 android:id="@+id/horizontalScrollHorizontalscrollrectangle"
@@ -336,7 +336,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-            </HorizontalScrollView>
+            </androidx.core.widget.NestedScrollView>
 
             <TextView android:ellipsize="end"
                 android:id="@+id/txtTestimonials"
