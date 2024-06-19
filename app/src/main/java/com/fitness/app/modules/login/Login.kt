@@ -39,16 +39,25 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
     private lateinit var apiService: ApiInterface
     private lateinit var sessionManager: SessionManager
 
+    private lateinit var mobile:String
     private val imageUri: Uri =
         Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle451")
 
+    private val imageUri2:Uri =
+        Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle46")
 
-    private val imageSliderSliderrectangle451Items: ArrayList<ImageSliderSliderrectangle451Model> =
-        arrayListOf(
-            ImageSliderSliderrectangle451Model(imageRectangle451 =
-        imageUri.toString()), ImageSliderSliderrectangle451Model(imageRectangle451 =
-        imageUri.toString())
+    private val imageSliderItems: ArrayList<ImageSliderSliderrectangle451Model> = arrayListOf(
+        ImageSliderSliderrectangle451Model(
+            txtTitleCounter = " Lower Body Power",
+            txtDescription = "Boost your leg and glute strength with this intense lower body workout. Incorporating squats, deadlifts, lunges, and more, this session is designed to enhance muscle growth, increase endurance, and improve overall lower body performance.",
+            imageRectangle451 = imageUri.toString()
+        ),
+        ImageSliderSliderrectangle451Model(
+            txtTitleCounter = "Dumbbell Strength Circuit",
+            txtDescription = "All you need is a set of dumbbells for this effective strength circuit. This routine features a series of exercises targeting all major muscle groups, providing a balanced full-body workout.",
+            imageRectangle451 = imageUri2.toString()
         )
+    )
 
     private val viewModel: WelcomeLoginVM by viewModels<WelcomeLoginVM>()
 
@@ -68,7 +77,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
 
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         val sliderrectangle451Adapter =
-            Sliderrectangle451Adapter(imageSliderSliderrectangle451Items,true)
+            Sliderrectangle451Adapter(imageSliderItems,true)
         binding.imageSliderSliderrectangle451.adapter = sliderrectangle451Adapter
         binding.imageSliderSliderrectangle451.onIndicatorProgress = { selectingPosition, progress ->
             binding.indicatorSettings.onPageScrolled(selectingPosition, progress)
@@ -84,7 +93,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
             return // Exit the onCreate method to prevent splash screen animations
         }
         binding.btnArrowright.setOnClickListener{
-            val  mobile=binding.txtEnterYourNumb.text.toString()
+              mobile=binding.txtEnterYourNumb.text.toString()
 
             if (isValidMobileNumber(mobile)) {
                 getOtp(mobile)
@@ -163,6 +172,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
     }
     private fun navigateToNextPage() {
         val i=Intent(this,OTPLogin::class.java)
+        i.putExtra("mobile",mobile)
         startActivity(i)
     }
     override fun setUpClicks() {

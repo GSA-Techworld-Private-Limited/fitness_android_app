@@ -1,5 +1,6 @@
 package com.fitness.app.modules.feeds.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.viewModels
@@ -10,6 +11,8 @@ import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
 import com.fitness.app.databinding.FragmentFeedsBinding
 import com.fitness.app.modules.feeds.`data`.viewmodel.FeedsVM
+import com.fitness.app.modules.notifications.ui.NotificationsActivity
+import com.fitness.app.modules.profile.ui.ProfileActivity
 import com.fitness.app.modules.responses.UserDetailResponses
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
@@ -72,6 +75,16 @@ getUserDetails()
 
 
     override fun setUpClicks(): Unit {
+      binding.imageEllipseTwo.setOnClickListener {
+        val i=Intent(requireActivity(),ProfileActivity::class.java)
+        startActivity(i)
+      }
+
+
+      binding.imageGroup.setOnClickListener {
+        val i=Intent(requireActivity(),NotificationsActivity::class.java)
+        startActivity(i)
+      }
     }
 
     companion object {

@@ -37,13 +37,23 @@ class WelcomeLoginActivity :
   private lateinit var apiService: ApiInterface
   private lateinit var sessionManager: SessionManager
   private val imageUri: Uri =
-      Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle451")
+    Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle64")
 
+  private val imageUri2:Uri =
+    Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle430_4")
 
-  private val imageSliderSliderrectangle451Items: ArrayList<ImageSliderSliderrectangle451Model> =
-      arrayListOf(ImageSliderSliderrectangle451Model(imageRectangle451 =
-  imageUri.toString()),ImageSliderSliderrectangle451Model(imageRectangle451 =
-  imageUri.toString()))
+  private val imageSliderItems: ArrayList<ImageSliderSliderrectangle451Model> = arrayListOf(
+    ImageSliderSliderrectangle451Model(
+      txtTitleCounter = "Strength Endurance Challenge",
+      txtDescription = "Take on this endurance-focused strength workout designed to test and improve your muscle stamina. With higher repetitions and shorter rest periods, this session will push your muscles to their limits, enhancing both strength and endurance.",
+      imageRectangle451 = imageUri.toString()
+    ),
+    ImageSliderSliderrectangle451Model(
+      txtTitleCounter = "Bodyweight Strength Training",
+      txtDescription = "No equipment? No problem! This bodyweight strength workout uses your own body as resistance to build muscle and increase strength. Featuring exercises like push-ups, squats, and planks, this routine is perfect for home workouts and can be modified for all fitness levels.",
+      imageRectangle451 = imageUri2.toString()
+    )
+  )
 
 
   private val viewModel: WelcomeLoginVM by viewModels<WelcomeLoginVM>()
@@ -57,7 +67,7 @@ class WelcomeLoginActivity :
 
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     val sliderrectangle451Adapter =
-    Sliderrectangle451Adapter(imageSliderSliderrectangle451Items,true)
+    Sliderrectangle451Adapter(imageSliderItems,true)
     binding.imageSliderSliderrectangle451.adapter = sliderrectangle451Adapter
     binding.imageSliderSliderrectangle451.onIndicatorProgress = { selectingPosition, progress ->
       binding.indicatorSettings.onPageScrolled(selectingPosition, progress)

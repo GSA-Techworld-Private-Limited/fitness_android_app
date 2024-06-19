@@ -8,13 +8,13 @@ data class ImageSliderSliderrectangle451Model(
   /**
    * TODO Replace with dynamic value
    */
-  var txtTitleCounter: String? = MyApp.getInstance().resources.getString(R.string.lbl_title_1)
+  var txtTitleCounter: String? = "Strength"
   ,
   /**
    * TODO Replace with dynamic value
    */
   var txtDescription: String? =
-      MyApp.getInstance().resources.getString(R.string.msg_sorem_ipsum_dol)
+     "Build Your Inner Strength with Quality Mentality"
   ,
   /**
    * TODO Replace with dynamic value

@@ -3,10 +3,11 @@
     <data>
         <variable name="imageSliderSliderrectangle451Model" type="com.fitness.app.modules.welcomelogin.data.model.ImageSliderSliderrectangle451Model"/>
     </data>
-    <LinearLayout android:gravity="start"
+    <LinearLayout
+        android:gravity="start"
         android:id="@+id/linearColumnrectangle451"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="96dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
         android:layout_marginStart="@dimen/_11pxh"
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -29,8 +30,6 @@
             android:id="@+id/txtTitleCounter"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_72pxh"
-            android:layout_marginStart="@dimen/_72pxh"
             android:layout_marginTop="@dimen/_28pxv"
             android:layout_width="wrap_content"
             android:singleLine="true"
@@ -42,6 +41,8 @@
             android:id="@+id/txtDescription"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_11pxv"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:text="@{imageSliderSliderrectangle451Model.txtDescription}"
             style="@style/txtRobotoromanregular12"
