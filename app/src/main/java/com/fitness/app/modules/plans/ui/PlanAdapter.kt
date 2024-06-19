@@ -77,6 +77,7 @@ class PlanAdapter(
                 i.putExtra("totalcount",totalcount)
                 i.putExtra("plancount",completedaycount)
                 i.putExtra("planid",postModel.planId)
+                i.putExtra("planName",postModel.planName)
                 itemView.context.startActivity(i)
             }
 

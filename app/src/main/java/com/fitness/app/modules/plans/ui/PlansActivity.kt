@@ -8,6 +8,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityPlansBinding
@@ -29,6 +30,8 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
 
 
   private lateinit var sessionManager:SessionManager
+
+  private var swipeRefreshLayout: SwipeRefreshLayout? = null
   override fun onInitialized(): Unit {
     sessionManager= SessionManager(this)
     viewModel.navArguments = intent.extras?.getBundle("bundle")
@@ -38,6 +41,14 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
       this.finish()
     }
 
+
+    swipeRefreshLayout = binding.swipeRefreshLayout
+    swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here
+
+      // For example, you can reload data or update UI
+      // Call your method to refresh the progress bar and other UI elements
+      refreshData()
+    }
 
     getUserActivePlans()
 
@@ -55,6 +66,17 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
   }
 
 
+  private fun refreshData() {
+    // Place your logic here to refresh the activity, e.g., reload data, update progress bar
+    // For example:
+    // progressBar.setVisibility(View.VISIBLE);
+    // Call your method to reload data or update UI elements
+    // Then, when finished, call setRefreshing(false) on the SwipeRefreshLayout
+    // to indicate that the refresh is complete
+    // progressBar.setVisibility(View.GONE);
+   getUserActivePlans()
+    swipeRefreshLayout!!.isRefreshing = false
+  }
 
   fun getUserActivePlans(){
     val serviceGenerator= ApiManager.apiInterface
