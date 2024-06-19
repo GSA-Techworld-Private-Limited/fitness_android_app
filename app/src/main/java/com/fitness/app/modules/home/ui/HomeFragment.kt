@@ -1,6 +1,7 @@
 package com.fitness.app.modules.home.ui
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,8 @@ import com.fitness.app.databinding.FragmentHomeBinding
 import com.fitness.app.modules.feedsone.ui.FeedsOneAdapter
 import com.fitness.app.modules.home.`data`.viewmodel.HomeVM
 import com.fitness.app.modules.home.data.viewmodel.ImageSliderSliderrectangletwoModel
+import com.fitness.app.modules.notifications.ui.NotificationsActivity
+import com.fitness.app.modules.profile.ui.ProfileActivity
 import com.fitness.app.modules.responses.ArticleResponse
 import com.fitness.app.modules.responses.UserDetailResponses
 import com.fitness.app.modules.responses.UserDetails
@@ -121,6 +124,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     binding.imageSliderSliderrectangletwo.onIndicatorProgress = { selectingPosition, progress ->
       binding.indicatorMenu.onPageScrolled(selectingPosition, progress)
     }
+
 
 
     binding.indicatorMenu.updateIndicatorCounts(binding.imageSliderSliderrectangletwo.indicatorCount)
@@ -270,6 +274,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     })
   }
   override fun setUpClicks(): Unit {
+    binding.imageEllipseTwo.setOnClickListener {
+      val i=Intent(requireActivity(),ProfileActivity::class.java)
+      startActivity(i)
+    }
+
+
+    binding.imageGroup.setOnClickListener {
+      val i=Intent(requireActivity(),NotificationsActivity::class.java)
+      startActivity(i)
+    }
   }
 
   companion object {

@@ -1,5 +1,6 @@
 package com.fitness.app.modules.plansfragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,8 @@ import com.fitness.app.databinding.FragmentPlansBinding
 import com.fitness.app.modules.feeds.data.viewmodel.FeedsVM
 import com.fitness.app.modules.feeds.ui.FeedsFragment
 import com.fitness.app.modules.feeds.ui.FeedsFragmentPagerAdapter
+import com.fitness.app.modules.notifications.ui.NotificationsActivity
+import com.fitness.app.modules.profile.ui.ProfileActivity
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.google.android.material.tabs.TabLayoutMediator
@@ -50,6 +53,16 @@ class PlansFragment : BaseFragment<FragmentPlansBinding>(R.layout.fragment_plans
 
 
     override fun setUpClicks() {
+        binding.imageEllipseTwo.setOnClickListener {
+            val i= Intent(requireActivity(), ProfileActivity::class.java)
+            startActivity(i)
+        }
+
+
+        binding.imageGroup.setOnClickListener {
+            val i= Intent(requireActivity(), NotificationsActivity::class.java)
+            startActivity(i)
+        }
     }
 
 

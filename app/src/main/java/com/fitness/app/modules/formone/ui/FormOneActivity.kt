@@ -67,7 +67,7 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
   var multipartImage: MultipartBody.Part? = null
 
   private lateinit var spinnerUserType: Spinner
-  private val userTypes = arrayOf("Athlete", "Trainer", "User")
+  private val userTypes = arrayOf("User Type","Athlete", "Trainer", "User")
 
 
   private var mobile:String=""
@@ -123,38 +123,44 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
         // Display an error message and set flag to false
         Toast.makeText(this, "Please fill in all the required fields!!", Toast.LENGTH_SHORT).show()
         allFieldsValid = false
+        binding.progressbar.visibility=View.GONE
       }
 
       if (!email.endsWith("@gmail.com")) {
         // Display an error message and set flag to false
         binding.etEmailID.error = "Invalid email format. Please enter a valid Gmail address."
         allFieldsValid = false
+        binding.progressbar.visibility=View.GONE
       }
 
       if (state.isEmpty()) {
         // Display an error message and set flag to false
         binding.etState.error = "Please enter your state"
         allFieldsValid = false
+        binding.progressbar.visibility=View.GONE
       }
 
       if (city.isEmpty()) {
         // Display an error message and set flag to false
         binding.etCity.error = "Please enter your city"
         allFieldsValid = false
+        binding.progressbar.visibility=View.GONE
       }
 
-      if (name.length > 10) {
+      if (name.length > 6) {
         // Name exceeds 10 characters, set error message and background color to red, and set flag to false
-        binding.etName.error = "Name should not exceed 10 characters"
+        binding.etName.error = "Name should not exceed 6 characters"
         binding.textInputLayName.isErrorEnabled = true
         //binding.textInputLayName.boxBackgroundColor = Color.RED
         allFieldsValid = false
+        binding.progressbar.visibility=View.GONE
       }
 
       if(zipcode.length < 6){
         binding.etZIPCode.error="Please Enter Valid ZIP Code"
        // binding.textInputLayZIPCode.isErrorEnabled=true
         allFieldsValid=false
+        binding.progressbar.visibility=View.GONE
       }
 
 

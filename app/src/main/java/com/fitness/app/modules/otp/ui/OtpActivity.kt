@@ -20,6 +20,8 @@ import com.fitness.app.modules.services.ApiInterface
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.welcomelogin.ui.WelcomeLoginActivity
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,6 +68,11 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
     }
 
 
+
+    binding.txtResendOTP.setOnClickListener {
+      getSignUpResendOtp(mobile)
+      binding.progressBar.visibility=View.VISIBLE
+    }
     binding.backImage.setOnClickListener {
       val i=Intent(this,WelcomeLoginActivity::class.java)
       startActivity(i)
@@ -124,6 +131,70 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
     })
   }
 
+
+
+  private fun getSignUpResendOtp(mobile: String){
+    val call=apiService.getSignupOtp(mobile)
+    call.enqueue(object : Callback<SignUpResponse> {
+      override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+        if (response.isSuccessful) {
+          binding.progressBar.visibility = View.GONE
+          val loginResponse = response.body()
+          if (loginResponse != null && response.code() == 208) {
+            Toast.makeText(this@OtpActivity, "User Already Registered", Toast.LENGTH_LONG).show()
+          } else {
+            // OTP received, proceed with navigation
+            if (loginResponse != null) {
+              Toast.makeText(this@OtpActivity, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+            }
+//            navigateToNextPage()
+//            finishAffinity()
+          }
+        } else {
+          // Handle different error codes
+          when (response.code()) {
+            429 -> {
+              binding.progressBar.visibility = View.GONE
+              val errorBody = response.errorBody()?.string()
+              if (!errorBody.isNullOrEmpty()) {
+                try {
+                  val jsonObject = JSONObject(errorBody)
+                  val errorMessage = jsonObject.getString("error")
+                  Toast.makeText(this@OtpActivity, errorMessage, Toast.LENGTH_SHORT).show()
+                } catch (e: JSONException) {
+                  Toast.makeText(this@OtpActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
+                  binding.progressBar.visibility = View.GONE
+                }
+              } else {
+                Toast.makeText(this@OtpActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.GONE
+              }
+            }
+            404 -> {
+              Toast.makeText(this@OtpActivity, "Server Not Found", Toast.LENGTH_SHORT).show()
+              binding.progressBar.visibility = View.GONE
+            }
+            401 -> {
+              Toast.makeText(this@OtpActivity,"Invalid OTP",Toast.LENGTH_SHORT).show()
+              binding.progressBar.visibility=View.GONE
+            }
+            else -> {
+              Toast.makeText(this@OtpActivity, "Login failed", Toast.LENGTH_SHORT).show()
+              binding.progressBar.visibility = View.GONE
+            }
+          }
+        }
+      }
+
+
+
+
+      override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+        Toast.makeText(this@OtpActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+        binding.progressBar.visibility=View.GONE
+      }
+    })
+  }
 
   private fun navigateToNextPage() {
     val i= FormOneActivity.getIntent(this,null)

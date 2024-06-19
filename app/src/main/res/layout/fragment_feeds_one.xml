@@ -89,31 +89,7 @@
                         android:singleLine="true"
                         android:text="@{feedsOneVM.feedsOneModel.txtFrameSixteen}"
                         style="@style/txtRoundedOutline_1" tools:text="@string/lbl_yoga"/>
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtFrameSeventeen"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8pxh"
-                        android:layout_width="wrap_content"
-                        android:paddingBottom="@dimen/_10pxv"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingStart="@dimen/_30pxh"
-                        android:paddingTop="@dimen/_10pxv"
-                        android:singleLine="true"
-                        android:text="@{feedsOneVM.feedsOneModel.txtFrameSeventeen}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_yoga"/>
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtFrameEighteen"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_8pxh"
-                        android:layout_width="wrap_content"
-                        android:paddingBottom="@dimen/_10pxv"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingStart="@dimen/_30pxh"
-                        android:paddingTop="@dimen/_10pxv"
-                        android:singleLine="true"
-                        android:text="@{feedsOneVM.feedsOneModel.txtFrameEighteen}"
-                        style="@style/txtRoundedOutline_1"
-                        tools:text="@string/lbl_yoga"/>
+
                 </LinearLayout>
             </HorizontalScrollView>
             <TextView android:ellipsize="end"

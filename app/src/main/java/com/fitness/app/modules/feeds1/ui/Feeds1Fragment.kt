@@ -3,6 +3,7 @@ package com.fitness.app.modules.feeds1.ui
 import Feeds1Adapter
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
@@ -32,9 +33,30 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
 
     binding.progressBar.visibility=View.VISIBLE
 
+
+    val textViews = listOf(binding.txtFrameFour, binding.txtFrameFive, binding.txtFrameSix, binding.txtFrameTen, binding.txtFrameSixteen)
+
+    textViews.forEach { textView ->
+      textView.setOnClickListener {
+        updateTextViewStyles(textView, textViews)
+      }
+    }
+
     binding.feeds1VM = viewModel
   }
 
+
+  private fun updateTextViewStyles(selectedTextView: TextView, allTextViews: List<TextView>) {
+    allTextViews.forEach { textView ->
+      if (textView == selectedTextView) {
+        textView.setTextAppearance(requireContext(), R.style.txtGradientRounded)
+        textView.setBackgroundResource(R.drawable.rectangle_gradient_s_bluegray_900_c_gray_701_e_black_901_radius_10)
+      } else {
+        textView.setTextAppearance(requireContext(), R.style.txtRoundedOutline_1)
+        textView.setBackgroundResource(R.drawable.rectangle_border_bluegray_700_radius_10)
+      }
+    }
+  }
   override fun setUpClicks(): Unit {
   }
 

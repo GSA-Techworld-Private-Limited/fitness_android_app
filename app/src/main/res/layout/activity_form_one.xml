@@ -6,8 +6,6 @@
         <variable name="formOneVM" type="com.fitness.app.modules.formone.data.viewmodel.FormOneVM"/>
     </data>
 
-
-
     <LinearLayout
         android:gravity="center_horizontal"
         android:id="@+id/linearFormOne"
@@ -105,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/raleway"
-                        android:inputType="none"
+                        android:inputType="number"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:letterSpacing="0.03"
@@ -139,7 +137,8 @@
                 android:inputType="textEmailAddress"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:letterSpacing="0.03" android:singleLine="true"
+                android:letterSpacing="0.03"
+                android:singleLine="true"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
@@ -191,7 +190,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
-                android:id="@+id/etState" android:inputType="text"
+                android:id="@+id/etState"
+                android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:letterSpacing="0.03" android:singleLine="true"
@@ -245,14 +245,16 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:ellipsize="end"
                 android:fontFamily="@font/raleway"
-                android:id="@+id/etZIPCode" android:inputType="number"
+                android:id="@+id/etZIPCode"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:letterSpacing="0.03" android:singleLine="true"
                 android:textColor="@color/gray_500"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_16pxh"
-                android:textStyle="normal" tools:text="@string/lbl_zip_code"/>
+                android:textStyle="normal"
+                tools:text="@string/lbl_zip_code"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -271,6 +273,7 @@
                     android:paddingTop="@dimen/_15pxv"
                     android:textColorHint="@color/black_900"
                     style="@style/MyOutlinedBoxStyle">
+
                     <Spinner
                         android:ellipsize="end"
                         android:fontFamily="@font/raleway"
@@ -280,10 +283,10 @@
                         android:layout_width="match_parent"
                         android:letterSpacing="0.03"
                         android:singleLine="true"
-                        android:textColor="@color/gray_500"
-                        android:textFontWeight="400"
-                        android:textSize="@dimen/_16pxh"
-                        android:textStyle="normal" />
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        style="@style/txtRoundedOutline"/>
+
                 </com.google.android.material.textfield.TextInputLayout>
 
 

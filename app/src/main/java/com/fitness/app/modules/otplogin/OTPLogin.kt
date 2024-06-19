@@ -24,6 +24,8 @@ import com.fitness.app.modules.services.ApiInterface
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.services.TokenManager
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,6 +44,15 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
         sessionManager=SessionManager(this)
 
         setupOtpEditTextListeners()
+
+
+        val mobile=intent.getStringExtra("mobile")
+
+
+        binding.txtResendOTP.setOnClickListener {
+            resendOtp(mobile!!)
+            binding.progressBar.visibility=View.VISIBLE
+        }
 
         binding.btnSubmit.setOnClickListener {
             val digit1 = binding.edit1.text.toString()
@@ -118,6 +129,57 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
         })
     }
 
+
+
+
+    private fun resendOtp(mobile: String){
+        val call=apiService.getOtp(mobile)
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+                    val loginResponse = response.body()
+                    if (loginResponse != null) {
+                        Toast.makeText(this@OTPLogin, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+//                        navigateToNextPage()
+//                        finishAffinity()
+                    }
+                } else {
+                    when (response.code()) {
+                        429 -> {
+                            Toast.makeText(this@OTPLogin, "OTP Attempt Limit Exceeded. Please Wait For 2 Minutes.", Toast.LENGTH_SHORT).show()
+                            binding.progressBar.visibility = View.GONE
+                        }
+                        404 -> {
+                            Toast.makeText(this@OTPLogin, "Server Not Found", Toast.LENGTH_SHORT).show()
+                            binding.progressBar.visibility = View.GONE
+                        }
+                        else -> {
+                            binding.progressBar.visibility = View.GONE
+                            val errorBody = response.errorBody()?.string()
+                            if (!errorBody.isNullOrEmpty()) {
+                                try {
+                                    val jsonObject = JSONObject(errorBody)
+                                    val errorMessage = jsonObject.getString("error")
+                                    Toast.makeText(this@OTPLogin, errorMessage, Toast.LENGTH_SHORT).show()
+                                } catch (e: JSONException) {
+                                    Toast.makeText(this@OTPLogin, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                                    binding.progressBar.visibility = View.GONE
+                                }
+                            } else {
+                                Toast.makeText(this@OTPLogin, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                                binding.progressBar.visibility = View.GONE
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Toast.makeText(this@OTPLogin, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility=View.GONE
+            }
+        })
+    }
 
     private fun navigateToNextPage() {
         val i= HomeContainerActivity.getIntent(this,null)

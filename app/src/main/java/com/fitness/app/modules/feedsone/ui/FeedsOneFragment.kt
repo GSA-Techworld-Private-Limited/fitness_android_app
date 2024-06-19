@@ -2,6 +2,7 @@ package com.fitness.app.modules.feedsone.ui
 
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
@@ -47,9 +48,30 @@ class FeedsOneFragment : BaseFragment<FragmentFeedsOneBinding>(R.layout.fragment
 
 
 
+    // List of all TextViews
+    val textViews = listOf(binding.txtFrameFour, binding.txtFrameFive, binding.txtFrameSix, binding.txtFrameTen, binding.txtFrameSixteen)
+
+    textViews.forEach { textView ->
+      textView.setOnClickListener {
+        updateTextViewStyles(textView, textViews)
+      }
+    }
+
     binding.feedsOneVM = viewModel
   }
 
+
+  private fun updateTextViewStyles(selectedTextView: TextView, allTextViews: List<TextView>) {
+    allTextViews.forEach { textView ->
+      if (textView == selectedTextView) {
+        textView.setTextAppearance(requireContext(), R.style.txtGradientRounded)
+        textView.setBackgroundResource(R.drawable.rectangle_gradient_s_bluegray_900_c_gray_701_e_black_901_radius_10)
+      } else {
+        textView.setTextAppearance(requireContext(), R.style.txtRoundedOutline_1)
+        textView.setBackgroundResource(R.drawable.rectangle_border_bluegray_700_radius_10)
+      }
+    }
+  }
 
   fun getArticles(){
     val serviceGenerator= ApiManager.apiInterface

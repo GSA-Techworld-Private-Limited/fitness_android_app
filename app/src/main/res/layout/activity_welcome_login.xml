@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:src="@drawable/logo"
@@ -31,10 +31,10 @@
                 <com.asksira.loopingviewpager.LoopingViewPager
                     android:gravity="end"
                     android:id="@+id/imageSliderSliderrectangle451"
-                    android:layout_height="@dimen/_302pxv"
+                    android:layout_height="@dimen/_388pxv"
                     android:layout_marginStart="@dimen/_10pxh"
                     android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_22pxv"
+                    android:layout_marginTop="@dimen/_12pxv"
                     android:layout_width="match_parent"
                     app:autoScroll="true" app:isInfinite="true"
                     app:scrollInterval="5000" style="@style/groupStylecornerRadius_2"/>
@@ -51,12 +51,12 @@
                     app:drawable_selected="@drawable/indicator_selected_bg_gray_700_radius_8"
                     app:indicator_size="@dimen/_8pxh" app:indicator_spacing="@dimen/_4pxh"/>
                 <TextView android:ellipsize="end"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:id="@+id/txtStartYourFitn"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_50pxh"
                     android:layout_marginStart="@dimen/_50pxh"
-                    android:layout_marginTop="@dimen/_44pxv"
+                    android:layout_marginTop="@dimen/_14pxv"
                     android:layout_width="match_parent"
                     android:singleLine="true"
                     android:text="@{welcomeLoginVM.welcomeLoginModel.txtStartYourFitn}"
@@ -155,7 +155,7 @@
 
                 <LinearLayout android:id="@+id/linearRowlinetwentynine"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_42pxv"
+                    android:layout_marginTop="@dimen/_12pxv"
                     android:layout_width="wrap_content" android:orientation="horizontal">
                     <View android:background="@color/black_900_75"
                         android:id="@+id/lineLineTwentyNine"
@@ -170,8 +170,9 @@
                         android:layout_weight="0.05"
                         android:layout_width="0dp"
                         android:singleLine="true"
+                        android:textColor="@color/black"
                         android:text="@{welcomeLoginVM.welcomeLoginModel.txtOR}"
-                        style="@style/txtRalewayromanmedium12_1" tools:text="@string/lbl_or"/>
+                       tools:text="@string/lbl_or"/>
                     <View android:background="@color/black_900_75"
                         android:id="@+id/lineLineThirty"
                         android:layout_height="@dimen/_1pxv"
@@ -187,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:layout_marginStart="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_30pxv"
+                    android:layout_marginTop="@dimen/_10pxv"
                     android:layout_width="match_parent"
                     android:orientation="horizontal">
                     <TextView android:ellipsize="end"
