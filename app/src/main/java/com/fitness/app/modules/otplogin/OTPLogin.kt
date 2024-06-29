@@ -24,6 +24,7 @@ import com.fitness.app.modules.services.ApiInterface
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.services.TokenManager
+import com.fitness.app.responses.OtpResponses
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -134,12 +135,12 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
 
     private fun resendOtp(mobile: String){
         val call=apiService.getOtp(mobile)
-        call.enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+        call.enqueue(object : Callback<OtpResponses> {
+            override fun onResponse(call: Call<OtpResponses>, response: Response<OtpResponses>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
-                    if (loginResponse != null) {
-                        Toast.makeText(this@OTPLogin, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+                    if (loginResponse!!.status=="success") {
+                    Toast.makeText(this@OTPLogin, "OTP Sent Successfully", Toast.LENGTH_LONG).show()
 //                        navigateToNextPage()
 //                        finishAffinity()
                     }
@@ -162,11 +163,11 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
                                     val errorMessage = jsonObject.getString("error")
                                     Toast.makeText(this@OTPLogin, errorMessage, Toast.LENGTH_SHORT).show()
                                 } catch (e: JSONException) {
-                                    Toast.makeText(this@OTPLogin, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@OTPLogin, "Insufficient credits of Otp.", Toast.LENGTH_SHORT).show()
                                     binding.progressBar.visibility = View.GONE
                                 }
                             } else {
-                                Toast.makeText(this@OTPLogin, "User not found or not registered", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@OTPLogin, "Server is Under Maintenance, Please Wait For Some Time.", Toast.LENGTH_SHORT).show()
                                 binding.progressBar.visibility = View.GONE
                             }
                         }
@@ -174,7 +175,7 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
                 }
             }
 
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+            override fun onFailure(call: Call<OtpResponses>, t: Throwable) {
                 Toast.makeText(this@OTPLogin, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
                 binding.progressBar.visibility=View.GONE
             }

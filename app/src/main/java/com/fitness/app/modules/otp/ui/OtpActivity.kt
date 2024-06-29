@@ -20,6 +20,7 @@ import com.fitness.app.modules.services.ApiInterface
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.welcomelogin.ui.WelcomeLoginActivity
+import com.fitness.app.responses.OtpResponses
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -135,8 +136,8 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
 
   private fun getSignUpResendOtp(mobile: String){
     val call=apiService.getSignupOtp(mobile)
-    call.enqueue(object : Callback<SignUpResponse> {
-      override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+    call.enqueue(object : Callback<OtpResponses> {
+      override fun onResponse(call: Call<OtpResponses>, response: Response<OtpResponses>) {
         if (response.isSuccessful) {
           binding.progressBar.visibility = View.GONE
           val loginResponse = response.body()
@@ -144,8 +145,8 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
             Toast.makeText(this@OtpActivity, "User Already Registered", Toast.LENGTH_LONG).show()
           } else {
             // OTP received, proceed with navigation
-            if (loginResponse != null) {
-              Toast.makeText(this@OtpActivity, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+            if (loginResponse!!.status=="success") {
+              Toast.makeText(this@OtpActivity, "OTP Sent Successfully,Please Wait", Toast.LENGTH_LONG).show()
             }
 //            navigateToNextPage()
 //            finishAffinity()
@@ -189,7 +190,7 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
 
 
 
-      override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+      override fun onFailure(call: Call<OtpResponses>, t: Throwable) {
         Toast.makeText(this@OtpActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
         binding.progressBar.visibility=View.GONE
       }
