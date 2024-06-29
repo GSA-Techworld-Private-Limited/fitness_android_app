@@ -21,6 +21,7 @@ import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.welcomelogin.`data`.model.ImageSliderSliderrectangle451Model
 import com.fitness.app.modules.welcomelogin.`data`.viewmodel.WelcomeLoginVM
+import com.fitness.app.responses.OtpResponses
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -107,8 +108,8 @@ class WelcomeLoginActivity :
 
   private fun getSignUpOtp(mobile: String){
     val call=apiService.getSignupOtp(mobile)
-    call.enqueue(object : Callback<SignUpResponse> {
-      override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+    call.enqueue(object : Callback<OtpResponses> {
+      override fun onResponse(call: Call<OtpResponses>, response: Response<OtpResponses>) {
         if (response.isSuccessful) {
           binding.progressBar.visibility = View.GONE
           val loginResponse = response.body()
@@ -116,11 +117,12 @@ class WelcomeLoginActivity :
             Toast.makeText(this@WelcomeLoginActivity, "User Already Registered", Toast.LENGTH_LONG).show()
           } else {
             // OTP received, proceed with navigation
-            if (loginResponse != null) {
-              Toast.makeText(this@WelcomeLoginActivity, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+            if (loginResponse!!.status =="success") {
+             // Toast.makeText(this@WelcomeLoginActivity, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+              navigateToNextPage()
+              finishAffinity()
             }
-            navigateToNextPage()
-            finishAffinity()
+
           }
         } else {
           // Handle different error codes
@@ -157,8 +159,8 @@ class WelcomeLoginActivity :
 
 
 
-      override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-        Toast.makeText(this@WelcomeLoginActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+      override fun onFailure(call: Call<OtpResponses>, t: Throwable) {
+        Toast.makeText(this@WelcomeLoginActivity, "SignUp failed: ${t.message}", Toast.LENGTH_SHORT).show()
         binding.progressBar.visibility=View.GONE
       }
     })

@@ -13,6 +13,7 @@ import com.fitness.app.responses.ActivePlanResponses
 import com.fitness.app.responses.ActivePlanWorkshopResponses
 import com.fitness.app.responses.AthletePlanResponses
 import com.fitness.app.responses.BooleanRequest
+import com.fitness.app.responses.OtpResponses
 import com.fitness.app.responses.PlanByIdResponses
 import com.fitness.app.responses.TestimonalsResponses
 import com.fitness.app.responses.TrainerPlanResponses
@@ -45,7 +46,7 @@ interface ApiInterface {
     @POST("api/user-login/")
     fun getOtp(
         @Field("mobile_number")mobile: String
-    ): Call<LoginResponse>
+    ): Call<OtpResponses>
 
 
     @Multipart
@@ -64,7 +65,7 @@ interface ApiInterface {
     @POST("api/user-genrate-otp/")
     fun getSignupOtp(
         @Field("mobile_number")mobile: String
-    ):Call<SignUpResponse>
+    ):Call<OtpResponses>
 
 
     @FormUrlEncoded

@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -25,6 +26,7 @@ import com.fitness.app.modules.welcomelogin.data.model.ImageSliderSliderrectangl
 import com.fitness.app.modules.welcomelogin.data.viewmodel.WelcomeLoginVM
 import com.fitness.app.modules.welcomelogin.ui.Sliderrectangle451Adapter
 import com.fitness.app.modules.welcomelogin.ui.WelcomeLoginActivity
+import com.fitness.app.responses.OtpResponses
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -88,7 +90,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
 
 
         // If the user is already logged in, navigate to the next activity immediately
-        if (!accessToken.isEmpty()) {
+        if (accessToken.isNotEmpty()) {
             navigateToHomeContainer()
             return // Exit the onCreate method to prevent splash screen animations
         }
@@ -114,54 +116,66 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
         return mobile.length == 10 && mobile.all { it.isDigit() }
     }
 
-    private fun getOtp(mobile: String){
-        val call=apiService.getOtp(mobile)
-        call.enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+    private fun getOtp(mobile: String) {
+        val call = apiService.getOtp(mobile)
+        call.enqueue(object : Callback<OtpResponses> {
+            override fun onResponse(call: Call<OtpResponses>, response: Response<OtpResponses>) {
+                binding.progressbar.visibility = View.GONE // Always hide progress bar first
+
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
-                    if (loginResponse != null) {
-                        Toast.makeText(this@Login, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+                    if (loginResponse != null && (loginResponse.balance != null || loginResponse.status == "success")) {
+                        // Success: Navigate to OTPLogin activity
                         navigateToNextPage()
-                        finishAffinity()
+                    } else {
+                        // Handle cases where response body or status is not as expected
+                        handleUnsuccessfulResponse(response)
                     }
                 } else {
-                    when (response.code()) {
-                        429 -> {
-                            Toast.makeText(this@Login, "OTP Attempt Limit Exceeded. Please Wait For 2 Minutes.", Toast.LENGTH_SHORT).show()
-                            binding.progressbar.visibility = View.GONE
-                        }
-                        404 -> {
-                            Toast.makeText(this@Login, "Server Not Found", Toast.LENGTH_SHORT).show()
-                            binding.progressbar.visibility = View.GONE
-                        }
-                        else -> {
-                            binding.progressbar.visibility = View.GONE
-                            val errorBody = response.errorBody()?.string()
-                            if (!errorBody.isNullOrEmpty()) {
-                                try {
-                                    val jsonObject = JSONObject(errorBody)
-                                    val errorMessage = jsonObject.getString("error")
-                                    Toast.makeText(this@Login, errorMessage, Toast.LENGTH_SHORT).show()
-                                } catch (e: JSONException) {
-                                    Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
-                                    binding.progressbar.visibility = View.GONE
-                                }
-                            } else {
-                                Toast.makeText(this@Login, "User not found or not registered", Toast.LENGTH_SHORT).show()
-                                binding.progressbar.visibility = View.GONE
-                            }
-                        }
-                    }
+                    // Handle unsuccessful HTTP response (e.g., 404, 429, etc.)
+                    handleUnsuccessfulResponse(response)
                 }
             }
 
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(this@Login, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
-                binding.progressbar.visibility=View.GONE
+            override fun onFailure(call: Call<OtpResponses>, t: Throwable) {
+                // Handle failure to connect or other network issues
+                binding.progressbar.visibility = View.GONE
+                Toast.makeText(this@Login, "Login failed: ${t.message}", Toast.LENGTH_LONG).show()
+                t.message?.let { Log.d("getting error", it) }
             }
         })
     }
+
+
+
+    private fun handleUnsuccessfulResponse(response: Response<OtpResponses>) {
+        when (response.code()) {
+            429 -> {
+                Toast.makeText(this@Login, "OTP Attempt Limit Exceeded. Please Wait For 2 Minutes.", Toast.LENGTH_SHORT).show()
+                binding.progressbar.visibility = View.GONE
+            }
+            404 -> {
+                Toast.makeText(this@Login, "User not found or not Registered.", Toast.LENGTH_SHORT).show()
+                binding.progressbar.visibility = View.GONE
+            }
+            else -> {
+                binding.progressbar.visibility = View.GONE
+                val errorBody = response.errorBody()?.string()
+                if (!errorBody.isNullOrEmpty()) {
+                    try {
+                        val jsonObject = JSONObject(errorBody)
+                        val errorMessage = jsonObject.getString("error")
+                        Toast.makeText(this@Login, errorMessage, Toast.LENGTH_SHORT).show()
+                    } catch (e: JSONException) {
+                        Toast.makeText(this@Login, "Insufficient credits of Otp.", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this@Login, "Server is Under Maintenance, Please Wait For Some Time. ", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 
 
     private fun navigateToHomeContainer() {
