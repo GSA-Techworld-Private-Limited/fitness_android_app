@@ -114,10 +114,10 @@ class SstOneNineActivity : BaseActivity<ActivitySstOneNineBinding>(R.layout.acti
       val destIntent = HomeContainerActivity.getIntent(this, null)
       startActivity(destIntent)
     }
-    binding.txtPriceOne.setOnClickListener {
-      val destIntent = SstOneOneActivity.getIntent(this, null)
-      startActivity(destIntent)
-    }
+//    binding.txtPriceOne.setOnClickListener {
+//      val destIntent = SstOneOneActivity.getIntent(this, null)
+//      startActivity(destIntent)
+//    }
   }
 
   companion object {

@@ -69,16 +69,22 @@ interface ApiInterface {
 
 
     @FormUrlEncoded
+    @POST("api/resend-signup-otp/")
+    fun getSignUpResendOtp(
+        @Field("mobile_number")mobile: String
+    ):Call<OtpResponses>
+
+    @FormUrlEncoded
     @POST("api/verify-otp/")
     fun verifySignUPOtp(
         @Field("otp")otp:String
     ):Call<SignUpResponse>
 
 
-    @FormUrlEncoded
-    @POST("api/user_detail_register/")
-    fun user_verification(
 
+    @GET("/api/aboutus/")
+    fun about_us(
+        @Header("Authorization")token: String
     ):Call<SignUpResponse>
 
 
