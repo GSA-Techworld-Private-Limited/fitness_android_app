@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/groupStylegray_9051"
+    android:gravity="center">
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/linearColumnparticipations"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/txtParticipationS"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12pxh"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_marginTop="@dimen/_41pxv"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:text="Request Sent Succesfully" />
+
+
+        <FrameLayout android:id="@+id/frameStackcomponentlott"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_17pxv"
+            android:layout_marginEnd="@dimen/_12pxh"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_marginTop="@dimen/_6pxv" android:layout_width="@dimen/_303pxh">
+            <ImageView android:id="@+id/imageComponentlott"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/_169pxv"
+                android:layout_marginBottom="@dimen/_24pxv"
+                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_width="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/done"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/done"/>
+            <ImageView android:id="@+id/imageHttpslottief"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_200pxh"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/celebration"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/celebration"/>
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCart"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:text="OK" />
+    </LinearLayout>
+
+</LinearLayout>
