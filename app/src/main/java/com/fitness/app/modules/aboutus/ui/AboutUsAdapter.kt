@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
 import com.fitness.app.modules.plans.ui.PlanAdapter
 import com.fitness.app.modules.sstoneeight.ui.SstOneEightActivity
+import com.fitness.app.responses.AboutUsResponses
 import com.fitness.app.responses.ActivaPlan
 
  class AboutUsAdapter(
-    var list: ArrayList<ActivaPlan>
+    var list: List<AboutUsResponses>
 ) : RecyclerView.Adapter<AboutUsAdapter.RowFeedsOneVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowFeedsOneVH {
@@ -29,7 +30,7 @@ import com.fitness.app.responses.ActivaPlan
     override fun getItemCount(): Int {
         return  list.size
     }
-    public fun updateData(newData: ArrayList<ActivaPlan>) {
+    public fun updateData(newData: List<AboutUsResponses>) {
         list = newData
         notifyDataSetChanged()
     }
@@ -48,9 +49,9 @@ import com.fitness.app.responses.ActivaPlan
 
 
 
-        fun bindView(postModel: ActivaPlan){
-            val totalcount=postModel.planDaysCount?:0
-            val completedaycount=postModel.completedPlanDaysCount?:0
+        fun bindView(postModel: AboutUsResponses){
+            title.text=postModel.aboutusTitle
+            description.text=postModel.aboutusContent
 
 
         }

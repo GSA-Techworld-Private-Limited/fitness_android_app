@@ -17,6 +17,8 @@ import com.fitness.app.modules.responses.SignUpResponse
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.testimonals.Testimonals
+import com.fitness.app.modules.workshop.WorkShopAdapter
+import com.fitness.app.responses.AboutUsResponses
 import com.fitness.app.responses.TestimonalsResponses
 import retrofit2.Call
 import retrofit2.Response
@@ -52,21 +54,30 @@ class AboutUsActivity : BaseActivity<ActivityAboutUsBinding>(R.layout.activity_a
     val authorization="Token $accessToken"
     val call=serviceGenerator.about_us(authorization)
 
-    call.enqueue(object : retrofit2.Callback<SignUpResponse>{
+    call.enqueue(object : retrofit2.Callback<AboutUsResponses>{
       override fun onResponse(
-        call: Call<SignUpResponse>,
-        response: Response<SignUpResponse>
+        call: Call<AboutUsResponses>,
+        response: Response<AboutUsResponses>
       ) {
         binding.progressBar.visibility= View.GONE
-        val customerResponse=response.body()
+        val aboutUs=response.body()
 
-        if(customerResponse!=null){
+        if(aboutUs!=null){
 
+          binding.title.text=aboutUs.aboutusTitle
+          binding.descritpion.text=aboutUs.aboutusContent
+//          binding.recyclerforaboutUs.apply {
+//            val aboutusAdapter= AboutUsAdapter(aboutUs)
+//            layoutManager=LinearLayoutManager(this@AboutUsActivity,LinearLayoutManager.VERTICAL,
+//              true
+//            )
+//            binding.recyclerforaboutUs.adapter=aboutusAdapter
+//          }
 
         }
       }
 
-      override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+      override fun onFailure(call: Call<AboutUsResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
         binding.progressBar.visibility= View.GONE

@@ -686,4 +686,8 @@
         <!-- Other dark mode attributes -->
     </style>
 
+
+    <style name="groupStylegray_9051">
+        <item name="android:background">@drawable/rectangle_bg_gray_905</item>
+    </style>
 </resources>

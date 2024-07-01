@@ -9,10 +9,14 @@ import com.fitness.app.modules.responses.TestimonalVideoResponses
 import com.fitness.app.modules.responses.TrainingVideoResponse
 import com.fitness.app.modules.responses.UserDetailResponses
 import com.fitness.app.modules.responses.UserDetails
+import com.fitness.app.responses.AboutUsResponses
 import com.fitness.app.responses.ActivePlanResponses
 import com.fitness.app.responses.ActivePlanWorkshopResponses
 import com.fitness.app.responses.AthletePlanResponses
 import com.fitness.app.responses.BooleanRequest
+import com.fitness.app.responses.CreateOrderResponse
+import com.fitness.app.responses.ItemIdRequest
+import com.fitness.app.responses.OrderResponses
 import com.fitness.app.responses.OtpResponses
 import com.fitness.app.responses.PlanByIdResponses
 import com.fitness.app.responses.TestimonalsResponses
@@ -82,10 +86,10 @@ interface ApiInterface {
 
 
 
-    @GET("/api/aboutus/")
+    @GET("api/about-us/")
     fun about_us(
         @Header("Authorization")token: String
-    ):Call<SignUpResponse>
+    ):Call<AboutUsResponses>
 
 
     @GET("/api/workshops/upcoming/")
@@ -234,6 +238,20 @@ interface ApiInterface {
         @Header("Authorization")token: String
     ):Call<UserDetailResponses>
 
+
+
+    @POST("/api/create-order/")
+    fun createOrder(
+        @Header("Authorization")token: String,
+        @Body itemIdRequest:ItemIdRequest
+    ):Call<CreateOrderResponse>
+
+
+
+    @GET("/api/my-orders/")
+    fun getMyOrders(
+        @Header("Authorization")token: String,
+    ):Call<OrderResponses>
 
     @POST("api/logout/")
     fun logout(@Header("Authorization")fetchAuthToken: String?):Call<LogoutResponse>

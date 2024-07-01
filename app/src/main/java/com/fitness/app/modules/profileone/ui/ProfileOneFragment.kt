@@ -15,6 +15,7 @@ import com.fitness.app.modules.aboutus.ui.AboutUsActivity
 import com.fitness.app.modules.appsettings.ui.AppSettingsActivity
 import com.fitness.app.modules.frame1000002010.ui.Frame1000002010Activity
 import com.fitness.app.modules.notifications.ui.NotificationsActivity
+import com.fitness.app.modules.orderRequest.OrderRequest
 import com.fitness.app.modules.plans.ui.PlansActivity
 import com.fitness.app.modules.plansone.ui.PlansOneActivity
 import com.fitness.app.modules.profile.ui.ProfileActivity
@@ -131,6 +132,11 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
     binding.linearRowlock.setOnClickListener {
       val destIntent = Intent(requireActivity(),ProfileActivity::class.java)
       startActivity(destIntent)
+    }
+
+    binding.linearRowinbox1.setOnClickListener {
+      val i=Intent(requireActivity(),OrderRequest::class.java)
+      startActivity(i)
     }
   }
 

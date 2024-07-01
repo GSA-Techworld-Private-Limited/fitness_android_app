@@ -16,9 +16,13 @@
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".modules.videoplayeractivity.VideoPlayerActivity"
+            android:name=".modules.orderRequest.OrderRequest"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".modules.videoplayeractivity.VideoPlayerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.workshopvideos.WorkShopVideosActivity"
             android:exported="false"
@@ -104,8 +108,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.formone.ui.FormOneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".modules.aboutus.ui.AboutUsActivity"
             android:screenOrientation="portrait"
