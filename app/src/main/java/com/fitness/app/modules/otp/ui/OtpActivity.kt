@@ -135,7 +135,7 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
 
 
   private fun getSignUpResendOtp(mobile: String){
-    val call=apiService.getSignupOtp(mobile)
+    val call=apiService.getSignUpResendOtp(mobile)
     call.enqueue(object : Callback<OtpResponses> {
       override fun onResponse(call: Call<OtpResponses>, response: Response<OtpResponses>) {
         if (response.isSuccessful) {
