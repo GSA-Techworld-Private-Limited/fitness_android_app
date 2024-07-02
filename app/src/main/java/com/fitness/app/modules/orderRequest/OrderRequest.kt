@@ -57,7 +57,8 @@ class OrderRequest : AppCompatActivity() {
                   recyclerView.apply {
                         val studioadapter= OrderAdapter(customerResponse)
                         layoutManager= LinearLayoutManager(this@OrderRequest,
-                            LinearLayoutManager.VERTICAL,true)
+                            LinearLayoutManager.VERTICAL,
+                            true)
                        recyclerView.adapter=studioadapter
                     }
 

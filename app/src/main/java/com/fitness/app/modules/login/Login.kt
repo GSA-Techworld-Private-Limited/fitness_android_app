@@ -43,10 +43,10 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
 
     private lateinit var mobile:String
     private val imageUri: Uri =
-        Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle451")
+        Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/img_rectangle451.png?alt=media&token=babf7691-e439-4b98-a514-eee11a5a5f0c")
 
     private val imageUri2:Uri =
-        Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle46")
+        Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/img_rectangle46.png?alt=media&token=db81abfc-1dc8-4717-b189-8eafda0b92ef")
 
     private val imageSliderItems: ArrayList<ImageSliderSliderrectangle451Model> = arrayListOf(
         ImageSliderSliderrectangle451Model(

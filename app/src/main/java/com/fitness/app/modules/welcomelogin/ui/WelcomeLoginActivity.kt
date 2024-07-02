@@ -38,10 +38,10 @@ class WelcomeLoginActivity :
   private lateinit var apiService: ApiInterface
   private lateinit var sessionManager: SessionManager
   private val imageUri: Uri =
-    Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle64")
+    Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/img_rectangle64.png?alt=media&token=00cd7506-840c-4dc4-a3ae-ab63857c03f6")
 
   private val imageUri2:Uri =
-    Uri.parse("android.resource://com.fitness.app/drawable/img_rectangle430_4")
+    Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/img_rectangle430_4.png?alt=media&token=04c35ba3-414e-4196-add7-48973d36e86a")
 
   private val imageSliderItems: ArrayList<ImageSliderSliderrectangle451Model> = arrayListOf(
     ImageSliderSliderrectangle451Model(
