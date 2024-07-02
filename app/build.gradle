@@ -16,7 +16,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.fitness.app"
+        applicationId "com.sportsciencetechnology.app"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 1

@@ -58,13 +58,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
   private lateinit var sessionManager: SessionManager
   private val imageUri: Uri =
-    Uri.parse("android.resource://com.fitness.app/drawable/image1")
+    Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/image1.png?alt=media&token=feb0a193-1cab-477a-a21a-6df87630174e")
   private val imageUri1: Uri =
-    Uri.parse("android.resource://com.fitness.app/drawable/image2")
+    Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/image2.png?alt=media&token=39eff0b1-242d-4e79-8e93-7607a0e435c1")
   private val imageUri2: Uri =
-    Uri.parse("android.resource://com.fitness.app/drawable/image3")
+    Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/image3.png?alt=media&token=c377e782-52c2-4283-b449-e7144477f7fa")
   private val imageUri3: Uri =
-    Uri.parse("android.resource://com.fitness.app/drawable/image4")
+    Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/image4.png?alt=media&token=ecec33fa-d052-4d01-8438-8fa7be39372b")
 
   private val imageSliderSliderrectangletwoItems: ArrayList<ImageSliderSliderrectangletwoModel> =
     arrayListOf(
