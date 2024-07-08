@@ -19,7 +19,7 @@ import com.fitness.app.responses.OngoingWorkshops
 import com.squareup.picasso.Picasso
 
 class WorkShopAdapter(
-    var list: ArrayList<OngoingWorkshops>
+    var list: List<OngoingWorkshops>
 ) : RecyclerView.Adapter<WorkShopAdapter.RowFeedsOneVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowFeedsOneVH {

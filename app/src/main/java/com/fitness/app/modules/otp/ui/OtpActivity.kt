@@ -102,35 +102,35 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
       }
     }
   }
-  private  fun verifyOtp(otp: String) {
+  private fun verifyOtp(otp: String) {
     val call = apiService.verifySignUPOtp(otp)
     call.enqueue(object : Callback<SignUpResponse> {
       override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-        binding.progressBar.visibility=View.GONE
+        binding.progressBar.visibility = View.GONE
         if (response.isSuccessful) {
-
           val loginResponse = response.body()
           if (loginResponse != null) {
-//            val accessToken = loginResponse.access_token
-//            TokenManager.setTokens(accessToken)
-//            sessionManager.saveAuthToken(accessToken)
             Toast.makeText(this@OtpActivity, "OTP Verified Successfully", Toast.LENGTH_SHORT).show()
             navigateToNextPage()
           } else {
-            Toast.makeText(this@OtpActivity, "Login failed", Toast.LENGTH_SHORT).show()
-            binding.progressBar.visibility=View.GONE
+            Toast.makeText(this@OtpActivity, "Signup failed", Toast.LENGTH_SHORT).show()
           }
         } else {
-          Toast.makeText(this@OtpActivity, "Login failed", Toast.LENGTH_SHORT).show()
-          binding.progressBar.visibility=View.GONE
+          if (response.code() == 400) {
+            Toast.makeText(this@OtpActivity, "Invalid OTP", Toast.LENGTH_SHORT).show()
+          } else {
+            Toast.makeText(this@OtpActivity, "Signup failed", Toast.LENGTH_SHORT).show()
+          }
         }
       }
+
       override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-        Toast.makeText(this@OtpActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
-        binding.progressBar.visibility=View.GONE
+        Toast.makeText(this@OtpActivity, "Signup failed: ${t.message}", Toast.LENGTH_SHORT).show()
+        binding.progressBar.visibility = View.GONE
       }
     })
   }
+
 
 
 
@@ -180,7 +180,7 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
               binding.progressBar.visibility=View.GONE
             }
             else -> {
-              Toast.makeText(this@OtpActivity, "Login failed", Toast.LENGTH_SHORT).show()
+              Toast.makeText(this@OtpActivity, "SignUP failed", Toast.LENGTH_SHORT).show()
               binding.progressBar.visibility = View.GONE
             }
           }
@@ -191,7 +191,7 @@ class OtpActivity : BaseActivity<ActivityOtpBinding>(R.layout.activity_otp) {
 
 
       override fun onFailure(call: Call<OtpResponses>, t: Throwable) {
-        Toast.makeText(this@OtpActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@OtpActivity, "SignUP failed: ${t.message}", Toast.LENGTH_SHORT).show()
         binding.progressBar.visibility=View.GONE
       }
     })

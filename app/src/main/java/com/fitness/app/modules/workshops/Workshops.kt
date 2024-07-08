@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
@@ -42,37 +43,48 @@ class Workshops : AppCompatActivity() {
         }
     }
 
-    fun getUserActivePlansWorkshops(){
-        val serviceGenerator= ApiManager.apiInterface
-        val accessToken=sessionManager.fetchAuthToken()
-        val authorization="Token $accessToken"
-        val call=serviceGenerator.getuseractiveworkshops(authorization)
+    fun getUserActivePlansWorkshops() {
+        val serviceGenerator = ApiManager.apiInterface
+        val accessToken = sessionManager.fetchAuthToken()
+        val authorization = "Token $accessToken"
+        val call = serviceGenerator.getuseractiveworkshops(authorization)
 
-        call.enqueue(object : retrofit2.Callback<List<ActivePlanWorkshopResponses>>{
+        call.enqueue(object : retrofit2.Callback<List<ActivePlanWorkshopResponses>> {
             override fun onResponse(
                 call: Call<List<ActivePlanWorkshopResponses>>,
                 response: Response<List<ActivePlanWorkshopResponses>>
             ) {
-                progressBar.visibility= View.GONE
-                val customerResponse=response.body()
+                progressBar.visibility = View.GONE
+                val customerResponse = response.body()
 
-                val recyclerview:RecyclerView=findViewById(R.id.recyclerforplans)
+                val recyclerView: RecyclerView = findViewById(R.id.recyclerforplans)
+                val tvNoItemsFound: TextView = findViewById(R.id.textView)
 
-                    recyclerview.apply {
-                        val studioadapter= workshopadapter(customerResponse!!)
-                        layoutManager= LinearLayoutManager(this@Workshops,
-                            LinearLayoutManager.VERTICAL,true)
-                        recyclerview.adapter=studioadapter
-
-
+                if (customerResponse != null && customerResponse.isNotEmpty()) {
+                    recyclerView.apply {
+                        layoutManager = LinearLayoutManager(this@Workshops, LinearLayoutManager.VERTICAL, false)
+                        adapter = workshopadapter(customerResponse)
+                    }
+                    recyclerView.visibility = View.VISIBLE
+                    tvNoItemsFound.visibility = View.GONE
+                } else {
+                    recyclerView.visibility = View.GONE
+                    tvNoItemsFound.visibility = View.VISIBLE
                 }
             }
 
             override fun onFailure(call: Call<List<ActivePlanWorkshopResponses>>, t: Throwable) {
                 t.printStackTrace()
                 Log.e("error", t.message.toString())
-                progressBar.visibility= View.GONE
+                progressBar.visibility = View.GONE
+
+                val recyclerView: RecyclerView = findViewById(R.id.recyclerforplans)
+                val tvNoItemsFound: TextView = findViewById(R.id.textView)
+
+                recyclerView.visibility = View.GONE
+                tvNoItemsFound.visibility = View.VISIBLE
             }
         })
     }
+
 }

@@ -97,17 +97,16 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
             }
         }
     }
-    private  fun verifyOtp(otp: String) {
+    private fun verifyOtp(otp: String) {
         val call = apiService.verifyLoginOtp(otp)
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                binding.progressBar.visibility=View.GONE
+                binding.progressBar.visibility = View.GONE
                 if (response.isSuccessful) {
-
                     val loginResponse = response.body()
                     if (loginResponse != null) {
-                    val accessToken = loginResponse.token!!
-                    TokenManager.setTokens(accessToken)
+                        val accessToken = loginResponse.token!!
+                        TokenManager.setTokens(accessToken)
                         sessionManager.saveAuthToken(accessToken)
                         sessionManager.saveName(loginResponse.userDetails!!.name!!)
                         sessionManager.saveProfile(loginResponse.userDetails!!.profile!!)
@@ -116,16 +115,20 @@ class OTPLogin  : BaseActivity<ActivityOtploginBinding>(R.layout.activity_otplog
                         navigateToNextPage()
                     } else {
                         Toast.makeText(this@OTPLogin, "Login failed", Toast.LENGTH_SHORT).show()
-                        binding.progressBar.visibility=View.GONE
                     }
                 } else {
-                    Toast.makeText(this@OTPLogin, "Login failed", Toast.LENGTH_SHORT).show()
-                    binding.progressBar.visibility=View.GONE
+                    if (response.code() == 401) {
+                        Toast.makeText(this@OTPLogin, "Invalid credentials", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@OTPLogin, "Login failed", Toast.LENGTH_SHORT).show()
+                    }
                 }
+                binding.progressBar.visibility = View.GONE
             }
+
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(this@OTPLogin, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
-                binding.progressBar.visibility=View.GONE
+                binding.progressBar.visibility = View.GONE
             }
         })
     }

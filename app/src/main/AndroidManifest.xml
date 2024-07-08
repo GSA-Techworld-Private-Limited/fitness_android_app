@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <application
         android:name=".appcomponents.di.MyApp"
         android:allowBackup="true"
@@ -172,6 +173,24 @@
             android:name=".modules.appsettings.ui.AppSettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+
+        <provider
+            android:name=".responses.ProfileImageContentProvider"
+            android:authorities="com.fitness.package.name.profileimageprovider"
+            android:exported="true"
+            android:grantUriPermissions="true">
+        </provider>
+
+
+
+
+
     </application>
+
+
+
+
 
 </manifest>

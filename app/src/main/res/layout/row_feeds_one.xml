@@ -13,13 +13,16 @@
         android:layout_margin="@dimen/_10pxh"
         android:background="@android:color/transparent"
         app:cardCornerRadius="@dimen/_8pxh">
-    <FrameLayout android:id="@+id/frameStackrectanglefortyfive"
-        android:layout_height="wrap_content" android:layout_width="match_parent">
+    <FrameLayout
+        android:id="@+id/frameStackrectanglefortyfive"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
         <ImageView android:id="@+id/imageRectangleFortyFive"
             android:layout_gravity="start"
             android:layout_height="@dimen/_152pxh"
             android:layout_width="@dimen/_152pxh"
-            android:scaleType="fitXY" cornerRadius="@{@dimen/_5pxh}"
+            android:scaleType="fitXY"
+            cornerRadius="@{@dimen/_5pxh}"
             imageRes="@{@drawable/img_rectangle45}"
             tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle45"/>
         <LinearLayout android:id="@+id/linearColumnarticlename"

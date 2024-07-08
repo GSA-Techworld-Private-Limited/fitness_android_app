@@ -16,7 +16,8 @@
             android:id="@+id/toolbarToolbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            app:contentInsetStart="0dp" style="@style/groupStyle">
+            app:contentInsetStart="0dp"
+            style="@style/groupStyle">
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearRowarrowright"
                 android:layout_height="wrap_content"

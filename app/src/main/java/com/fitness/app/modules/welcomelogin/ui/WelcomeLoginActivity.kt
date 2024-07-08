@@ -107,61 +107,37 @@ class WelcomeLoginActivity :
 
 
   private fun getSignUpOtp(mobile: String){
-    val call=apiService.getSignupOtp(mobile)
+    val call = apiService.getSignupOtp(mobile)
     call.enqueue(object : Callback<OtpResponses> {
       override fun onResponse(call: Call<OtpResponses>, response: Response<OtpResponses>) {
+        binding.progressBar.visibility = View.GONE // Hide progress bar regardless of response
+
         if (response.isSuccessful) {
-          binding.progressBar.visibility = View.GONE
-          val loginResponse = response.body()
-          if (loginResponse != null && response.code() == 208) {
-            Toast.makeText(this@WelcomeLoginActivity, "User Already Registered", Toast.LENGTH_LONG).show()
-          } else {
-            // OTP received, proceed with navigation
-            if (loginResponse!!.status =="success") {
-             // Toast.makeText(this@WelcomeLoginActivity, "OTP Sent Successfully: ${loginResponse.otp}", Toast.LENGTH_LONG).show()
+          val otpResponse = response.body()
+          if (otpResponse != null) {
+            if (otpResponse.status == "success") {
+              // OTP received, proceed with navigation
               navigateToNextPage()
               finishAffinity()
             }
-
+            else {
+              // Handle other non-success statuses if needed
+              Toast.makeText(this@WelcomeLoginActivity, "SignUp failed: ${otpResponse.message}", Toast.LENGTH_SHORT).show()
+            }
+          } else {
+            // Handle case where response body is null
+            Toast.makeText(this@WelcomeLoginActivity, "SignUp failed", Toast.LENGTH_SHORT).show()
           }
         } else {
-          // Handle different error codes
-          when (response.code()) {
-            429 -> {
-              binding.progressBar.visibility = View.GONE
-              val errorBody = response.errorBody()?.string()
-              if (!errorBody.isNullOrEmpty()) {
-                try {
-                  val jsonObject = JSONObject(errorBody)
-                  val errorMessage = jsonObject.getString("error")
-                  Toast.makeText(this@WelcomeLoginActivity, errorMessage, Toast.LENGTH_SHORT).show()
-                } catch (e: JSONException) {
-                  Toast.makeText(this@WelcomeLoginActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
-                  binding.progressBar.visibility = View.GONE
-                }
-              } else {
-                Toast.makeText(this@WelcomeLoginActivity, "Too Many Requests For OTP. Wait For 2 Minutes and Try Again.", Toast.LENGTH_SHORT).show()
-                binding.progressBar.visibility = View.GONE
-              }
-            }
-            404 -> {
-              Toast.makeText(this@WelcomeLoginActivity, "Server Not Found", Toast.LENGTH_SHORT).show()
-              binding.progressBar.visibility = View.GONE
-            }
-            else -> {
-              Toast.makeText(this@WelcomeLoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
-              binding.progressBar.visibility = View.GONE
-            }
-          }
+          // Handle other HTTP error codes if needed
+          Toast.makeText(this@WelcomeLoginActivity, "SignUp failed: ${response.message()}", Toast.LENGTH_SHORT).show()
         }
       }
 
-
-
-
       override fun onFailure(call: Call<OtpResponses>, t: Throwable) {
-        Toast.makeText(this@WelcomeLoginActivity, "SignUp failed: ${t.message}", Toast.LENGTH_SHORT).show()
-        binding.progressBar.visibility=View.GONE
+        // Handle failure (e.g., network failure, timeout)
+        Toast.makeText(this@WelcomeLoginActivity, "User Already Registered, Please Login!", Toast.LENGTH_SHORT).show()
+        binding.progressBar.visibility = View.GONE
       }
     })
   }

@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -167,6 +168,14 @@ class AthletePlanByID : AppCompatActivity() {
                     myDialoge.setCancelable(true)
                     myDialoge.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     myDialoge.show()
+                }else{
+                    // Handle unsuccessful response (e.g., 400 Bad Request)
+                    val errorMessage = response.errorBody()?.string()
+                    if (errorMessage.isNullOrEmpty()) {
+                        Toast.makeText(this@AthletePlanByID, "Failed to create order", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@AthletePlanByID, "You have already created an order for this item.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 

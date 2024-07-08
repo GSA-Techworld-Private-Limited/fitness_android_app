@@ -37,7 +37,8 @@
                     android:layout_weight="0.91"
                     android:layout_width="0dp" android:singleLine="true"
                     android:text="@{subscriptionsOneVM.subscriptionsOneModel.txtDoremipsumdol}"
-                    style="@style/txtRobotoromanlight8" tools:text="@string/msg_dorem_ipsum_dol"/>
+                    style="@style/txtRobotoromanlight8"
+                    tools:text="@string/msg_dorem_ipsum_dol"/>
             </LinearLayout>
 
             <ProgressBar

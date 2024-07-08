@@ -4,7 +4,10 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -22,16 +25,40 @@ import kotlin.String
 import kotlin.Unit
 
 class HomeContainerActivity :
-    BaseActivity<ActivityHomeContainerBinding>(R.layout.activity_home_container) {
+    BaseActivity<ActivityHomeContainerBinding>(R.layout.activity_home_container), ConnectivityReceiver.ConnectivityListener {
   private val viewModel: HomeContainerVM by viewModels<HomeContainerVM>()
 
+
+
+  private lateinit var connectivityReceiver: ConnectivityReceiver
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.homeContainerVM = viewModel
 
+
+
     replaceFragment(HomeFragment())
 
+    connectivityReceiver = ConnectivityReceiver(this)
+
    // window.statusBarColor= ContextCompat.getColor(this,R.color.white)
+  }
+
+
+
+  override fun onResume() {
+    super.onResume()
+    registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+  }
+
+  override fun onPause() {
+    super.onPause()
+    unregisterReceiver(connectivityReceiver)
+  }
+  override fun onNetworkConnectionChanged(isConnected: Boolean) {
+    if (!isConnected) {
+      showNoInternetDialog()
+    }
   }
 
   override fun setUpClicks(): Unit {
@@ -120,6 +147,16 @@ class HomeContainerActivity :
       .show()
   }
 
+
+
+
+  private fun showNoInternetDialog() {
+    AlertDialog.Builder(this)
+      .setMessage("Internet connection is not available. Please check your connection.")
+      .setPositiveButton("OK", null)
+      .show()
+  }
+
   companion object {
     const val TAG: String = "HOME_CONTAINER_ACTIVITY"
 
@@ -130,4 +167,6 @@ class HomeContainerActivity :
       return destIntent
     }
   }
+
+
 }

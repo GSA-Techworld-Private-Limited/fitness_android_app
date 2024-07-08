@@ -144,6 +144,10 @@
                 android:textSize="@dimen/_16pxh"
                 android:textStyle="normal" tools:text="@string/lbl_email_id"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayDDMMYYYY"
                     android:layout_width="match_parent"
@@ -171,8 +175,23 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/raleway"
                         tools:text="@string/lbl_dd_mm_yyyy"/>
+
+
+
                 </com.google.android.material.textfield.TextInputLayout>
 
+                    <ImageView
+                        android:id="@+id/ivDatePicker"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_50pxh"
+                        android:layout_marginTop="5dp"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_calender_black" />
+
+                </RelativeLayout>
                 <com.google.android.material.textfield.TextInputLayout
             android:hint="@string/lbl_state"
             android:id="@+id/textInputLayState"
