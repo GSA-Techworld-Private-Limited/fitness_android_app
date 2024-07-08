@@ -1,9 +1,12 @@
 package com.fitness.app.modules.formone.ui
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.icu.util.Calendar
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
@@ -16,6 +19,7 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
@@ -72,6 +76,7 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
 
   private var mobile:String=""
 
+  @RequiresApi(Build.VERSION_CODES.N)
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     binding.formOneVM = viewModel
@@ -102,11 +107,32 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
 
    // usertye=spinnerUserType.selectedItem.toString()
 
+
+    binding.ivDatePicker?.setOnClickListener {
+      showDatePickerDialog()
+    }
+
+
     profileImageView=binding.profilePic
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 
+
+  @RequiresApi(Build.VERSION_CODES.N)
+  private fun showDatePickerDialog() {
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+      val formattedDate = String.format("%02d/%02d/%04d", selectedDay, selectedMonth + 1, selectedYear)
+      binding.etDDMMYYYY.setText(formattedDate)
+    }, year, month, day)
+
+    datePickerDialog.show()
+  }
   override fun setUpClicks(): Unit {
     binding.btnContinue.setOnClickListener {
       name = binding.etName.text.toString().trim()
@@ -119,11 +145,15 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
 
       var allFieldsValid = true // Flag to track if all fields are valid
 
-      if (TextUtils.isEmpty(name) || TextUtils.isEmpty(mobileNumber) || TextUtils.isEmpty(city) || TextUtils.isEmpty(state) || TextUtils.isEmpty(email) || TextUtils.isEmpty(usertye) || TextUtils.isEmpty(dob)) {
+      if (TextUtils.isEmpty(name) || TextUtils.isEmpty(mobileNumber) || TextUtils.isEmpty(city) || TextUtils.isEmpty(state) || TextUtils.isEmpty(email) || TextUtils.isEmpty(usertye) || TextUtils.isEmpty(dob) || imageUri == null) {
         // Display an error message and set flag to false
         Toast.makeText(this, "Please fill in all the required fields!!", Toast.LENGTH_SHORT).show()
         allFieldsValid = false
         binding.progressbar.visibility=View.GONE
+      }
+
+      if(imageUri==null){
+        Toast.makeText(this,"Please Upload Profile Picture",Toast.LENGTH_SHORT).show()
       }
 
       if (!email.endsWith("@gmail.com")) {
@@ -207,12 +237,12 @@ class FormOneActivity : BaseActivity<ActivityFormOneBinding>(R.layout.activity_f
     map.put("user_type",usertype)
 
 
-    if (!::file.isInitialized) {
-      // File is not initialized, handle the error
-      Toast.makeText(this@FormOneActivity, "Please select a profile picture", Toast.LENGTH_SHORT).show()
-      binding.progressbar.visibility=View.GONE
-      return
-    }
+//    if (!::file.isInitialized) {
+//      // File is not initialized, handle the error
+//      Toast.makeText(this@FormOneActivity, "Please select a profile picture", Toast.LENGTH_SHORT).show()
+//      binding.progressbar.visibility=View.GONE
+//      return
+//    }
 
     // Parsing any Media type file
     //file= imageUri.path?.let { File(it) }!!

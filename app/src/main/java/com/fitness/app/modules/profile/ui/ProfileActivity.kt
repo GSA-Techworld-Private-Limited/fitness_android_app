@@ -51,6 +51,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
   private var imageUri: Uri? = null
   private lateinit var nimage: ImageView
   private lateinit var updatedimagefile: File
+  private var profilePictureFile: File? = null
+  private var profilePictureUri: String? = null
 
   private var profile_picture:String=""
 
@@ -87,8 +89,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
       mobileNumner = binding.etMobileNo.text.toString()
       email = binding.etMobileNo1.text.toString()
 
-      if (imageUri == null) {
-        Toast.makeText(this@ProfileActivity, "Please select a profile picture", Toast.LENGTH_SHORT).show()
+      if (name.isEmpty() || mobileNumner.isEmpty() || email.isEmpty()) {
+        Toast.makeText(this, "Please enter anything to update the profile!!", Toast.LENGTH_SHORT).show()
       } else {
         updateData()
         binding.progressBar.visibility = View.VISIBLE
@@ -123,12 +125,16 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
         binding.etCity.setText(userDetails.data!!.city)
         binding.etZIPCode.setText(userDetails.data!!.pinCode)
 
-        val file=ApiManager.getImageUrl(userDetails.data!!.profile!!)
+        profilePictureUri=userDetails.data!!.profile!!
+        val file=ApiManager.getImageUrl(profilePictureUri!!)
 
         Glide.with(this@ProfileActivity)
           .load(file)
           .apply(RequestOptions.bitmapTransform(CircleCrop()))
           .into(binding.imageEllipseFifteen)
+
+
+        profilePictureFile = getFile(this@ProfileActivity, profilePictureUri!!.toUri())
       }
 
       override fun onFailure(call: Call<UserDetailResponses>, t: Throwable) {
@@ -145,7 +151,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
     val email=createPartFromString(email)
 
 
-    updatedimagefile=getFile(this,imageUri!!)
+   // updatedimagefile=getFile(this,imageUri!!)
 
     map.put("name",name)
     map.put("phone_number",mobileNumner)
@@ -153,11 +159,17 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
 
 
 
-    val requestFile: RequestBody = RequestBody.create(
-      "image/jpg".toMediaType(),
-      updatedimagefile)
+    if (imageUri != null) {
+      updatedimagefile = getFile(this, imageUri!!)
+    } else if (profilePictureUri != null) {
+      updatedimagefile = profilePictureFile!!
+    }
+
+    val fileToSend = updatedimagefile
+    val requestFile = fileToSend.let { RequestBody.create("image/jpg".toMediaType(), it) }
     multipartImage =
-      MultipartBody.Part.createFormData("profile", updatedimagefile.getName(), requestFile)
+      requestFile?.let { MultipartBody.Part.createFormData("profile", fileToSend.name, it) }
+
 
     val serviceGenerator = ApiManager.apiInterface
     val accessToken = sessionManager.fetchAuthToken()
@@ -199,7 +211,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
 
       override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
         // Handle network failures or other errors
-        Toast.makeText(this@ProfileActivity, "Error fetching data", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@ProfileActivity, "Please Update Profile Photo!!", Toast.LENGTH_SHORT).show()
         binding.progressBar.visibility= View.GONE
       }
     })
@@ -245,6 +257,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
 //            Picasso.get().load(updatedimagefile).into(nimage)
     }
   }
+
   @Throws(IOException::class)
   fun getFile(context: Context, uri: Uri): File {
     val destinationFilename =
@@ -262,6 +275,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
     }
     return destinationFilename
   }
+
+
   fun createFileFromStream(ins: InputStream, destination: File?) {
     try {
       FileOutputStream(destination).use { os ->
@@ -277,6 +292,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
       ex.printStackTrace()
     }
   }
+
 
   private fun queryName(context: Context, uri: Uri): String {
     var name = ""

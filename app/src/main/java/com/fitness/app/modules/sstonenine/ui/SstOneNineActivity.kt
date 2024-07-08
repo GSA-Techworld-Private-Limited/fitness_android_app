@@ -172,6 +172,14 @@ class SstOneNineActivity : BaseActivity<ActivitySstOneNineBinding>(R.layout.acti
           myDialoge.setCancelable(true)
           myDialoge.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
           myDialoge.show()
+        }else{
+          // Handle unsuccessful response (e.g., 400 Bad Request)
+          val errorMessage = response.errorBody()?.string()
+          if (errorMessage.isNullOrEmpty()) {
+            Toast.makeText(this@SstOneNineActivity, "Failed to create order", Toast.LENGTH_SHORT).show()
+          } else {
+            Toast.makeText(this@SstOneNineActivity, "You have already created an order for this item.", Toast.LENGTH_SHORT).show()
+          }
         }
       }
 
