@@ -11,7 +11,9 @@ import com.fitness.app.databinding.FragmentFeeds1Binding
 import com.fitness.app.modules.feeds1.`data`.viewmodel.Feeds1VM
 import com.fitness.app.modules.feedsone.ui.FeedsOneAdapter
 import com.fitness.app.modules.responses.ArticleResponse
+import com.fitness.app.modules.responses.Articles
 import com.fitness.app.modules.responses.TrainingVideoResponse
+import com.fitness.app.modules.responses.TrainingVideos
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import retrofit2.Call
@@ -24,6 +26,8 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
 
 
   private lateinit var sessionManager: SessionManager
+
+  private var articlesList: List<TrainingVideos> = listOf()
   override fun onInitialized(): Unit {
     viewModel.navArguments = arguments
 
@@ -42,8 +46,48 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
       }
     }
 
+
+    val categoryTags = listOf(
+      binding.txtFrameFour to "All",
+      binding.txtFrameFive to "Weight loss",
+      binding.txtFrameSix to "Weight Gain",
+      binding.txtFrameTen to "test Gain",
+      binding.txtFrameSixteen to "Weight Loss test Programm"
+    )
+
+
+
+    categoryTags.forEach { (categoryTag, category) ->
+      categoryTag.setOnClickListener {
+        updateCategorySelection(categoryTag, categoryTags.map { it.first })
+        filterArticles(category)
+      }
+    }
     binding.feeds1VM = viewModel
   }
+
+
+  private fun updateCategorySelection(selectedCategory: TextView, allCategories: List<TextView>) {
+    updateTextViewStyles(selectedCategory, allCategories)
+  }
+
+
+  private fun filterArticles(category: String) {
+    val filteredArticles = if (category == "All") {
+      articlesList
+    } else {
+      articlesList.filter { it.selectCategory.equals(category, ignoreCase = true) }
+    }
+    updateArticlesList(filteredArticles)
+  }
+
+
+  private fun updateArticlesList(articles: List<TrainingVideos>) {
+    val adapter = Feeds1Adapter(articles)
+    binding.tainingvideos.adapter = adapter
+    adapter.notifyDataSetChanged()
+  }
+
 
 
   private fun updateTextViewStyles(selectedTextView: TextView, allTextViews: List<TextView>) {
@@ -72,14 +116,11 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
         response: Response<TrainingVideoResponse>
       ) {
         binding.progressBar.visibility=View.GONE
-        val customerResponse=response.body()
+        val articleResponse = response.body()
 
-        if(customerResponse!=null){
-
-          binding.tainingvideos.apply {
-            val studioadapter= Feeds1Adapter(customerResponse.data)
-            binding.tainingvideos.adapter=studioadapter
-          }
+        if (articleResponse != null) {
+          articlesList = articleResponse.data
+          updateArticlesList(articlesList)
         }
       }
 

@@ -33,7 +33,7 @@ import okhttp3.OkHttpClient
 
 
 class Feeds1Adapter(
-    var list: ArrayList<TrainingVideos>
+    var list: List<TrainingVideos>
 ) : RecyclerView.Adapter<Feeds1Adapter.VideoViewHolder>() {
 
     lateinit var exoPlayer: SimpleExoPlayer

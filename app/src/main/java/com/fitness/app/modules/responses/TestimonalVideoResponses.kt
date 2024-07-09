@@ -14,6 +14,7 @@ data class TestimonalVideos (
     @SerializedName("testimonal_video_id"   ) var testimonalVideoId   : String? = null,
     @SerializedName("testimonal_video_name" ) var testimonalVideoName : String? = null,
     @SerializedName("select_category"       ) var selectCategory      : String? = null,
+    @SerializedName("category_name")var category_name:String?=null,
     @SerializedName("testimonal_video"      ) var testimonalVideo     : String? = null
 
 )

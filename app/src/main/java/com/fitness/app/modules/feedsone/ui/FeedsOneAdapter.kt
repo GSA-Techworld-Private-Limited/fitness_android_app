@@ -18,7 +18,7 @@ import kotlin.Int
 import kotlin.collections.List
 
 class FeedsOneAdapter(
-  var list: ArrayList<Articles>
+  var list: List<Articles>
 ) : RecyclerView.Adapter<FeedsOneAdapter.RowFeedsOneVH>() {
   private var clickListener: OnItemClickListener? = null
 

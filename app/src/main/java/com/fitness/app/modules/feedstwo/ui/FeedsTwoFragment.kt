@@ -9,7 +9,9 @@ import com.fitness.app.appcomponents.base.BaseFragment
 import com.fitness.app.databinding.FragmentFeedsTwoBinding
 import com.fitness.app.modules.feedstwo.`data`.viewmodel.FeedsTwoVM
 import com.fitness.app.modules.responses.TestimonalVideoResponses
+import com.fitness.app.modules.responses.TestimonalVideos
 import com.fitness.app.modules.responses.TrainingVideoResponse
+import com.fitness.app.modules.responses.TrainingVideos
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import retrofit2.Call
@@ -22,6 +24,9 @@ class FeedsTwoFragment : BaseFragment<FragmentFeedsTwoBinding>(R.layout.fragment
 
 
   private lateinit var sessionManager: SessionManager
+
+  private var articlesList: List<TestimonalVideos> = listOf()
+
   override fun onInitialized(): Unit {
     viewModel.navArguments = arguments
     sessionManager=SessionManager(requireActivity())
@@ -39,7 +44,45 @@ class FeedsTwoFragment : BaseFragment<FragmentFeedsTwoBinding>(R.layout.fragment
       }
     }
 
+
+    val categoryTags = listOf(
+      binding.txtFrameFour to "All",
+      binding.txtFrameFive to "Weight loss",
+      binding.txtFrameSix to "Weight Gain",
+      binding.txtFrameTen to "test Gain",
+      binding.txtFrameSixteen to "Weight Loss test Programm"
+    )
+
+
+
+    categoryTags.forEach { (categoryTag, category) ->
+      categoryTag.setOnClickListener {
+        updateCategorySelection(categoryTag, categoryTags.map { it.first })
+        filterArticles(category)
+      }
+    }
+
     binding.feedsTwoVM = viewModel
+  }
+
+  private fun updateCategorySelection(selectedCategory: TextView, allCategories: List<TextView>) {
+    updateTextViewStyles(selectedCategory, allCategories)
+  }
+
+  private fun filterArticles(category: String) {
+    val filteredArticles = if (category == "All") {
+      articlesList
+    } else {
+      articlesList.filter { it.category_name.equals(category, ignoreCase = true) }
+    }
+    updateArticlesList(filteredArticles)
+  }
+
+
+  private fun updateArticlesList(articles: List<TestimonalVideos>) {
+    val adapter = FeedTwoAdapter(articles)
+    binding.recyclerviewtestimonalvideos.adapter = adapter
+    adapter.notifyDataSetChanged()
   }
 
 
@@ -71,14 +114,12 @@ class FeedsTwoFragment : BaseFragment<FragmentFeedsTwoBinding>(R.layout.fragment
         response: Response<TestimonalVideoResponses>
       ) {
         binding.progressbar.visibility=View.GONE
-        val customerResponse=response.body()
 
-        if(customerResponse!=null){
+        val articleResponse = response.body()
 
-          binding.recyclerviewtestimonalvideos.apply {
-            val studioadapter= FeedTwoAdapter(customerResponse.data)
-            binding.recyclerviewtestimonalvideos.adapter=studioadapter
-          }
+        if (articleResponse != null) {
+          articlesList = articleResponse.data
+          updateArticlesList(articlesList)
         }
       }
 

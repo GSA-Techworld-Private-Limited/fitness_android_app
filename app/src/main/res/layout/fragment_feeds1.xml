@@ -63,8 +63,9 @@
                         android:paddingStart="@dimen/_29pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="@{feeds1VM.feeds1Model.txtFrameFive}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_trainers"/>
+                        android:text="Weightgain"
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="Weightgain"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameSix"
                         android:layout_height="wrap_content"
@@ -75,8 +76,9 @@
                         android:paddingStart="@dimen/_23pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="@{feeds1VM.feeds1Model.txtFrameSix}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_athletes"/>
+                        android:text="Weightloss"
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="Weightloss"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameTen"
                         android:layout_height="wrap_content"
@@ -87,8 +89,9 @@
                         android:paddingStart="@dimen/_15pxh"
                         android:paddingTop="@dimen/_11pxv"
                         android:singleLine="true"
-                        android:text="@{feeds1VM.feeds1Model.txtFrameTen}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_weight_loss2"/>
+                        android:text="Yoga"
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="Yoga"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameSixteen"
                         android:layout_height="wrap_content"
@@ -99,9 +102,9 @@
                         android:paddingStart="@dimen/_30pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="@{feeds1VM.feeds1Model.txtFrameSixteen}"
+                        android:text="Trainer"
                         style="@style/txtRoundedOutline_1"
-                        tools:text="@string/lbl_yoga"/>
+                        tools:text="Trainer"/>
 
                 </LinearLayout>
 
