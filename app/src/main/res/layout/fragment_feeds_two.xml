@@ -54,8 +54,9 @@
                         android:paddingStart="@dimen/_29pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="@{feedsTwoVM.feedsTwoModel.txtFrameFive}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_trainers"/>
+                        android:text="Weightgain"
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="Weightgain"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameSix"
                         android:layout_height="wrap_content"
@@ -66,8 +67,9 @@
                         android:paddingStart="@dimen/_23pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="@{feedsTwoVM.feedsTwoModel.txtFrameSix}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_athletes"/>
+                        android:text="Weightloss"
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="Weightloss"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameTen"
                         android:layout_height="wrap_content"
@@ -78,8 +80,9 @@
                         android:paddingStart="@dimen/_23pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="@{feedsTwoVM.feedsTwoModel.txtFrameTen}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_webinar"/>
+                        android:text="Testimonials"
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="Testimonials"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameSixteen"
                         android:layout_height="wrap_content"
@@ -90,8 +93,9 @@
                         android:paddingStart="@dimen/_30pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="@{feedsTwoVM.feedsTwoModel.txtFrameSixteen}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_yoga"/>
+                        android:text="@string/lbl_yoga"
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="@string/lbl_yoga"/>
                 </LinearLayout>
 
                 </HorizontalScrollView>

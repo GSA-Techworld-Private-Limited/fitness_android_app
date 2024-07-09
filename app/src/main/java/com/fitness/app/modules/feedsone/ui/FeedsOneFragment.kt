@@ -11,6 +11,7 @@ import com.fitness.app.modules.feeds.ui.FeedsFragmentPagerAdapter
 import com.fitness.app.modules.feedsone.`data`.model.FeedsOneRowModel
 import com.fitness.app.modules.feedsone.`data`.viewmodel.FeedsOneVM
 import com.fitness.app.modules.responses.ArticleResponse
+import com.fitness.app.modules.responses.Articles
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import retrofit2.Call
@@ -24,6 +25,8 @@ class FeedsOneFragment : BaseFragment<FragmentFeedsOneBinding>(R.layout.fragment
 
 
   private lateinit var sessionManager: SessionManager
+
+  private var articlesList: List<Articles> = listOf()
   override fun onInitialized(): Unit {
     viewModel.navArguments = arguments
 
@@ -57,7 +60,49 @@ class FeedsOneFragment : BaseFragment<FragmentFeedsOneBinding>(R.layout.fragment
       }
     }
 
+
+    val categoryTags = listOf(
+      binding.txtFrameFour to "All",
+      binding.txtFrameFive to "Weight Loss test Programm",
+      binding.txtFrameSix to "Weight Gain",
+      binding.txtFrameTen to "test Gain",
+      binding.txtFrameSixteen to "Yoga"
+    )
+
+
+    categoryTags.forEach { (categoryTag, category) ->
+      categoryTag.setOnClickListener {
+        updateCategorySelection(categoryTag, categoryTags.map { it.first })
+        filterArticles(category)
+      }
+    }
+
     binding.feedsOneVM = viewModel
+  }
+
+
+
+  private fun updateCategorySelection(selectedCategory: TextView, allCategories: List<TextView>) {
+    updateTextViewStyles(selectedCategory, allCategories)
+  }
+
+
+
+
+  private fun filterArticles(category: String) {
+    val filteredArticles = if (category == "All") {
+      articlesList
+    } else {
+      articlesList.filter { it.chooseCategory.equals(category, ignoreCase = true) }
+    }
+    updateArticlesList(filteredArticles)
+  }
+
+
+  private fun updateArticlesList(articles: List<Articles>) {
+    val adapter = FeedsOneAdapter(articles)
+    binding.recyclerFeedsOne.adapter = adapter
+    adapter.notifyDataSetChanged()
   }
 
 
@@ -85,14 +130,11 @@ class FeedsOneFragment : BaseFragment<FragmentFeedsOneBinding>(R.layout.fragment
         response: Response<ArticleResponse>
       ) {
         binding.progressBar.visibility=View.GONE
-        val customerResponse=response.body()
+        val articleResponse = response.body()
 
-        if(customerResponse!=null){
-
-          binding.recyclerFeedsOne.apply {
-            val studioadapter= FeedsOneAdapter(customerResponse.data)
-            binding.recyclerFeedsOne.adapter=studioadapter
-          }
+        if (articleResponse != null) {
+          articlesList = articleResponse.data
+          updateArticlesList(articlesList)
         }
       }
 

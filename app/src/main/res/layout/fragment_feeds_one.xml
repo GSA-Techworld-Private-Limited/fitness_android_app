@@ -52,7 +52,8 @@
                         android:paddingTop="@dimen/_11pxv"
                         android:singleLine="true"
                         android:text="@{feedsOneVM.feedsOneModel.txtFrameFive}"
-                        style="@style/txtRoundedOutline_1" tools:text="@string/lbl_weightloss"/>
+                        style="@style/txtRoundedOutline_1"
+                        tools:text="@string/lbl_weightloss"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameSix"
                         android:layout_height="wrap_content"
