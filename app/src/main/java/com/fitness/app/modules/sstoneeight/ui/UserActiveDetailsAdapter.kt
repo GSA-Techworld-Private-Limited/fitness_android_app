@@ -14,9 +14,7 @@ import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.warmup.ui.WarmUpActivity
 import com.fitness.app.responses.ActivaPlan
 import com.fitness.app.responses.PlanDays
-
-
-
+import com.fitness.app.responses.WorkShopSegmentResponses
 
 
 class UserActiveDetailsAdapter(
@@ -44,6 +42,12 @@ class UserActiveDetailsAdapter(
 
 
 
+    fun updateData(filteredWorkshops: List<PlanDays>) {
+        list = filteredWorkshops
+        notifyDataSetChanged()
+    }
+
+
 
 
 
@@ -54,6 +58,8 @@ class UserActiveDetailsAdapter(
 
         val useractiveplan: TextView =itemView.findViewById(R.id.etGroup100000211)
 
+        val completedTask:TextView=itemView.findViewById(R.id.txtThree)
+        val totalTesk:TextView=itemView.findViewById(R.id.txtThree2)
 
 
         fun bindView(postModel: PlanDays){
@@ -62,6 +68,8 @@ class UserActiveDetailsAdapter(
             useractiveplan.text=postModel.taskName
 
 
+            completedTask.text=postModel.completed_Task
+            totalTesk.text=postModel.total_task
 
 
 

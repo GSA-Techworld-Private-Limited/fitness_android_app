@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityWarmUpBinding
+import com.fitness.app.modules.plyometrics.ui.PlyometricsActivity
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.sstoneeight.ui.UserActiveDetailsAdapter
@@ -31,6 +32,7 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
   private val viewModel: WarmUpVM by viewModels<WarmUpVM>()
 
   private lateinit var sessionManager:SessionManager
+  private var id:Int=0
   override fun onInitialized(): Unit {
     sessionManager= SessionManager(this)
     viewModel.navArguments = intent.extras?.getBundle("bundle")
@@ -40,7 +42,7 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
     val taskName=intent.getStringExtra("taskName")
     val taskDate=intent.getStringExtra("taskdate")
     val iscompleted=intent.getBooleanExtra("iscompleted",false)
-    val id=intent.getIntExtra("id",-1)
+     id=intent.getIntExtra("id",-1)
 
 
     binding.txtDescription.text=description
@@ -96,7 +98,7 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
         } else {
           if (response.code() == 400) {
             val errorBody = response.errorBody()?.string() ?: "Error response body is null"
-            Toast.makeText(this@WarmUpActivity, errorBody, Toast.LENGTH_LONG).show()
+            //Toast.makeText(this@WarmUpActivity, errorBody, Toast.LENGTH_LONG).show()
             Log.e("Response Error", errorBody)
 
             showDialog()
@@ -127,6 +129,9 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
 
     dialogBuilder.setTitle("Error")
     dialogBuilder.setPositiveButton("OK") { dialog, _ ->
+      val i=Intent(this, PlyometricsActivity::class.java)
+      i.putExtra("idforvideos",id)
+      startActivity(i)
       dialog.dismiss()
     }
 

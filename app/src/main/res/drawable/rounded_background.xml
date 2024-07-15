@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/black" />
-    <corners android:radius="6dp"
+    <!-- Gradient colors -->
+    <gradient
+        android:type="linear"
+        android:startColor="#312E2E"
+        android:centerColor="#686868"
+        android:endColor="#0C0C0C"
+        android:angle="270" />
+
+    <!-- Rounded corners -->
+    <corners
+        android:radius="6dp"
         android:bottomLeftRadius="@dimen/_200pxh"
         android:bottomRightRadius="@dimen/_200pxh"
         android:topLeftRadius="@dimen/_200pxh"
-        android:topRightRadius="@dimen/_200pxh"/>
-    <size android:width="@dimen/_80pxh"
-        android:height="@dimen/_100pxh"
-        />
-    <!-- Adjust the radius to control the roundness -->
+        android:topRightRadius="@dimen/_200pxh" />
+
+    <!-- Size -->
+    <size
+        android:width="@dimen/_60pxh"
+        android:height="@dimen/_80pxh" />
 </shape>

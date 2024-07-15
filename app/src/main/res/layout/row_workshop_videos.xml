@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/frameStackrectangle448"
+<LinearLayout
+    android:id="@+id/frameStackrectangle448"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -24,6 +26,20 @@
             tools:ignore="ContentDescription"
             tools:src="@drawable/img_rectangle448_2"/>
 
+        <ImageView
+            android:id="@+id/orientationIcon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/_4pxv"
+            android:layout_marginEnd="@dimen/_4pxh"
+            android:src="@drawable/video_expand"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/gray_800"
+            android:padding="@dimen/_8pxh"
+            android:contentDescription="Orientation Icon"
+            />
 
 
         <ProgressBar
@@ -32,15 +48,11 @@
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:id="@+id/linearColumnplaycircle"
-            android:layout_gravity="bottom|start"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20pxv"
-            android:layout_width="match_parent"
-            android:orientation="vertical">
+
             <androidx.appcompat.widget.AppCompatButton
-                android:ellipsize="end" android:gravity="center"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:layout_gravity="bottom"
                 android:id="@+id/btnComplete"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_29pxv"
@@ -52,9 +64,8 @@
                 android:text="@string/lbl_complete"
                 android:textAllCaps="false"
                 style="@style/btnGradientRoundedBottomCorner" tools:text="@string/lbl_complete"/>
-        </LinearLayout>
 
 
 
     </androidx.cardview.widget.CardView>
-</FrameLayout>
+</LinearLayout>

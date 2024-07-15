@@ -5,11 +5,12 @@
     <data>
         <variable name="plyometricsRowModel" type="com.fitness.app.modules.plyometrics.data.model.PlyometricsRowModel"/>
     </data>
-    <FrameLayout
+    <LinearLayout
         android:layout_marginTop="4dp"
         android:id="@+id/frameStackrectangle448"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
 
 
@@ -52,14 +53,11 @@
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:id="@+id/linearColumnplaycircle"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_225pxv"
-            android:layout_width="match_parent"
-            android:orientation="vertical">
+
             <androidx.appcompat.widget.AppCompatButton
-                android:ellipsize="end" android:gravity="center"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:layout_gravity="bottom"
                 android:id="@+id/btnComplete"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -71,10 +69,10 @@
                 android:textAllCaps="false"
                 style="@style/btnGradient"
                 tools:text="@string/lbl_complete"/>
-        </LinearLayout>
+
 
 
 
         </androidx.cardview.widget.CardView>
-    </FrameLayout>
+    </LinearLayout>
 </layout>

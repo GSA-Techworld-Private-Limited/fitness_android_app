@@ -3,6 +3,9 @@ package com.fitness.app.modules.services
 import android.content.Context
 import android.content.SharedPreferences
 import com.fitness.app.R
+import com.fitness.app.responses.WorkShopSegmentResponses
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 /**
  * Session manager to save and fetch data from SharedPreferences
@@ -10,6 +13,7 @@ import com.fitness.app.R
 class SessionManager (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name),
         Context.MODE_PRIVATE)
+    private val editor: SharedPreferences.Editor = prefs.edit()
 
     companion object {
         const val USER_TOKEN = "access_token"
@@ -19,6 +23,8 @@ class SessionManager (context: Context) {
         const val MOBILENUMBER="phone_number"
         const val DOB="dob"
         const val WORK_SHOP_ID="id"
+        private const val TASK_MAP_KEY = "task_map_key"
+        private const val AUTH_TOKEN_KEY = "auth_token_key"
     }
 
     private val sharedPreferences =
@@ -106,6 +112,20 @@ class SessionManager (context: Context) {
     }
 
 
+
+
+    fun saveTaskMap(taskMap: Map<String, List<WorkShopSegmentResponses>>) {
+        val gson = Gson()
+        val json = gson.toJson(taskMap)
+        editor.putString(TASK_MAP_KEY, json).apply()
+    }
+
+    fun fetchTaskMap(): Map<String, List<WorkShopSegmentResponses>> {
+        val gson = Gson()
+        val json = prefs.getString(TASK_MAP_KEY, null)
+        val type = object : TypeToken<Map<String, List<WorkShopSegmentResponses>>>() {}.type
+        return gson.fromJson(json, type) ?: emptyMap()
+    }
 
 
 }

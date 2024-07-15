@@ -16,6 +16,7 @@ import com.fitness.app.modules.plansone.`data`.model.PlansOneRowModel
 import com.fitness.app.modules.plansone.`data`.viewmodel.PlansOneVM
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
+import com.fitness.app.modules.workshopvideos.WorkShopVideosActivity
 import com.fitness.app.responses.BooleanRequest
 import com.fitness.app.responses.UpdateResponse
 import com.google.gson.Gson
@@ -33,6 +34,7 @@ import kotlin.Unit
 class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity_plans_one) {
   private val viewModel: PlansOneVM by viewModels<PlansOneVM>()
 
+  private var taskId:Int=0
 
   private lateinit var sessionManager:SessionManager
   override fun onInitialized(): Unit {
@@ -47,6 +49,7 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
     val workshoptype=intent.getStringExtra("workshoptype")
 
 
+    taskId=intent.getIntExtra("id",-1)
     binding.txtWorkshopName.text=workshoptype
 
     binding.txtTaskName.text=taskname
@@ -110,7 +113,7 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
         } else {
           if (response.code() == 400) {
             val errorBody = response.errorBody()?.string() ?: "Error response body is null"
-            Toast.makeText(this@PlansOneActivity, errorBody, Toast.LENGTH_LONG).show()
+           // Toast.makeText(this@PlansOneActivity, errorBody, Toast.LENGTH_LONG).show()
             Log.e("Response Error", errorBody)
             showDialog()
           } else {
@@ -135,8 +138,11 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
     dialogBuilder.setView(dialogView)
 
 
-    dialogBuilder.setTitle("Error")
+    dialogBuilder.setTitle("Note")
     dialogBuilder.setPositiveButton("OK") { dialog, _ ->
+      val i=Intent(this, WorkShopVideosActivity::class.java)
+      i.putExtra("idforvideos",taskId)
+      startActivity(i)
       dialog.dismiss()
     }
 

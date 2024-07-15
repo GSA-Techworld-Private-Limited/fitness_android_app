@@ -18,6 +18,8 @@ data class PlanDays (
     @SerializedName("task_details" ) var taskDetails  : String?  = null,
     @SerializedName("is_completed" ) var isCompleted  : Boolean? = null,
     @SerializedName("created_at"   ) var createdAt    : String?  = null,
-    @SerializedName("updated_at"   ) var updatedAt    : String?  = null
+    @SerializedName("updated_at"   ) var updatedAt    : String?  = null,
+    @SerializedName("completed_tasks_count")var completed_Task:String?=null,
+    @SerializedName("total_task_count")val total_task:String?=null
 
 )

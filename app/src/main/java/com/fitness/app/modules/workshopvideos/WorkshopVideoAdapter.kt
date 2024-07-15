@@ -1,12 +1,14 @@
 package com.fitness.app.modules.workshopvideos
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
+import com.fitness.app.modules.videoplayeractivity.VideoPlayerActivity
 import com.fitness.app.responses.BooleanRequest
 import com.fitness.app.responses.PlanVideos
 import com.fitness.app.responses.UpdateResponse
@@ -70,6 +73,7 @@ private val sessionManager: SessionManager
         val progressBar: ProgressBar =view.findViewById(R.id.progressBar)
 
 
+        private val orientationIcon: ImageView = view.findViewById(R.id.orientationIcon)
         init {
             // Initialize ExoPlayer in the constructor
             val bandwidthMeter: BandwidthMeter = DefaultBandwidthMeter()
@@ -141,6 +145,14 @@ private val sessionManager: SessionManager
                     // when it is ready.
                     exoPlayer.playWhenReady = false
                 }
+            }
+
+
+            orientationIcon.setOnClickListener {
+                val file=ApiManager.getVideoUrl(postModel.video!!)
+                val intent = Intent(itemView.context, VideoPlayerActivity::class.java)
+                intent.putExtra("videoUrl", file)
+                itemView.context.startActivity(intent)
             }
 
             val isComplete = postModel.isCompleted
