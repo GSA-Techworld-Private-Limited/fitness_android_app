@@ -11,6 +11,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
@@ -23,9 +24,12 @@ import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.sstoneeight.`data`.viewmodel.SstOneEightVM
 import com.fitness.app.modules.sstoneten.ui.SstOneTenActivity
 import com.fitness.app.modules.warmup.ui.WarmUpActivity
+import com.fitness.app.modules.workshopsegments.DateAdapter
+import com.fitness.app.modules.workshopsegments.UserActiveWorkshopsAdapter
 import com.fitness.app.responses.ActivePlanResponses
 import com.fitness.app.responses.PlanDays
 import com.fitness.app.responses.UserActivePlanDetailResponses
+import com.fitness.app.responses.WorkShopSegmentResponses
 import devs.mulham.horizontalcalendar.HorizontalCalendar
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener
 import retrofit2.Call
@@ -43,6 +47,11 @@ class SstOneEightActivity :
   private lateinit var sessionManager:SessionManager
 
   private var customerResponse: UserActivePlanDetailResponses? = null
+
+
+
+  private lateinit var dateAdapter: DateAdapterForPlans
+  private lateinit var detailAdapter: UserActiveDetailsAdapter
 
   private lateinit var selectedDate:Calendar
 
@@ -69,9 +78,15 @@ class SstOneEightActivity :
     }
      planid=intent.getStringExtra("planid")!!
     Log.d("tagforid",planid.toString())
+
+
+    getUserActivePlans(planid)
+
     val totalcount=intent.getIntExtra("totalcount",-1)
     Log.d("totalcount",totalcount.toInt().toString())
     val completedcount=intent.getIntExtra("plancount",-1)
+
+
 
 
     val planName=intent.getStringExtra("planName")
@@ -89,50 +104,6 @@ class SstOneEightActivity :
     binding.txtThree.text=completedcount.toInt().toString()
 
 
-    val startDate = Calendar.getInstance()
-    startDate.add(Calendar.MONTH, -1)
-    val endDate = Calendar.getInstance()
-    endDate.add(Calendar.MONTH, 1)
-    val horizontalCalendar: HorizontalCalendar =
-      HorizontalCalendar.Builder(this, binding.calendarView1.id)
-        .range(startDate, endDate)
-        .datesNumberOnScreen(7)
-        .build()
-
-    // Format today's date in "dd/mm/yyyy" format
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val today = Calendar.getInstance()
-    val formattedToday = dateFormat.format(today.time)
-
-
-   // getUserActivePlans(planid!!)
-    // Parse the formatted string back to a Calendar object
-     selectedDate = Calendar.getInstance()
-    selectedDate.time = dateFormat.parse(formattedToday)!!
-
-
-
-
-
-
-    horizontalCalendar.calendarListener = object : HorizontalCalendarListener() {
-      override fun onDateSelected(date: Calendar, position: Int) {
-        // Format selected date in "yyyy-MM-dd" format
-        selectedDate=date
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val formattedSelectedDate = dateFormat.format(date.time)
-
-        Log.d("selctedDate",formattedSelectedDate)
-
-       getUserActivePlans(planid!!)
-
-        binding.progressBar.visibility=View.VISIBLE
-
-      }
-    }
-
-
-
 
     binding.btnArrowright.setOnClickListener {
       this.finish()
@@ -143,6 +114,27 @@ class SstOneEightActivity :
       i.putExtra("idforvideos",idforVideos)
       startActivity(i)
     }
+
+
+    val dateRecyclerView: RecyclerView = findViewById(R.id.dates)
+    val detailRecyclerView: RecyclerView = findViewById(R.id.recyclerfordetails)
+
+    dateRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    detailRecyclerView.layoutManager = LinearLayoutManager(this)
+
+    dateAdapter = DateAdapterForPlans(emptyList()) { selectedDate ->
+      fetchTasksForDate(selectedDate)
+    }
+
+
+
+
+    detailAdapter = UserActiveDetailsAdapter(emptyList(), sessionManager, viewModel1)
+
+
+    dateRecyclerView.adapter = dateAdapter
+    detailRecyclerView.adapter = detailAdapter
+
 
     binding.sstOneEightVM = viewModel
 
@@ -194,35 +186,47 @@ class SstOneEightActivity :
         call: Call<UserActivePlanDetailResponses>,
         response: Response<UserActivePlanDetailResponses>
       ) {
-        binding.progressBar.visibility=View.GONE
-         customerResponse=response.body()
+//        binding.progressBar.visibility=View.GONE
+//         customerResponse=response.body()
+//
+//        if(customerResponse!=null){
+//
+//          val filteredWorkshops = customerResponse!!.planDays.filter { workshop ->
+//            // Convert workshop.taskDate (String) to Calendar object
+//            val taskDateCalendar = Calendar.getInstance()
+//            taskDateCalendar.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(workshop.taskDate!!)!!
+//
+//            // Compare the converted date with selectedDate
+//            taskDateCalendar == selectedDate
+//          }
+//
+//          binding.recyclerfordetails.apply {
+//            val studioadapter= UserActiveDetailsAdapter(filteredWorkshops,sessionManager,viewModel1)
+//            layoutManager= LinearLayoutManager(this@SstOneEightActivity, LinearLayoutManager.VERTICAL,true)
+//            binding.recyclerfordetails.adapter=studioadapter
+//          }
+//
+//
+//          if (filteredWorkshops.isNotEmpty()) {
+//            binding.etGroup100000212.visibility = View.VISIBLE
+//          } else {
+//            binding.etGroup100000212.visibility = View.GONE
+//          }
+//
+//
+//        }
 
-        if(customerResponse!=null){
 
-          val filteredWorkshops = customerResponse!!.planDays.filter { workshop ->
-            // Convert workshop.taskDate (String) to Calendar object
-            val taskDateCalendar = Calendar.getInstance()
-            taskDateCalendar.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(workshop.taskDate!!)!!
+        binding.progressBar.visibility = View.GONE
+        val customerResponse = response.body()!!.planDays
 
-            // Compare the converted date with selectedDate
-            taskDateCalendar == selectedDate
-          }
-
-          binding.recyclerfordetails.apply {
-            val studioadapter= UserActiveDetailsAdapter(filteredWorkshops,sessionManager,viewModel1)
-            layoutManager= LinearLayoutManager(this@SstOneEightActivity, LinearLayoutManager.VERTICAL,true)
-            binding.recyclerfordetails.adapter=studioadapter
-          }
-
-
-          if (filteredWorkshops.isNotEmpty()) {
-            binding.etGroup100000212.visibility = View.VISIBLE
-          } else {
-            binding.etGroup100000212.visibility = View.GONE
-          }
-
-
+        dateAdapter.updateData(customerResponse)
+        // Automatically select the first date
+        if (customerResponse.isNotEmpty()) {
+          fetchTasksForDate(customerResponse[0])
         }
+
+
       }
 
       override fun onFailure(call: Call<UserActivePlanDetailResponses>, t: Throwable) {
@@ -232,6 +236,33 @@ class SstOneEightActivity :
       }
     })
   }
+
+
+  private fun fetchTasksForDate(date: PlanDays) {
+    val selectedDateCalendar = Calendar.getInstance()
+    selectedDateCalendar.time = SimpleDateFormat(
+      "yyyy-MM-dd",
+      Locale.getDefault()
+    ).parse(date.taskDate!!)!!
+
+    val filteredWorkshops = dateAdapter.dates.filter { workshop ->
+      val taskDateCalendar = Calendar.getInstance()
+      taskDateCalendar.time = SimpleDateFormat(
+        "yyyy-MM-dd",
+        Locale.getDefault()
+      ).parse(workshop.taskDate!!)!!
+      taskDateCalendar == selectedDateCalendar
+    }
+
+    detailAdapter.updateData(filteredWorkshops)
+
+    if (filteredWorkshops.isNotEmpty()) {
+      binding.etGroup100000212.visibility = View.VISIBLE
+    } else {
+      binding.etGroup100000212.visibility = View.GONE
+    }
+  }
+
   companion object {
     const val TAG: String = "SST_ONE_EIGHT_ACTIVITY"
 

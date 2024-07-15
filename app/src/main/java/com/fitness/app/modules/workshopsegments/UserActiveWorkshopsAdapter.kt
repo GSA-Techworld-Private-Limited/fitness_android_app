@@ -55,6 +55,8 @@ class UserActiveWorkshopsAdapter(
 
         val useractiveplan: TextView =itemView.findViewById(R.id.etGroup100000211)
 
+        val completedTask:TextView=itemView.findViewById(R.id.txtThree)
+        val totalTask:TextView=itemView.findViewById(R.id.txtThree2)
 
 
         fun bindView(postModel: WorkShopSegmentResponses){
@@ -62,6 +64,8 @@ class UserActiveWorkshopsAdapter(
 
             useractiveplan.text=postModel.taskName
 
+            completedTask.text=postModel.complete_task
+            totalTask.text=postModel.totaltask
 
             useractiveplan.setOnClickListener {
                 viewModel.videoCompleteId.value=postModel.id
