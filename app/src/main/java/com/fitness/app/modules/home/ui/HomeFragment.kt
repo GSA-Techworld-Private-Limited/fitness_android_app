@@ -184,7 +184,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         val recyclerview: RecyclerView = binding.recyclerforplans
 
         if (customerResponse != null && customerResponse.isNotEmpty()) {
-          val firstResponse = customerResponse.first()
+          val firstResponse = customerResponse.last()
           val studioadapter = workshopadapterforhome(listOf( firstResponse))
           recyclerview.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, true)
           recyclerview.adapter = studioadapter

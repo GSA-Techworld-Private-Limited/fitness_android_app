@@ -13,11 +13,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fitness.app.R
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.sstoneeight.ui.UserActiveDetailsAdapter
 import com.fitness.app.modules.workshopvideos.WorkShopVideosActivity
+import com.fitness.app.responses.GroupWorkshopDays
+import com.fitness.app.responses.GroupedPlanDays
+import com.fitness.app.responses.PlanDays
 import com.fitness.app.responses.UserActivePlanDetailResponses
 import com.fitness.app.responses.WorkShopSegmentResponses
 import devs.mulham.horizontalcalendar.HorizontalCalendar
@@ -43,19 +47,30 @@ class   WorkshopsSegment : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
 
 
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
     private var idforVideos:Int=0
     private lateinit var workshopvideosButton:TextView
     //private lateinit var recyclerView: RecyclerView
+
+    private lateinit var planid:String
     private val viewModel1:WorkShopVM by viewModels<WorkShopVM> ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sessionManager= SessionManager(this)
 
-        val id=intent.getStringExtra("id")
+         planid=intent.getStringExtra("id")!!
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workshops_segment)
 
+
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+        swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here
+
+            // For example, you can reload data or update UI
+            // Call your method to refresh the progress bar and other UI elements
+            refreshData()
+        }
 
        // getUserActivePlans(id!!)
 
@@ -124,18 +139,8 @@ class   WorkshopsSegment : AppCompatActivity() {
             this.finish()
         }
 
-        getUserActivePlans(id!!)
+        getUserActivePlans(planid)
 
-
-        //val totalTasks=intent.getIntExtra("totalTasks",-1)
-      //  val completedTasks=intent.getIntExtra("completedTasks",-1)
-
-
-//        val total:TextView=findViewById(R.id.txtThree2)
-//        //total.text=totalTasks.toString()
-//
-//        val complete:TextView=findViewById(R.id.txtThree)
-       // complete.text=completedTasks.toString()
 
 
         val dateRecyclerView: RecyclerView = findViewById(R.id.dates)
@@ -162,6 +167,18 @@ class   WorkshopsSegment : AppCompatActivity() {
     }
 
 
+    private fun refreshData() {
+        // Place your logic here to refresh the activity, e.g., reload data, update progress bar
+        // For example:
+        // progressBar.setVisibility(View.VISIBLE);
+        // Call your method to reload data or update UI elements
+        // Then, when finished, call setRefreshing(false) on the SwipeRefreshLayout
+        // to indicate that the refresh is complete
+        // progressBar.setVisibility(View.GONE);
+        getUserActivePlans(planid)
+        swipeRefreshLayout!!.isRefreshing = false
+    }
+
 
     private fun getUserActivePlans(id: String) {
         val serviceGenerator = ApiManager.apiInterface
@@ -175,18 +192,13 @@ class   WorkshopsSegment : AppCompatActivity() {
                 response: Response<List<WorkShopSegmentResponses>>
             ) {
                 progressBar.visibility = View.GONE
-                val customerResponse = response.body()
-
-                if (customerResponse != null) {
-                    dateAdapter.updateData(customerResponse)
-                    // Automatically select the first date
-                    if (customerResponse.isNotEmpty()) {
-                        fetchTasksForDate(customerResponse[0])
-                    }
+                val customerResponse = response.body() ?: emptyList()
+                val groupedPlanDays = groupTasksByDate(customerResponse)
+                dateAdapter.updateData(groupedPlanDays)
+                // Automatically select the first date
+                if (groupedPlanDays.isNotEmpty()) {
+                    fetchTasksForDate(groupedPlanDays[0])
                 }
-
-
-
             }
 
             override fun onFailure(call: Call<List<WorkShopSegmentResponses>>, t: Throwable) {
@@ -197,93 +209,17 @@ class   WorkshopsSegment : AppCompatActivity() {
         })
     }
 
-    private fun fetchTasksForDate(date: WorkShopSegmentResponses) {
-        val selectedDateCalendar = Calendar.getInstance()
-        selectedDateCalendar.time = SimpleDateFormat(
-            "yyyy-MM-dd",
-            Locale.getDefault()
-        ).parse(date.taskDate!!)!!
+    fun groupTasksByDate(planDays: List<WorkShopSegmentResponses>): List<GroupWorkshopDays> {
+        return planDays.groupBy { it.taskDate }
+            .map { (date, tasks) -> GroupWorkshopDays(taskDate = date ?: "", tasks = tasks) }
+    }
 
-        val filteredWorkshops = dateAdapter.dates.filter { workshop ->
-            val taskDateCalendar = Calendar.getInstance()
-            taskDateCalendar.time = SimpleDateFormat(
-                "yyyy-MM-dd",
-                Locale.getDefault()
-            ).parse(workshop.taskDate!!)!!
-            taskDateCalendar == selectedDateCalendar
-        }
-
-        detailAdapter.updateData(filteredWorkshops)
-
-        if (filteredWorkshops.isNotEmpty()) {
-            workshopvideosButton.visibility = View.VISIBLE
-        } else {
-            workshopvideosButton.visibility = View.GONE
-        }
+    private fun fetchTasksForDate(groupedPlanDays: GroupWorkshopDays) {
+        detailAdapter.updateData(groupedPlanDays.tasks)
+        workshopvideosButton.visibility = if (groupedPlanDays.tasks.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
 
 
-
-//    fun getUserActivePlans(id:String){
-//        val serviceGenerator= ApiManager.apiInterface
-//        val accessToken=sessionManager.fetchAuthToken()
-//        val authorization="Token $accessToken"
-//        val call=serviceGenerator.useractiveplanworkshops(authorization,id)
-//
-//        call.enqueue(object : retrofit2.Callback<List<WorkShopSegmentResponses>>{
-//            override fun onResponse(
-//                call: Call<List<WorkShopSegmentResponses>>,
-//                response: Response<List<WorkShopSegmentResponses>>
-//            ) {
-//                progressBar.visibility=View.GONE
-//                val customerResponse=response.body()
-//
-//                if (customerResponse != null) {
-//                    val filteredWorkshops = customerResponse.filter { workshop ->
-//                        // Convert workshop.taskDate (String) to Calendar object
-//                        val taskDateCalendar = Calendar.getInstance()
-//                        taskDateCalendar.time = SimpleDateFormat(
-//                            "yyyy-MM-dd",
-//                            Locale.getDefault()
-//                        ).parse(workshop.taskDate!!)!!
-//
-//                        // Compare the converted date with selectedDate
-//                        taskDateCalendar == selectedDate
-//                    }
-//
-//
-//                    val recyclerfordetails: RecyclerView = findViewById(R.id.recyclerfordetails)
-//                    recyclerfordetails.apply {
-//                        val studioadapter =
-//                            UserActiveWorkshopsAdapter(filteredWorkshops, sessionManager,viewModel1)
-//                        layoutManager = LinearLayoutManager(
-//                            this@WorkshopsSegment,
-//                            LinearLayoutManager.VERTICAL,
-//                            true
-//                        )
-//                        recyclerfordetails.adapter = studioadapter
-//                    }
-//                    if (filteredWorkshops.isNotEmpty()) {
-//                        workshopvideosButton.visibility = View.VISIBLE
-//                    } else {
-//                        workshopvideosButton.visibility = View.GONE
-//                    }
-//
-//
-//
-//                }
-//
-//
-//
-//            }
-//
-//            override fun onFailure(call: Call<List<WorkShopSegmentResponses>>, t: Throwable) {
-//                t.printStackTrace()
-//                Log.e("error", t.message.toString())
-//                progressBar.visibility=View.GONE
-//            }
-//        })
-//    }
 
 }

@@ -11,13 +11,14 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.fitness.app.R
 import com.fitness.app.modules.workshopsegments.DateAdapter
+import com.fitness.app.responses.GroupedPlanDays
 import com.fitness.app.responses.PlanDays
 import com.fitness.app.responses.WorkShopSegmentResponses
 import java.util.Locale
 
 class DateAdapterForPlans(
-    var dates: List<PlanDays>,
-    private val onDateSelected: (PlanDays) -> Unit
+    var dates: List<GroupedPlanDays>,
+    private val onDateSelected: (GroupedPlanDays) -> Unit
 ) : RecyclerView.Adapter<DateAdapterForPlans.DateViewHolder>()  {
 
     private var selectedPosition = 0
@@ -34,29 +35,29 @@ class DateAdapterForPlans(
         holder.bind(dates[position], position == selectedPosition)
     }
 
-    fun updateData(newDates: List<PlanDays>) {
+    fun updateData(newDates: List<GroupedPlanDays>) {
         dates = newDates
         notifyDataSetChanged()
     }
 
     inner class DateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvDayName: TextView = itemView.findViewById(R.id.tvDayName)
-        private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
+       //private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
 
         @RequiresApi(Build.VERSION_CODES.N)
-        fun bind(date: PlanDays, isSelected: Boolean) {
+        fun bind(date: GroupedPlanDays, isSelected: Boolean) {
             tvDayName.text = "Day ${adapterPosition + 1}"
             val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
             val dateObj = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date.taskDate!!)
-            tvDate.text = sdf.format(dateObj!!)
+            //tvDate.text = sdf.format(dateObj!!)
 
             // Set text color based on isSelected
             if (isSelected) {
                 tvDayName.setTextColor(ContextCompat.getColor(itemView.context, android.R.color.white))
-                tvDate.setTextColor(ContextCompat.getColor(itemView.context, android.R.color.white))
+               // tvDate.setTextColor(ContextCompat.getColor(itemView.context, android.R.color.white))
             } else {
                 tvDayName.setTextColor(ContextCompat.getColor(itemView.context, R.color.cardview_dark_background))
-                tvDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.cardview_dark_background))
+               // tvDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.cardview_dark_background))
             }
 
             // Set background resource based on isSelected

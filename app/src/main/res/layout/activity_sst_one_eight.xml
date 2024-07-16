@@ -160,10 +160,19 @@
                     tools:text="@string/lbl_completed" />
             </LinearLayout>
 
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerfordetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp" />
 
@@ -180,9 +189,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_16pxv"
+                android:layout_marginBottom="@dimen/_16pxh"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:paddingStart="@dimen/_30pxh"
-                android:paddingTop="@dimen/_15pxv"
+                android:paddingTop="@dimen/_20pxv"
                 android:paddingEnd="@dimen/_15pxh"
                 android:paddingBottom="@dimen/_20pxv"
                 android:background="@drawable/rectangle_gradient_s_bluegray_900_c_gray_701_e_black_901_radius_10"
@@ -195,6 +205,8 @@
                 android:visibility="gone"
                 style="@style/etGradientRounded"
                 tools:ignore="Autofill,Deprecated" />
+        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

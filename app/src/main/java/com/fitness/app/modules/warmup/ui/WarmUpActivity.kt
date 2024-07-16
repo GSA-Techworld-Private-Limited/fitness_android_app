@@ -33,6 +33,7 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
 
   private lateinit var sessionManager:SessionManager
   private var id:Int=0
+  private var isCompleted: Boolean = false
   override fun onInitialized(): Unit {
     sessionManager= SessionManager(this)
     viewModel.navArguments = intent.extras?.getBundle("bundle")
@@ -41,32 +42,22 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
     val description=intent.getStringExtra("description")
     val taskName=intent.getStringExtra("taskName")
     val taskDate=intent.getStringExtra("taskdate")
-    val iscompleted=intent.getBooleanExtra("iscompleted",false)
+     isCompleted=intent.getBooleanExtra("iscompleted",false)
      id=intent.getIntExtra("id",-1)
 
 
     binding.txtDescription.text=description
     binding.txtWarmup.text=taskName
 
-    val istrue:Boolean=iscompleted
-
-
-    if(istrue)
-    {
-      binding.btnComplete.text="Completed"
-    }else{
-      binding.btnComplete.text="Complete"
-    }
+    updateButtonText()
 
     binding.btnComplete.setOnClickListener {
-
-        val id = intent.getIntExtra("id",-1) // Assuming "id" is a String
-        val isCompleted = !intent.getBooleanExtra("iscompleted", false) // Toggle the completion status
-
-        patchUserActivePlan(id, isCompleted)
-
-      binding.progressBar.visibility=View.VISIBLE
-
+      if (isCompleted) {
+        Toast.makeText(this, "Task is already completed", Toast.LENGTH_LONG).show()
+      } else {
+        binding.progressBar.visibility = View.VISIBLE
+        patchUserActivePlan(id, true)
+      }
     }
 
 
@@ -88,8 +79,9 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
       ) {
         binding.progressBar.visibility = View.GONE
         if (response.isSuccessful) {
-          binding.btnComplete.text = if (isCompleted) "Completed" else "Complete"
-          Toast.makeText(this@WarmUpActivity, "Completed", Toast.LENGTH_SHORT).show()
+          this@WarmUpActivity.isCompleted = true
+          updateButtonText()
+          Toast.makeText(this@WarmUpActivity, "Task marked as completed", Toast.LENGTH_LONG).show()
           // Extracting and showing JSON response
           val jsonResponse = response.body()?.let {
             Gson().toJson(it)
@@ -107,6 +99,10 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
           } else {
             Log.e("Response Error", "Unexpected error: ${response.code()}")
           }
+          if(response.code()==404){
+            val errorBody = response.errorBody()?.string() ?: "Error response body is null"
+            Toast.makeText(this@WarmUpActivity,"No workshop day videos found.",Toast.LENGTH_SHORT).show()
+          }
         }
       }
 
@@ -118,6 +114,9 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
     })
   }
 
+  private fun updateButtonText() {
+    binding.btnComplete.text = if (isCompleted) "Completed" else "Complete"
+  }
 
   // Method to show the dialog
   private fun showDialog() {

@@ -1,6 +1,7 @@
 package com.fitness.app.modules.workshopsegments
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class UserActiveWorkshopsAdapter(
 ) : RecyclerView.Adapter<UserActiveWorkshopsAdapter.RowFeedsOneVH>() {
 
 
+    private val displayedDates = mutableSetOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowFeedsOneVH {
         val view= LayoutInflater.from(parent.context).inflate(R.layout.row_active_plans_description,parent,false)
@@ -39,8 +41,10 @@ class UserActiveWorkshopsAdapter(
 
     fun updateData(filteredWorkshops: List<WorkShopSegmentResponses>) {
         list = filteredWorkshops
+        displayedDates.clear()
         notifyDataSetChanged()
     }
+
 
 
 
@@ -57,31 +61,45 @@ class UserActiveWorkshopsAdapter(
 
         val completedTask:TextView=itemView.findViewById(R.id.txtThree)
         val totalTask:TextView=itemView.findViewById(R.id.txtThree2)
+        val splashText:TextView=itemView.findViewById(R.id.txtThree1)
+        val completedText:TextView=itemView.findViewById(R.id.txtCompleted)
 
 
-        fun bindView(postModel: WorkShopSegmentResponses){
+        fun bindView(postModel: WorkShopSegmentResponses) {
+            useractiveplan.text = postModel.taskName
 
+            if (displayedDates.contains(postModel.taskDate)) {
+                Log.d("UserActiveWorkshopsAdapter", "Hiding views for date: ${postModel.taskDate}")
+                completedTask.visibility = View.GONE
+                totalTask.visibility = View.GONE
+                splashText.visibility = View.GONE
+                completedText.visibility = View.GONE
+            } else {
+                Log.d("UserActiveWorkshopsAdapter", "Showing views for date: ${postModel.taskDate}")
+                completedTask.visibility = View.VISIBLE
+                totalTask.visibility = View.VISIBLE
+                splashText.visibility = View.VISIBLE
+                completedText.visibility = View.VISIBLE
 
-            useractiveplan.text=postModel.taskName
-
-            completedTask.text=postModel.complete_task
-            totalTask.text=postModel.totaltask
-
-            useractiveplan.setOnClickListener {
-                viewModel.videoCompleteId.value=postModel.id
-                val i=Intent(itemView.context,PlansOneActivity::class.java)
-                i.putExtra("id",postModel.id)
-                //sessionManager.saveWorkShopId(postModel.id!!)
-                i.putExtra("taskname",postModel.taskName)
-                i.putExtra("taskDate",postModel.taskDate)
-                i.putExtra("taskDetails",postModel.taskDetails)
-                i.putExtra("workshoptype",postModel.workshopType)
-                i.putExtra("iscompleted",postModel.isCompleted)
-                itemView.context.startActivity(i)
-
+                completedTask.text = postModel.complete_task
+                totalTask.text = postModel.totaltask
+                displayedDates.add(postModel.taskDate ?: "")
             }
 
-
+            useractiveplan.setOnClickListener {
+                viewModel.videoCompleteId.value = postModel.id
+                val i = Intent(itemView.context, PlansOneActivity::class.java).apply {
+                    putExtra("id", postModel.id)
+                    putExtra("taskname", postModel.taskName)
+                    putExtra("taskDate", postModel.taskDate)
+                    putExtra("taskDetails", postModel.taskDetails)
+                    putExtra("workshoptype", postModel.workshopType)
+                    putExtra("iscompleted", postModel.isCompleted)
+                    putExtra("workshopName",postModel.workshopName)
+                }
+                itemView.context.startActivity(i)
+            }
         }
+
     }
 }

@@ -1,8 +1,11 @@
 package com.fitness.app.modules.login
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +17,7 @@ import androidx.core.content.ContextCompat
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityLoginBinding
+import com.fitness.app.modules.homecontainer.ui.ConnectivityReceiver
 import com.fitness.app.modules.homecontainer.ui.HomeContainerActivity
 import com.fitness.app.modules.otp.ui.OtpActivity
 import com.fitness.app.modules.otplogin.OTPLogin
@@ -33,7 +37,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
+class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login), ConnectivityReceiver.ConnectivityListener {
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -41,6 +45,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
     private lateinit var apiService: ApiInterface
     private lateinit var sessionManager: SessionManager
 
+    private lateinit var connectivityReceiver: ConnectivityReceiver
     private lateinit var mobile:String
     private val imageUri: Uri =
         Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/img_rectangle451.png?alt=media&token=babf7691-e439-4b98-a514-eee11a5a5f0c")
@@ -70,6 +75,8 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
         sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
         accessToken = sharedPreferences.getString("token", "") ?: ""
 
+
+        connectivityReceiver = ConnectivityReceiver(this)
         apiService=ApiManager.apiInterface
 
         sessionManager= SessionManager(this)
@@ -109,6 +116,20 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
         window.statusBarColor= ContextCompat.getColor(this,R.color.white)
     }
 
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+    override fun onNetworkConnectionChanged(isConnected: Boolean) {
+        if (!isConnected) {
+            showNoInternetDialog()
+        }
+    }
 
 
     private fun isValidMobileNumber(mobile: String): Boolean {
@@ -200,5 +221,15 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
             startActivity(i)
         }
     }
+
+
+    private fun showNoInternetDialog() {
+        AlertDialog.Builder(this)
+            .setMessage("Internet connection is not available. Please check your connection.")
+            .setPositiveButton("OK", null)
+            .show()
+    }
+
+
 
 }
