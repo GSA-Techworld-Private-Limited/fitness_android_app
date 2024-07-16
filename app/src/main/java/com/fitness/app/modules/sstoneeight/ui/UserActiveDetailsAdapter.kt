@@ -2,6 +2,7 @@ package com.fitness.app.modules.sstoneeight.ui
 
 import PlyometricsVMNew
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class UserActiveDetailsAdapter(
     private val viewModel: PlyometricsVMNew
 ) : RecyclerView.Adapter<UserActiveDetailsAdapter.RowFeedsOneVH>() {
 
+    private val displayedDates = mutableSetOf<String>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowFeedsOneVH {
@@ -44,6 +46,7 @@ class UserActiveDetailsAdapter(
 
     fun updateData(filteredWorkshops: List<PlanDays>) {
         list = filteredWorkshops
+        displayedDates.clear()
         notifyDataSetChanged()
     }
 
@@ -61,15 +64,31 @@ class UserActiveDetailsAdapter(
         val completedTask:TextView=itemView.findViewById(R.id.txtThree)
         val totalTesk:TextView=itemView.findViewById(R.id.txtThree2)
 
+        val slashMark:TextView=itemView.findViewById(R.id.txtThree1)
+        val completedText:TextView=itemView.findViewById(R.id.txtCompleted)
 
         fun bindView(postModel: PlanDays){
 
 
             useractiveplan.text=postModel.taskName
 
+            if (displayedDates.contains(postModel.taskDate)) {
+                Log.d("UserActiveWorkshopsAdapter", "Hiding views for date: ${postModel.taskDate}")
+                completedTask.visibility = View.GONE
+                totalTesk.visibility = View.GONE
+                slashMark.visibility = View.GONE
+                completedText.visibility = View.GONE
+            } else {
+                Log.d("UserActiveWorkshopsAdapter", "Showing views for date: ${postModel.taskDate}")
+                completedTask.visibility = View.VISIBLE
+                totalTesk.visibility = View.VISIBLE
+                slashMark.visibility = View.VISIBLE
+                completedText.visibility = View.VISIBLE
 
-            completedTask.text=postModel.completed_Task
-            totalTesk.text=postModel.total_task
+                completedTask.text = postModel.completed_Task
+                totalTesk.text = postModel.total_task
+                displayedDates.add(postModel.taskDate ?: "")
+            }
 
 
 

@@ -54,9 +54,9 @@
                         android:paddingStart="@dimen/_29pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="Weightgain"
+                        android:text="Weightloss"
                         style="@style/txtRoundedOutline_1"
-                        tools:text="Weightgain"/>
+                        tools:text="Weightloss"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameSix"
                         android:layout_height="wrap_content"
@@ -67,9 +67,9 @@
                         android:paddingStart="@dimen/_23pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="Weightloss"
+                        android:text="Weightgain"
                         style="@style/txtRoundedOutline_1"
-                        tools:text="Weightloss"/>
+                        tools:text="Weightgain"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameTen"
                         android:layout_height="wrap_content"
@@ -80,9 +80,9 @@
                         android:paddingStart="@dimen/_23pxh"
                         android:paddingTop="@dimen/_10pxv"
                         android:singleLine="true"
-                        android:text="Testimonials"
+                        android:text="Recipies"
                         style="@style/txtRoundedOutline_1"
-                        tools:text="Testimonials"/>
+                        tools:text="Recipies"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtFrameSixteen"
                         android:layout_height="wrap_content"

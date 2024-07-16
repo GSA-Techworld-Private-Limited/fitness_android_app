@@ -27,6 +27,7 @@ import com.fitness.app.modules.warmup.ui.WarmUpActivity
 import com.fitness.app.modules.workshopsegments.DateAdapter
 import com.fitness.app.modules.workshopsegments.UserActiveWorkshopsAdapter
 import com.fitness.app.responses.ActivePlanResponses
+import com.fitness.app.responses.GroupedPlanDays
 import com.fitness.app.responses.PlanDays
 import com.fitness.app.responses.UserActivePlanDetailResponses
 import com.fitness.app.responses.WorkShopSegmentResponses
@@ -156,18 +157,6 @@ class SstOneEightActivity :
   }
 
   override fun setUpClicks(): Unit {
-//    binding.etGroup100000212.setOnClickListener {
-//      val destIntent = PlyometricsActivity.getIntent(this, null)
-//      startActivity(destIntent)
-//    }
-//    binding.linearColumndayone.setOnClickListener {
-//      val destIntent = SstOneTenActivity.getIntent(this, null)
-//      startActivity(destIntent)
-//    }
-//    binding.etGroup100000211.setOnClickListener {
-//      val destIntent = WarmUpActivity.getIntent(this, null)
-//      startActivity(destIntent)
-//    }
     binding.btnArrowright.setOnClickListener {
       val destIntent = HomeContainerActivity.getIntent(this, null)
       startActivity(destIntent)
@@ -175,92 +164,46 @@ class SstOneEightActivity :
   }
 
 
-  fun getUserActivePlans(id:String){
-    val serviceGenerator= ApiManager.apiInterface
-    val accessToken=sessionManager.fetchAuthToken()
-    val authorization="Token $accessToken"
-    val call=serviceGenerator.useractiveplandetails(authorization,id)
 
-    call.enqueue(object : retrofit2.Callback<UserActivePlanDetailResponses>{
+  fun groupTasksByDate(planDays: List<PlanDays>): List<GroupedPlanDays> {
+    return planDays.groupBy { it.taskDate }
+      .map { (date, tasks) -> GroupedPlanDays(taskDate = date ?: "", tasks = tasks) }
+  }
+
+
+  fun getUserActivePlans(id: String) {
+    val serviceGenerator = ApiManager.apiInterface
+    val accessToken = sessionManager.fetchAuthToken()
+    val authorization = "Token $accessToken"
+    val call = serviceGenerator.useractiveplandetails(authorization, id)
+
+    call.enqueue(object : retrofit2.Callback<UserActivePlanDetailResponses> {
       override fun onResponse(
         call: Call<UserActivePlanDetailResponses>,
         response: Response<UserActivePlanDetailResponses>
       ) {
-//        binding.progressBar.visibility=View.GONE
-//         customerResponse=response.body()
-//
-//        if(customerResponse!=null){
-//
-//          val filteredWorkshops = customerResponse!!.planDays.filter { workshop ->
-//            // Convert workshop.taskDate (String) to Calendar object
-//            val taskDateCalendar = Calendar.getInstance()
-//            taskDateCalendar.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(workshop.taskDate!!)!!
-//
-//            // Compare the converted date with selectedDate
-//            taskDateCalendar == selectedDate
-//          }
-//
-//          binding.recyclerfordetails.apply {
-//            val studioadapter= UserActiveDetailsAdapter(filteredWorkshops,sessionManager,viewModel1)
-//            layoutManager= LinearLayoutManager(this@SstOneEightActivity, LinearLayoutManager.VERTICAL,true)
-//            binding.recyclerfordetails.adapter=studioadapter
-//          }
-//
-//
-//          if (filteredWorkshops.isNotEmpty()) {
-//            binding.etGroup100000212.visibility = View.VISIBLE
-//          } else {
-//            binding.etGroup100000212.visibility = View.GONE
-//          }
-//
-//
-//        }
-
-
         binding.progressBar.visibility = View.GONE
-        val customerResponse = response.body()!!.planDays
+        val customerResponse = response.body()?.planDays ?: emptyList()
+        val groupedPlanDays = groupTasksByDate(customerResponse)
 
-        dateAdapter.updateData(customerResponse)
+        dateAdapter.updateData(groupedPlanDays)
         // Automatically select the first date
-        if (customerResponse.isNotEmpty()) {
-          fetchTasksForDate(customerResponse[0])
+        if (groupedPlanDays.isNotEmpty()) {
+          fetchTasksForDate(groupedPlanDays[0])
         }
-
-
       }
 
       override fun onFailure(call: Call<UserActivePlanDetailResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
-        binding.progressBar.visibility=View.GONE
+        binding.progressBar.visibility = View.GONE
       }
     })
   }
 
-
-  private fun fetchTasksForDate(date: PlanDays) {
-    val selectedDateCalendar = Calendar.getInstance()
-    selectedDateCalendar.time = SimpleDateFormat(
-      "yyyy-MM-dd",
-      Locale.getDefault()
-    ).parse(date.taskDate!!)!!
-
-    val filteredWorkshops = dateAdapter.dates.filter { workshop ->
-      val taskDateCalendar = Calendar.getInstance()
-      taskDateCalendar.time = SimpleDateFormat(
-        "yyyy-MM-dd",
-        Locale.getDefault()
-      ).parse(workshop.taskDate!!)!!
-      taskDateCalendar == selectedDateCalendar
-    }
-
-    detailAdapter.updateData(filteredWorkshops)
-
-    if (filteredWorkshops.isNotEmpty()) {
-      binding.etGroup100000212.visibility = View.VISIBLE
-    } else {
-      binding.etGroup100000212.visibility = View.GONE
-    }
+  private fun fetchTasksForDate(groupedPlanDays: GroupedPlanDays) {
+    detailAdapter.updateData(groupedPlanDays.tasks)
+    binding.etGroup100000212.visibility = if (groupedPlanDays.tasks.isNotEmpty()) View.VISIBLE else View.GONE
   }
 
   companion object {

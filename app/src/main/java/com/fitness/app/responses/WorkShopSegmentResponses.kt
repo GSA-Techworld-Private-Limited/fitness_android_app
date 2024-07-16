@@ -2,6 +2,13 @@ package com.fitness.app.responses
 
 import com.google.gson.annotations.SerializedName
 
+
+data class GroupWorkshopDays(
+    val taskDate: String,
+    val tasks: List<WorkShopSegmentResponses>,
+)
+
+
 data class WorkShopSegmentResponses (
     @SerializedName("id"               ) var id               : Int?     = null,
     @SerializedName("task_details"     ) var taskDetails      : String?  = null,
@@ -13,5 +20,6 @@ data class WorkShopSegmentResponses (
     @SerializedName("updated_at"       ) var updatedAt        : String?  = null,
     @SerializedName("completed_tasks_count")val complete_task:String?=null,
     @SerializedName("total_task_count")val totaltask:String?=null,
-    @SerializedName("workshopcreation" ) var workshopcreation : String?  = null
+    @SerializedName("workshopcreation" ) var workshopcreation : String?  = null,
+    @SerializedName("workshop_name")var workshopName:String?=null
 )

@@ -37,6 +37,7 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
   private var taskId:Int=0
 
   private lateinit var sessionManager:SessionManager
+  private var isCompleted: Boolean = false
   override fun onInitialized(): Unit {
 
     sessionManager=SessionManager(this)
@@ -45,9 +46,10 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
 
     val taskname=intent.getStringExtra("taskname")
     val taskdetails=intent.getStringExtra("taskDetails")
-    val iscompleted=intent.getBooleanExtra("iscompleted",false)
+    isCompleted=intent.getBooleanExtra("iscompleted",false)
     val workshoptype=intent.getStringExtra("workshoptype")
 
+    val workshopName=intent.getStringExtra("workshopName")
 
     taskId=intent.getIntExtra("id",-1)
     binding.txtWorkshopName.text=workshoptype
@@ -56,33 +58,27 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
 
     binding.txtDescription.text=taskdetails
 
+    binding.txtWorkshopName.text=workshopName
 
 
-    val istrue:Boolean=iscompleted
-
-
-    if(istrue)
-    {
-      binding.btnCompletedOne.text="Completed"
-    }else{
-      binding.btnCompletedOne.text="Complete"
-    }
+    updateButtonText()
 
     binding.btnArrowright.setOnClickListener {
       this.finish()
     }
 
 
+
     binding.btnCompletedOne.setOnClickListener {
-
-      val id = intent.getIntExtra("id",-1) // Assuming "id" is a String
-      val isCompleted = !intent.getBooleanExtra("iscompleted", false) // Toggle the completion status
-
-      patchUserActivePlan(id, isCompleted)
-
-      binding.progressBar.visibility=View.VISIBLE
-
+      if (isCompleted) {
+        Toast.makeText(this, "Task is already completed", Toast.LENGTH_LONG).show()
+      } else {
+        binding.progressBar.visibility = View.VISIBLE
+        patchUserActivePlan(taskId, true)
+      }
     }
+
+
     binding.plansOneVM = viewModel
 
     window.statusBarColor= ContextCompat.getColor(this,R.color.white)
@@ -94,7 +90,7 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
 
 
 
-  fun patchUserActivePlan(id: Int, isCompleted: Boolean) {
+  private fun patchUserActivePlan(id: Int, isCompleted: Boolean) {
     val serviceGenerator = ApiManager.apiInterface
     val accessToken = sessionManager.fetchAuthToken()
     val authorization = "Token $accessToken"
@@ -108,16 +104,20 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
       ) {
         binding.progressBar.visibility = View.GONE
         if (response.isSuccessful) {
-          binding.btnCompletedOne.text = if (isCompleted) "Completed" else "Complete"
-          Toast.makeText(this@PlansOneActivity, "Completed", Toast.LENGTH_LONG).show()
+          this@PlansOneActivity.isCompleted = true
+          updateButtonText()
+          Toast.makeText(this@PlansOneActivity, "Task marked as completed", Toast.LENGTH_LONG).show()
         } else {
           if (response.code() == 400) {
             val errorBody = response.errorBody()?.string() ?: "Error response body is null"
-           // Toast.makeText(this@PlansOneActivity, errorBody, Toast.LENGTH_LONG).show()
             Log.e("Response Error", errorBody)
             showDialog()
           } else {
             Log.e("Response Error", "Unexpected error: ${response.code()}")
+          }
+          if(response.code()==404){
+            val errorBody = response.errorBody()?.string() ?: "Error response body is null"
+            Toast.makeText(this@PlansOneActivity,"No workshop day videos found.",Toast.LENGTH_SHORT).show()
           }
         }
       }
@@ -130,6 +130,9 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
     })
   }
 
+  private fun updateButtonText() {
+    binding.btnCompletedOne.text = if (isCompleted) "Completed" else "Complete"
+  }
 
   private fun showDialog() {
     val dialogBuilder = AlertDialog.Builder(this)

@@ -1,7 +1,10 @@
 package com.fitness.app.modules.welcomelogin.ui
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -11,6 +14,7 @@ import androidx.core.content.ContextCompat
 import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseActivity
 import com.fitness.app.databinding.ActivityWelcomeLoginBinding
+import com.fitness.app.modules.homecontainer.ui.ConnectivityReceiver
 import com.fitness.app.modules.login.Login
 import com.fitness.app.modules.otp.ui.OtpActivity
 import com.fitness.app.modules.otplogin.OTPLogin
@@ -32,11 +36,12 @@ import kotlin.Unit
 import kotlin.collections.ArrayList
 
 class WelcomeLoginActivity :
-    BaseActivity<ActivityWelcomeLoginBinding>(R.layout.activity_welcome_login) {
+    BaseActivity<ActivityWelcomeLoginBinding>(R.layout.activity_welcome_login), ConnectivityReceiver.ConnectivityListener {
 
 
   private lateinit var apiService: ApiInterface
   private lateinit var sessionManager: SessionManager
+  private lateinit var connectivityReceiver: ConnectivityReceiver
   private val imageUri: Uri =
     Uri.parse("https://firebasestorage.googleapis.com/v0/b/gsaproject-94cf4.appspot.com/o/img_rectangle64.png?alt=media&token=00cd7506-840c-4dc4-a3ae-ab63857c03f6")
 
@@ -66,6 +71,7 @@ class WelcomeLoginActivity :
     sessionManager= SessionManager(this)
 
 
+    connectivityReceiver = ConnectivityReceiver(this)
     viewModel.navArguments = intent.extras?.getBundle("bundle")
     val sliderrectangle451Adapter =
     Sliderrectangle451Adapter(imageSliderItems,true)
@@ -105,6 +111,12 @@ class WelcomeLoginActivity :
     binding.imageSliderSliderrectangle451.resumeAutoScroll()
   }
 
+
+  override fun onNetworkConnectionChanged(isConnected: Boolean) {
+    if (!isConnected) {
+      showNoInternetDialog()
+    }
+  }
 
   private fun getSignUpOtp(mobile: String){
     val call = apiService.getSignupOtp(mobile)
@@ -160,6 +172,12 @@ class WelcomeLoginActivity :
     }
   }
 
+  private fun showNoInternetDialog() {
+    AlertDialog.Builder(this)
+      .setMessage("Internet connection is not available. Please check your connection.")
+      .setPositiveButton("OK", null)
+      .show()
+  }
   companion object {
     const val TAG: String = "WELCOME_LOGIN_ACTIVITY"
 

@@ -48,9 +48,9 @@ class FeedsTwoFragment : BaseFragment<FragmentFeedsTwoBinding>(R.layout.fragment
     val categoryTags = listOf(
       binding.txtFrameFour to "All",
       binding.txtFrameFive to "Weight loss",
-      binding.txtFrameSix to "Weight Gain",
-      binding.txtFrameTen to "test Gain",
-      binding.txtFrameSixteen to "Weight Loss test Programm"
+      binding.txtFrameSix to "Weight gain",
+      binding.txtFrameTen to "Recipies",
+      binding.txtFrameSixteen to "Yoga"
     )
 
 
