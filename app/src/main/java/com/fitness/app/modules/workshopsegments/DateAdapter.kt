@@ -45,8 +45,8 @@ class DateAdapter(
         @RequiresApi(Build.VERSION_CODES.N)
         fun bind(date: GroupWorkshopDays, isSelected: Boolean) {
             tvDayName.text = "Day ${adapterPosition + 1}"
-            val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
-            val dateObj = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date.taskDate)
+//            val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
+//            val dateObj = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date.taskDate)
            // tvDate.text = sdf.format(dateObj!!)
 
             // Set text color based on isSelected

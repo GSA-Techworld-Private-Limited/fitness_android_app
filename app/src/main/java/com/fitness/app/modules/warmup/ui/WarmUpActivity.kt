@@ -19,9 +19,9 @@ import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.sstoneeight.ui.UserActiveDetailsAdapter
 import com.fitness.app.modules.sstoneten.ui.SstOneTenActivity
 import com.fitness.app.modules.warmup.`data`.viewmodel.WarmUpVM
-import com.fitness.app.responses.BooleanRequest
 import com.fitness.app.responses.UpdateResponse
 import com.fitness.app.responses.UserActivePlanDetailResponses
+import com.fitness.app.responses.UserIdRequest
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Response
@@ -56,7 +56,7 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
         Toast.makeText(this, "Task is already completed", Toast.LENGTH_LONG).show()
       } else {
         binding.progressBar.visibility = View.VISIBLE
-        patchUserActivePlan(id, true)
+        patchUserActivePlan(id)
       }
     }
 
@@ -65,12 +65,12 @@ class WarmUpActivity : BaseActivity<ActivityWarmUpBinding>(R.layout.activity_war
   }
 
 
-  fun patchUserActivePlan(id: Int, isCompleted: Boolean) {
+  fun patchUserActivePlan(id: Int) {
     val serviceGenerator = ApiManager.apiInterface
     val accessToken = sessionManager.fetchAuthToken()
     val authorization = "Token $accessToken"
-    val request = BooleanRequest(isCompleted)
-    val call = serviceGenerator.updateuserplanday(authorization, id, request)
+    val request = UserIdRequest(id)
+    val call = serviceGenerator.updateuserplanday(authorization, request)
 
     call.enqueue(object : retrofit2.Callback<UpdateResponse> {
       override fun onResponse(

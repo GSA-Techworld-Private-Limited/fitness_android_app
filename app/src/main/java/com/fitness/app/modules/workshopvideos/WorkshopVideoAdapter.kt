@@ -20,6 +20,7 @@ import com.fitness.app.modules.videoplayeractivity.VideoPlayerActivity
 import com.fitness.app.responses.BooleanRequest
 import com.fitness.app.responses.PlanVideos
 import com.fitness.app.responses.UpdateResponse
+import com.fitness.app.responses.WorkshopVideoId
 import com.fitness.app.responses.WorkshopVideoResponses
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -180,8 +181,8 @@ private val sessionManager: SessionManager
             val serviceGenerator= ApiManager.apiInterface
             val accessToken=sessionManager.fetchAuthToken()
             val authorization="Token $accessToken"
-            val request = BooleanRequest(isCompleted)
-            val call=serviceGenerator.updateactiveplanvideos(authorization,id,request)
+            val request = WorkshopVideoId(id)
+            val call=serviceGenerator.updateactiveplanvideos(authorization,request)
 
             call.enqueue(object : retrofit2.Callback<UpdateResponse>{
                 override fun onResponse(
@@ -190,6 +191,7 @@ private val sessionManager: SessionManager
                 ) {
                     progressBar.visibility= View.GONE
                     if(response.isSuccessful){
+                        btnComplete.text="Completed"
                         btnComplete.text = if (isCompleted) "Completed" else "Complete"
                         Toast.makeText(itemView.context,"Completed", Toast.LENGTH_SHORT).show()
                     }
@@ -203,6 +205,9 @@ private val sessionManager: SessionManager
                 }
             })
         }
+
+
+
         init {
             exoPlayerView.setOnClickListener {
                 // Start playing the video when the ExoPlayer view is clicked

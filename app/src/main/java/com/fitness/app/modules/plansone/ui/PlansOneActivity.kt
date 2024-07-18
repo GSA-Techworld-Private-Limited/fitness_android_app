@@ -17,8 +17,10 @@ import com.fitness.app.modules.plansone.`data`.viewmodel.PlansOneVM
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
 import com.fitness.app.modules.workshopvideos.WorkShopVideosActivity
-import com.fitness.app.responses.BooleanRequest
+
 import com.fitness.app.responses.UpdateResponse
+import com.fitness.app.responses.UserIdRequest
+import com.fitness.app.responses.WorkShopIdRequest
 import com.google.gson.Gson
 import devs.mulham.horizontalcalendar.HorizontalCalendar
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener
@@ -74,7 +76,7 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
         Toast.makeText(this, "Task is already completed", Toast.LENGTH_LONG).show()
       } else {
         binding.progressBar.visibility = View.VISIBLE
-        patchUserActivePlan(taskId, true)
+        patchUserActivePlan(taskId)
       }
     }
 
@@ -90,12 +92,12 @@ class PlansOneActivity : BaseActivity<ActivityPlansOneBinding>(R.layout.activity
 
 
 
-  private fun patchUserActivePlan(id: Int, isCompleted: Boolean) {
+  private fun patchUserActivePlan(id: Int) {
     val serviceGenerator = ApiManager.apiInterface
     val accessToken = sessionManager.fetchAuthToken()
     val authorization = "Token $accessToken"
-    val request = BooleanRequest(isCompleted)
-    val call = serviceGenerator.updateuserworkshop(authorization, id, request)
+    val request = WorkShopIdRequest(id)
+    val call = serviceGenerator.updateuserworkshop(authorization, request)
 
     call.enqueue(object : retrofit2.Callback<UpdateResponse> {
       override fun onResponse(

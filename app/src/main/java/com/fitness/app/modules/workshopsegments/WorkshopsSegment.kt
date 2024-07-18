@@ -193,7 +193,7 @@ class   WorkshopsSegment : AppCompatActivity() {
             ) {
                 progressBar.visibility = View.GONE
                 val customerResponse = response.body() ?: emptyList()
-                val groupedPlanDays = groupTasksByDate(customerResponse)
+                val groupedPlanDays = groupTasksByDayName(customerResponse)
                 dateAdapter.updateData(groupedPlanDays)
                 // Automatically select the first date
                 if (groupedPlanDays.isNotEmpty()) {
@@ -209,10 +209,13 @@ class   WorkshopsSegment : AppCompatActivity() {
         })
     }
 
-    fun groupTasksByDate(planDays: List<WorkShopSegmentResponses>): List<GroupWorkshopDays> {
-        return planDays.groupBy { it.taskDate }
-            .map { (date, tasks) -> GroupWorkshopDays(taskDate = date ?: "", tasks = tasks) }
+
+
+    fun groupTasksByDayName(planDays: List<WorkShopSegmentResponses>): List<GroupWorkshopDays> {
+        return planDays.groupBy { it.day_name }
+            .map { (dayName, tasks) -> GroupWorkshopDays(dayName = dayName ?: "", tasks = tasks) }
     }
+
 
     private fun fetchTasksForDate(groupedPlanDays: GroupWorkshopDays) {
         detailAdapter.updateData(groupedPlanDays.tasks)

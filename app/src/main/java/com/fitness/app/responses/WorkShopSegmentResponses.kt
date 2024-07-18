@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 
 data class GroupWorkshopDays(
-    val taskDate: String,
+    val dayName: String,
     val tasks: List<WorkShopSegmentResponses>,
 )
 
@@ -21,5 +21,6 @@ data class WorkShopSegmentResponses (
     @SerializedName("completed_tasks_count")val complete_task:String?=null,
     @SerializedName("total_task_count")val totaltask:String?=null,
     @SerializedName("workshopcreation" ) var workshopcreation : String?  = null,
-    @SerializedName("workshop_name")var workshopName:String?=null
+    @SerializedName("workshop_name")var workshopName:String?=null,
+    @SerializedName("day_name")var day_name:String?=null
 )
