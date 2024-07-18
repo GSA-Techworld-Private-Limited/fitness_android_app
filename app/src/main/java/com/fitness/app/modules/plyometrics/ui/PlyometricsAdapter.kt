@@ -26,6 +26,8 @@ import com.fitness.app.responses.BooleanRequest
 import com.fitness.app.responses.PlanVideos
 import com.fitness.app.responses.UpdateResponse
 import com.fitness.app.responses.UserActivePlanVideoResponses
+import com.fitness.app.responses.UserIdRequest
+import com.fitness.app.responses.UserIdRequestForVideos
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
@@ -183,7 +185,7 @@ class PlyometricsAdapter(
           val updatedIsComplete = !isComplete!!
 
           // Call patchUserActiveVideos with updated value of isComplete
-          patchUserActiveVideos(id!!, updatedIsComplete)
+          patchUserActiveVideos(id!!,updatedIsComplete)
 
           progressBar.visibility = View.VISIBLE
         }
@@ -200,8 +202,8 @@ class PlyometricsAdapter(
       val serviceGenerator= ApiManager.apiInterface
       val accessToken=sessionManager.fetchAuthToken()
       val authorization="Token $accessToken"
-      val request = BooleanRequest(isCompleted)
-      val call=serviceGenerator.updateactiveplansvideos(authorization,id,request)
+      val request = UserIdRequestForVideos(id)
+      val call=serviceGenerator.updateactiveplansvideos(authorization,request)
 
       call.enqueue(object : retrofit2.Callback<UpdateResponse>{
         override fun onResponse(
@@ -210,7 +212,8 @@ class PlyometricsAdapter(
         ) {
           progressBar.visibility=View.GONE
           if(response.isSuccessful){
-            btnComplete.text = if (isCompleted) "Completed" else "Complete"
+            btnComplete.text="Completed"
+           btnComplete.text = if(isCompleted) "Completed" else "Complete"
             Toast.makeText(itemView.context,"Completed", Toast.LENGTH_SHORT).show()
           }
         }

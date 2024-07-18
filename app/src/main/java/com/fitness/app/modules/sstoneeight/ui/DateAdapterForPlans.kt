@@ -45,11 +45,8 @@ class DateAdapterForPlans(
        //private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
 
         @RequiresApi(Build.VERSION_CODES.N)
-        fun bind(date: GroupedPlanDays, isSelected: Boolean) {
+        fun bind(day: GroupedPlanDays, isSelected: Boolean) {
             tvDayName.text = "Day ${adapterPosition + 1}"
-            val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
-            val dateObj = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date.taskDate!!)
-            //tvDate.text = sdf.format(dateObj!!)
 
             // Set text color based on isSelected
             if (isSelected) {
@@ -69,7 +66,7 @@ class DateAdapterForPlans(
                 selectedPosition = adapterPosition
                 notifyItemChanged(previousPosition)
                 notifyItemChanged(selectedPosition)
-                onDateSelected(date)
+                onDateSelected(day)
             }
         }
 

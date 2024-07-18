@@ -68,7 +68,7 @@ class UserActiveWorkshopsAdapter(
         fun bindView(postModel: WorkShopSegmentResponses) {
             useractiveplan.text = postModel.taskName
 
-            if (displayedDates.contains(postModel.taskDate)) {
+            if (displayedDates.contains(postModel.day_name)) {
                 Log.d("UserActiveWorkshopsAdapter", "Hiding views for date: ${postModel.taskDate}")
                 completedTask.visibility = View.GONE
                 totalTask.visibility = View.GONE
@@ -83,7 +83,7 @@ class UserActiveWorkshopsAdapter(
 
                 completedTask.text = postModel.complete_task
                 totalTask.text = postModel.totaltask
-                displayedDates.add(postModel.taskDate ?: "")
+                displayedDates.add(postModel.day_name ?: "")
             }
 
             useractiveplan.setOnClickListener {

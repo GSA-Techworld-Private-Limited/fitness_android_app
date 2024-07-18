@@ -124,7 +124,7 @@ class SstOneEightActivity :
     detailRecyclerView.layoutManager = LinearLayoutManager(this)
 
     dateAdapter = DateAdapterForPlans(emptyList()) { selectedDate ->
-      fetchTasksForDate(selectedDate)
+      fetchTasksForDayName(selectedDate)
     }
 
 
@@ -165,10 +165,11 @@ class SstOneEightActivity :
 
 
 
-  fun groupTasksByDate(planDays: List<PlanDays>): List<GroupedPlanDays> {
-    return planDays.groupBy { it.taskDate }
-      .map { (date, tasks) -> GroupedPlanDays(taskDate = date ?: "", tasks = tasks) }
+  fun groupTasksByDayName(planDays: List<PlanDays>): List<GroupedPlanDays> {
+    return planDays.groupBy { it.day_name }
+      .map { (dayName, tasks) -> GroupedPlanDays(dayName = dayName ?: "", tasks = tasks) }
   }
+
 
 
   fun getUserActivePlans(id: String) {
@@ -184,12 +185,12 @@ class SstOneEightActivity :
       ) {
         binding.progressBar.visibility = View.GONE
         val customerResponse = response.body()?.planDays ?: emptyList()
-        val groupedPlanDays = groupTasksByDate(customerResponse)
+        val groupedPlanDays = groupTasksByDayName(customerResponse)
 
         dateAdapter.updateData(groupedPlanDays)
-        // Automatically select the first date
+        // Automatically select the first day name
         if (groupedPlanDays.isNotEmpty()) {
-          fetchTasksForDate(groupedPlanDays[0])
+          fetchTasksForDayName(groupedPlanDays[0])
         }
       }
 
@@ -201,10 +202,12 @@ class SstOneEightActivity :
     })
   }
 
-  private fun fetchTasksForDate(groupedPlanDays: GroupedPlanDays) {
+
+  private fun fetchTasksForDayName(groupedPlanDays: GroupedPlanDays) {
     detailAdapter.updateData(groupedPlanDays.tasks)
     binding.etGroup100000212.visibility = if (groupedPlanDays.tasks.isNotEmpty()) View.VISIBLE else View.GONE
   }
+
 
   companion object {
     const val TAG: String = "SST_ONE_EIGHT_ACTIVITY"

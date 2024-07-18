@@ -72,7 +72,7 @@ class UserActiveDetailsAdapter(
 
             useractiveplan.text=postModel.taskName
 
-            if (displayedDates.contains(postModel.taskDate)) {
+            if (displayedDates.contains(postModel.day_name)) {
                 Log.d("UserActiveWorkshopsAdapter", "Hiding views for date: ${postModel.taskDate}")
                 completedTask.visibility = View.GONE
                 totalTesk.visibility = View.GONE
@@ -87,7 +87,7 @@ class UserActiveDetailsAdapter(
 
                 completedTask.text = postModel.completed_Task
                 totalTesk.text = postModel.total_task
-                displayedDates.add(postModel.taskDate ?: "")
+                displayedDates.add(postModel.day_name ?: "")
             }
 
 

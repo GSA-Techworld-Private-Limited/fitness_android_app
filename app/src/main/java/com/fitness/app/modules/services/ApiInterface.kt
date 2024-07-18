@@ -24,9 +24,13 @@ import com.fitness.app.responses.TrainerPlanResponses
 import com.fitness.app.responses.UpdateResponse
 import com.fitness.app.responses.UserActivePlanDetailResponses
 import com.fitness.app.responses.UserActivePlanVideoResponses
+import com.fitness.app.responses.UserIdRequest
+import com.fitness.app.responses.UserIdRequestForVideos
 import com.fitness.app.responses.WorkShopByIDResponses
+import com.fitness.app.responses.WorkShopIdRequest
 import com.fitness.app.responses.WorkShopResponses
 import com.fitness.app.responses.WorkShopSegmentResponses
+import com.fitness.app.responses.WorkshopVideoId
 import com.fitness.app.responses.WorkshopVideoResponses
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -171,11 +175,10 @@ interface ApiInterface {
     ):Call<UserActivePlanDetailResponses>
 
 
-    @PATCH("/api/update-user-plan-day/{id}/")
+    @POST("/api/update-user-plan-day/")
     fun updateuserplanday(
         @Header("Authorization")token: String,
-        @Path("id")id:Int,
-        @Body request: BooleanRequest
+        @Body request: UserIdRequest
     ):Call<UpdateResponse>
 
 
@@ -187,19 +190,17 @@ interface ApiInterface {
 
 
 
-    @PATCH("/api/update-user-plan-day-video/{id}/")
+    @POST("/api/update-user-plan-day-video/")
     fun updateactiveplansvideos(
         @Header("Authorization")token: String,
-        @Path("id")id:Int,
-        @Body request: BooleanRequest
+        @Body request: UserIdRequestForVideos
     ):Call<UpdateResponse>
 
 
-    @PATCH("/api/update-workshop-video/{id}/")
+    @POST("/api/update-workshop-video/")
     fun updateactiveplanvideos(
         @Header("Authorization")token: String,
-        @Path("id")id:Int,
-        @Body request: BooleanRequest
+        @Body request: WorkshopVideoId
     ):Call<UpdateResponse>
 
 
@@ -217,11 +218,10 @@ interface ApiInterface {
     ):Call<List<WorkShopSegmentResponses>>
 
 
-    @PATCH("/api/update-workshop-day/{id}/")
+    @POST("/api/update-workshop-day/")
     fun updateuserworkshop(
         @Header("Authorization")token: String,
-        @Path("id")id:Int,
-        @Body request: BooleanRequest
+        @Body request: WorkShopIdRequest
     ):Call<UpdateResponse>
 
 
