@@ -3,6 +3,7 @@ package com.fitness.app.modules.trainerplanByid
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -27,6 +29,8 @@ import com.fitness.app.responses.PlanByIdResponses
 import com.fitness.app.responses.TrainerPlanResponses
 import retrofit2.Call
 import retrofit2.Response
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
 class TrainerPlanById : AppCompatActivity() {
 
@@ -60,6 +64,21 @@ class TrainerPlanById : AppCompatActivity() {
         }
     }
 
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun formatDateTime(inputDate: String): String {
+        // Define the input and output formatters
+        val inputFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
+        val outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy")
+
+        // Parse the input date
+        val dateTime = OffsetDateTime.parse(inputDate, inputFormatter)
+
+        // Format the date to the desired format
+        return dateTime.format(outputFormatter)
+    }
+
     fun getTrainerPlansById(id:String){
         val serviceGenerator= ApiManager.apiInterface
         val accessToken=sessionManager.fetchAuthToken()
@@ -67,6 +86,7 @@ class TrainerPlanById : AppCompatActivity() {
         val call=serviceGenerator.planByid(authorization,id)
 
         call.enqueue(object : retrofit2.Callback<PlanByIdResponses>{
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(
                 call: Call<PlanByIdResponses>,
                 response: Response<PlanByIdResponses>
@@ -81,6 +101,11 @@ class TrainerPlanById : AppCompatActivity() {
                     val description: TextView =findViewById(R.id.txtDescription)
                     val benefits: TextView =findViewById(R.id.txtDescriptionOne)
                     val planAmountButton: TextView =findViewById(R.id.txtPriceOne)
+                    val date:TextView=findViewById(R.id.txt29Oct30Oct)
+
+                    val inputDate = customerResponse.updatedAt
+                    val formattedDate = formatDateTime(inputDate!!)
+                    date.text=formattedDate
 
                     Glide.with(this@TrainerPlanById).load(customerResponse.planImage).into(image)
                     planName.text=customerResponse.planName
@@ -129,6 +154,7 @@ class TrainerPlanById : AppCompatActivity() {
             }
         })
     }
+
 
 
     fun postCreateOrder(itemId:String){

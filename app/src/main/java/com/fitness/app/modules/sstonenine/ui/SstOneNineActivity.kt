@@ -3,12 +3,14 @@ package com.fitness.app.modules.sstonenine.ui
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -29,6 +31,8 @@ import com.fitness.app.responses.WorkShopByIDResponses
 import com.fitness.app.responses.WorkShopResponses
 import retrofit2.Call
 import retrofit2.Response
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.String
 import kotlin.Unit
 
@@ -57,6 +61,18 @@ class SstOneNineActivity : BaseActivity<ActivitySstOneNineBinding>(R.layout.acti
     }
   }
 
+  @RequiresApi(Build.VERSION_CODES.O)
+  fun formatDateTime(inputDate: String): String {
+    // Define the input and output formatters
+    val inputFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
+    val outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy")
+
+    // Parse the input date
+    val dateTime = OffsetDateTime.parse(inputDate, inputFormatter)
+
+    // Format the date to the desired format
+    return dateTime.format(outputFormatter)
+  }
 
   fun getWorkshops(id:String){
     val serviceGenerator= ApiManager.apiInterface
@@ -65,6 +81,7 @@ class SstOneNineActivity : BaseActivity<ActivitySstOneNineBinding>(R.layout.acti
     val call=serviceGenerator.getWorkShopById(authorization,id)
 
     call.enqueue(object : retrofit2.Callback<WorkShopByIDResponses>{
+      @RequiresApi(Build.VERSION_CODES.O)
       override fun onResponse(
         call: Call<WorkShopByIDResponses>,
         response: Response<WorkShopByIDResponses>
@@ -79,6 +96,9 @@ class SstOneNineActivity : BaseActivity<ActivitySstOneNineBinding>(R.layout.acti
           binding.txtDescription.text=worshopResponses.data!!.description
 
 
+          val inputDate = worshopResponses.data!!.updatedAt
+          val formattedDate = formatDateTime(inputDate!!)
+          binding.txt29Oct30Oct.text=formattedDate
           binding.txtDescriptionOne.text=worshopResponses.data!!.benefit
           binding.txtPriceOne.setText(formattedCost)
           val workShopImage=worshopResponses.data!!.addPoster

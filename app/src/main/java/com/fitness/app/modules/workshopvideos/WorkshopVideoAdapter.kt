@@ -165,10 +165,10 @@ private val sessionManager: SessionManager
                     val id = postModel.id
 
                     // Toggle the value of isComplete
-                    val updatedIsComplete = !isComplete!!
+                  //  val updatedIsComplete = !isComplete!!
 
                     // Call patchUserActiveVideos with updated value of isComplete
-                    patchUserActiveVideos(id!!, updatedIsComplete)
+                    patchUserActiveVideos(id!!)
 
                     progressBar.visibility = View.VISIBLE
                 }
@@ -177,7 +177,7 @@ private val sessionManager: SessionManager
         }
 
 
-        fun patchUserActiveVideos(id:Int,isCompleted:Boolean){
+        fun patchUserActiveVideos(id:Int){
             val serviceGenerator= ApiManager.apiInterface
             val accessToken=sessionManager.fetchAuthToken()
             val authorization="Token $accessToken"
@@ -192,7 +192,7 @@ private val sessionManager: SessionManager
                     progressBar.visibility= View.GONE
                     if(response.isSuccessful){
                         btnComplete.text="Completed"
-                        btnComplete.text = if (isCompleted) "Completed" else "Complete"
+                       // btnComplete.text = if (isCompleted) "Completed" else "Complete"
                         Toast.makeText(itemView.context,"Completed", Toast.LENGTH_SHORT).show()
                     }
                 }
