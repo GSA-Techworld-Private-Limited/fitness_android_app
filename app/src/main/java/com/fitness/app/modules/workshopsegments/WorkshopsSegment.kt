@@ -63,6 +63,9 @@ class   WorkshopsSegment : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workshops_segment)
 
+        val workshopName=intent.getStringExtra("workshopName")
+        val workshop=findViewById<TextView>(R.id.txtSegmentSpecifi)
+        workshop.text=workshopName
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
         swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here

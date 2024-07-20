@@ -139,7 +139,7 @@ class SstOneEightActivity :
 
     binding.sstOneEightVM = viewModel
 
-    window.statusBarColor= ContextCompat.getColor(this,R.color.white)
+    window.statusBarColor= ContextCompat.getColor(this,R.color.cardview_shadow_start_color)
   }
 
 
