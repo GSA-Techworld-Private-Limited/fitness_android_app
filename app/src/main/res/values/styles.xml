@@ -15,6 +15,14 @@
         <item name="android:fontFamily">@font/nunito</item>
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
     </style>
+
+    <style name="txtNunitomedium161">
+        <item name="android:textSize">@dimen/_16pxh</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:textFontWeight" tools:targetApi="p">500</item>
+    </style>
+
     <style name="txtNunitomedium20_1">
         <item name="android:textSize">@dimen/_20pxh</item>
         <item name="android:textColor">@color/black_900</item>
@@ -89,6 +97,17 @@
         <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+
+    <style name="txtRalewayromanregular14_2">
+        <item name="android:textSize">@dimen/_14pxh</item>
+        <item name="android:textColor">@color/white_A700</item>
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+
+
+
+
     <style name="txtRalewayromanregular10_1">
         <item name="android:textSize">@dimen/_10pxh</item>
         <item name="android:textColor">@color/gray_601</item>
@@ -168,6 +187,15 @@
         <item name="android:fontFamily">@font/nunito</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+
+
+    <style name="txtNunitoregular16_2">
+        <item name="android:textSize">@dimen/_16pxh</item>
+        <item name="android:textColor">@color/status</item>
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+
     <style name="txtRobotoromanregular14">
         <item name="android:textSize">@dimen/_14pxh</item>
         <item name="android:textColor">@color/black_900</item>
@@ -443,12 +471,33 @@
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
         <item name="android:background">@drawable/rectangle_gradient_s_bluegray_900_c_gray_701_e_black_901</item>
     </style>
+
+
+
+    <style name="btnGradient111">
+        <item name="android:textSize">@dimen/_12pxh</item>
+        <item name="android:textColor">@color/white_A700</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/rectangle_radius_for_query_button</item>
+    </style>
+
     <style name="txtRalewayromanregular16_1">
         <item name="android:textSize">@dimen/_16pxh</item>
         <item name="android:textColor">@color/gray_703</item>
         <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+
+
+    <style name="txtRalewayromanregular14_11">
+        <item name="android:textSize">@dimen/_14pxh</item>
+        <item name="android:textColor">@color/date</item>
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+
+
     <style name="txtRobotoromansemibold20">
         <item name="android:textSize">@dimen/_20pxh</item>
         <item name="android:textColor">@color/white_A700</item>
@@ -503,7 +552,17 @@
         <item name="android:textColor">@color/white_A700</item>
         <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/query_background</item>
     </style>
+
+    <style name="txtRalewayromansemibold16_33">
+        <item name="android:textSize">@dimen/_14pxh</item>
+        <item name="android:textColor">@color/white_A700</item>
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/query_background</item>
+    </style>
+
     <style name="txtRalewayromanmedium12_1">
         <item name="android:textSize">@dimen/_12pxh</item>
         <item name="android:textColor">@color/black_900_75</item>

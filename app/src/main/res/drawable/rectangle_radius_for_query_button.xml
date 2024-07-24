@@ -4,4 +4,6 @@
         android:endColor="@color/black_901"
         android:startColor="@color/bluegray_900"
         android:type="linear"/>
+
+    <corners android:radius="10dp"/>
 </shape>

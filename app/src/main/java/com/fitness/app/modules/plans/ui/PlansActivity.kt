@@ -78,34 +78,44 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
     swipeRefreshLayout!!.isRefreshing = false
   }
 
-  fun getUserActivePlans(){
-    val serviceGenerator= ApiManager.apiInterface
-    val accessToken=sessionManager.fetchAuthToken()
-    val authorization="Token $accessToken"
-    val call=serviceGenerator.useractiveplans(authorization)
+  fun getUserActivePlans() {
+    val serviceGenerator = ApiManager.apiInterface
+    val accessToken = sessionManager.fetchAuthToken()
+    val authorization = "Token $accessToken"
+    val call = serviceGenerator.useractiveplans(authorization)
 
-    call.enqueue(object : retrofit2.Callback<ActivePlanResponses>{
+    call.enqueue(object : retrofit2.Callback<ActivePlanResponses> {
       override fun onResponse(
         call: Call<ActivePlanResponses>,
         response: Response<ActivePlanResponses>
       ) {
-        binding.progressBar.visibility=View.GONE
-        val customerResponse=response.body()
+        binding.progressBar.visibility = View.GONE
+        val customerResponse = response.body()
 
-        if(customerResponse!=null && customerResponse.status=="success"){
-
-          binding.recyclerforplans.apply {
-            val studioadapter= PlanAdapter(customerResponse.data)
-            layoutManager=LinearLayoutManager(this@PlansActivity,LinearLayoutManager.VERTICAL,true)
-            binding.recyclerforplans.adapter=studioadapter
+        if (customerResponse != null && customerResponse.status == "success") {
+          if (customerResponse.data.isNotEmpty()) {
+            binding.tvNoPlans.visibility = View.GONE
+            binding.recyclerforplans.apply {
+              val studioadapter = PlanAdapter(customerResponse.data)
+              layoutManager = LinearLayoutManager(this@PlansActivity, LinearLayoutManager.VERTICAL, true)
+              binding.recyclerforplans.adapter = studioadapter
+            }
+          } else {
+            binding.tvNoPlans.visibility = View.VISIBLE
+            binding.recyclerforplans.visibility = View.GONE
           }
-
+        } else {
+          binding.tvNoPlans.visibility = View.VISIBLE
+          binding.recyclerforplans.visibility = View.GONE
         }
       }
+
       override fun onFailure(call: Call<ActivePlanResponses>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
-        binding.progressBar.visibility=View.GONE
+        binding.progressBar.visibility = View.GONE
+        binding.tvNoPlans.visibility = View.VISIBLE
+        binding.recyclerforplans.visibility = View.GONE
       }
     })
   }

@@ -4,7 +4,10 @@ import com.fitness.app.modules.responses.ArticleResponse
 import com.fitness.app.modules.responses.LoginResponse
 import com.fitness.app.modules.responses.LogoutResponse
 import com.fitness.app.modules.responses.ProfileResponse
+import com.fitness.app.modules.responses.QueryRequest
+import com.fitness.app.modules.responses.QueryResponse
 import com.fitness.app.modules.responses.SignUpResponse
+import com.fitness.app.modules.responses.SubmittedQueryResponse
 import com.fitness.app.modules.responses.TestimonalVideoResponses
 import com.fitness.app.modules.responses.TrainingVideoResponse
 import com.fitness.app.modules.responses.UserDetailResponses
@@ -252,6 +255,27 @@ interface ApiInterface {
     fun getMyOrders(
         @Header("Authorization")token: String,
     ):Call<OrderResponses>
+
+
+    @POST("/api/queries/create/")
+    fun submitQuery(
+        @Header("Authorization") token: String,
+        @Body query: QueryRequest
+    ): Call<QueryResponse>
+
+
+    @GET("/api/my-queries/")
+    fun getQueries(
+        @Header("Authorization")token: String
+    ):Call<List<SubmittedQueryResponse>>
+
+
+
+    @GET("/api/queries/{id}/reply/")
+    fun getAnswer(
+        @Header("Authorization")token: String,
+        @Path("id")id:Int
+    ):Call<SubmittedQueryResponse>
 
     @POST("api/logout/")
     fun logout(@Header("Authorization")fetchAuthToken: String?):Call<LogoutResponse>
