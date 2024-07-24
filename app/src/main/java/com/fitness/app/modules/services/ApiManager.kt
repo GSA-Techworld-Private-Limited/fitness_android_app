@@ -6,7 +6,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiManager {
-    private val BASE_URL = "http://64.227.177.65:8001"
+    //digital ocean server link paste here
+   // private val BASE_URL = "http://64.227.177.65:8001"
+
+
+    //local server link paste here
+    private val BASE_URL = "https://lrxpv04x-8000.inc1.devtunnels.ms/"
 
     // API response interceptor
     val loggingInterceptor = HttpLoggingInterceptor()

@@ -161,7 +161,7 @@ class Login: BaseActivity<ActivityLoginBinding>(R.layout.activity_login), Connec
             override fun onFailure(call: Call<OtpResponses>, t: Throwable) {
                 // Handle failure to connect or other network issues
                 binding.progressbar.visibility = View.GONE
-                Toast.makeText(this@Login, "Login failed: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@Login, "something went wrong!!", Toast.LENGTH_LONG).show()
                 t.message?.let { Log.d("getting error", it) }
             }
         })

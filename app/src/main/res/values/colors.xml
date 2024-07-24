@@ -82,9 +82,10 @@
   <color name="colorPrimary">#3F51B5</color>
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#FF4081</color>
-
+<color name="date">#FC5A5A</color>
 
   <color name="colorPrimaryDarkMode">#3F51B5</color>
   <color name="colorPrimaryDarkMode1">#303F9F</color>
   <color name="colorAccentDarkMode">#FF4081</color>
+  <color name="status">#ED893E</color>
 </resources>

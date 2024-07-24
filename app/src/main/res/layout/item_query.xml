@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="7dp"
+    android:background="@drawable/query_background"
+    android:id="@+id/linearLayout"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvQueryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Nunc vulputate libero et velit interdum, ac aliquet odio mattis."
+        style="@style/txtRalewayromanregular14_2"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvQueryDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="on 12.08.24"
+            android:paddingStart="@dimen/_16pxh"
+            style="@style/txtRalewayromanregular14_11"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/tvQueryStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pending"
+            android:paddingEnd="@dimen/_16pxh"
+            style="@style/txtNunitoregular16_2"
+            android:gravity="end"
+            android:layout_gravity="end" />
+    </LinearLayout>
+</LinearLayout>

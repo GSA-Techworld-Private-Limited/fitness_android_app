@@ -24,6 +24,7 @@ import com.fitness.app.modules.plans.ui.PlansActivity
 import com.fitness.app.modules.plansone.ui.PlansOneActivity
 import com.fitness.app.modules.profile.ui.ProfileActivity
 import com.fitness.app.modules.profileone.`data`.viewmodel.ProfileOneVM
+import com.fitness.app.modules.query.QueryActivity
 import com.fitness.app.modules.responses.UserDetailResponses
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
@@ -210,6 +211,11 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
 
     binding.linearRowinbox1.setOnClickListener {
       val i=Intent(requireActivity(),OrderRequest::class.java)
+      startActivity(i)
+    }
+
+    binding.linearRowQuery.setOnClickListener {
+      val i=Intent(requireActivity(),QueryActivity::class.java)
       startActivity(i)
     }
   }

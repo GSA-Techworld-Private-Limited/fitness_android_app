@@ -67,6 +67,8 @@ class SubscriptionsFragment :
       }
     })
   }
+
+
   override fun setUpClicks(): Unit {
   }
 

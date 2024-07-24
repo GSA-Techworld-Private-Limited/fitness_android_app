@@ -101,7 +101,7 @@
                 android:text="Plan Description"
                 style="@style/txtNunitosemibold16"
                 tools:text="Plan Description"/>
-            <TextView android:gravity="center"
+            <TextView android:gravity="start|center_vertical"
                 android:id="@+id/txtDescription"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_19pxh"
@@ -130,7 +130,7 @@
                         android:text="Benefits"
                         style="@style/txtNunitosemibold16_1"
                         tools:text="Benefits"/>
-                    <TextView android:gravity="center_horizontal"
+                    <TextView android:gravity="start|center_vertical"
                         android:id="@+id/txtDescriptionOne"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_3pxh"
