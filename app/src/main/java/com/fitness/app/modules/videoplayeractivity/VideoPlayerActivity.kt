@@ -76,7 +76,7 @@ class VideoPlayerActivity : AppCompatActivity() {
                     val videoUri = Uri.parse(resolvedUrl)
                     val mediaSource = ExtractorMediaSource(videoUri, dataSourceFactory, extractorsFactory, null, null)
                     exoPlayer?.prepare(mediaSource)
-                    exoPlayer?.playWhenReady = true
+                    exoPlayer?.playWhenReady = false
                 }
             }
         }

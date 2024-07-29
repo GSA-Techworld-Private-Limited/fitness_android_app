@@ -55,6 +55,7 @@ class   WorkshopsSegment : AppCompatActivity() {
     private lateinit var planid:String
     private val viewModel1:WorkShopVM by viewModels<WorkShopVM> ()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         sessionManager= SessionManager(this)
 
@@ -86,47 +87,6 @@ class   WorkshopsSegment : AppCompatActivity() {
                 idforVideos=id
             }
         }
-
-//        val calendview: View? =findViewById<HorizontalCalendarView>(R.id.calendarView1)
-//
-//        val startDate = Calendar.getInstance()
-//        startDate.add(Calendar.MONTH, -1)
-//        val endDate = Calendar.getInstance()
-//        endDate.add(Calendar.MONTH, 1)
-//        val horizontalCalendar: HorizontalCalendar =
-//            HorizontalCalendar.Builder(this, calendview!!.id)
-//                .range(startDate, endDate)
-//                .datesNumberOnScreen(7)
-//                .build()
-//
-//        // Format today's date in "dd/mm/yyyy" format
-//        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-//        val today = Calendar.getInstance()
-//        val formattedToday = dateFormat.format(today.time)
-//
-//        // Parse the formatted string back to a Calendar object
-//        selectedDate = Calendar.getInstance()
-//        selectedDate.time = dateFormat.parse(formattedToday)!!
-//
-//
-//
-//        horizontalCalendar.calendarListener = object : HorizontalCalendarListener() {
-//            override fun onDateSelected(date: Calendar, position: Int) {
-//                // Format selected date in "yyyy-MM-dd" format
-//                selectedDate=date
-//                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-//                val formattedSelectedDate = dateFormat.format(date.time)
-//
-//                Log.d("selctedDate",formattedSelectedDate)
-//
-//                getUserActivePlans(id!!)
-//
-//                progressBar.visibility=View.VISIBLE
-//            }
-//
-//
-//        }
-//
 
 
          workshopvideosButton=findViewById(R.id.etGroup100000212)
@@ -167,6 +127,7 @@ class   WorkshopsSegment : AppCompatActivity() {
 
 
 
+
     }
 
 
@@ -178,7 +139,7 @@ class   WorkshopsSegment : AppCompatActivity() {
         // Then, when finished, call setRefreshing(false) on the SwipeRefreshLayout
         // to indicate that the refresh is complete
         // progressBar.setVisibility(View.GONE);
-        getUserActivePlans(planid)
+       // getUserActivePlans(planid)
         swipeRefreshLayout!!.isRefreshing = false
     }
 
@@ -222,6 +183,8 @@ class   WorkshopsSegment : AppCompatActivity() {
 
     private fun fetchTasksForDate(groupedPlanDays: GroupWorkshopDays) {
         detailAdapter.updateData(groupedPlanDays.tasks)
+        Log.d("WorkshopsSegment", "Tasks for date: ${groupedPlanDays.dayName} - ${groupedPlanDays.tasks.size} tasks")
+        detailAdapter.notifyDataSetChanged()
         workshopvideosButton.visibility = if (groupedPlanDays.tasks.isNotEmpty()) View.VISIBLE else View.GONE
     }
 

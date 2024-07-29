@@ -36,7 +36,8 @@ class Feeds1Adapter(
     var list: List<TrainingVideos>
 ) : RecyclerView.Adapter<Feeds1Adapter.VideoViewHolder>() {
 
-    lateinit var exoPlayer: SimpleExoPlayer
+
+    private var exoPlayer: SimpleExoPlayer? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val view =
@@ -55,6 +56,23 @@ class Feeds1Adapter(
     fun updateData(newData: ArrayList<TrainingVideos>) {
         list = newData
         notifyDataSetChanged()
+    }
+
+
+    override fun onViewRecycled(holder: VideoViewHolder) {
+        super.onViewRecycled(holder)
+        holder.releasePlayer()
+    }
+
+    fun releasePlayer() {
+        exoPlayer?.stop()
+        exoPlayer?.release()
+        exoPlayer?.playWhenReady = false
+        exoPlayer = null
+    }
+
+    fun pausePlayer() {
+        exoPlayer?.playWhenReady = false
     }
 
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -126,11 +144,11 @@ class Feeds1Adapter(
 
                     // we are preparing our exoplayer
                     // with media source.
-                    exoPlayer.prepare(mediaSourse)
+                    exoPlayer!!.prepare(mediaSourse)
 
                     // we are setting our exoplayer
                     // when it is ready.
-                    exoPlayer.playWhenReady = false
+                    exoPlayer!!.playWhenReady = false
                 }
 
                 orientationIcon.setOnClickListener {
@@ -141,14 +159,16 @@ class Feeds1Adapter(
             }
         }
 
-        init {
-            exoPlayerView.setOnClickListener {
-                // Start playing the video when the ExoPlayer view is clicked
-                exoPlayer.playWhenReady = true
+
+        fun releasePlayer() {
+            if (exoPlayerView.player != null) {
+                exoPlayerView.player!!.stop()
+                exoPlayerView.player!!.release()
+                exoPlayerView.player = null
             }
-
-
         }
+
+
 
         private fun isNetworkAvailable(context: Context): Boolean {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
