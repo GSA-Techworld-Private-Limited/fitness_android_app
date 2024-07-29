@@ -11,7 +11,7 @@ object ApiManager {
 
 
     //local server link paste here
-    private val BASE_URL = "https://lrxpv04x-8000.inc1.devtunnels.ms/"
+    private val BASE_URL = "http://13.126.56.28:8000/"
 
     // API response interceptor
     val loggingInterceptor = HttpLoggingInterceptor()

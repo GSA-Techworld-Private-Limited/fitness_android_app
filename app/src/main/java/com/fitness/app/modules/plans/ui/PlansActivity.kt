@@ -97,7 +97,7 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
             binding.tvNoPlans.visibility = View.GONE
             binding.recyclerforplans.apply {
               val studioadapter = PlanAdapter(customerResponse.data)
-              layoutManager = LinearLayoutManager(this@PlansActivity, LinearLayoutManager.VERTICAL, true)
+              layoutManager = LinearLayoutManager(this@PlansActivity, LinearLayoutManager.VERTICAL, false)
               binding.recyclerforplans.adapter = studioadapter
             }
           } else {

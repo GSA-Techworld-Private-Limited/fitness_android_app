@@ -40,9 +40,9 @@
                     android:layout_weight="0.73"
                     android:layout_width="0dp"
                     android:singleLine="true"
-                    android:text="@string/lbl_warm_up"
+                    android:text=""
                     style="@style/txtRobotoromansemibold20"
-                    tools:text="@string/lbl_warm_up"/>
+                    tools:text=""/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -58,16 +58,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <TextView android:gravity="center_horizontal"
+        <TextView android:gravity="start"
             android:id="@+id/txtDescription"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_19pxh"
             android:layout_marginStart="@dimen/_19pxh"
             android:layout_marginTop="@dimen/_40pxv"
             android:layout_width="match_parent"
-            android:text="@string/msg_lorem_ipsum_dol2"
+            android:text=""
             style="@style/txtRalewayromanregular16_1"
-            tools:text="@string/msg_lorem_ipsum_dol2"/>
+            tools:text=""/>
 
         </LinearLayout>
 

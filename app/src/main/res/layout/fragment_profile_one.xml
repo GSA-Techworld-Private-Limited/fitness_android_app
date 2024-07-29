@@ -258,9 +258,9 @@
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="match_parent"
                     android:singleLine="true"
-                    android:text="@{profileOneVM.profileOneModel.txtWorkshops}"
+                    android:text="Active Workshops"
                     style="@style/txtRobotoromanregular14"
-                    tools:text="@string/lbl_workshops"/>
+                    tools:text="Active Workshops"/>
 
             </LinearLayout>
 
@@ -501,7 +501,7 @@
                 android:layout_marginBottom="@dimen/_19pxv"
                 android:layout_width="wrap_content"
                 android:orientation="horizontal">
-x
+
                 <ImageView
                     android:id="@+id/imageSend"
                     android:layout_height="@dimen/_20pxh"

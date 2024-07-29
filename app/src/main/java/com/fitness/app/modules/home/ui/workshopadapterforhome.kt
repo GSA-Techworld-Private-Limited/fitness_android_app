@@ -78,6 +78,7 @@ class workshopadapterforhome(
                 i.putExtra("id", postModel.workshopId)
                 i.putExtra("totalTasks", totalTasks)
                 i.putExtra("completedTasks", completedTasks)
+                i.putExtra("workshopName",postModel.workshopName)
                 itemView.context.startActivity(i)
             }
         }

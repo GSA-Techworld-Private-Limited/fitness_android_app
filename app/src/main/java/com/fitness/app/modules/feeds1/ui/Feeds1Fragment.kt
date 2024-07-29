@@ -24,6 +24,7 @@ import kotlin.Unit
 class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_feeds1) {
   private val viewModel: Feeds1VM by viewModels<Feeds1VM>()
 
+  private lateinit var feeds1Adapter: Feeds1Adapter
 
   private lateinit var sessionManager: SessionManager
 
@@ -33,6 +34,8 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
 
     sessionManager=SessionManager(requireActivity())
 
+
+    feeds1Adapter = Feeds1Adapter(emptyList())
     getTrainingVideos()
 
     binding.progressBar.visibility=View.VISIBLE
@@ -66,6 +69,21 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
     binding.feeds1VM = viewModel
   }
 
+
+  override fun onPause() {
+    super.onPause()
+    feeds1Adapter.pausePlayer()
+  }
+
+  override fun onStop() {
+    super.onStop()
+    feeds1Adapter.releasePlayer()
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    feeds1Adapter.releasePlayer()
+  }
 
   private fun updateCategorySelection(selectedCategory: TextView, allCategories: List<TextView>) {
     updateTextViewStyles(selectedCategory, allCategories)
@@ -101,6 +119,8 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
       }
     }
   }
+
+
   override fun setUpClicks(): Unit {
   }
 

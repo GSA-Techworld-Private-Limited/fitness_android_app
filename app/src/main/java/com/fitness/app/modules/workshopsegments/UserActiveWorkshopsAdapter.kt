@@ -24,6 +24,7 @@ class UserActiveWorkshopsAdapter(
 ) : RecyclerView.Adapter<UserActiveWorkshopsAdapter.RowFeedsOneVH>() {
 
 
+    private val originalList = mutableListOf<WorkShopSegmentResponses>()
     private val displayedDates = mutableSetOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowFeedsOneVH {
@@ -40,7 +41,12 @@ class UserActiveWorkshopsAdapter(
     }
 
     fun updateData(filteredWorkshops: List<WorkShopSegmentResponses>) {
+        Log.d("UserActiveWorkshopsAdapter", "Updating data with ${filteredWorkshops.size} items")
+        filteredWorkshops.forEach { workshop ->
+            Log.d("UserActiveWorkshopsAdapter", "Workshopdvsvdvdsv: ${workshop.taskName}, Date: ${workshop.taskDate}")
+        }
         list = filteredWorkshops
+
         displayedDates.clear()
         notifyDataSetChanged()
     }
