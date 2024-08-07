@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -45,9 +46,11 @@ class SubscriptionsAdapter(
   ) : RecyclerView.ViewHolder(view) {
     val imageview:ImageView=itemView.findViewById(R.id.imageRectangleSixtyOne)
     val buyButton:AppCompatButton=itemView.findViewById(R.id.btnBuyPlan)
+    val txtPlanName:TextView=itemView.findViewById(R.id.planname)
 
     fun bindView(athleteResponse: AthletePlanResponses) {
       // Check if the image URL is not null
+      txtPlanName.text=athleteResponse.planName
       val image = athleteResponse.planImage
       if (!image.isNullOrEmpty()) {
         // If the image URL is not null, load the image using Glide

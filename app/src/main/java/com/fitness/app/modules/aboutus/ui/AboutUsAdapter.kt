@@ -45,11 +45,12 @@ import com.fitness.app.responses.ActivaPlan
 
         val description: TextView =itemView.findViewById(R.id.descritpion)
 
-
+        //val id:TextView=itemView.findViewById(R.id.id)
 
 
 
         fun bindView(postModel: AboutUsResponses){
+          //  id.text=postModel.id.toString()
             title.text=postModel.aboutusTitle
             description.text=postModel.aboutusContent
 

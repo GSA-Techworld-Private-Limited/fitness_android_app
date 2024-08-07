@@ -16,9 +16,13 @@
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".modules.query.QueryAnswerActivity"
+            android:name=".modules.orderRequest.RequestDescription"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".modules.query.QueryAnswerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.query.QueryWriteActivty"
             android:exported="false"

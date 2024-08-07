@@ -224,8 +224,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         if (customerResponse != null) {
           // Use fragment's context to access resources
           binding.recyclerviewforworkshop.apply {
-            val workshopAdapter = WorkShopAdapter(customerResponse.ongoingWorkshops)
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+            val workshopAdapter = WorkShopAdapter(customerResponse.ongoingWorkshops.reversed())
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = workshopAdapter
           }
         }

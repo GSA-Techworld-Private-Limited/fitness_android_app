@@ -42,21 +42,19 @@ getUserDetails()
 
     }
 
-  fun getUserDetails(){
-    val serviceGenerator= ApiManager.apiInterface
-    val accessToken=sessionManager.fetchAuthToken()
-    val authorization="Token $accessToken"
-    val call=serviceGenerator.userDetails(authorization)
+  fun getUserDetails() {
+    val serviceGenerator = ApiManager.apiInterface
+    val accessToken = sessionManager.fetchAuthToken()
+    val authorization = "Token $accessToken"
+    val call = serviceGenerator.userDetails(authorization)
 
-    call.enqueue(object : retrofit2.Callback<UserDetailResponses>{
-      override fun onResponse(
-        call: Call<UserDetailResponses>,
-        response: Response<UserDetailResponses>
-      ) {
-        val userDetails=response.body()
+    call.enqueue(object : retrofit2.Callback<UserDetailResponses> {
+      override fun onResponse(call: Call<UserDetailResponses>, response: Response<UserDetailResponses>) {
+        // Check if the fragment is still attached to its activity
+        if (!isAdded) return
 
-
-        val file=ApiManager.getImageUrl(userDetails!!.data!!.profile!!)
+        val userDetails = response.body()
+        val file = ApiManager.getImageUrl(userDetails!!.data!!.profile!!)
 
         Glide.with(requireActivity())
           .load(file)
@@ -65,6 +63,9 @@ getUserDetails()
       }
 
       override fun onFailure(call: Call<UserDetailResponses>, t: Throwable) {
+        // Check if the fragment is still attached to its activity
+        if (!isAdded) return
+
         t.printStackTrace()
         Log.e("error", t.message.toString())
       }
@@ -74,7 +75,8 @@ getUserDetails()
 
 
 
-    override fun setUpClicks(): Unit {
+
+  override fun setUpClicks(): Unit {
       binding.imageEllipseTwo.setOnClickListener {
         val i=Intent(requireActivity(),ProfileActivity::class.java)
         startActivity(i)

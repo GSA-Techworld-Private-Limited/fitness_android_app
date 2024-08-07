@@ -104,4 +104,5 @@ class VideoPlayerActivity : AppCompatActivity() {
         }
         return resolvedUrl
     }
+
 }

@@ -58,7 +58,7 @@ class PlansActivity : BaseActivity<ActivityPlansBinding>(R.layout.activity_plans
     binding.plansVM = viewModel
 
 
-    window.statusBarColor= ContextCompat.getColor(this,R.color.cardview_shadow_start_color)
+  //  window.statusBarColor= ContextCompat.getColor(this,R.color.cardview_shadow_start_color)
   }
 
   override fun setUpClicks(): Unit {

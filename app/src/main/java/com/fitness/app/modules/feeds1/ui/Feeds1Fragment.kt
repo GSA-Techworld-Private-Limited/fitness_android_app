@@ -1,6 +1,5 @@
 package com.fitness.app.modules.feeds1.ui
 
-import Feeds1Adapter
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -9,9 +8,6 @@ import com.fitness.app.R
 import com.fitness.app.appcomponents.base.BaseFragment
 import com.fitness.app.databinding.FragmentFeeds1Binding
 import com.fitness.app.modules.feeds1.`data`.viewmodel.Feeds1VM
-import com.fitness.app.modules.feedsone.ui.FeedsOneAdapter
-import com.fitness.app.modules.responses.ArticleResponse
-import com.fitness.app.modules.responses.Articles
 import com.fitness.app.modules.responses.TrainingVideoResponse
 import com.fitness.app.modules.responses.TrainingVideos
 import com.fitness.app.modules.services.ApiManager
@@ -67,23 +63,30 @@ class Feeds1Fragment : BaseFragment<FragmentFeeds1Binding>(R.layout.fragment_fee
       }
     }
     binding.feeds1VM = viewModel
-  }
 
+  }
 
   override fun onPause() {
     super.onPause()
     feeds1Adapter.pausePlayer()
+
   }
 
   override fun onStop() {
     super.onStop()
-    feeds1Adapter.releasePlayer()
+    feeds1Adapter.pausePlayer()
   }
 
-  override fun onDestroyView() {
-    super.onDestroyView()
-    feeds1Adapter.releasePlayer()
+  override fun onDestroy() {
+    super.onDestroy()
+    feeds1Adapter.pausePlayer() // Ensure this method correctly handles stopping the player
   }
+
+
+
+
+
+
 
   private fun updateCategorySelection(selectedCategory: TextView, allCategories: List<TextView>) {
     updateTextViewStyles(selectedCategory, allCategories)

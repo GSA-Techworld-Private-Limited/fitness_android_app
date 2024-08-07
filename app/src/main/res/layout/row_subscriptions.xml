@@ -16,6 +16,10 @@
             android:background="@color/gray_400"
             app:cardUseCompatPadding="true">
 
+
+
+
+
             <ImageView
                 android:id="@+id/imageRectangleSixtyOne"
                 android:layout_width="@dimen/_320pxh"
@@ -24,6 +28,21 @@
                 android:scaleType="fitXY"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/img_rectangle61_3"/>
+
+
+
+
+            <TextView
+                android:id="@+id/planname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="@dimen/_20pxh"
+                android:text="@string/lbl_plan_name"
+                android:gravity="center_horizontal"
+                style="@style/txtRobotoromanregular16_5"
+                />
 
             <LinearLayout android:id="@+id/linearColumnviewdetails"
                 android:layout_gravity="bottom|end"
