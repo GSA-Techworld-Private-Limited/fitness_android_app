@@ -93,10 +93,10 @@ interface ApiInterface {
 
 
 
-    @GET("api/about-us/")
+    @GET("api/about_us/")
     fun about_us(
         @Header("Authorization")token: String
-    ):Call<AboutUsResponses>
+    ):Call<List<AboutUsResponses>>
 
 
     @GET("/api/workshops/upcoming/")

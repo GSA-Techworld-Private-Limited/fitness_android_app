@@ -41,7 +41,7 @@ class AboutUsActivity : BaseActivity<ActivityAboutUsBinding>(R.layout.activity_a
     }
 
     getAboutUS()
-    window.statusBarColor= ContextCompat.getColor(this,R.color.white)
+   // window.statusBarColor= ContextCompat.getColor(this,R.color.white)
   }
 
   override fun setUpClicks(): Unit {
@@ -54,30 +54,30 @@ class AboutUsActivity : BaseActivity<ActivityAboutUsBinding>(R.layout.activity_a
     val authorization="Token $accessToken"
     val call=serviceGenerator.about_us(authorization)
 
-    call.enqueue(object : retrofit2.Callback<AboutUsResponses>{
+    call.enqueue(object : retrofit2.Callback<List<AboutUsResponses>>{
       override fun onResponse(
-        call: Call<AboutUsResponses>,
-        response: Response<AboutUsResponses>
+        call: Call<List<AboutUsResponses>>,
+        response: Response<List<AboutUsResponses>>
       ) {
         binding.progressBar.visibility= View.GONE
-        val aboutUs=response.body()
+        val aboutUs=response.body()!!
 
         if(aboutUs!=null){
 
-          binding.title.text=aboutUs.aboutusTitle
-          binding.descritpion.text=aboutUs.aboutusContent
-//          binding.recyclerforaboutUs.apply {
-//            val aboutusAdapter= AboutUsAdapter(aboutUs)
-//            layoutManager=LinearLayoutManager(this@AboutUsActivity,LinearLayoutManager.VERTICAL,
-//              true
-//            )
-//            binding.recyclerforaboutUs.adapter=aboutusAdapter
-//          }
+//          binding.title.text=aboutUs.aboutusTitle
+//          binding.descritpion.text=aboutUs.aboutusContent
+          binding.recyclerforaboutUs.apply {
+            val aboutusAdapter= AboutUsAdapter(aboutUs)
+            layoutManager=LinearLayoutManager(this@AboutUsActivity,LinearLayoutManager.VERTICAL,
+              false
+            )
+            binding.recyclerforaboutUs.adapter=aboutusAdapter
+          }
 
         }
       }
 
-      override fun onFailure(call: Call<AboutUsResponses>, t: Throwable) {
+      override fun onFailure(call: Call<List<AboutUsResponses>>, t: Throwable) {
         t.printStackTrace()
         Log.e("error", t.message.toString())
         binding.progressBar.visibility= View.GONE

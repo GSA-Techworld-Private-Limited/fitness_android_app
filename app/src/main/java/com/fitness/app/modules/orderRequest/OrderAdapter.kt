@@ -1,5 +1,6 @@
 package com.fitness.app.modules.orderRequest
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,6 @@ class OrderAdapter(private val orders: OrderResponses) :
         }
     }
 
-
     class PlanViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imagePoster: ImageView = itemView.findViewById(R.id.imagePoster)
         private val textName: TextView = itemView.findViewById(R.id.textName)
@@ -56,17 +56,31 @@ class OrderAdapter(private val orders: OrderResponses) :
         private val textStatus: TextView = itemView.findViewById(R.id.textStatus)
 
         fun bind(planOrder: PlanOrders) {
-            textName.text = planOrder.plan.firstOrNull()?.planName ?: "No Name"
-            textPrice.text = planOrder.plan.firstOrNull()?.planCost ?: "No Price"
+            val plan = planOrder.plan.firstOrNull()
+            textName.text = plan?.planName ?: "No Name"
+            textPrice.text = "₹${plan?.planCost ?: "No Price"}"
             textStatus.text = planOrder.orderStatus ?: "No Status"
 
             val context = itemView.context
-            val imageUrl = planOrder.plan.firstOrNull()?.planImage
-            val file=ApiManager.getImageUrl(imageUrl!!)
+            val imageUrl = plan?.planImage
+            val file = ApiManager.getImageUrl(imageUrl!!)
             Glide.with(context)
                 .load(file)
                 .placeholder(R.drawable.image_not_found) // placeholder image
                 .into(imagePoster)
+
+            // Set click listener for imagePoster
+            imagePoster.setOnClickListener {
+                val intent = Intent(context, RequestDescription::class.java).apply {
+                    putExtra("type", "plan")
+                    putExtra("name", plan?.planName)
+                    putExtra("cost", plan?.planCost)
+                    putExtra("image", plan?.planImage)
+                    putExtra("description", plan?.planDescription)
+                    putExtra("benefits", plan?.planBenifits)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
@@ -77,17 +91,32 @@ class OrderAdapter(private val orders: OrderResponses) :
         private val textStatus: TextView = itemView.findViewById(R.id.textStatus)
 
         fun bind(workshopOrder: WorkshopOrders) {
-            textName.text = workshopOrder.workshop.firstOrNull()?.workshopName ?: "No Name"
-            textPrice.text = workshopOrder.workshop.firstOrNull()?.workshopCost ?: "No Price"
+            val workshop = workshopOrder.workshop.firstOrNull()
+            textName.text = workshop?.workshopName ?: "No Name"
+            textPrice.text = workshop?.workshopCost ?: "No Price"
             textStatus.text = workshopOrder.orderStatus ?: "No Status"
 
             val context = itemView.context
-            val imageUrl = workshopOrder.workshop.firstOrNull()?.addPoster
-            val file=ApiManager.getImageUrl(imageUrl!!)
+            val imageUrl = workshop?.addPoster
+            val file = ApiManager.getImageUrl(imageUrl!!)
             Glide.with(context)
                 .load(file)
                 .placeholder(R.drawable.image_not_found) // placeholder image
                 .into(imagePoster)
+
+            // Set click listener for imagePoster
+            imagePoster.setOnClickListener {
+                val intent = Intent(context, RequestDescription::class.java).apply {
+                    putExtra("type", "workshop")
+                    putExtra("name", workshop?.workshopName)
+                    putExtra("cost", workshop?.workshopCost)
+                    putExtra("image", workshop?.addPoster)
+                    putExtra("description", workshop?.description)
+                    putExtra("benefits", workshop?.benefit)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 }
+

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -18,6 +19,7 @@ import com.fitness.app.databinding.FragmentProfileOneBinding
 import com.fitness.app.modules.aboutus.ui.AboutUsActivity
 import com.fitness.app.modules.appsettings.ui.AppSettingsActivity
 import com.fitness.app.modules.frame1000002010.ui.Frame1000002010Activity
+import com.fitness.app.modules.login.Login
 import com.fitness.app.modules.notifications.ui.NotificationsActivity
 import com.fitness.app.modules.orderRequest.OrderRequest
 import com.fitness.app.modules.plans.ui.PlansActivity
@@ -25,6 +27,7 @@ import com.fitness.app.modules.plansone.ui.PlansOneActivity
 import com.fitness.app.modules.profile.ui.ProfileActivity
 import com.fitness.app.modules.profileone.`data`.viewmodel.ProfileOneVM
 import com.fitness.app.modules.query.QueryActivity
+import com.fitness.app.modules.responses.LogoutResponse
 import com.fitness.app.modules.responses.UserDetailResponses
 import com.fitness.app.modules.services.ApiManager
 import com.fitness.app.modules.services.SessionManager
@@ -67,27 +70,26 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
   }
 
 
-  fun getUserDetails(){
-    val serviceGenerator= ApiManager.apiInterface
-    val accessToken=sessionManager.fetchAuthToken()
-    val authorization="Token $accessToken"
-    val call=serviceGenerator.userDetails(authorization)
+  fun getUserDetails() {
+    val serviceGenerator = ApiManager.apiInterface
+    val accessToken = sessionManager.fetchAuthToken()
+    val authorization = "Token $accessToken"
+    val call = serviceGenerator.userDetails(authorization)
 
-    call.enqueue(object : retrofit2.Callback<UserDetailResponses>{
-      override fun onResponse(
-        call: Call<UserDetailResponses>,
-        response: Response<UserDetailResponses>
-      ) {
-        binding.progressBar.visibility=View.GONE
-        val userDetails=response.body()!!
+    call.enqueue(object : retrofit2.Callback<UserDetailResponses> {
+      override fun onResponse(call: Call<UserDetailResponses>, response: Response<UserDetailResponses>) {
+        // Check if the fragment is still attached to its activity
+        if (!isAdded) return
 
-        binding.txtAshishB.text=userDetails.data!!.name
-        binding.txtDate.text=userDetails.data!!.dateOfBirth
-       binding.txtOne.text=userDetails.totalActivePlans.toString()
+        binding.progressBar.visibility = View.GONE
+        val userDetails = response.body()!!
 
-        binding.txtMobileNo.text=userDetails.data!!.mobileNumber
+        binding.txtAshishB.text = userDetails.data!!.name
+        binding.txtDate.text = userDetails.data!!.dateOfBirth
+        binding.txtOne.text = userDetails.totalActivePlans.toString()
+        binding.txtMobileNo.text = userDetails.data!!.mobileNumber
 
-        val file=ApiManager.getImageUrl(userDetails.data!!.profile!!)
+        val file = ApiManager.getImageUrl(userDetails.data!!.profile!!)
 
         Glide.with(requireActivity())
           .load(file)
@@ -96,12 +98,16 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
       }
 
       override fun onFailure(call: Call<UserDetailResponses>, t: Throwable) {
+        // Check if the fragment is still attached to its activity
+        if (!isAdded) return
+
         t.printStackTrace()
         Log.e("error", t.message.toString())
-        binding.progressBar.visibility=View.GONE
+        binding.progressBar.visibility = View.GONE
       }
     })
   }
+
 
 
   override fun setUpClicks(): Unit {
@@ -178,8 +184,10 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
       dialog.show()
     }
     binding.linearRowsearch.setOnClickListener {
-      val destIntent = Intent(requireActivity(),AppSettingsActivity::class.java)
-      startActivity(destIntent)
+//      val destIntent = Intent(requireActivity(),AppSettingsActivity::class.java)
+//      startActivity(destIntent)
+
+      logout()
     }
 
     binding.linearRowinbox.setOnClickListener {
@@ -218,6 +226,42 @@ class ProfileOneFragment : BaseFragment<FragmentProfileOneBinding>(R.layout.frag
       val i=Intent(requireActivity(),QueryActivity::class.java)
       startActivity(i)
     }
+  }
+
+
+  fun logout(){
+    val serviceGenerator= ApiManager.apiInterface
+    val accessToken=sessionManager.fetchAuthToken()
+    val authorization="Token $accessToken"
+    val call=serviceGenerator.logout(authorization)
+
+    call.enqueue(object : retrofit2.Callback<LogoutResponse>{
+      override fun onResponse(
+        call: Call<LogoutResponse>,
+        response: Response<LogoutResponse>
+      ) {
+        val logoutResponse=response.body()
+
+        if(logoutResponse!=null){
+          Toast.makeText(requireActivity(),"Logout Successful", Toast.LENGTH_SHORT).show()
+          redirectToLoginActivity()
+          sessionManager.logout()
+        }
+      }
+
+      override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
+        t.printStackTrace()
+        Log.e("error", t.message.toString())
+      }
+    })
+  }
+
+
+  private fun redirectToLoginActivity(){
+    val intent = Intent(requireActivity(), Login::class.java)
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+    ActivityCompat.finishAffinity(requireActivity())
+    startActivity(intent)
   }
 
   companion object {

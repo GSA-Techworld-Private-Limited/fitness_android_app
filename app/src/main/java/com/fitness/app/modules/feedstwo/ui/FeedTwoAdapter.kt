@@ -56,6 +56,13 @@ class FeedTwoAdapter(
         notifyDataSetChanged()
     }
 
+    override fun onViewRecycled(holder: VideoViewHolder) {
+        super.onViewRecycled(holder)
+        holder.pausePlayer()
+
+    }
+
+
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //val exoplayerView: PlayerView = view.findViewById(R.id.playerview)!!
         val videoName: TextView = view.findViewById(R.id.videoName)
@@ -77,7 +84,8 @@ class FeedTwoAdapter(
                 // For example, show an empty state or perform any other action
                 exoPlayerView.visibility = View.GONE
             } else {
-                val videoUri = postModel.testimonalVideo
+                val videoFromServer=postModel.testimonalVideo
+                val videoUri = ApiManager.getVideoUrl(videoFromServer!!)
                 // bandwidthmeter is used for
                 // getting default bandwidth
                 val context = itemView.context
@@ -134,7 +142,7 @@ class FeedTwoAdapter(
 
                 orientationIcon.setOnClickListener {
                     val i= Intent(itemView.context, VideoPlayerActivity::class.java)
-                    i.putExtra("videoUrl",postModel.testimonalVideo)
+                    i.putExtra("videoUrl",videoUri)
                     itemView.context.startActivity(i)
                 }
             }
@@ -147,6 +155,11 @@ class FeedTwoAdapter(
                 exoPlayer.playWhenReady = true
             }
         }
+
+        fun pausePlayer() {
+            exoPlayerView.player.playWhenReady=false
+        }
+
 
         private fun isNetworkAvailable(context: Context): Boolean {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

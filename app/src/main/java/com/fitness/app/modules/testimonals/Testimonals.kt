@@ -51,7 +51,7 @@ class Testimonals(
             val image=postModel.poster
 
             val file= ApiManager.getImageUrl(image!!)
-            Glide.with(itemView.context).load(image).into(worksshopImage)
+            Glide.with(itemView.context).load(file).into(worksshopImage)
 
 //            worksshopImage.setOnClickListener {
 //                val i = Intent(itemView.context, SstOneNineActivity::class.java)

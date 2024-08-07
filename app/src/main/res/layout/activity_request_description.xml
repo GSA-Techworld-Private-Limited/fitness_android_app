@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_horizontal"
+    android:id="@+id/linearColumnrectangle"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    style="@style/groupStylewhite_A700"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:fillViewport="true"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearSSTOneNine"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylewhite_A700">
+            <FrameLayout android:gravity="start"
+                android:id="@+id/frameStackrectangle"
+                android:layout_height="@dimen/_251pxv" android:layout_width="match_parent">
+                <ImageView android:id="@+id/imageRectangle"
+                    android:layout_gravity="start"
+                    android:layout_height="@dimen/_251pxh"
+                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_rectangle"/>
+                <ImageView android:id="@+id/imageArrowright"
+                    android:layout_gravity="top|start"
+                    android:layout_height="@dimen/_38pxh"
+                    android:layout_marginBottom="@dimen/_28pxv"
+                    android:layout_marginEnd="@dimen/_22pxh"
+                    android:layout_marginStart="@dimen/_12pxh"
+                    android:layout_marginTop="@dimen/_28pxv"
+                    android:layout_width="@dimen/_42pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_arrowright_white_a700"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_arrowright_white_a700"/>
+            </FrameLayout>
+            <LinearLayout android:id="@+id/linearRowworkshopname"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_17pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtWorkshopname"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="Plan Name"
+                    style="@style/txtRalewayromansemibold20"
+                    tools:text="Plan Name"/>
+
+            </LinearLayout>
+            <TextView
+                android:ellipsize="end"
+                android:hint="@string/lbl_500"
+                android:id="@+id/etPrice"
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_19pxh"
+                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_marginTop="@dimen/_3pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_7pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_2pxh"
+                android:singleLine="true"
+                android:text="@={sstOneNineVM.sstOneNineModel.etPriceValue}"
+                android:textColorHint="@color/gray_701"
+                style="@style/etNunitomedium20"
+                tools:ignore="Autofill"/>
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_gravity="start"
+                android:id="@+id/txt29Oct30Oct"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/lbl_29_oct_30_oct"
+                style="@style/txtRobotoromanregular16_3"
+                tools:text="@string/lbl_29_oct_30_oct"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtWorkshopDescri"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_19pxh"
+                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="Plan Description"
+                style="@style/txtNunitosemibold16"
+                tools:text="Plan Description"/>
+            <TextView
+                android:gravity="start|center_vertical"
+                android:id="@+id/txtDescription"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_19pxh"
+                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_width="match_parent"
+                android:text=""
+                style="@style/txtRalewayromanregular16_1"/>
+            <FrameLayout android:gravity="start"
+                android:id="@+id/frameStackactivities"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_29pxv"
+                android:layout_width="match_parent">
+                <LinearLayout android:id="@+id/linearColumnactivities"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_21pxh"
+                    android:layout_marginStart="@dimen/_19pxh"
+                    android:layout_width="match_parent" android:orientation="vertical">
+                    <TextView android:ellipsize="end"
+                        android:id="@+id/txtActivities"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:singleLine="true"
+                        android:text="Benefits"
+                        style="@style/txtNunitosemibold16_1"
+                        tools:text="Benefits"/>
+                    <TextView android:gravity="start|center_vertical"
+                        android:id="@+id/txtDescriptionOne"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_3pxh"
+                        android:layout_marginTop="@dimen/_9pxv"
+                        android:layout_marginBottom="9dp"
+                        android:layout_width="match_parent"
+                        style="@style/txtRalewayromanregular16_1" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+<!--            <TextView-->
+<!--                android:layout_gravity="start"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:ellipsize="end"-->
+<!--                android:id="@+id/txtSimilarWorksho"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="@dimen/_10pxh"-->
+<!--                android:layout_marginTop="@dimen/_31pxv"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:singleLine="true"-->
+<!--                android:text="Similar Athlete Plans"-->
+<!--                style="@style/txtRalewayromansemibold16_2"-->
+<!--                tools:text="Similar Athlete Plans"/>-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:layout_gravity="start"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:id="@+id/recyclerviewforAthlete"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+<!--    <TextView android:ellipsize="end"-->
+<!--        android:gravity="center"-->
+<!--        android:id="@+id/txtPriceOne"-->
+<!--        android:layout_gravity="bottom|start"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_10pxv"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:paddingBottom="@dimen/_22pxv"-->
+<!--        android:paddingEnd="@dimen/_30pxh"-->
+<!--        android:paddingStart="@dimen/_30pxh"-->
+<!--        android:paddingTop="@dimen/_24pxv"-->
+<!--        android:singleLine="true"-->
+<!--        android:text="@string/lbl_pay_500"-->
+<!--        style="@style/txtGradient"-->
+<!--        tools:text="@string/lbl_pay_500"/>-->
+
+</LinearLayout>

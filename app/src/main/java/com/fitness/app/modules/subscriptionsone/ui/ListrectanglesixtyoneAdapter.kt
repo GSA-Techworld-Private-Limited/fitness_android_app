@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -51,10 +52,12 @@ class ListrectanglesixtyoneAdapter(
 
     val button:AppCompatButton=itemView.findViewById(R.id.btnBuyPlan)
 
+    val planName:TextView=itemView.findViewById(R.id.planname)
 
 
     fun bindView(posmodel: TrainerPlanResponses) {
       // Check if the image URL is not null or empty
+      planName.text=posmodel.planName
       val image = posmodel.planImage
       if (!image.isNullOrEmpty()) {
         // If the image URL is not null or empty, load the image using Glide
