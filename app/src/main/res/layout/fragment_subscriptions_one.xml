@@ -10,10 +10,12 @@
         android:id="@+id/scrollViewScrollview"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-        <LinearLayout android:gravity="center_horizontal"
+        <LinearLayout
+            android:gravity="start"
             android:id="@+id/linearColumnnote"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent" android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearRownote"
                 android:layout_height="wrap_content"
@@ -47,16 +49,24 @@
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/forfull"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="start"
                 android:id="@+id/recyclerListrectanglesixtyone"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_23pxv"
                 android:layout_width="match_parent"
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_14pxh}" tools:itemCount="4" tools:listitem="@layout/row_listrectanglesixtyone"/>
+                itemSpace="@{@dimen/_14pxh}"
+                tools:itemCount="4"
+                tools:listitem="@layout/row_listrectanglesixtyone"/>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

@@ -9,6 +9,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -45,6 +46,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
 
   private var fragmentContext: Context? = null
+
+  private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -104,6 +107,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
 
 
+    swipeRefreshLayout = binding.swipeRefreshLayout
+    swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here
+
+      // For example, you can reload data or update UI
+      // Call your method to refresh the progress bar and other UI elements
+      refreshData()
+    }
+
+
     binding.txtWelcomebackS.text = greeting
 
 
@@ -131,6 +143,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     binding.homeVM = viewModel
   }
 
+
+
+  private fun refreshData() {
+    // Place your logic here to refresh the activity, e.g., reload data, update progress bar
+    // For example:
+    // progressBar.setVisibility(View.VISIBLE);
+    // Call your method to reload data or update UI elements
+    // Then, when finished, call setRefreshing(false) on the SwipeRefreshLayout
+    // to indicate that the refresh is complete
+    // progressBar.setVisibility(View.GONE);
+    getUserActivePlansWorkshops()
+    getWorkshops()
+    getTestimonals()
+    swipeRefreshLayout!!.isRefreshing = false
+  }
 
 
   fun getUserDetails(){
@@ -183,14 +210,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         val recyclerview: RecyclerView = binding.recyclerforplans
 
-        if (customerResponse != null && customerResponse.isNotEmpty()) {
-          val firstResponse = customerResponse.last()
-          val studioadapter = workshopadapterforhome(listOf( firstResponse))
-          recyclerview.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, true)
-          recyclerview.adapter = studioadapter
+        if (!customerResponse.isNullOrEmpty()) {
+          // Find the first workshop with incomplete tasks
+          val firstIncompleteResponse = customerResponse
+            .filter { it.completedWorkshops!! < it.totalworkshops!! }
+            .maxByOrNull  { it.completedWorkshops!! } // Find the workshop with the least completed tasks
+
+          if (firstIncompleteResponse != null) {
+            val studioadapter = workshopadapterforhome(listOf(firstIncompleteResponse))
+            recyclerview.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            recyclerview.adapter = studioadapter
+          } else {
+            // Handle the case where all tasks are completed
+            recyclerview.visibility = View.GONE
+            // Show a message indicating all tasks are completed
+            // binding.noTasksMessage.visibility = View.VISIBLE
+          }
         } else {
           // Handle null or empty response case
-          // For example, display a message or hide the RecyclerView
+          recyclerview.visibility = View.GONE
+          // Show a message indicating no tasks available
+          // binding.noTasksMessage.visibility = View.VISIBLE
         }
       }
 
@@ -201,6 +241,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
       }
     })
   }
+
+
+
 
 
 

@@ -47,7 +47,7 @@ class   WorkshopsSegment : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
 
 
-    private var swipeRefreshLayout: SwipeRefreshLayout? = null
+  //  private var swipeRefreshLayout: SwipeRefreshLayout? = null
     private var idforVideos:Int=0
     private lateinit var workshopvideosButton:TextView
     //private lateinit var recyclerView: RecyclerView
@@ -68,13 +68,13 @@ class   WorkshopsSegment : AppCompatActivity() {
         val workshop=findViewById<TextView>(R.id.txtSegmentSpecifi)
         workshop.text=workshopName
 
-        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
-        swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here
-
-            // For example, you can reload data or update UI
-            // Call your method to refresh the progress bar and other UI elements
-            refreshData()
-        }
+//        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+//        swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here
+//
+//            // For example, you can reload data or update UI
+//            // Call your method to refresh the progress bar and other UI elements
+//            refreshData()
+//        }
 
        // getUserActivePlans(id!!)
 
@@ -140,7 +140,7 @@ class   WorkshopsSegment : AppCompatActivity() {
         // to indicate that the refresh is complete
         // progressBar.setVisibility(View.GONE);
        // getUserActivePlans(planid)
-        swipeRefreshLayout!!.isRefreshing = false
+       // swipeRefreshLayout!!.isRefreshing = false
     }
 
 

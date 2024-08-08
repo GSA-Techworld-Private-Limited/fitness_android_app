@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipeRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout android:id="@+id/linearPlans"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_width="match_parent"
     style="@style/groupStylewhite_A700"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -87,3 +92,5 @@
     </ScrollView>
 
 </LinearLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

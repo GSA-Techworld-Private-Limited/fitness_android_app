@@ -4,6 +4,16 @@
     <data>
         <variable name="homeVM" type="com.fitness.app.modules.home.data.viewmodel.HomeVM"/>
     </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
     <LinearLayout android:gravity="start"
         android:id="@+id/linearColumnwelcomebacks"
         android:layout_height="match_parent"
@@ -376,4 +386,6 @@
 
         </ScrollView>
     </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

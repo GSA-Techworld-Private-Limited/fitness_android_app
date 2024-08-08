@@ -2,6 +2,7 @@ package com.fitness.app.modules.workshopsegments
 
 import android.icu.text.SimpleDateFormat
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,10 @@ class DateAdapter(
     }
 
     fun updateData(newDates: List<GroupWorkshopDays>) {
+        Log.d("DateAdapter", "Updating data with ${newDates.size} dates")
+        newDates.forEach { date ->
+            Log.d("DateAdapter", "Date: ${date.dayName}, Tasks: ${date.tasks.size}")
+        }
         dates = newDates
         notifyDataSetChanged()
     }
@@ -44,7 +49,7 @@ class DateAdapter(
 
         @RequiresApi(Build.VERSION_CODES.N)
         fun bind(date: GroupWorkshopDays, isSelected: Boolean) {
-            tvDayName.text = "Day ${adapterPosition + 1}"
+            tvDayName.text = date.dayName ?: "Day ${adapterPosition + 1}"
 //            val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
 //            val dateObj = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date.taskDate)
            // tvDate.text = sdf.format(dateObj!!)

@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fitness.app.R
 import com.fitness.app.modules.plans.ui.PlanAdapter
 import com.fitness.app.modules.services.ApiManager
@@ -24,6 +25,8 @@ class Workshops : AppCompatActivity() {
 
     private lateinit var sessionManager: SessionManager
     private lateinit var progressBar: ProgressBar
+
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         sessionManager=SessionManager(this)
         super.onCreate(savedInstanceState)
@@ -35,6 +38,13 @@ class Workshops : AppCompatActivity() {
 
         progressBar.visibility= View.VISIBLE
 
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+        swipeRefreshLayout!!.setOnRefreshListener { // Implement the refresh action here
+
+            // For example, you can reload data or update UI
+            // Call your method to refresh the progress bar and other UI elements
+            refreshData()
+        }
 
 
         val backImage:ImageView=findViewById(R.id.btnArrowright)
@@ -42,6 +52,20 @@ class Workshops : AppCompatActivity() {
             this.finish()
         }
     }
+
+
+    private fun refreshData() {
+        // Place your logic here to refresh the activity, e.g., reload data, update progress bar
+        // For example:
+        // progressBar.setVisibility(View.VISIBLE);
+        // Call your method to reload data or update UI elements
+        // Then, when finished, call setRefreshing(false) on the SwipeRefreshLayout
+        // to indicate that the refresh is complete
+        // progressBar.setVisibility(View.GONE);
+        getUserActivePlansWorkshops()
+        swipeRefreshLayout!!.isRefreshing = false
+    }
+
 
     fun getUserActivePlansWorkshops() {
         val serviceGenerator = ApiManager.apiInterface

@@ -52,9 +52,11 @@ class workshopadapterforhome(
         val completedTask:TextView=itemView.findViewById(R.id.txtThree)
         val totalTask:TextView=itemView.findViewById(R.id.txtThree2)
 
+        val dayname:TextView=itemView.findViewById(R.id.dayname)
 
         fun bindView(postModel: ActivePlanWorkshopResponses) {
             activeplanName.text = postModel.workshopName
+            dayname.text=postModel.incompleteDayNames[0]
 
             val totalTasks = postModel.totalworkshops ?: 0 // If totalTasks is null, default to 0
             val completedTasks = postModel.completedWorkshops ?: 0 // If completedTasks is null, default to 0
@@ -72,6 +74,10 @@ class workshopadapterforhome(
 
             // Set the progress of the progress bar
             progressBar.progress = progressPercentage.toInt()
+
+
+
+
 
             button.setOnClickListener {
                 val i = Intent(itemView.context, WorkshopsSegment::class.java)
