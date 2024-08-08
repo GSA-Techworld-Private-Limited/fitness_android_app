@@ -12,9 +12,9 @@
         android:layout_width="match_parent">
 
         <LinearLayout
-            android:gravity="center_horizontal"
+            android:gravity="start"
             android:id="@+id/linearColumnnote"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="vertical">
 
@@ -53,10 +53,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="start"
                 android:id="@+id/recyclerSubscriptions"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_26pxv"
                 android:layout_width="match_parent"
                 android:nestedScrollingEnabled="false"
@@ -64,6 +66,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_14pxh}"
                 tools:listitem="@layout/row_subscriptions"/>
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

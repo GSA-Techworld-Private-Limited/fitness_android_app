@@ -14,5 +14,6 @@ data class ActivePlanWorkshopResponses(
     @SerializedName("created_at"          ) var createdAt        : String? = null,
     @SerializedName("updated_at"          ) var updatedAt        : String? = null,
     @SerializedName("total_workshop_days") var totalworkshops    : Int? = null,
-    @SerializedName("total_completed_workshops")var completedWorkshops : Int? = null
+    @SerializedName("total_completed_workshops")var completedWorkshops : Int? = null,
+    @SerializedName("incomplete_day_names"      ) var incompleteDayNames      : ArrayList<String> = arrayListOf(),
 )

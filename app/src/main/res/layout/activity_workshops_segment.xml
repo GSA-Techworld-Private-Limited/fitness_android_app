@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/swipeRefreshLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--    android:id="@+id/swipeRefreshLayout"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android">-->
 
-<LinearLayout
-    android:gravity="center_horizontal"
+<LinearLayout android:gravity="center_horizontal"
     android:id="@+id/linearSSTOneEight"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.appcompat.widget.Toolbar android:gravity="start"
         android:id="@+id/toolbarToolbar"
         android:layout_height="wrap_content"
@@ -50,12 +50,15 @@
                 tools:text="Workshops"/>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
-    <LinearLayout android:gravity="center_horizontal"
+    <LinearLayout
+        android:gravity="center_horizontal"
         android:id="@+id/linearColumnOne"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_4">
-        <HorizontalScrollView android:fillViewport="true"
+        android:orientation="horizontal"
+        style="@style/groupStylewhite_4">
+        <HorizontalScrollView
+            android:fillViewport="true"
             android:gravity="end"
             android:id="@+id/horizontalScrollHorizontalscrolldayone"
             android:layout_height="wrap_content"
@@ -129,4 +132,4 @@
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->

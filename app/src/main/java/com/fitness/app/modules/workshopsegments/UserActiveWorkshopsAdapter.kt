@@ -33,7 +33,7 @@ class UserActiveWorkshopsAdapter(
     }
 
     override fun onBindViewHolder(holder: RowFeedsOneVH, position: Int) {
-        return  holder.bindView(list[position])
+          holder.bindView(list[position])
     }
 
     override fun getItemCount(): Int {
@@ -46,14 +46,9 @@ class UserActiveWorkshopsAdapter(
             Log.d("UserActiveWorkshopsAdapter", "Workshopdvsvdvdsv: ${workshop.taskName}, Date: ${workshop.taskDate}")
         }
         list = filteredWorkshops
-
         displayedDates.clear()
         notifyDataSetChanged()
     }
-
-
-
-
 
 
 
